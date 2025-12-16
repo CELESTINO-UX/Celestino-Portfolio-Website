@@ -224,20 +224,60 @@
             margin-bottom: 1rem;
         }
         
+        .projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .project-item h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .project-item p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
         .project-link {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background-color: var(--secondary);
             color: white;
             padding: 0.8rem 1.5rem;
             border-radius: 5px;
             text-decoration: none;
-            margin-top: 1rem;
             font-weight: 500;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
         
         .project-link:hover {
             background-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .project-link.github {
+            background-color: #333;
+        }
+        
+        .project-link.github:hover {
+            background-color: #000;
         }
         
         .referee-item {
@@ -325,8 +365,12 @@
                 padding: 2rem;
             }
             
-            .skills-list {
+            .skills-list, .projects-list {
                 grid-template-columns: 1fr;
+            }
+            
+            .project-links {
+                flex-direction: column;
             }
         }
     </style>
@@ -608,13 +652,30 @@
                 </div>
                 
                 <div class="content-section">
-                    <h3>Lukenya Voting System</h3>
-                    <p>A web-based voting system developed to enhance free, fast and secure student council elections at Lukenya British Curriculum School.</p>
-                    <p>The system ensures transparency, security, and efficiency in the voting process while providing real-time results.</p>
-                    
-                    <a href="https://carlesy6.github.io/lukenya-Voting-System/" target="_blank" class="project-link">
-                        <i class="fas fa-external-link-alt"></i> View Project
-                    </a>
+                    <div class="projects-list">
+                        <div class="project-item">
+                            <h4>Lukenya Voting System</h4>
+                            <p>A web-based voting system developed to enhance free, fast and secure student council elections at Lukenya British Curriculum School. The system ensures transparency, security, and efficiency in the voting process while providing real-time results.</p>
+                            <div class="project-links">
+                                <a href="https://carlesy6.github.io/lukenya-Voting-System/" target="_blank" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> View Live Project
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="project-item">
+                            <h4>Celestino Portfolio Website</h4>
+                            <p>A responsive and professional portfolio website showcasing my skills, experience, and projects. Built with HTML, CSS, and JavaScript, this website demonstrates web development capabilities and serves as an online resume for potential employers.</p>
+                            <div class="project-links">
+                                <a href="https://carlesy6.github.io/Celestino-Portfolio-Website/" target="_blank" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> View Live Website
+                                </a>
+                                <a href="https://github.com/carlesy6/Celestino-Portfolio-Website" target="_blank" class="project-link github">
+                                    <i class="fab fa-github"></i> View Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="pagination">
@@ -655,76 +716,76 @@
         <div class="container">
             <p>&copy; 2023 Celestino Onyango Portfolio. All rights reserved.</p>
             <p>Contact: +254714019736 | onyangocelestino@gmail.com</p>
-        </div>
-    </footer>
-    
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+            <p>Portfolio: <a href="https://carlesy6.github.io/Celestino-Portfolio-Website/" style="color: #1abc9c;">https://carlesy6.github.io/Celestino-Portfolio-Website/</a></p>
+        </footer>
         
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        // Page navigation
-        const pages = document.querySelectorAll('.page');
-        const navLinksItems = document.querySelectorAll('.nav-links a');
-        const nextBtns = document.querySelectorAll('.next-btn');
-        const prevBtns = document.querySelectorAll('.prev-btn');
-        
-        // Function to show a specific page
-        function showPage(pageId) {
-            // Hide all pages
-            pages.forEach(page => {
-                page.classList.remove('active');
+        <script>
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
             });
             
-            // Show the requested page
-            document.getElementById(pageId).classList.add('active');
+            // Page navigation
+            const pages = document.querySelectorAll('.page');
+            const navLinksItems = document.querySelectorAll('.nav-links a');
+            const nextBtns = document.querySelectorAll('.next-btn');
+            const prevBtns = document.querySelectorAll('.prev-btn');
             
-            // Update active nav link
+            // Function to show a specific page
+            function showPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show the requested page
+                document.getElementById(pageId).classList.add('active');
+                
+                // Update active nav link
+                navLinksItems.forEach(link => {
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.style.color = '#1abc9c';
+                    } else {
+                        link.style.color = 'white';
+                    }
+                });
+                
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+            }
+            
+            // Nav links click event
             navLinksItems.forEach(link => {
-                if (link.getAttribute('data-page') === pageId) {
-                    link.style.color = '#1abc9c';
-                } else {
-                    link.style.color = 'white';
-                }
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.getAttribute('data-page');
+                    showPage(pageId);
+                });
             });
             
-            // Close mobile menu if open
-            navLinks.classList.remove('active');
-        }
-        
-        // Nav links click event
-        navLinksItems.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const pageId = link.getAttribute('data-page');
-                showPage(pageId);
+            // Next button click event
+            nextBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const nextPage = btn.getAttribute('data-next');
+                    showPage(nextPage);
+                });
             });
-        });
-        
-        // Next button click event
-        nextBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const nextPage = btn.getAttribute('data-next');
-                showPage(nextPage);
+            
+            // Previous button click event
+            prevBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const prevPage = btn.getAttribute('data-prev');
+                    showPage(prevPage);
+                });
             });
-        });
-        
-        // Previous button click event
-        prevBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const prevPage = btn.getAttribute('data-prev');
-                showPage(prevPage);
+            
+            // Initialize the first page as active
+            document.addEventListener('DOMContentLoaded', () => {
+                showPage('profile');
             });
-        });
-        
-        // Initialize the first page as active
-        document.addEventListener('DOMContentLoaded', () => {
-            showPage('profile');
-        });
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
