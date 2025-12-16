@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CELESTINO ONYANGO PORTFOLIO WEBSITE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #1abc9c;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        main {
+            margin-top: 80px;
+        }
+        
+        .page {
+            display: none;
+            padding: 4rem 0;
+            min-height: calc(100vh - 80px);
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .page-header h2 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-card h1 {
+            color: var(--primary);
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-card h2 {
+            color: var(--secondary);
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-item i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .content-section ul {
+            padding-left: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 2.5rem;
+        }
+        
+        .experience-item h4, .education-item h4 {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .experience-item .company, .education-item .institution {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .experience-item .duration, .education-item .duration {
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 0.8rem;
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .skill-category h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .project-link {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .project-link:hover {
+            background-color: var(--primary);
+        }
+        
+        .referee-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .referee-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        
+        .pagination-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .pagination-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .pagination-btn:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .profile-card h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header h2 {
+                font-size: 2rem;
+            }
+            
+            .profile-card, .content-section {
+                padding: 2rem;
+            }
+            
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">CELESTINO <span>ONYANGO</span></div>
+                <ul class="nav-links">
+                    <li><a href="#" data-page="profile">Profile</a></li>
+                    <li><a href="#" data-page="professional-profile">Professional Profile</a></li>
+                    <li><a href="#" data-page="experience">Experience</a></li>
+                    <li><a href="#" data-page="education">Education</a></li>
+                    <li><a href="#" data-page="certifications">Certifications</a></li>
+                    <li><a href="#" data-page="skills">Skills</a></li>
+                    <li><a href="#" data-page="competencies">Competencies</a></li>
+                    <li><a href="#" data-page="projects">Projects</a></li>
+                    <li><a href="#" data-page="referees">Referees</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div class="container">
+            <!-- Profile Page -->
+            <section id="profile" class="page active">
+                <div class="profile-card">
+                    <h1>OTIENO CELESTINO ONYANGO</h1>
+                    <h2>ICT Support Specialist & Librarian</h2>
+                    <p>A dedicated ICT professional and library information specialist with expertise in library automation, system administration, and cybersecurity. Committed to promoting academic excellence through effective technology and information service delivery.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+254714019736</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>onyangocelestino@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Nakuru, Kenya</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn" disabled>Previous</button>
+                    <button class="pagination-btn next-btn" data-next="professional-profile">Next: Professional Profile</button>
+                </div>
+            </section>
+            
+            <!-- Professional Profile Page -->
+            <section id="professional-profile" class="page">
+                <div class="page-header">
+                    <h2>Professional Profile</h2>
+                </div>
+                
+                <div class="content-section">
+                    <ul>
+                        <li>Experience in library and information management in both academic and school environments.</li>
+                        <li>Skilled in Koha Integrated Library System and digital cataloguing standards (AACR2, MARC21, Dewey Decimal Classification).</li>
+                        <li>Proven ability to manage library automation projects, digital repositories, and user support systems.</li>
+                        <li>Strong communication, training, and organizational skills developed through collaboration with students and faculty.</li>
+                        <li>Committed to promoting academic excellence and Christian values through effective library service delivery.</li>
+                        <li>ICT Support Specialist with hands-on experience in system administration, cybersecurity monitoring, and end-user support.</li>
+                        <li>Skilled in identifying vulnerabilities, applying security updates, and maintaining system integrity.</li>
+                        <li>Competent in programming and scripting using Python and Bash to automate tasks and improve system efficiency.</li>
+                    </ul>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev-btn" data-prev="profile">Previous: Profile</button>
+                    <button class="pagination-btn next-btn" data-next="experience">Next: Professional Experience</button>
+                </div>
+            </section>
+            
+            <!-- Professional Experience Page -->
+            <section id="experience" class="page">
+                <div class="page-header">
+                    <h2>Professional Experience</h2>
+                </div>
+                
+                <div class="content-section">
+                    <div class="experience-item">
+                        <h4>ICT Support & Librarian</h4>
+                        <div class="company">Lukenya British Curriculum School – Machakos, Kenya</div>
+                        <div class="duration">August 2024 – Present</div>
+                        
+                        <h5>Key Responsibilities:</h5>
+                        <ul>
+                            <li>Provided ICT technical support to staff and users, including troubleshooting hardware, software, and network issues.</li>
+                            <li>Managed installation, configuration, and maintenance of computer systems, printers, and library ICT equipment.</li>
+                            <li>Supported users with library management systems (LMS), digital catalogs, and online databases.</li>
+                            <li>Implemented basic cybersecurity practices, including user access control, password management, antivirus updates, and data backup procedures.</li>
+                            <li>Assisted in monitoring system security, identifying potential threats, and reporting incidents according to ICT policies.</li>
+                            <li>Developed and maintained simple scripts and programs (using languages such as Python or Java) to automate routine ICT or library tasks.</li>
+                            <li>Managed digital and physical library resources, including cataloguing, classification, and circulation.</li>
+                            <li>Trained users on computer literacy, safe internet usage, and effective use of digital library resources.</li>
+                            <li>Maintained accurate ICT and library records, inventories, and usage reports.</li>
+                            <li>Collaborated with management to support digital transformation initiatives within the library environment.</li>
+                        </ul>
+                        
+                        <h5>Key Achievements:</h5>
+                        <ul>
+                            <li>Successfully digitized the school's catalogue and improved retrieval time by 40%.</li>
+                            <li>Introduced structured library orientation and user education sessions.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h4>ICT Assistant Intern</h4>
+                        <div class="company">Kenya National Library Service – Nakuru</div>
+                        <div class="duration">May 2024 – August 2024</div>
+                        
+                        <h5>Key Responsibilities:</h5>
+                        <ul>
+                            <li>Results-driven ICT professional with experience in information systems support, network administration, and end-user technical assistance.</li>
+                            <li>Skilled in troubleshooting hardware and software issues, maintaining IT infrastructure, and supporting digital transformation initiatives.</li>
+                            <li>Strong problem-solving abilities with a commitment to delivering reliable and secure ICT services.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev-btn" data-prev="professional-profile">Previous: Professional Profile</button>
+                    <button class="pagination-btn next-btn" data-next="education">Next: Education Background</button>
+                </div>
+            </section>
+            
+            <!-- Education Background Page -->
+            <section id="education" class="page">
+                <div class="page-header">
+                    <h2>Education Background</h2>
+                </div>
+                
+                <div class="content-section">
+                    <div class="education-item">
+                        <h4>Bachelor of Science in Information Science (ICT Option)</h4>
+                        <div class="institution">Meru University of Science and Technology</div>
+                        <div class="duration">2024</div>
+                    </div>
+                    
+                    <div class="education-item">
+                        <h4>Kenya Certificate of Secondary Education (KCSE)</h4>
+                        <div class="institution">Nyarach Mixed Day Secondary School</div>
+                        <div class="duration">2019</div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev-btn" data-prev="experience">Previous: Professional Experience</button>
+                    <button class="pagination-btn next-btn" data-next="certifications">Next: Certifications</button>
+                </div>
+            </section>
+            
+            <!-- Certifications Page -->
+            <section id="certifications" class="page">
+                <div class="page-header">
+                    <h2>Professional Courses & Certifications</h2>
+                </div>
+                
+                <div class="content-section">
+                    <ul>
+                        <li>Certificate in Data Visualization with Power BI</li>
+                        <li>Certificate in Cyber Forensics</li>
+                        <li>Certificate in Advanced Cyber Security- Threats and Governance</li>
+                        <li>Certificate in Cyber Security Compliance and Regulations</li>
+                    </ul>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev-btn" data-prev="education">Previous: Education</button>
+                    <button class="pagination-btn next-btn" data-next="skills">Next: Technical Skills</button>
+                </div>
+            </section>
+            
+            <!-- Technical Skills Page -->
+            <section id="skills" class="page">
+                <div class="page-header">
+                    <h2>Technical Skills</h2>
+                </div>
+                
+                <div class="content-section">
+                    <div class="skills-list">
+                        <div class="skill-category">
+                            <h4>ICT Support & Troubleshooting</h4>
+                            <p>Hardware and software installation, system diagnostics, printer and peripheral support, user technical assistance</p>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Operating Systems</h4>
+                            <p>Windows, Linux (basic administration), macOS (user support)</p>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Networking</h4>
+                            <p>Basic network configuration, LAN/Wi-Fi setup, IP addressing, connectivity troubleshooting</p>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Cybersecurity</h4>
+                            <p>User access control, antivirus and firewall management, data backup and recovery, cybersecurity awareness and safe computing practices</p>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Library Systems</h4>
+                            <p>Koha ILS, Snapplify, Library Management Systems (LMS), OPAC, digital cataloguing, circulation systems, electronic resource management</p>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Programming & Scripting</h4>
+                            <p>Python, Java, JavaScript, basic Bash scripting for task automation</p>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Database & Data Management</h4>
+                            <p>SQL (basic), data entry, digital record management, metadata editing</p>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Software Applications</h4>
+                            <p>Microsoft Office Suite, Google Workspace, document digitization tools</p>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Cataloguing Tools</h4>
+                            <p>MARC21, AACR2, Dewey Decimal Classification (DDC)</p>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>ICT Asset Management</h4>
+                            <p>Inventory control, system documentation, and maintenance records</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev-btn" data-prev="certifications">Previous: Certifications</button>
+                    <button class="pagination-btn next-btn" data-next="competencies">Next: Core Competencies</button>
+                </div>
+            </section>
+            
+            <!-- Core Competencies Page -->
+            <section id="competencies" class="page">
+                <div class="page-header">
+                    <h2>Core Competencies</h2>
+                </div>
+                
+                <div class="content-section">
+                    <ul>
+                        <li>Library Systems Administration</li>
+                        <li>Cataloguing & Classification</li>
+                        <li>User Education & Information Literacy</li>
+                        <li>Digital Library Management</li>
+                        <li>Data Entry & Metadata Control</li>
+                        <li>Research Support Services</li>
+                        <li>Team Leadership & Communication</li>
+                        <li>Programming and Coding</li>
+                    </ul>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev-btn" data-prev="skills">Previous: Technical Skills</button>
+                    <button class="pagination-btn next-btn" data-next="projects">Next: Projects</button>
+                </div>
+            </section>
+            
+            <!-- Projects Page -->
+            <section id="projects" class="page">
+                <div class="page-header">
+                    <h2>Projects</h2>
+                </div>
+                
+                <div class="content-section">
+                    <h3>Lukenya Voting System</h3>
+                    <p>A web-based voting system developed to enhance free, fast and secure student council elections at Lukenya British Curriculum School.</p>
+                    <p>The system ensures transparency, security, and efficiency in the voting process while providing real-time results.</p>
+                    
+                    <a href="https://carlesy6.github.io/lukenya-Voting-System/" target="_blank" class="project-link">
+                        <i class="fas fa-external-link-alt"></i> View Project
+                    </a>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev-btn" data-prev="competencies">Previous: Core Competencies</button>
+                    <button class="pagination-btn next-btn" data-next="referees">Next: Referees</button>
+                </div>
+            </section>
+            
+            <!-- Referees Page -->
+            <section id="referees" class="page">
+                <div class="page-header">
+                    <h2>Referees</h2>
+                </div>
+                
+                <div class="content-section">
+                    <div class="referee-item">
+                        <h4>Steven Ajulu Otieno</h4>
+                        <p>Head of IT Department</p>
+                        <p>Kenya National Library Service, Nakuru</p>
+                        <p>0740128010</p>
+                    </div>
+                    
+                    <div class="referee-item">
+                        <h4>References available upon request</h4>
+                        <p>Additional professional references can be provided upon request.</p>
+                    </div>
+                </div>
+                
+                <div class="pagination">
+                    <button class="pagination-btn prev-btn" data-prev="projects">Previous: Projects</button>
+                    <button class="pagination-btn" disabled>Next</button>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Celestino Onyango Portfolio. All rights reserved.</p>
+            <p>Contact: +254714019736 | onyangocelestino@gmail.com</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Page navigation
+        const pages = document.querySelectorAll('.page');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+        const nextBtns = document.querySelectorAll('.next-btn');
+        const prevBtns = document.querySelectorAll('.prev-btn');
+        
+        // Function to show a specific page
+        function showPage(pageId) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the requested page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            navLinksItems.forEach(link => {
+                if (link.getAttribute('data-page') === pageId) {
+                    link.style.color = '#1abc9c';
+                } else {
+                    link.style.color = 'white';
+                }
+            });
+            
+            // Close mobile menu if open
+            navLinks.classList.remove('active');
+        }
+        
+        // Nav links click event
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        // Next button click event
+        nextBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const nextPage = btn.getAttribute('data-next');
+                showPage(nextPage);
+            });
+        });
+        
+        // Previous button click event
+        prevBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const prevPage = btn.getAttribute('data-prev');
+                showPage(prevPage);
+            });
+        });
+        
+        // Initialize the first page as active
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('profile');
+        });
+    </script>
+</body>
+</html>
