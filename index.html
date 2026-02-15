@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CELESTINO ONYANGO PORTFOLIO WEBSITE</title>
+    <title>CELESTINO ONYANGO PORTFOLIO - Dynamic Admin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -13,6 +13,10 @@
             --light: #f8f9fa;
             --dark: #2c3e50;
             --gray: #7f8c8d;
+            --admin: #e74c3c;
+            --admin-hover: #c0392b;
+            --success: #27ae60;
+            --warning: #f39c12;
         }
         
         * {
@@ -50,12 +54,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
             color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
         }
         
         .logo span {
@@ -65,21 +76,40 @@
         .nav-links {
             display: flex;
             list-style: none;
+            flex-wrap: wrap;
         }
         
         .nav-links li {
-            margin-left: 2rem;
+            margin-left: 1.5rem;
         }
         
         .nav-links a {
             color: white;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
             font-size: 1rem;
+            position: relative;
+            padding-bottom: 5px;
         }
         
-        .nav-links a:hover {
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
             color: var(--accent);
         }
         
@@ -92,6 +122,460 @@
             cursor: pointer;
         }
         
+        .admin-btn {
+            background-color: var(--admin);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .admin-btn:hover {
+            background-color: var(--admin-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        /* Passcode Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-content h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .modal-content i {
+            font-size: 3rem;
+            color: var(--admin);
+            margin-bottom: 1rem;
+        }
+        
+        .passcode-input {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            text-align: center;
+            letter-spacing: 3px;
+            transition: border-color 0.3s;
+        }
+        
+        .passcode-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .modal-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .modal-btn.primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .modal-btn.primary:hover {
+            background-color: var(--secondary);
+        }
+        
+        .modal-btn.secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+        
+        .modal-btn.secondary:hover {
+            background-color: #7f8c8d;
+        }
+        
+        .error-message {
+            color: var(--admin);
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .admin-panel.active {
+            display: block;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+        
+        .admin-header h3 {
+            color: var(--admin);
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-btn:hover {
+            background-color: #f0f0f0;
+            color: var(--admin);
+            transform: rotate(90deg);
+        }
+        
+        .admin-sections {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .admin-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .admin-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .admin-section h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .add-item-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s;
+        }
+        
+        .add-item-btn:hover {
+            background-color: #219a52;
+            transform: scale(1.05);
+        }
+        
+        .edit-profile-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s;
+        }
+        
+        .edit-profile-btn:hover {
+            background-color: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .item-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .item-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .item-list li:hover {
+            border-left-color: var(--accent);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+        
+        .item-content {
+            flex: 1;
+            margin-right: 1rem;
+        }
+        
+        .item-title {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .item-subtitle {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .edit-btn,
+        .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .edit-btn {
+            color: var(--secondary);
+        }
+        
+        .edit-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .delete-btn {
+            color: var(--admin);
+        }
+        
+        .delete-btn:hover {
+            background-color: var(--admin);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Form Modal */
+        .form-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            z-index: 2500;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .form-modal.active {
+            display: block;
+        }
+        
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .form-header h3 {
+            color: var(--primary);
+        }
+        
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        .admin-form input,
+        .admin-form textarea,
+        .admin-form select {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .admin-form input:focus,
+        .admin-form textarea:focus,
+        .admin-form select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .admin-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .admin-form button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .admin-form button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            display: none;
+            backdrop-filter: blur(3px);
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        /* Main Content */
         main {
             margin-top: 80px;
         }
@@ -100,6 +584,18 @@
             display: none;
             padding: 4rem 0;
             min-height: calc(100vh - 80px);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .page.active {
@@ -111,6 +607,7 @@
             margin-bottom: 3rem;
             padding-bottom: 1rem;
             border-bottom: 3px solid var(--accent);
+            position: relative;
         }
         
         .page-header h2 {
@@ -121,12 +618,17 @@
         
         .profile-card {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             padding: 3rem;
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
+            transition: transform 0.3s;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-5px);
         }
         
         .profile-card h1 {
@@ -154,19 +656,39 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            background: var(--light);
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .contact-item:hover i {
+            color: white;
         }
         
         .contact-item i {
             color: var(--accent);
             font-size: 1.3rem;
+            transition: color 0.3s;
         }
         
         .content-section {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             padding: 2.5rem;
             margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .content-section:hover {
+            transform: translateY(-3px);
         }
         
         .content-section h3 {
@@ -183,10 +705,25 @@
         
         .content-section li {
             margin-bottom: 0.8rem;
+            transition: transform 0.2s;
+        }
+        
+        .content-section li:hover {
+            transform: translateX(5px);
+            color: var(--secondary);
         }
         
         .experience-item, .education-item {
             margin-bottom: 2.5rem;
+            position: relative;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .experience-item:hover, .education-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .experience-item h4, .education-item h4 {
@@ -213,10 +750,16 @@
         }
         
         .skill-category {
-            background: #f8f9fa;
+            background: var(--light);
             padding: 1.5rem;
-            border-radius: 8px;
+            border-radius: 10px;
             border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .skill-category h4 {
@@ -231,10 +774,16 @@
         }
         
         .project-item {
-            background: #f8f9fa;
+            background: var(--light);
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 10px;
             border-left: 4px solid var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .project-item h4 {
@@ -260,16 +809,18 @@
             background-color: var(--secondary);
             color: white;
             padding: 0.8rem 1.5rem;
-            border-radius: 5px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s;
+            flex: 1;
+            justify-content: center;
         }
         
         .project-link:hover {
             background-color: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .project-link.github {
@@ -281,10 +832,16 @@
         }
         
         .referee-item {
-            background: #f8f9fa;
+            background: var(--light);
             padding: 1.5rem;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .referee-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .referee-item h4 {
@@ -302,28 +859,85 @@
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
             cursor: pointer;
             font-weight: 500;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .pagination-btn:hover {
+        .pagination-btn:hover:not(:disabled) {
             background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .pagination-btn:disabled {
             background-color: #bdc3c7;
             cursor: not-allowed;
+            opacity: 0.6;
         }
         
         footer {
             background-color: var(--primary);
             color: white;
             text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 2rem;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 3500;
+            animation: slideInRight 0.3s ease;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .toast.show {
+            display: flex;
+        }
+        
+        .toast.error {
+            background: var(--admin);
+        }
+        
+        .toast.warning {
+            background: var(--warning);
         }
         
         @media (max-width: 768px) {
@@ -353,6 +967,15 @@
                 display: block;
             }
             
+            .admin-btn span {
+                display: none;
+            }
+            
+            .admin-btn {
+                padding: 0.5rem;
+                border-radius: 50%;
+            }
+            
             .profile-card h1 {
                 font-size: 2rem;
             }
@@ -362,7 +985,7 @@
             }
             
             .profile-card, .content-section {
-                padding: 2rem;
+                padding: 1.5rem;
             }
             
             .skills-list, .projects-list {
@@ -372,6 +995,16 @@
             .project-links {
                 flex-direction: column;
             }
+            
+            .admin-panel {
+                width: 95%;
+                padding: 1rem;
+                max-height: 90vh;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -379,9 +1012,9 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">CELESTINO <span>ONYANGO</span></div>
+                <div class="logo" onclick="showPage('profile')">CELESTINO <span>ONYANGO</span></div>
                 <ul class="nav-links">
-                    <li><a href="#" data-page="profile">Profile</a></li>
+                    <li><a href="#" data-page="profile" class="active">Profile</a></li>
                     <li><a href="#" data-page="professional-profile">Professional Profile</a></li>
                     <li><a href="#" data-page="experience">Experience</a></li>
                     <li><a href="#" data-page="education">Education</a></li>
@@ -391,6 +1024,9 @@
                     <li><a href="#" data-page="projects">Projects</a></li>
                     <li><a href="#" data-page="referees">Referees</a></li>
                 </ul>
+                <button class="admin-btn" id="adminToggle">
+                    <i class="fas fa-lock"></i> <span>Admin</span>
+                </button>
                 <button class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -398,34 +1034,212 @@
         </div>
     </header>
     
+    <!-- Passcode Modal -->
+    <div class="modal" id="passcodeModal">
+        <div class="modal-content">
+            <i class="fas fa-lock"></i>
+            <h3>Admin Access</h3>
+            <p>Enter passcode to access admin panel</p>
+            <input type="password" class="passcode-input" id="passcode" placeholder="****" maxlength="4" inputmode="numeric" pattern="[0-9]*">
+            <div class="error-message" id="passcodeError">Incorrect passcode. Please try again.</div>
+            <div class="modal-buttons">
+                <button class="modal-btn secondary" onclick="closePasscodeModal()">Cancel</button>
+                <button class="modal-btn primary" onclick="verifyPasscode()">Unlock</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div class="overlay" id="overlay"></div>
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h3><i class="fas fa-cog"></i> Admin Dashboard</h3>
+            <button class="close-btn" id="closeAdmin"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="admin-sections">
+            <!-- Profile Section (New) -->
+            <div class="admin-section">
+                <h4>
+                    Profile Information
+                    <button class="edit-profile-btn" onclick="editProfile()">
+                        <i class="fas fa-edit"></i> Edit Profile
+                    </button>
+                </h4>
+                <div class="profile-summary">
+                    <p><strong>Name:</strong> <span id="profileNameDisplay"></span></p>
+                    <p><strong>Title:</strong> <span id="profileTitleDisplay"></span></p>
+                    <p><strong>Phone:</strong> <span id="profilePhoneDisplay"></span></p>
+                    <p><strong>Email:</strong> <span id="profileEmailDisplay"></span></p>
+                    <p><strong>Location:</strong> <span id="profileLocationDisplay"></span></p>
+                </div>
+            </div>
+            
+            <div class="admin-section">
+                <h4>
+                    Professional Profile
+                    <button class="add-item-btn" onclick="showAddForm('professional')">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </h4>
+                <ul class="item-list" id="professionalList"></ul>
+            </div>
+            
+            <div class="admin-section">
+                <h4>
+                    Certifications
+                    <button class="add-item-btn" onclick="showAddForm('certification')">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </h4>
+                <ul class="item-list" id="certificationList"></ul>
+            </div>
+            
+            <div class="admin-section">
+                <h4>
+                    Core Competencies
+                    <button class="add-item-btn" onclick="showAddForm('competency')">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </h4>
+                <ul class="item-list" id="competencyList"></ul>
+            </div>
+            
+            <div class="admin-section">
+                <h4>
+                    Projects
+                    <button class="add-item-btn" onclick="showAddForm('project')">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </h4>
+                <ul class="item-list" id="projectList"></ul>
+            </div>
+            
+            <div class="admin-section">
+                <h4>
+                    Referees
+                    <button class="add-item-btn" onclick="showAddForm('referee')">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </h4>
+                <ul class="item-list" id="refereeList"></ul>
+            </div>
+            
+            <div class="admin-section">
+                <h4>
+                    Experience
+                    <button class="add-item-btn" onclick="showAddForm('experience')">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </h4>
+                <ul class="item-list" id="experienceList"></ul>
+            </div>
+            
+            <div class="admin-section">
+                <h4>
+                    Education
+                    <button class="add-item-btn" onclick="showAddForm('education')">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </h4>
+                <ul class="item-list" id="educationList"></ul>
+            </div>
+            
+            <div class="admin-section">
+                <h4>
+                    Skills
+                    <button class="add-item-btn" onclick="showAddForm('skill')">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </h4>
+                <ul class="item-list" id="skillList"></ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add/Edit Form Modal -->
+    <div class="form-modal" id="formModal">
+        <div class="form-header">
+            <h3 id="formTitle">Add New Item</h3>
+            <button class="close-btn" onclick="hideForm()"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="itemForm" class="admin-form" onsubmit="saveItem(event)">
+            <input type="hidden" id="formType">
+            <input type="hidden" id="editIndex" value="-1">
+            <div id="formFields"></div>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+    
+    <!-- Profile Edit Modal (New) -->
+    <div class="form-modal" id="profileEditModal">
+        <div class="form-header">
+            <h3>Edit Profile Information</h3>
+            <button class="close-btn" onclick="hideProfileForm()"><i class="fas fa-times"></i></button>
+        </div>
+        <form id="profileForm" class="admin-form" onsubmit="saveProfile(event)">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="profileNameInput" required>
+            </div>
+            <div class="form-group">
+                <label>Professional Title</label>
+                <input type="text" id="profileTitleInput" required>
+            </div>
+            <div class="form-group">
+                <label>Bio / Summary</label>
+                <textarea id="profileBioInput" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" id="profilePhoneInput" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="profileEmailInput" required>
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" id="profileLocationInput" required>
+            </div>
+            <button type="submit">Save Profile Changes</button>
+        </form>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Changes saved successfully!</span>
+    </div>
+    
     <main>
         <div class="container">
             <!-- Profile Page -->
             <section id="profile" class="page active">
                 <div class="profile-card">
-                    <h1>OTIENO CELESTINO ONYANGO</h1>
-                    <h2>ICT Support Specialist & Librarian</h2>
-                    <p>A dedicated ICT professional and library information specialist with expertise in library automation, system administration, and cybersecurity. Committed to promoting academic excellence through effective technology and information service delivery.</p>
+                    <h1 id="profileName">OTIENO CELESTINO ONYANGO</h1>
+                    <h2 id="profileTitle">ICT Support Specialist & Librarian</h2>
+                    <p id="profileBio">A dedicated ICT professional and library information specialist with expertise in library automation, system administration, and cybersecurity. Committed to promoting academic excellence through effective technology and information service delivery.</p>
                     
-                    <div class="contact-info">
+                    <div class="contact-info" id="contactInfo">
                         <div class="contact-item">
                             <i class="fas fa-phone-alt"></i>
-                            <span>+254714019736</span>
+                            <span id="profilePhone">+254714019736</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>onyangocelestino@gmail.com</span>
+                            <span id="profileEmail">onyangocelestino@gmail.com</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Nakuru, Kenya</span>
+                            <span id="profileLocation">Nakuru, Kenya</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="pagination">
-                    <button class="pagination-btn" disabled>Previous</button>
-                    <button class="pagination-btn next-btn" data-next="professional-profile">Next: Professional Profile</button>
+                    <button class="pagination-btn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="pagination-btn next-btn" data-next="professional-profile">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
             
@@ -436,21 +1250,14 @@
                 </div>
                 
                 <div class="content-section">
-                    <ul>
-                        <li>Experience in library and information management in both academic and school environments.</li>
-                        <li>Skilled in Koha Integrated Library System and digital cataloguing standards (AACR2, MARC21, Dewey Decimal Classification).</li>
-                        <li>Proven ability to manage library automation projects, digital repositories, and user support systems.</li>
-                        <li>Strong communication, training, and organizational skills developed through collaboration with students and faculty.</li>
-                        <li>Committed to promoting academic excellence and Christian values through effective library service delivery.</li>
-                        <li>ICT Support Specialist with hands-on experience in system administration, cybersecurity monitoring, and end-user support.</li>
-                        <li>Skilled in identifying vulnerabilities, applying security updates, and maintaining system integrity.</li>
-                        <li>Competent in programming and scripting using Python and Bash to automate tasks and improve system efficiency.</li>
+                    <ul id="professionalProfileList">
+                        <!-- Dynamic content will be loaded here -->
                     </ul>
                 </div>
                 
                 <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="profile">Previous: Profile</button>
-                    <button class="pagination-btn next-btn" data-next="experience">Next: Professional Experience</button>
+                    <button class="pagination-btn prev-btn" data-prev="profile"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="pagination-btn next-btn" data-next="experience">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
             
@@ -460,50 +1267,13 @@
                     <h2>Professional Experience</h2>
                 </div>
                 
-                <div class="content-section">
-                    <div class="experience-item">
-                        <h4>ICT Support & Librarian</h4>
-                        <div class="company">Lukenya British Curriculum School – Machakos, Kenya</div>
-                        <div class="duration">August 2024 – Present</div>
-                        
-                        <h5>Key Responsibilities:</h5>
-                        <ul>
-                            <li>Provided ICT technical support to staff and users, including troubleshooting hardware, software, and network issues.</li>
-                            <li>Managed installation, configuration, and maintenance of computer systems, printers, and library ICT equipment.</li>
-                            <li>Supported users with library management systems (LMS), digital catalogs, and online databases.</li>
-                            <li>Implemented basic cybersecurity practices, including user access control, password management, antivirus updates, and data backup procedures.</li>
-                            <li>Assisted in monitoring system security, identifying potential threats, and reporting incidents according to ICT policies.</li>
-                            <li>Developed and maintained simple scripts and programs (using languages such as Python or Java) to automate routine ICT or library tasks.</li>
-                            <li>Managed digital and physical library resources, including cataloguing, classification, and circulation.</li>
-                            <li>Trained users on computer literacy, safe internet usage, and effective use of digital library resources.</li>
-                            <li>Maintained accurate ICT and library records, inventories, and usage reports.</li>
-                            <li>Collaborated with management to support digital transformation initiatives within the library environment.</li>
-                        </ul>
-                        
-                        <h5>Key Achievements:</h5>
-                        <ul>
-                            <li>Successfully digitized the school's catalogue and improved retrieval time by 40%.</li>
-                            <li>Introduced structured library orientation and user education sessions.</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="experience-item">
-                        <h4>ICT Assistant Intern</h4>
-                        <div class="company">Kenya National Library Service – Nakuru</div>
-                        <div class="duration">May 2024 – August 2024</div>
-                        
-                        <h5>Key Responsibilities:</h5>
-                        <ul>
-                            <li>Results-driven ICT professional with experience in information systems support, network administration, and end-user technical assistance.</li>
-                            <li>Skilled in troubleshooting hardware and software issues, maintaining IT infrastructure, and supporting digital transformation initiatives.</li>
-                            <li>Strong problem-solving abilities with a commitment to delivering reliable and secure ICT services.</li>
-                        </ul>
-                    </div>
+                <div class="content-section" id="experienceContent">
+                    <!-- Dynamic content will be loaded here -->
                 </div>
                 
                 <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="professional-profile">Previous: Professional Profile</button>
-                    <button class="pagination-btn next-btn" data-next="education">Next: Education Background</button>
+                    <button class="pagination-btn prev-btn" data-prev="professional-profile"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="pagination-btn next-btn" data-next="education">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
             
@@ -513,23 +1283,13 @@
                     <h2>Education Background</h2>
                 </div>
                 
-                <div class="content-section">
-                    <div class="education-item">
-                        <h4>Bachelor of Science in Information Science (ICT Option)</h4>
-                        <div class="institution">Meru University of Science and Technology</div>
-                        <div class="duration">2024</div>
-                    </div>
-                    
-                    <div class="education-item">
-                        <h4>Kenya Certificate of Secondary Education (KCSE)</h4>
-                        <div class="institution">Nyarach Mixed Day Secondary School</div>
-                        <div class="duration">2019</div>
-                    </div>
+                <div class="content-section" id="educationContent">
+                    <!-- Dynamic content will be loaded here -->
                 </div>
                 
                 <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="experience">Previous: Professional Experience</button>
-                    <button class="pagination-btn next-btn" data-next="certifications">Next: Certifications</button>
+                    <button class="pagination-btn prev-btn" data-prev="experience"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="pagination-btn next-btn" data-next="certifications">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
             
@@ -540,17 +1300,14 @@
                 </div>
                 
                 <div class="content-section">
-                    <ul>
-                        <li>Certificate in Data Visualization with Power BI</li>
-                        <li>Certificate in Cyber Forensics</li>
-                        <li>Certificate in Advanced Cyber Security- Threats and Governance</li>
-                        <li>Certificate in Cyber Security Compliance and Regulations</li>
+                    <ul id="certificationsList">
+                        <!-- Dynamic content will be loaded here -->
                     </ul>
                 </div>
                 
                 <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="education">Previous: Education</button>
-                    <button class="pagination-btn next-btn" data-next="skills">Next: Technical Skills</button>
+                    <button class="pagination-btn prev-btn" data-prev="education"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="pagination-btn next-btn" data-next="skills">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
             
@@ -561,62 +1318,14 @@
                 </div>
                 
                 <div class="content-section">
-                    <div class="skills-list">
-                        <div class="skill-category">
-                            <h4>ICT Support & Troubleshooting</h4>
-                            <p>Hardware and software installation, system diagnostics, printer and peripheral support, user technical assistance</p>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Operating Systems</h4>
-                            <p>Windows, Linux (basic administration), macOS (user support)</p>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Networking</h4>
-                            <p>Basic network configuration, LAN/Wi-Fi setup, IP addressing, connectivity troubleshooting</p>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Cybersecurity</h4>
-                            <p>User access control, antivirus and firewall management, data backup and recovery, cybersecurity awareness and safe computing practices</p>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Library Systems</h4>
-                            <p>Koha ILS, Snapplify, Library Management Systems (LMS), OPAC, digital cataloguing, circulation systems, electronic resource management</p>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Programming & Scripting</h4>
-                            <p>Python, Java, JavaScript, basic Bash scripting for task automation</p>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Database & Data Management</h4>
-                            <p>SQL (basic), data entry, digital record management, metadata editing</p>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Software Applications</h4>
-                            <p>Microsoft Office Suite, Google Workspace, document digitization tools</p>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>Cataloguing Tools</h4>
-                            <p>MARC21, AACR2, Dewey Decimal Classification (DDC)</p>
-                        </div>
-                        
-                        <div class="skill-category">
-                            <h4>ICT Asset Management</h4>
-                            <p>Inventory control, system documentation, and maintenance records</p>
-                        </div>
+                    <div class="skills-list" id="skillsList">
+                        <!-- Dynamic content will be loaded here -->
                     </div>
                 </div>
                 
                 <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="certifications">Previous: Certifications</button>
-                    <button class="pagination-btn next-btn" data-next="competencies">Next: Core Competencies</button>
+                    <button class="pagination-btn prev-btn" data-prev="certifications"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="pagination-btn next-btn" data-next="competencies">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
             
@@ -627,21 +1336,14 @@
                 </div>
                 
                 <div class="content-section">
-                    <ul>
-                        <li>Library Systems Administration</li>
-                        <li>Cataloguing & Classification</li>
-                        <li>User Education & Information Literacy</li>
-                        <li>Digital Library Management</li>
-                        <li>Data Entry & Metadata Control</li>
-                        <li>Research Support Services</li>
-                        <li>Team Leadership & Communication</li>
-                        <li>Programming and Coding</li>
+                    <ul id="competenciesList">
+                        <!-- Dynamic content will be loaded here -->
                     </ul>
                 </div>
                 
                 <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="skills">Previous: Technical Skills</button>
-                    <button class="pagination-btn next-btn" data-next="projects">Next: Projects</button>
+                    <button class="pagination-btn prev-btn" data-prev="skills"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="pagination-btn next-btn" data-next="projects">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
             
@@ -652,35 +1354,14 @@
                 </div>
                 
                 <div class="content-section">
-                    <div class="projects-list">
-                        <div class="project-item">
-                            <h4>Lukenya Voting System</h4>
-                            <p>A web-based voting system developed to enhance free, fast and secure student council elections at Lukenya British Curriculum School. The system ensures transparency, security, and efficiency in the voting process while providing real-time results.</p>
-                            <div class="project-links">
-                                <a href="https://carlesy6.github.io/lukenya-Voting-System/" target="_blank" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i> View Live Project
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="project-item">
-                            <h4>Celestino Portfolio Website</h4>
-                            <p>A responsive and professional portfolio website showcasing my skills, experience, and projects. Built with HTML, CSS, and JavaScript, this website demonstrates web development capabilities and serves as an online resume for potential employers.</p>
-                            <div class="project-links">
-                                <a href="https://carlesy6.github.io/Celestino-Portfolio-Website/" target="_blank" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i> View Live Website
-                                </a>
-                                <a href="https://github.com/carlesy6/Celestino-Portfolio-Website" target="_blank" class="project-link github">
-                                    <i class="fab fa-github"></i> View Source Code
-                                </a>
-                            </div>
-                        </div>
+                    <div class="projects-list" id="projectsList">
+                        <!-- Dynamic content will be loaded here -->
                     </div>
                 </div>
                 
                 <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="competencies">Previous: Core Competencies</button>
-                    <button class="pagination-btn next-btn" data-next="referees">Next: Referees</button>
+                    <button class="pagination-btn prev-btn" data-prev="competencies"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="pagination-btn next-btn" data-next="referees">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
             
@@ -690,23 +1371,13 @@
                     <h2>Referees</h2>
                 </div>
                 
-                <div class="content-section">
-                    <div class="referee-item">
-                        <h4>Steven Ajulu Otieno</h4>
-                        <p>Head of IT Department</p>
-                        <p>Kenya National Library Service, Nakuru</p>
-                        <p>0740128010</p>
-                    </div>
-                    
-                    <div class="referee-item">
-                        <h4>References available upon request</h4>
-                        <p>Additional professional references can be provided upon request.</p>
-                    </div>
+                <div class="content-section" id="refereesContent">
+                    <!-- Dynamic content will be loaded here -->
                 </div>
                 
                 <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="projects">Previous: Projects</button>
-                    <button class="pagination-btn" disabled>Next</button>
+                    <button class="pagination-btn prev-btn" data-prev="projects"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="pagination-btn" disabled>Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
         </div>
@@ -714,12 +1385,971 @@
     
     <footer>
         <div class="container">
-            <p>&copy; 2023 Celestino Onyango Portfolio. All rights reserved.</p>
-            <p>Contact: +254714019736 | onyangocelestino@gmail.com</p>
-            <p>Portfolio: <a href="https://carlesy6.github.io/Celestino-Portfolio-Website/" style="color: #1abc9c;">https://carlesy6.github.io/Celestino-Portfolio-Website/</a></p>
-        </footer>
+            <p>&copy; 2024 Celestino Onyango Portfolio. All rights reserved.</p>
+            <p><i class="fas fa-phone"></i> +254714019736 | <i class="fas fa-envelope"></i> onyangocelestino@gmail.com</p>
+            <p><i class="fas fa-globe"></i> <a href="https://carlesy6.github.io/Celestino-Portfolio-Website/">https://carlesy6.github.io/Celestino-Portfolio-Website/</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Admin passcode
+        const ADMIN_PASSCODE = "1997";
         
-        <script>
+        // Default data structure
+        let portfolioData = {
+            profile: {
+                name: "OTIENO CELESTINO ONYANGO",
+                title: "ICT Support Specialist & Librarian",
+                bio: "A dedicated ICT professional and library information specialist with expertise in library automation, system administration, and cybersecurity. Committed to promoting academic excellence through effective technology and information service delivery.",
+                contact: {
+                    phone: "+254714019736",
+                    email: "onyangocelestino@gmail.com",
+                    location: "Nakuru, Kenya"
+                }
+            },
+            professionalProfile: [
+                "Experience in library and information management in both academic and school environments.",
+                "Skilled in Koha Integrated Library System and digital cataloguing standards (AACR2, MARC21, Dewey Decimal Classification).",
+                "Proven ability to manage library automation projects, digital repositories, and user support systems.",
+                "Strong communication, training, and organizational skills developed through collaboration with students and faculty.",
+                "Committed to promoting academic excellence and Christian values through effective library service delivery.",
+                "ICT Support Specialist with hands-on experience in system administration, cybersecurity monitoring, and end-user support.",
+                "Skilled in identifying vulnerabilities, applying security updates, and maintaining system integrity.",
+                "Competent in programming and scripting using Python and Bash to automate tasks and improve system efficiency."
+            ],
+            experience: [
+                {
+                    title: "ICT Support & Librarian",
+                    company: "Lukenya British Curriculum School – Machakos, Kenya",
+                    duration: "August 2024 – Present",
+                    responsibilities: [
+                        "Provided ICT technical support to staff and users, including troubleshooting hardware, software, and network issues.",
+                        "Managed installation, configuration, and maintenance of computer systems, printers, and library ICT equipment.",
+                        "Supported users with library management systems (LMS), digital catalogs, and online databases.",
+                        "Implemented basic cybersecurity practices, including user access control, password management, antivirus updates, and data backup procedures.",
+                        "Assisted in monitoring system security, identifying potential threats, and reporting incidents according to ICT policies.",
+                        "Developed and maintained simple scripts and programs (using languages such as Python or Java) to automate routine ICT or library tasks.",
+                        "Managed digital and physical library resources, including cataloguing, classification, and circulation.",
+                        "Trained users on computer literacy, safe internet usage, and effective use of digital library resources.",
+                        "Maintained accurate ICT and library records, inventories, and usage reports.",
+                        "Collaborated with management to support digital transformation initiatives within the library environment."
+                    ],
+                    achievements: [
+                        "Successfully digitized the school's catalogue and improved retrieval time by 40%.",
+                        "Introduced structured library orientation and user education sessions."
+                    ]
+                },
+                {
+                    title: "ICT Assistant Intern",
+                    company: "Kenya National Library Service – Nakuru",
+                    duration: "May 2024 – August 2024",
+                    responsibilities: [
+                        "Results-driven ICT professional with experience in information systems support, network administration, and end-user technical assistance.",
+                        "Skilled in troubleshooting hardware and software issues, maintaining IT infrastructure, and supporting digital transformation initiatives.",
+                        "Strong problem-solving abilities with a commitment to delivering reliable and secure ICT services."
+                    ],
+                    achievements: []
+                }
+            ],
+            education: [
+                {
+                    degree: "Bachelor of Science in Information Science (ICT Option)",
+                    institution: "Meru University of Science and Technology",
+                    year: "2024"
+                },
+                {
+                    degree: "Kenya Certificate of Secondary Education (KCSE)",
+                    institution: "Nyarach Mixed Day Secondary School",
+                    year: "2019"
+                }
+            ],
+            certifications: [
+                "Certificate in Data Visualization with Power BI",
+                "Certificate in Cyber Forensics",
+                "Certificate in Advanced Cyber Security- Threats and Governance",
+                "Certificate in Cyber Security Compliance and Regulations"
+            ],
+            skills: [
+                { category: "ICT Support & Troubleshooting", description: "Hardware and software installation, system diagnostics, printer and peripheral support, user technical assistance" },
+                { category: "Operating Systems", description: "Windows, Linux (basic administration), macOS (user support)" },
+                { category: "Networking", description: "Basic network configuration, LAN/Wi-Fi setup, IP addressing, connectivity troubleshooting" },
+                { category: "Cybersecurity", description: "User access control, antivirus and firewall management, data backup and recovery, cybersecurity awareness and safe computing practices" },
+                { category: "Library Systems", description: "Koha ILS, Snapplify, Library Management Systems (LMS), OPAC, digital cataloguing, circulation systems, electronic resource management" },
+                { category: "Programming & Scripting", description: "Python, Java, JavaScript, basic Bash scripting for task automation" },
+                { category: "Database & Data Management", description: "SQL (basic), data entry, digital record management, metadata editing" },
+                { category: "Software Applications", description: "Microsoft Office Suite, Google Workspace, document digitization tools" },
+                { category: "Cataloguing Tools", description: "MARC21, AACR2, Dewey Decimal Classification (DDC)" },
+                { category: "ICT Asset Management", description: "Inventory control, system documentation, and maintenance records" }
+            ],
+            competencies: [
+                "Library Systems Administration",
+                "Cataloguing & Classification",
+                "User Education & Information Literacy",
+                "Digital Library Management",
+                "Data Entry & Metadata Control",
+                "Research Support Services",
+                "Team Leadership & Communication",
+                "Programming and Coding"
+            ],
+            projects: [
+                {
+                    title: "Lukenya Voting System",
+                    description: "A web-based voting system developed to enhance free, fast and secure student council elections at Lukenya British Curriculum School. The system ensures transparency, security, and efficiency in the voting process while providing real-time results.",
+                    liveUrl: "https://carlesy6.github.io/lukenya-Voting-System/",
+                    githubUrl: ""
+                },
+                {
+                    title: "Celestino Portfolio Website",
+                    description: "A responsive and professional portfolio website showcasing my skills, experience, and projects. Built with HTML, CSS, and JavaScript, this website demonstrates web development capabilities and serves as an online resume for potential employers.",
+                    liveUrl: "https://carlesy6.github.io/Celestino-Portfolio-Website/",
+                    githubUrl: "https://github.com/carlesy6/Celestino-Portfolio-Website"
+                }
+            ],
+            referees: [
+                {
+                    name: "Steven Ajulu Otieno",
+                    position: "Head of IT Department",
+                    organization: "Kenya National Library Service, Nakuru",
+                    phone: "0740128010"
+                }
+            ]
+        };
+
+        // Load data from localStorage if available
+        function loadData() {
+            const savedData = localStorage.getItem('portfolioData');
+            if (savedData) {
+                try {
+                    portfolioData = JSON.parse(savedData);
+                } catch (e) {
+                    console.error('Error loading saved data', e);
+                }
+            }
+            renderAll();
+            updateAdminProfileSummary();
+        }
+
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
+            showToast('Changes saved successfully!', 'success');
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toast.className = 'toast show';
+            if (type === 'error') {
+                toast.classList.add('error');
+            } else if (type === 'warning') {
+                toast.classList.add('warning');
+            }
+            
+            toastMessage.textContent = message;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Passcode verification
+        function verifyPasscode() {
+            const passcode = document.getElementById('passcode').value;
+            const errorElement = document.getElementById('passcodeError');
+            
+            if (passcode === ADMIN_PASSCODE) {
+                closePasscodeModal();
+                openAdminPanel();
+                document.getElementById('passcode').value = '';
+                errorElement.classList.remove('show');
+            } else {
+                errorElement.classList.add('show');
+                document.getElementById('passcode').value = '';
+                showToast('Incorrect passcode', 'error');
+            }
+        }
+
+        function openPasscodeModal() {
+            document.getElementById('passcodeModal').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('passcode').focus();
+        }
+
+        function closePasscodeModal() {
+            document.getElementById('passcodeModal').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('passcode').value = '';
+            document.getElementById('passcodeError').classList.remove('show');
+        }
+
+        function openAdminPanel() {
+            document.getElementById('adminPanel').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            updateAdminLists();
+            updateAdminProfileSummary();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        // New function to update profile summary in admin panel
+        function updateAdminProfileSummary() {
+            document.getElementById('profileNameDisplay').textContent = portfolioData.profile.name;
+            document.getElementById('profileTitleDisplay').textContent = portfolioData.profile.title;
+            document.getElementById('profilePhoneDisplay').textContent = portfolioData.profile.contact.phone;
+            document.getElementById('profileEmailDisplay').textContent = portfolioData.profile.contact.email;
+            document.getElementById('profileLocationDisplay').textContent = portfolioData.profile.contact.location;
+        }
+
+        // New function to edit profile
+        function editProfile() {
+            document.getElementById('profileNameInput').value = portfolioData.profile.name;
+            document.getElementById('profileTitleInput').value = portfolioData.profile.title;
+            document.getElementById('profileBioInput').value = portfolioData.profile.bio;
+            document.getElementById('profilePhoneInput').value = portfolioData.profile.contact.phone;
+            document.getElementById('profileEmailInput').value = portfolioData.profile.contact.email;
+            document.getElementById('profileLocationInput').value = portfolioData.profile.contact.location;
+            
+            document.getElementById('profileEditModal').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function hideProfileForm() {
+            document.getElementById('profileEditModal').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        // New function to save profile changes
+        function saveProfile(event) {
+            event.preventDefault();
+            
+            portfolioData.profile = {
+                name: document.getElementById('profileNameInput').value,
+                title: document.getElementById('profileTitleInput').value,
+                bio: document.getElementById('profileBioInput').value,
+                contact: {
+                    phone: document.getElementById('profilePhoneInput').value,
+                    email: document.getElementById('profileEmailInput').value,
+                    location: document.getElementById('profileLocationInput').value
+                }
+            };
+            
+            saveData();
+            renderAll();
+            updateAdminProfileSummary();
+            hideProfileForm();
+            showToast('Profile updated successfully!');
+        }
+
+        // Render all content
+        function renderAll() {
+            renderProfile();
+            renderProfessionalProfile();
+            renderExperience();
+            renderEducation();
+            renderCertifications();
+            renderSkills();
+            renderCompetencies();
+            renderProjects();
+            renderReferees();
+        }
+
+        function renderProfile() {
+            document.getElementById('profileName').textContent = portfolioData.profile.name;
+            document.getElementById('profileTitle').textContent = portfolioData.profile.title;
+            document.getElementById('profileBio').textContent = portfolioData.profile.bio;
+            document.getElementById('profilePhone').textContent = portfolioData.profile.contact.phone;
+            document.getElementById('profileEmail').textContent = portfolioData.profile.contact.email;
+            document.getElementById('profileLocation').textContent = portfolioData.profile.contact.location;
+        }
+
+        function renderProfessionalProfile() {
+            const list = document.getElementById('professionalProfileList');
+            if (list) {
+                list.innerHTML = portfolioData.professionalProfile.map(item => `<li>${item}</li>`).join('');
+            }
+        }
+
+        function renderExperience() {
+            const container = document.getElementById('experienceContent');
+            if (container) {
+                container.innerHTML = portfolioData.experience.map(exp => `
+                    <div class="experience-item">
+                        <h4>${exp.title}</h4>
+                        <div class="company">${exp.company}</div>
+                        <div class="duration">${exp.duration}</div>
+                        
+                        <h5>Key Responsibilities:</h5>
+                        <ul>
+                            ${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}
+                        </ul>
+                        
+                        ${exp.achievements && exp.achievements.length > 0 ? `
+                            <h5>Key Achievements:</h5>
+                            <ul>
+                                ${exp.achievements.map(a => `<li>${a}</li>`).join('')}
+                            </ul>
+                        ` : ''}
+                    </div>
+                `).join('');
+            }
+        }
+
+        function renderEducation() {
+            const container = document.getElementById('educationContent');
+            if (container) {
+                container.innerHTML = portfolioData.education.map(edu => `
+                    <div class="education-item">
+                        <h4>${edu.degree}</h4>
+                        <div class="institution">${edu.institution}</div>
+                        <div class="duration">${edu.year}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function renderCertifications() {
+            const list = document.getElementById('certificationsList');
+            if (list) {
+                list.innerHTML = portfolioData.certifications.map(cert => `<li>${cert}</li>`).join('');
+            }
+        }
+
+        function renderSkills() {
+            const container = document.getElementById('skillsList');
+            if (container) {
+                container.innerHTML = portfolioData.skills.map(skill => `
+                    <div class="skill-category">
+                        <h4>${skill.category}</h4>
+                        <p>${skill.description}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function renderCompetencies() {
+            const list = document.getElementById('competenciesList');
+            if (list) {
+                list.innerHTML = portfolioData.competencies.map(comp => `<li>${comp}</li>`).join('');
+            }
+        }
+
+        function renderProjects() {
+            const container = document.getElementById('projectsList');
+            if (container) {
+                container.innerHTML = portfolioData.projects.map(proj => `
+                    <div class="project-item">
+                        <h4>${proj.title}</h4>
+                        <p>${proj.description}</p>
+                        <div class="project-links">
+                            ${proj.liveUrl ? `
+                                <a href="${proj.liveUrl}" target="_blank" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> View Live Project
+                                </a>
+                            ` : ''}
+                            ${proj.githubUrl ? `
+                                <a href="${proj.githubUrl}" target="_blank" class="project-link github">
+                                    <i class="fab fa-github"></i> View Source Code
+                                </a>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function renderReferees() {
+            const container = document.getElementById('refereesContent');
+            if (container) {
+                container.innerHTML = portfolioData.referees.map(ref => `
+                    <div class="referee-item">
+                        <h4>${ref.name}</h4>
+                        <p>${ref.position}</p>
+                        <p>${ref.organization}</p>
+                        <p>${ref.phone}</p>
+                    </div>
+                `).join('');
+                
+                // Add default message
+                container.innerHTML += `
+                    <div class="referee-item">
+                        <h4>References available upon request</h4>
+                        <p>Additional professional references can be provided upon request.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function updateAdminLists() {
+            // Professional Profile
+            const profList = document.getElementById('professionalList');
+            profList.innerHTML = portfolioData.professionalProfile.map((item, index) => `
+                <li>
+                    <div class="item-content">
+                        <div class="item-title">${item.substring(0, 50)}${item.length > 50 ? '...' : ''}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="edit-btn" onclick="editItem('professional', ${index})"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deleteItem('professional', ${index})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+            `).join('');
+
+            // Certifications
+            const certList = document.getElementById('certificationList');
+            certList.innerHTML = portfolioData.certifications.map((item, index) => `
+                <li>
+                    <div class="item-content">
+                        <div class="item-title">${item}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="edit-btn" onclick="editItem('certification', ${index})"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deleteItem('certification', ${index})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+            `).join('');
+
+            // Competencies
+            const compList = document.getElementById('competencyList');
+            compList.innerHTML = portfolioData.competencies.map((item, index) => `
+                <li>
+                    <div class="item-content">
+                        <div class="item-title">${item}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="edit-btn" onclick="editItem('competency', ${index})"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deleteItem('competency', ${index})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+            `).join('');
+
+            // Projects
+            const projList = document.getElementById('projectList');
+            projList.innerHTML = portfolioData.projects.map((item, index) => `
+                <li>
+                    <div class="item-content">
+                        <div class="item-title">${item.title}</div>
+                        <div class="item-subtitle">${item.description.substring(0, 50)}...</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="edit-btn" onclick="editItem('project', ${index})"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deleteItem('project', ${index})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+            `).join('');
+
+            // Referees
+            const refList = document.getElementById('refereeList');
+            refList.innerHTML = portfolioData.referees.map((item, index) => `
+                <li>
+                    <div class="item-content">
+                        <div class="item-title">${item.name}</div>
+                        <div class="item-subtitle">${item.position} - ${item.organization}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="edit-btn" onclick="editItem('referee', ${index})"><i class="fas fa-edit"></i></button>
+                        <button class="delete-btn" onclick="deleteItem('referee', ${index})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </li>
+            `).join('');
+
+            // Experience
+            const expList = document.getElementById('experienceList');
+            if (expList) {
+                expList.innerHTML = portfolioData.experience.map((item, index) => `
+                    <li>
+                        <div class="item-content">
+                            <div class="item-title">${item.title}</div>
+                            <div class="item-subtitle">${item.company}</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="edit-btn" onclick="editItem('experience', ${index})"><i class="fas fa-edit"></i></button>
+                            <button class="delete-btn" onclick="deleteItem('experience', ${index})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                `).join('');
+            }
+
+            // Education
+            const eduList = document.getElementById('educationList');
+            if (eduList) {
+                eduList.innerHTML = portfolioData.education.map((item, index) => `
+                    <li>
+                        <div class="item-content">
+                            <div class="item-title">${item.degree}</div>
+                            <div class="item-subtitle">${item.institution} - ${item.year}</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="edit-btn" onclick="editItem('education', ${index})"><i class="fas fa-edit"></i></button>
+                            <button class="delete-btn" onclick="deleteItem('education', ${index})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                `).join('');
+            }
+
+            // Skills
+            const skillList = document.getElementById('skillList');
+            if (skillList) {
+                skillList.innerHTML = portfolioData.skills.map((item, index) => `
+                    <li>
+                        <div class="item-content">
+                            <div class="item-title">${item.category}</div>
+                            <div class="item-subtitle">${item.description.substring(0, 50)}...</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="edit-btn" onclick="editItem('skill', ${index})"><i class="fas fa-edit"></i></button>
+                            <button class="delete-btn" onclick="deleteItem('skill', ${index})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                `).join('');
+            }
+        }
+
+        // Form functions
+        function showAddForm(type) {
+            document.getElementById('formType').value = type;
+            document.getElementById('editIndex').value = '-1';
+            document.getElementById('formTitle').textContent = `Add New ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            
+            let fields = '';
+            switch(type) {
+                case 'professional':
+                case 'certification':
+                case 'competency':
+                    fields = `
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="itemText" placeholder="Enter description" required></textarea>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'experience':
+                    fields = `
+                        <div class="form-group">
+                            <label>Job Title</label>
+                            <input type="text" id="expTitle" placeholder="e.g., ICT Support & Librarian" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input type="text" id="expCompany" placeholder="e.g., Lukenya British Curriculum School" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Duration</label>
+                            <input type="text" id="expDuration" placeholder="e.g., August 2024 – Present" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Responsibilities (one per line)</label>
+                            <textarea id="expResponsibilities" placeholder="Enter each responsibility on a new line" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Achievements (one per line, optional)</label>
+                            <textarea id="expAchievements" placeholder="Enter each achievement on a new line"></textarea>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'education':
+                    fields = `
+                        <div class="form-group">
+                            <label>Degree/Certificate</label>
+                            <input type="text" id="eduDegree" placeholder="e.g., Bachelor of Science in Information Science" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Institution</label>
+                            <input type="text" id="eduInstitution" placeholder="e.g., Meru University" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Year</label>
+                            <input type="text" id="eduYear" placeholder="e.g., 2024" required>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'skill':
+                    fields = `
+                        <div class="form-group">
+                            <label>Skill Category</label>
+                            <input type="text" id="skillCategory" placeholder="e.g., Programming & Scripting" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="skillDescription" placeholder="Describe the skill" required></textarea>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'project':
+                    fields = `
+                        <div class="form-group">
+                            <label>Project Title</label>
+                            <input type="text" id="projectTitle" placeholder="e.g., Lukenya Voting System" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="projectDescription" placeholder="Describe the project" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Live URL (optional)</label>
+                            <input type="url" id="projectLiveUrl" placeholder="https://...">
+                        </div>
+                        <div class="form-group">
+                            <label>GitHub URL (optional)</label>
+                            <input type="url" id="projectGithubUrl" placeholder="https://github.com/...">
+                        </div>
+                    `;
+                    break;
+                    
+                case 'referee':
+                    fields = `
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="refereeName" placeholder="e.g., Steven Ajulu Otieno" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Position</label>
+                            <input type="text" id="refereePosition" placeholder="e.g., Head of IT Department" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Organization</label>
+                            <input type="text" id="refereeOrganization" placeholder="e.g., Kenya National Library Service" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" id="refereePhone" placeholder="e.g., 0740128010" required>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            document.getElementById('formFields').innerHTML = fields;
+            document.getElementById('formModal').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function hideForm() {
+            document.getElementById('formModal').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('itemForm').reset();
+        }
+
+        function editItem(type, index) {
+            document.getElementById('formType').value = type;
+            document.getElementById('editIndex').value = index;
+            document.getElementById('formTitle').textContent = `Edit ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            
+            let fields = '';
+            const item = getItemByType(type, index);
+            
+            switch(type) {
+                case 'professional':
+                case 'certification':
+                case 'competency':
+                    fields = `
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="itemText" required>${item}</textarea>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'experience':
+                    fields = `
+                        <div class="form-group">
+                            <label>Job Title</label>
+                            <input type="text" id="expTitle" value="${item.title}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input type="text" id="expCompany" value="${item.company}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Duration</label>
+                            <input type="text" id="expDuration" value="${item.duration}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Responsibilities (one per line)</label>
+                            <textarea id="expResponsibilities" required>${item.responsibilities.join('\n')}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Achievements (one per line)</label>
+                            <textarea id="expAchievements">${item.achievements ? item.achievements.join('\n') : ''}</textarea>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'education':
+                    fields = `
+                        <div class="form-group">
+                            <label>Degree/Certificate</label>
+                            <input type="text" id="eduDegree" value="${item.degree}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Institution</label>
+                            <input type="text" id="eduInstitution" value="${item.institution}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Year</label>
+                            <input type="text" id="eduYear" value="${item.year}" required>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'skill':
+                    fields = `
+                        <div class="form-group">
+                            <label>Skill Category</label>
+                            <input type="text" id="skillCategory" value="${item.category}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="skillDescription" required>${item.description}</textarea>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'project':
+                    fields = `
+                        <div class="form-group">
+                            <label>Project Title</label>
+                            <input type="text" id="projectTitle" value="${item.title}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="projectDescription" required>${item.description}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Live URL</label>
+                            <input type="url" id="projectLiveUrl" value="${item.liveUrl || ''}">
+                        </div>
+                        <div class="form-group">
+                            <label>GitHub URL</label>
+                            <input type="url" id="projectGithubUrl" value="${item.githubUrl || ''}">
+                        </div>
+                    `;
+                    break;
+                    
+                case 'referee':
+                    fields = `
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="refereeName" value="${item.name}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Position</label>
+                            <input type="text" id="refereePosition" value="${item.position}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Organization</label>
+                            <input type="text" id="refereeOrganization" value="${item.organization}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" id="refereePhone" value="${item.phone}" required>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            document.getElementById('formFields').innerHTML = fields;
+            document.getElementById('formModal').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function getItemByType(type, index) {
+            switch(type) {
+                case 'professional': return portfolioData.professionalProfile[index];
+                case 'certification': return portfolioData.certifications[index];
+                case 'competency': return portfolioData.competencies[index];
+                case 'experience': return portfolioData.experience[index];
+                case 'education': return portfolioData.education[index];
+                case 'skill': return portfolioData.skills[index];
+                case 'project': return portfolioData.projects[index];
+                case 'referee': return portfolioData.referees[index];
+                default: return null;
+            }
+        }
+
+        function saveItem(event) {
+            event.preventDefault();
+            
+            const type = document.getElementById('formType').value;
+            const editIndex = parseInt(document.getElementById('editIndex').value);
+            
+            let newItem;
+            switch(type) {
+                case 'professional':
+                case 'certification':
+                case 'competency':
+                    newItem = document.getElementById('itemText').value;
+                    if (editIndex === -1) {
+                        portfolioData[getArrayName(type)].push(newItem);
+                    } else {
+                        portfolioData[getArrayName(type)][editIndex] = newItem;
+                    }
+                    break;
+                    
+                case 'experience':
+                    const responsibilities = document.getElementById('expResponsibilities').value
+                        .split('\n')
+                        .filter(line => line.trim() !== '');
+                    const achievements = document.getElementById('expAchievements').value
+                        .split('\n')
+                        .filter(line => line.trim() !== '');
+                    
+                    newItem = {
+                        title: document.getElementById('expTitle').value,
+                        company: document.getElementById('expCompany').value,
+                        duration: document.getElementById('expDuration').value,
+                        responsibilities: responsibilities,
+                        achievements: achievements
+                    };
+                    
+                    if (editIndex === -1) {
+                        portfolioData.experience.push(newItem);
+                    } else {
+                        portfolioData.experience[editIndex] = newItem;
+                    }
+                    break;
+                    
+                case 'education':
+                    newItem = {
+                        degree: document.getElementById('eduDegree').value,
+                        institution: document.getElementById('eduInstitution').value,
+                        year: document.getElementById('eduYear').value
+                    };
+                    
+                    if (editIndex === -1) {
+                        portfolioData.education.push(newItem);
+                    } else {
+                        portfolioData.education[editIndex] = newItem;
+                    }
+                    break;
+                    
+                case 'skill':
+                    newItem = {
+                        category: document.getElementById('skillCategory').value,
+                        description: document.getElementById('skillDescription').value
+                    };
+                    
+                    if (editIndex === -1) {
+                        portfolioData.skills.push(newItem);
+                    } else {
+                        portfolioData.skills[editIndex] = newItem;
+                    }
+                    break;
+                    
+                case 'project':
+                    newItem = {
+                        title: document.getElementById('projectTitle').value,
+                        description: document.getElementById('projectDescription').value,
+                        liveUrl: document.getElementById('projectLiveUrl').value,
+                        githubUrl: document.getElementById('projectGithubUrl').value
+                    };
+                    
+                    if (editIndex === -1) {
+                        portfolioData.projects.push(newItem);
+                    } else {
+                        portfolioData.projects[editIndex] = newItem;
+                    }
+                    break;
+                    
+                case 'referee':
+                    newItem = {
+                        name: document.getElementById('refereeName').value,
+                        position: document.getElementById('refereePosition').value,
+                        organization: document.getElementById('refereeOrganization').value,
+                        phone: document.getElementById('refereePhone').value
+                    };
+                    
+                    if (editIndex === -1) {
+                        portfolioData.referees.push(newItem);
+                    } else {
+                        portfolioData.referees[editIndex] = newItem;
+                    }
+                    break;
+            }
+            
+            saveData();
+            renderAll();
+            updateAdminLists();
+            hideForm();
+            showToast('Item saved successfully!');
+        }
+
+        function getArrayName(type) {
+            switch(type) {
+                case 'professional': return 'professionalProfile';
+                case 'certification': return 'certifications';
+                case 'competency': return 'competencies';
+                default: return type + 's';
+            }
+        }
+
+        function deleteItem(type, index) {
+            if (confirm('Are you sure you want to delete this item?')) {
+                switch(type) {
+                    case 'professional':
+                        portfolioData.professionalProfile.splice(index, 1);
+                        break;
+                    case 'certification':
+                        portfolioData.certifications.splice(index, 1);
+                        break;
+                    case 'competency':
+                        portfolioData.competencies.splice(index, 1);
+                        break;
+                    case 'experience':
+                        portfolioData.experience.splice(index, 1);
+                        break;
+                    case 'education':
+                        portfolioData.education.splice(index, 1);
+                        break;
+                    case 'skill':
+                        portfolioData.skills.splice(index, 1);
+                        break;
+                    case 'project':
+                        portfolioData.projects.splice(index, 1);
+                        break;
+                    case 'referee':
+                        portfolioData.referees.splice(index, 1);
+                        break;
+                }
+                
+                saveData();
+                renderAll();
+                updateAdminLists();
+                showToast('Item deleted successfully!');
+            }
+        }
+
+        // Page navigation
+        function showPage(pageId) {
+            // Update pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Close mobile menu
+            document.querySelector('.nav-links').classList.remove('active');
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            
             // Mobile menu toggle
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
@@ -728,37 +2358,29 @@
                 navLinks.classList.toggle('active');
             });
             
-            // Page navigation
-            const pages = document.querySelectorAll('.page');
-            const navLinksItems = document.querySelectorAll('.nav-links a');
-            const nextBtns = document.querySelectorAll('.next-btn');
-            const prevBtns = document.querySelectorAll('.prev-btn');
+            // Admin button - show passcode modal first
+            document.getElementById('adminToggle').addEventListener('click', openPasscodeModal);
             
-            // Function to show a specific page
-            function showPage(pageId) {
-                // Hide all pages
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
-                
-                // Show the requested page
-                document.getElementById(pageId).classList.add('active');
-                
-                // Update active nav link
-                navLinksItems.forEach(link => {
-                    if (link.getAttribute('data-page') === pageId) {
-                        link.style.color = '#1abc9c';
-                    } else {
-                        link.style.color = 'white';
-                    }
-                });
-                
-                // Close mobile menu if open
-                navLinks.classList.remove('active');
-            }
+            // Close admin panel
+            document.getElementById('closeAdmin').addEventListener('click', closeAdminPanel);
             
-            // Nav links click event
-            navLinksItems.forEach(link => {
+            // Overlay click - close everything
+            document.getElementById('overlay').addEventListener('click', () => {
+                closePasscodeModal();
+                closeAdminPanel();
+                hideForm();
+                hideProfileForm();
+            });
+            
+            // Passcode input enter key
+            document.getElementById('passcode').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    verifyPasscode();
+                }
+            });
+            
+            // Navigation
+            document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const pageId = link.getAttribute('data-page');
@@ -766,26 +2388,35 @@
                 });
             });
             
-            // Next button click event
-            nextBtns.forEach(btn => {
+            // Next/Prev buttons
+            document.querySelectorAll('.next-btn, .prev-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const nextPage = btn.getAttribute('data-next');
-                    showPage(nextPage);
-                });
-            });
-            
-            // Previous button click event
-            prevBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
                     const prevPage = btn.getAttribute('data-prev');
-                    showPage(prevPage);
+                    if (nextPage) showPage(nextPage);
+                    if (prevPage) showPage(prevPage);
                 });
             });
             
-            // Initialize the first page as active
-            document.addEventListener('DOMContentLoaded', () => {
+            // Logo click
+            document.querySelector('.logo').addEventListener('click', () => {
                 showPage('profile');
             });
-        </script>
-    </body>
-    </html>
+        });
+
+        // Make functions globally available
+        window.showPage = showPage;
+        window.showAddForm = showAddForm;
+        window.hideForm = hideForm;
+        window.editItem = editItem;
+        window.deleteItem = deleteItem;
+        window.saveItem = saveItem;
+        window.verifyPasscode = verifyPasscode;
+        window.closePasscodeModal = closePasscodeModal;
+        window.openPasscodeModal = openPasscodeModal;
+        window.editProfile = editProfile;
+        window.hideProfileForm = hideProfileForm;
+        window.saveProfile = saveProfile;
+    </script>
+</body>
+</html>
