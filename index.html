@@ -713,6 +713,32 @@
             color: var(--secondary);
         }
         
+        /* Certificate Item Styles */
+        .certificate-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s;
+        }
+        
+        .certificate-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .certificate-item h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .certificate-item p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
         .experience-item, .education-item {
             margin-bottom: 2.5rem;
             position: relative;
@@ -1058,7 +1084,7 @@
         </div>
         
         <div class="admin-sections">
-            <!-- Profile Section (New) -->
+            <!-- Profile Section -->
             <div class="admin-section">
                 <h4>
                     Profile Information
@@ -1171,7 +1197,7 @@
         </form>
     </div>
     
-    <!-- Profile Edit Modal (New) -->
+    <!-- Profile Edit Modal -->
     <div class="form-modal" id="profileEditModal">
         <div class="form-header">
             <h3>Edit Profile Information</h3>
@@ -1299,10 +1325,8 @@
                     <h2>Professional Courses & Certifications</h2>
                 </div>
                 
-                <div class="content-section">
-                    <ul id="certificationsList">
-                        <!-- Dynamic content will be loaded here -->
-                    </ul>
+                <div class="content-section" id="certificationsContent">
+                    <!-- Dynamic content will be loaded here -->
                 </div>
                 
                 <div class="pagination">
@@ -1395,7 +1419,7 @@
         // Admin passcode
         const ADMIN_PASSCODE = "1997";
         
-        // Default data structure
+        // Default data structure with certificates including descriptions
         let portfolioData = {
             profile: {
                 name: "OTIENO CELESTINO ONYANGO",
@@ -1464,10 +1488,22 @@
                 }
             ],
             certifications: [
-                "Certificate in Data Visualization with Power BI",
-                "Certificate in Cyber Forensics",
-                "Certificate in Advanced Cyber Security- Threats and Governance",
-                "Certificate in Cyber Security Compliance and Regulations"
+                {
+                    name: "Certificate in Data Visualization with Power BI",
+                    description: "Comprehensive training in creating interactive dashboards, reports, and data visualizations using Microsoft Power BI. Covers data modeling, DAX formulas, and business intelligence best practices."
+                },
+                {
+                    name: "Certificate in Cyber Forensics",
+                    description: "Advanced training in digital evidence collection, analysis, and preservation. Includes techniques for investigating cybercrimes, recovering deleted data, and maintaining chain of custody."
+                },
+                {
+                    name: "Certificate in Advanced Cyber Security - Threats and Governance",
+                    description: "In-depth study of modern cybersecurity threats, risk management frameworks, security governance, and compliance requirements. Covers threat intelligence and incident response strategies."
+                },
+                {
+                    name: "Certificate in Cyber Security Compliance and Regulations",
+                    description: "Focus on regulatory requirements, data protection laws, and compliance standards including GDPR, ISO 27001, and local data protection regulations. Emphasizes practical implementation of security controls."
+                }
             ],
             skills: [
                 { category: "ICT Support & Troubleshooting", description: "Hardware and software installation, system diagnostics, printer and peripheral support, user technical assistance" },
@@ -1520,7 +1556,18 @@
             const savedData = localStorage.getItem('portfolioData');
             if (savedData) {
                 try {
-                    portfolioData = JSON.parse(savedData);
+                    const parsed = JSON.parse(savedData);
+                    // Handle backward compatibility for certifications
+                    if (parsed.certifications && parsed.certifications.length > 0) {
+                        if (typeof parsed.certifications[0] === 'string') {
+                            // Convert old string format to new object format
+                            parsed.certifications = parsed.certifications.map(cert => ({
+                                name: cert,
+                                description: "Professional certification in " + cert
+                            }));
+                        }
+                    }
+                    portfolioData = parsed;
                 } catch (e) {
                     console.error('Error loading saved data', e);
                 }
@@ -1596,7 +1643,7 @@
             document.getElementById('overlay').classList.remove('active');
         }
 
-        // New function to update profile summary in admin panel
+        // Update profile summary in admin panel
         function updateAdminProfileSummary() {
             document.getElementById('profileNameDisplay').textContent = portfolioData.profile.name;
             document.getElementById('profileTitleDisplay').textContent = portfolioData.profile.title;
@@ -1605,7 +1652,7 @@
             document.getElementById('profileLocationDisplay').textContent = portfolioData.profile.contact.location;
         }
 
-        // New function to edit profile
+        // Edit profile
         function editProfile() {
             document.getElementById('profileNameInput').value = portfolioData.profile.name;
             document.getElementById('profileTitleInput').value = portfolioData.profile.title;
@@ -1623,7 +1670,7 @@
             document.getElementById('overlay').classList.remove('active');
         }
 
-        // New function to save profile changes
+        // Save profile changes
         function saveProfile(event) {
             event.preventDefault();
             
@@ -1713,9 +1760,14 @@
         }
 
         function renderCertifications() {
-            const list = document.getElementById('certificationsList');
-            if (list) {
-                list.innerHTML = portfolioData.certifications.map(cert => `<li>${cert}</li>`).join('');
+            const container = document.getElementById('certificationsContent');
+            if (container) {
+                container.innerHTML = portfolioData.certifications.map(cert => `
+                    <div class="certificate-item">
+                        <h4>${cert.name}</h4>
+                        <p>${cert.description}</p>
+                    </div>
+                `).join('');
             }
         }
 
@@ -1799,12 +1851,13 @@
                 </li>
             `).join('');
 
-            // Certifications
+            // Certifications - Updated to show both name and description
             const certList = document.getElementById('certificationList');
             certList.innerHTML = portfolioData.certifications.map((item, index) => `
                 <li>
                     <div class="item-content">
-                        <div class="item-title">${item}</div>
+                        <div class="item-title">${item.name}</div>
+                        <div class="item-subtitle">${item.description.substring(0, 50)}${item.description.length > 50 ? '...' : ''}</div>
                     </div>
                     <div class="item-actions">
                         <button class="edit-btn" onclick="editItem('certification', ${index})"><i class="fas fa-edit"></i></button>
@@ -1918,12 +1971,24 @@
             let fields = '';
             switch(type) {
                 case 'professional':
-                case 'certification':
                 case 'competency':
                     fields = `
                         <div class="form-group">
                             <label>Description</label>
                             <textarea id="itemText" placeholder="Enter description" required></textarea>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'certification':
+                    fields = `
+                        <div class="form-group">
+                            <label>Certificate Name</label>
+                            <input type="text" id="certName" placeholder="e.g., Certificate in Data Visualization with Power BI" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="certDescription" placeholder="Describe the certification details, skills acquired, and topics covered" required></textarea>
                         </div>
                     `;
                     break;
@@ -2047,12 +2112,24 @@
             
             switch(type) {
                 case 'professional':
-                case 'certification':
                 case 'competency':
                     fields = `
                         <div class="form-group">
                             <label>Description</label>
                             <textarea id="itemText" required>${item}</textarea>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'certification':
+                    fields = `
+                        <div class="form-group">
+                            <label>Certificate Name</label>
+                            <input type="text" id="certName" value="${item.name}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="certDescription" required>${item.description}</textarea>
                         </div>
                     `;
                     break;
@@ -2183,13 +2260,25 @@
             let newItem;
             switch(type) {
                 case 'professional':
-                case 'certification':
                 case 'competency':
                     newItem = document.getElementById('itemText').value;
                     if (editIndex === -1) {
                         portfolioData[getArrayName(type)].push(newItem);
                     } else {
                         portfolioData[getArrayName(type)][editIndex] = newItem;
+                    }
+                    break;
+                    
+                case 'certification':
+                    newItem = {
+                        name: document.getElementById('certName').value,
+                        description: document.getElementById('certDescription').value
+                    };
+                    
+                    if (editIndex === -1) {
+                        portfolioData.certifications.push(newItem);
+                    } else {
+                        portfolioData.certifications[editIndex] = newItem;
                     }
                     break;
                     
