@@ -1419,7 +1419,7 @@
         // Admin passcode
         const ADMIN_PASSCODE = "1997";
         
-        // Default data structure with certificates including descriptions
+        // Default data structure with certificates including the new ones from The National College
         let portfolioData = {
             profile: {
                 name: "OTIENO CELESTINO ONYANGO",
@@ -1488,6 +1488,26 @@
                 }
             ],
             certifications: [
+                {
+                    name: "Recognising and Supporting Pupils with ADHD (Primary) - The National College",
+                    description: "Certificate awarded on 9th February 2026. Focuses on identifying and supporting primary pupils with ADHD, covering the latest policy, practice, and research in educational settings."
+                },
+                {
+                    name: "Certificate in Organising and Managing School Trips - The National College",
+                    description: "Certificate awarded on 9th February 2026. Provides training on planning, risk management, and execution of educational school trips, aligned with current sector guidance."
+                },
+                {
+                    name: "Certificate in Infection Prevention & Control - The National College",
+                    description: "Certificate awarded on 9th February 2026. Covers essential protocols and best practices for infection prevention and control within school environments."
+                },
+                {
+                    name: "Certificate in Health & Safety for Staff - The National College",
+                    description: "Certificate awarded on 9th February 2026. Addresses key health and safety responsibilities for school staff, including compliance and creating a safe working environment."
+                },
+                {
+                    name: "Managing School Admissions (Independent Senior) - The National College",
+                    description: "Certificate awarded on 9th February 2026. Focuses on the management of school admissions processes, particularly for independent senior schools, ensuring compliance with regulations."
+                },
                 {
                     name: "Certificate in Data Visualization with Power BI",
                     description: "Comprehensive training in creating interactive dashboards, reports, and data visualizations using Microsoft Power BI. Covers data modeling, DAX formulas, and business intelligence best practices."
@@ -2125,7 +2145,7 @@
                     fields = `
                         <div class="form-group">
                             <label>Certificate Name</label>
-                            <input type="text" id="certName" value="${item.name}" required>
+                            <input type="text" id="certName" value="${item.name.replace(/"/g, '&quot;')}" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
