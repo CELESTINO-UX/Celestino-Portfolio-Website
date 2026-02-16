@@ -17,6 +17,8 @@
             --admin-hover: #c0392b;
             --success: #27ae60;
             --warning: #f39c12;
+            --social-bg: rgba(255,255,255,0.2);
+            --social-hover: #64b5f6;
         }
         
         * {
@@ -247,6 +249,35 @@
             background-color: var(--admin-hover);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .social-header {
+            display: flex;
+            gap: 0.8rem;
+            margin-left: 1rem;
+        }
+
+        .social-icon {
+            color: white;
+            background: var(--social-bg);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(2px);
+        }
+
+        .social-icon:hover {
+            background: var(--social-hover);
+            color: var(--primary);
+            transform: translateY(-3px) scale(1.1);
+            border-color: white;
+            box-shadow: 0 4px 10px rgba(0,160,210,0.4);
         }
         
         .modal {
@@ -1040,6 +1071,19 @@
         .toast.warning {
             background: var(--warning);
         }
+
+        /* Social links container in header */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-header {
+            display: flex;
+            gap: 0.6rem;
+            margin-right: 0.5rem;
+        }
         
         @media (max-width: 768px) {
             .nav-links {
@@ -1075,6 +1119,21 @@
             .admin-btn {
                 padding: 0.5rem;
                 border-radius: 50%;
+            }
+
+            .header-actions {
+                gap: 0.3rem;
+            }
+
+            .social-header {
+                gap: 0.3rem;
+                margin-right: 0;
+            }
+
+            .social-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
             }
             
             .profile-card h1 {
@@ -1125,12 +1184,21 @@
                     <li><a href="#" data-page="projects">Projects</a></li>
                     <li><a href="#" data-page="referees">Referees</a></li>
                 </ul>
-                <button class="admin-btn" id="adminToggle">
-                    <i class="fas fa-lock"></i> <span>Admin</span>
-                </button>
-                <button class="mobile-menu-btn">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <div class="header-actions">
+                    <!-- SOCIAL LINKS ADDED HERE (HEADER) -->
+                    <div class="social-header">
+                        <a href="https://github.com/carlesy6" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/celestino-onyango" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/celestino_tech" target="_blank" class="social-icon" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://wa.me/254714019736" target="_blank" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <button class="admin-btn" id="adminToggle">
+                        <i class="fas fa-lock"></i> <span>Admin</span>
+                    </button>
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -1328,6 +1396,15 @@
                             <i class="fas fa-map-marker-alt"></i>
                             <span id="profileLocation">Nakuru, Kenya</span>
                         </div>
+                        <!-- SOCIAL LINKS ADDED IN PROFILE CARD -->
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <a href="https://github.com/carlesy6" target="_blank" style="color: inherit; text-decoration: none;">GitHub</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <a href="https://linkedin.com/in/celestino-onyango" target="_blank" style="color: inherit; text-decoration: none;">LinkedIn</a>
+                        </div>
                     </div>
                 </div>
                 
@@ -1456,10 +1533,18 @@
             <p>&copy; 2024 Celestino Onyango Portfolio. All rights reserved.</p>
             <p><i class="fas fa-phone"></i> +254714019736 | <i class="fas fa-envelope"></i> onyangocelestino@gmail.com</p>
             <p><i class="fas fa-globe"></i> <a href="https://carlesy6.github.io/Celestino-Portfolio-Website/">https://carlesy6.github.io/Celestino-Portfolio-Website/</a></p>
+            <!-- SOCIAL LINKS ADDED IN FOOTER -->
+            <p style="margin-top: 0.8rem;">
+                <a href="https://github.com/carlesy6" target="_blank" style="color: white; margin: 0 0.5rem;"><i class="fab fa-github fa-lg"></i></a>
+                <a href="https://linkedin.com/in/celestino-onyango" target="_blank" style="color: white; margin: 0 0.5rem;"><i class="fab fa-linkedin fa-lg"></i></a>
+                <a href="https://twitter.com/celestino_tech" target="_blank" style="color: white; margin: 0 0.5rem;"><i class="fab fa-x-twitter fa-lg"></i></a>
+                <a href="https://wa.me/254714019736" target="_blank" style="color: white; margin: 0 0.5rem;"><i class="fab fa-whatsapp fa-lg"></i></a>
+            </p>
         </div>
     </footer>
     
     <script>
+        // ADMIN PASSCODE
         const ADMIN_PASSCODE = "1997";
         
         let portfolioData = {
