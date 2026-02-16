@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CELESTINO ONYANGO PORTFOLIO - Dynamic Admin</title>
+    <title>CELESTINO ONYANGO PORTFOLIO - Ocean Glitter</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #1abc9c;
-            --light: #f8f9fa;
-            --dark: #2c3e50;
-            --gray: #7f8c8d;
+            --primary: #0a2f44;
+            --secondary: #1e6f9f;
+            --accent: #64b5f6;
+            --light: rgba(255,255,255,0.85);
+            --dark: #021c2b;
+            --gray: #c9e1f0;
             --admin: #e74c3c;
             --admin-hover: #c0392b;
             --success: #27ae60;
@@ -23,13 +23,122 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Times New Roman', Times, serif;
         }
         
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            background: linear-gradient(145deg, #022b3a 0%, #1f7a8c 50%, #023047 100%);
+            background-size: 400% 400%;
+            animation: oceanGlitter 18s ease infinite;
+            color: #022b3a;
             line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2) 0%, transparent 20%),
+                        radial-gradient(circle at 70% 80%, rgba(200,230,255,0.25) 0%, transparent 25%),
+                        radial-gradient(circle at 10% 70%, rgba(255,240,200,0.15) 0%, transparent 30%),
+                        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 6px);
+            pointer-events: none;
+            z-index: 0;
+            animation: sparkle 6s linear infinite;
+        }
+
+        @keyframes oceanGlitter {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 50% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 50% 50%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        @keyframes sparkle {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.4; }
+        }
+
+        header, main, footer, .modal, .admin-panel, .form-modal, .toast {
+            position: relative;
+            z-index: 10;
+        }
+
+        .profile-card, .content-section, .certificate-item, .experience-item, 
+        .education-item, .skill-category, .project-item, .referee-item,
+        .admin-panel, .modal-content, .form-modal {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.85) !important;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 32px rgba(0, 40, 80, 0.3);
+        }
+
+        header {
+            background-color: rgba(2, 43, 58, 0.85) !important;
+            backdrop-filter: blur(5px);
+            border-bottom: 2px solid rgba(100, 181, 246, 0.5);
+        }
+
+        .logo span {
+            color: var(--accent);
+            text-shadow: 0 0 8px #64b5f6;
+        }
+
+        .nav-links a::after {
+            background-color: var(--accent);
+            height: 3px;
+            box-shadow: 0 0 8px #90caf9;
+        }
+
+        .pagination-btn {
+            background: rgba(10, 47, 68, 0.8) !important;
+            color: white !important;
+            backdrop-filter: blur(4px);
+            border: 1px solid #64b5f6;
+            cursor: pointer;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: #1e6f9f !important;
+            box-shadow: 0 0 15px #64b5f6;
+            transform: translateY(-2px);
+        }
+
+        .pagination-btn:disabled {
+            background: rgba(100, 100, 100, 0.5) !important;
+            cursor: not-allowed;
+            opacity: 0.6;
+            border-color: #95a5a6;
+        }
+
+        footer {
+            background-color: rgba(2, 43, 58, 0.9) !important;
+            backdrop-filter: blur(4px);
+            border-top: 2px solid #64b5f6;
+        }
+
+        .toast {
+            background: #27ae60;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .toast.error {
+            background: #e74c3c;
         }
         
         header {
@@ -40,7 +149,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
         .container {
@@ -69,10 +178,6 @@
             transform: scale(1.05);
         }
         
-        .logo span {
-            color: var(--accent);
-        }
-        
         .nav-links {
             display: flex;
             list-style: none;
@@ -91,6 +196,7 @@
             font-size: 1rem;
             position: relative;
             padding-bottom: 5px;
+            cursor: pointer;
         }
         
         .nav-links a::after {
@@ -143,7 +249,6 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
-        /* Passcode Modal */
         .modal {
             display: none;
             position: fixed;
@@ -256,7 +361,6 @@
             display: block;
         }
         
-        /* Admin Panel */
         .admin-panel {
             background-color: white;
             border-radius: 15px;
@@ -466,7 +570,6 @@
             transform: scale(1.1);
         }
         
-        /* Form Modal */
         .form-modal {
             display: none;
             position: fixed;
@@ -526,6 +629,7 @@
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s;
+            font-family: 'Times New Roman', Times, serif;
         }
         
         .admin-form input:focus,
@@ -575,7 +679,6 @@
             display: block;
         }
         
-        /* Main Content */
         main {
             margin-top: 80px;
         }
@@ -713,7 +816,6 @@
             color: var(--secondary);
         }
         
-        /* Certificate Item Styles */
         .certificate-item {
             margin-bottom: 2rem;
             padding: 1.5rem;
@@ -881,32 +983,6 @@
             margin-top: 3rem;
         }
         
-        .pagination-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .pagination-btn:hover:not(:disabled) {
-            background-color: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .pagination-btn:disabled {
-            background-color: #bdc3c7;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-        
         footer {
             background-color: var(--primary);
             color: white;
@@ -926,7 +1002,6 @@
             text-decoration: underline;
         }
         
-        /* Toast Notification */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -1060,7 +1135,6 @@
         </div>
     </header>
     
-    <!-- Passcode Modal -->
     <div class="modal" id="passcodeModal">
         <div class="modal-content">
             <i class="fas fa-lock"></i>
@@ -1075,7 +1149,6 @@
         </div>
     </div>
     
-    <!-- Admin Panel -->
     <div class="overlay" id="overlay"></div>
     <div class="admin-panel" id="adminPanel">
         <div class="admin-header">
@@ -1084,7 +1157,6 @@
         </div>
         
         <div class="admin-sections">
-            <!-- Profile Section -->
             <div class="admin-section">
                 <h4>
                     Profile Information
@@ -1183,7 +1255,6 @@
         </div>
     </div>
     
-    <!-- Add/Edit Form Modal -->
     <div class="form-modal" id="formModal">
         <div class="form-header">
             <h3 id="formTitle">Add New Item</h3>
@@ -1197,7 +1268,6 @@
         </form>
     </div>
     
-    <!-- Profile Edit Modal -->
     <div class="form-modal" id="profileEditModal">
         <div class="form-header">
             <h3>Edit Profile Information</h3>
@@ -1232,7 +1302,6 @@
         </form>
     </div>
     
-    <!-- Toast Notification -->
     <div class="toast" id="toast">
         <i class="fas fa-check-circle"></i>
         <span id="toastMessage">Changes saved successfully!</span>
@@ -1240,7 +1309,6 @@
     
     <main>
         <div class="container">
-            <!-- Profile Page -->
             <section id="profile" class="page active">
                 <div class="profile-card">
                     <h1 id="profileName">OTIENO CELESTINO ONYANGO</h1>
@@ -1269,16 +1337,13 @@
                 </div>
             </section>
             
-            <!-- Professional Profile Page -->
             <section id="professional-profile" class="page">
                 <div class="page-header">
                     <h2>Professional Profile</h2>
                 </div>
                 
                 <div class="content-section">
-                    <ul id="professionalProfileList">
-                        <!-- Dynamic content will be loaded here -->
-                    </ul>
+                    <ul id="professionalProfileList"></ul>
                 </div>
                 
                 <div class="pagination">
@@ -1287,15 +1352,12 @@
                 </div>
             </section>
             
-            <!-- Professional Experience Page -->
             <section id="experience" class="page">
                 <div class="page-header">
                     <h2>Professional Experience</h2>
                 </div>
                 
-                <div class="content-section" id="experienceContent">
-                    <!-- Dynamic content will be loaded here -->
-                </div>
+                <div class="content-section" id="experienceContent"></div>
                 
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="professional-profile"><i class="fas fa-arrow-left"></i> Previous</button>
@@ -1303,15 +1365,12 @@
                 </div>
             </section>
             
-            <!-- Education Background Page -->
             <section id="education" class="page">
                 <div class="page-header">
                     <h2>Education Background</h2>
                 </div>
                 
-                <div class="content-section" id="educationContent">
-                    <!-- Dynamic content will be loaded here -->
-                </div>
+                <div class="content-section" id="educationContent"></div>
                 
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="experience"><i class="fas fa-arrow-left"></i> Previous</button>
@@ -1319,15 +1378,12 @@
                 </div>
             </section>
             
-            <!-- Certifications Page -->
             <section id="certifications" class="page">
                 <div class="page-header">
                     <h2>Professional Courses & Certifications</h2>
                 </div>
                 
-                <div class="content-section" id="certificationsContent">
-                    <!-- Dynamic content will be loaded here -->
-                </div>
+                <div class="content-section" id="certificationsContent"></div>
                 
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="education"><i class="fas fa-arrow-left"></i> Previous</button>
@@ -1335,16 +1391,13 @@
                 </div>
             </section>
             
-            <!-- Technical Skills Page -->
             <section id="skills" class="page">
                 <div class="page-header">
                     <h2>Technical Skills</h2>
                 </div>
                 
                 <div class="content-section">
-                    <div class="skills-list" id="skillsList">
-                        <!-- Dynamic content will be loaded here -->
-                    </div>
+                    <div class="skills-list" id="skillsList"></div>
                 </div>
                 
                 <div class="pagination">
@@ -1353,16 +1406,13 @@
                 </div>
             </section>
             
-            <!-- Core Competencies Page -->
             <section id="competencies" class="page">
                 <div class="page-header">
                     <h2>Core Competencies</h2>
                 </div>
                 
                 <div class="content-section">
-                    <ul id="competenciesList">
-                        <!-- Dynamic content will be loaded here -->
-                    </ul>
+                    <ul id="competenciesList"></ul>
                 </div>
                 
                 <div class="pagination">
@@ -1371,16 +1421,13 @@
                 </div>
             </section>
             
-            <!-- Projects Page -->
             <section id="projects" class="page">
                 <div class="page-header">
                     <h2>Projects</h2>
                 </div>
                 
                 <div class="content-section">
-                    <div class="projects-list" id="projectsList">
-                        <!-- Dynamic content will be loaded here -->
-                    </div>
+                    <div class="projects-list" id="projectsList"></div>
                 </div>
                 
                 <div class="pagination">
@@ -1389,15 +1436,12 @@
                 </div>
             </section>
             
-            <!-- Referees Page -->
             <section id="referees" class="page">
                 <div class="page-header">
                     <h2>Referees</h2>
                 </div>
                 
-                <div class="content-section" id="refereesContent">
-                    <!-- Dynamic content will be loaded here -->
-                </div>
+                <div class="content-section" id="refereesContent"></div>
                 
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="projects"><i class="fas fa-arrow-left"></i> Previous</button>
@@ -1416,10 +1460,8 @@
     </footer>
     
     <script>
-        // Admin passcode
         const ADMIN_PASSCODE = "1997";
         
-        // Default data structure with certificates including the new ones from The National College
         let portfolioData = {
             profile: {
                 name: "OTIENO CELESTINO ONYANGO",
@@ -1571,16 +1613,14 @@
             ]
         };
 
-        // Load data from localStorage if available
+        // Load data from localStorage
         function loadData() {
             const savedData = localStorage.getItem('portfolioData');
             if (savedData) {
                 try {
                     const parsed = JSON.parse(savedData);
-                    // Handle backward compatibility for certifications
                     if (parsed.certifications && parsed.certifications.length > 0) {
                         if (typeof parsed.certifications[0] === 'string') {
-                            // Convert old string format to new object format
                             parsed.certifications = parsed.certifications.map(cert => ({
                                 name: cert,
                                 description: "Professional certification in " + cert
@@ -1594,38 +1634,28 @@
             }
             renderAll();
             updateAdminProfileSummary();
+            updateAdminLists();
         }
 
-        // Save data to localStorage
         function saveData() {
             localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
             showToast('Changes saved successfully!', 'success');
         }
 
-        // Show toast notification
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
             const toastMessage = document.getElementById('toastMessage');
-            
             toast.className = 'toast show';
-            if (type === 'error') {
-                toast.classList.add('error');
-            } else if (type === 'warning') {
-                toast.classList.add('warning');
-            }
-            
+            if (type === 'error') toast.classList.add('error');
+            else if (type === 'warning') toast.classList.add('warning');
             toastMessage.textContent = message;
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // Passcode verification
+        // Passcode functions
         function verifyPasscode() {
             const passcode = document.getElementById('passcode').value;
             const errorElement = document.getElementById('passcodeError');
-            
             if (passcode === ADMIN_PASSCODE) {
                 closePasscodeModal();
                 openAdminPanel();
@@ -1663,7 +1693,6 @@
             document.getElementById('overlay').classList.remove('active');
         }
 
-        // Update profile summary in admin panel
         function updateAdminProfileSummary() {
             document.getElementById('profileNameDisplay').textContent = portfolioData.profile.name;
             document.getElementById('profileTitleDisplay').textContent = portfolioData.profile.title;
@@ -1672,7 +1701,7 @@
             document.getElementById('profileLocationDisplay').textContent = portfolioData.profile.contact.location;
         }
 
-        // Edit profile
+        // Profile edit functions
         function editProfile() {
             document.getElementById('profileNameInput').value = portfolioData.profile.name;
             document.getElementById('profileTitleInput').value = portfolioData.profile.title;
@@ -1680,7 +1709,6 @@
             document.getElementById('profilePhoneInput').value = portfolioData.profile.contact.phone;
             document.getElementById('profileEmailInput').value = portfolioData.profile.contact.email;
             document.getElementById('profileLocationInput').value = portfolioData.profile.contact.location;
-            
             document.getElementById('profileEditModal').classList.add('active');
             document.getElementById('overlay').classList.add('active');
         }
@@ -1690,10 +1718,8 @@
             document.getElementById('overlay').classList.remove('active');
         }
 
-        // Save profile changes
         function saveProfile(event) {
             event.preventDefault();
-            
             portfolioData.profile = {
                 name: document.getElementById('profileNameInput').value,
                 title: document.getElementById('profileTitleInput').value,
@@ -1704,7 +1730,6 @@
                     location: document.getElementById('profileLocationInput').value
                 }
             };
-            
             saveData();
             renderAll();
             updateAdminProfileSummary();
@@ -1712,7 +1737,7 @@
             showToast('Profile updated successfully!');
         }
 
-        // Render all content
+        // Render functions
         function renderAll() {
             renderProfile();
             renderProfessionalProfile();
@@ -1736,9 +1761,7 @@
 
         function renderProfessionalProfile() {
             const list = document.getElementById('professionalProfileList');
-            if (list) {
-                list.innerHTML = portfolioData.professionalProfile.map(item => `<li>${item}</li>`).join('');
-            }
+            if (list) list.innerHTML = portfolioData.professionalProfile.map(item => `<li>${item}</li>`).join('');
         }
 
         function renderExperience() {
@@ -1749,18 +1772,9 @@
                         <h4>${exp.title}</h4>
                         <div class="company">${exp.company}</div>
                         <div class="duration">${exp.duration}</div>
-                        
                         <h5>Key Responsibilities:</h5>
-                        <ul>
-                            ${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}
-                        </ul>
-                        
-                        ${exp.achievements && exp.achievements.length > 0 ? `
-                            <h5>Key Achievements:</h5>
-                            <ul>
-                                ${exp.achievements.map(a => `<li>${a}</li>`).join('')}
-                            </ul>
-                        ` : ''}
+                        <ul>${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>
+                        ${exp.achievements && exp.achievements.length ? `<h5>Key Achievements:</h5><ul>${exp.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}
                     </div>
                 `).join('');
             }
@@ -1805,9 +1819,7 @@
 
         function renderCompetencies() {
             const list = document.getElementById('competenciesList');
-            if (list) {
-                list.innerHTML = portfolioData.competencies.map(comp => `<li>${comp}</li>`).join('');
-            }
+            if (list) list.innerHTML = portfolioData.competencies.map(comp => `<li>${comp}</li>`).join('');
         }
 
         function renderProjects() {
@@ -1818,16 +1830,8 @@
                         <h4>${proj.title}</h4>
                         <p>${proj.description}</p>
                         <div class="project-links">
-                            ${proj.liveUrl ? `
-                                <a href="${proj.liveUrl}" target="_blank" class="project-link">
-                                    <i class="fas fa-external-link-alt"></i> View Live Project
-                                </a>
-                            ` : ''}
-                            ${proj.githubUrl ? `
-                                <a href="${proj.githubUrl}" target="_blank" class="project-link github">
-                                    <i class="fab fa-github"></i> View Source Code
-                                </a>
-                            ` : ''}
+                            ${proj.liveUrl ? `<a href="${proj.liveUrl}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> View Live Project</a>` : ''}
+                            ${proj.githubUrl ? `<a href="${proj.githubUrl}" target="_blank" class="project-link github"><i class="fab fa-github"></i> View Source Code</a>` : ''}
                         </div>
                     </div>
                 `).join('');
@@ -1845,90 +1849,93 @@
                         <p>${ref.phone}</p>
                     </div>
                 `).join('');
-                
-                // Add default message
-                container.innerHTML += `
-                    <div class="referee-item">
-                        <h4>References available upon request</h4>
-                        <p>Additional professional references can be provided upon request.</p>
-                    </div>
-                `;
+                container.innerHTML += `<div class="referee-item"><h4>References available upon request</h4><p>Additional professional references can be provided upon request.</p></div>`;
             }
         }
 
         function updateAdminLists() {
             // Professional Profile
             const profList = document.getElementById('professionalList');
-            profList.innerHTML = portfolioData.professionalProfile.map((item, index) => `
-                <li>
-                    <div class="item-content">
-                        <div class="item-title">${item.substring(0, 50)}${item.length > 50 ? '...' : ''}</div>
-                    </div>
-                    <div class="item-actions">
-                        <button class="edit-btn" onclick="editItem('professional', ${index})"><i class="fas fa-edit"></i></button>
-                        <button class="delete-btn" onclick="deleteItem('professional', ${index})"><i class="fas fa-trash"></i></button>
-                    </div>
-                </li>
-            `).join('');
+            if (profList) {
+                profList.innerHTML = portfolioData.professionalProfile.map((item, index) => `
+                    <li>
+                        <div class="item-content">
+                            <div class="item-title">${item.substring(0, 50)}${item.length > 50 ? '...' : ''}</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="edit-btn" onclick="editItem('professional', ${index})"><i class="fas fa-edit"></i></button>
+                            <button class="delete-btn" onclick="deleteItem('professional', ${index})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                `).join('');
+            }
 
-            // Certifications - Updated to show both name and description
+            // Certifications
             const certList = document.getElementById('certificationList');
-            certList.innerHTML = portfolioData.certifications.map((item, index) => `
-                <li>
-                    <div class="item-content">
-                        <div class="item-title">${item.name}</div>
-                        <div class="item-subtitle">${item.description.substring(0, 50)}${item.description.length > 50 ? '...' : ''}</div>
-                    </div>
-                    <div class="item-actions">
-                        <button class="edit-btn" onclick="editItem('certification', ${index})"><i class="fas fa-edit"></i></button>
-                        <button class="delete-btn" onclick="deleteItem('certification', ${index})"><i class="fas fa-trash"></i></button>
-                    </div>
-                </li>
-            `).join('');
+            if (certList) {
+                certList.innerHTML = portfolioData.certifications.map((item, index) => `
+                    <li>
+                        <div class="item-content">
+                            <div class="item-title">${item.name}</div>
+                            <div class="item-subtitle">${item.description.substring(0, 50)}${item.description.length > 50 ? '...' : ''}</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="edit-btn" onclick="editItem('certification', ${index})"><i class="fas fa-edit"></i></button>
+                            <button class="delete-btn" onclick="deleteItem('certification', ${index})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                `).join('');
+            }
 
             // Competencies
             const compList = document.getElementById('competencyList');
-            compList.innerHTML = portfolioData.competencies.map((item, index) => `
-                <li>
-                    <div class="item-content">
-                        <div class="item-title">${item}</div>
-                    </div>
-                    <div class="item-actions">
-                        <button class="edit-btn" onclick="editItem('competency', ${index})"><i class="fas fa-edit"></i></button>
-                        <button class="delete-btn" onclick="deleteItem('competency', ${index})"><i class="fas fa-trash"></i></button>
-                    </div>
-                </li>
-            `).join('');
+            if (compList) {
+                compList.innerHTML = portfolioData.competencies.map((item, index) => `
+                    <li>
+                        <div class="item-content">
+                            <div class="item-title">${item}</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="edit-btn" onclick="editItem('competency', ${index})"><i class="fas fa-edit"></i></button>
+                            <button class="delete-btn" onclick="deleteItem('competency', ${index})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                `).join('');
+            }
 
             // Projects
             const projList = document.getElementById('projectList');
-            projList.innerHTML = portfolioData.projects.map((item, index) => `
-                <li>
-                    <div class="item-content">
-                        <div class="item-title">${item.title}</div>
-                        <div class="item-subtitle">${item.description.substring(0, 50)}...</div>
-                    </div>
-                    <div class="item-actions">
-                        <button class="edit-btn" onclick="editItem('project', ${index})"><i class="fas fa-edit"></i></button>
-                        <button class="delete-btn" onclick="deleteItem('project', ${index})"><i class="fas fa-trash"></i></button>
-                    </div>
-                </li>
-            `).join('');
+            if (projList) {
+                projList.innerHTML = portfolioData.projects.map((item, index) => `
+                    <li>
+                        <div class="item-content">
+                            <div class="item-title">${item.title}</div>
+                            <div class="item-subtitle">${item.description.substring(0, 50)}...</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="edit-btn" onclick="editItem('project', ${index})"><i class="fas fa-edit"></i></button>
+                            <button class="delete-btn" onclick="deleteItem('project', ${index})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                `).join('');
+            }
 
             // Referees
             const refList = document.getElementById('refereeList');
-            refList.innerHTML = portfolioData.referees.map((item, index) => `
-                <li>
-                    <div class="item-content">
-                        <div class="item-title">${item.name}</div>
-                        <div class="item-subtitle">${item.position} - ${item.organization}</div>
-                    </div>
-                    <div class="item-actions">
-                        <button class="edit-btn" onclick="editItem('referee', ${index})"><i class="fas fa-edit"></i></button>
-                        <button class="delete-btn" onclick="deleteItem('referee', ${index})"><i class="fas fa-trash"></i></button>
-                    </div>
-                </li>
-            `).join('');
+            if (refList) {
+                refList.innerHTML = portfolioData.referees.map((item, index) => `
+                    <li>
+                        <div class="item-content">
+                            <div class="item-title">${item.name}</div>
+                            <div class="item-subtitle">${item.position} - ${item.organization}</div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="edit-btn" onclick="editItem('referee', ${index})"><i class="fas fa-edit"></i></button>
+                            <button class="delete-btn" onclick="deleteItem('referee', ${index})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>
+                `).join('');
+            }
 
             // Experience
             const expList = document.getElementById('experienceList');
@@ -1982,7 +1989,6 @@
             }
         }
 
-        // Form functions
         function showAddForm(type) {
             document.getElementById('formType').value = type;
             document.getElementById('editIndex').value = '-1';
@@ -2004,11 +2010,11 @@
                     fields = `
                         <div class="form-group">
                             <label>Certificate Name</label>
-                            <input type="text" id="certName" placeholder="e.g., Certificate in Data Visualization with Power BI" required>
+                            <input type="text" id="certName" placeholder="e.g., Certificate Name" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea id="certDescription" placeholder="Describe the certification details, skills acquired, and topics covered" required></textarea>
+                            <textarea id="certDescription" placeholder="Describe the certification" required></textarea>
                         </div>
                     `;
                     break;
@@ -2017,23 +2023,23 @@
                     fields = `
                         <div class="form-group">
                             <label>Job Title</label>
-                            <input type="text" id="expTitle" placeholder="e.g., ICT Support & Librarian" required>
+                            <input type="text" id="expTitle" required>
                         </div>
                         <div class="form-group">
                             <label>Company</label>
-                            <input type="text" id="expCompany" placeholder="e.g., Lukenya British Curriculum School" required>
+                            <input type="text" id="expCompany" required>
                         </div>
                         <div class="form-group">
                             <label>Duration</label>
-                            <input type="text" id="expDuration" placeholder="e.g., August 2024 – Present" required>
+                            <input type="text" id="expDuration" required>
                         </div>
                         <div class="form-group">
                             <label>Responsibilities (one per line)</label>
-                            <textarea id="expResponsibilities" placeholder="Enter each responsibility on a new line" required></textarea>
+                            <textarea id="expResponsibilities" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Achievements (one per line, optional)</label>
-                            <textarea id="expAchievements" placeholder="Enter each achievement on a new line"></textarea>
+                            <textarea id="expAchievements"></textarea>
                         </div>
                     `;
                     break;
@@ -2042,15 +2048,15 @@
                     fields = `
                         <div class="form-group">
                             <label>Degree/Certificate</label>
-                            <input type="text" id="eduDegree" placeholder="e.g., Bachelor of Science in Information Science" required>
+                            <input type="text" id="eduDegree" required>
                         </div>
                         <div class="form-group">
                             <label>Institution</label>
-                            <input type="text" id="eduInstitution" placeholder="e.g., Meru University" required>
+                            <input type="text" id="eduInstitution" required>
                         </div>
                         <div class="form-group">
                             <label>Year</label>
-                            <input type="text" id="eduYear" placeholder="e.g., 2024" required>
+                            <input type="text" id="eduYear" required>
                         </div>
                     `;
                     break;
@@ -2059,11 +2065,11 @@
                     fields = `
                         <div class="form-group">
                             <label>Skill Category</label>
-                            <input type="text" id="skillCategory" placeholder="e.g., Programming & Scripting" required>
+                            <input type="text" id="skillCategory" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea id="skillDescription" placeholder="Describe the skill" required></textarea>
+                            <textarea id="skillDescription" required></textarea>
                         </div>
                     `;
                     break;
@@ -2072,19 +2078,19 @@
                     fields = `
                         <div class="form-group">
                             <label>Project Title</label>
-                            <input type="text" id="projectTitle" placeholder="e.g., Lukenya Voting System" required>
+                            <input type="text" id="projectTitle" required>
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea id="projectDescription" placeholder="Describe the project" required></textarea>
+                            <textarea id="projectDescription" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Live URL (optional)</label>
-                            <input type="url" id="projectLiveUrl" placeholder="https://...">
+                            <input type="url" id="projectLiveUrl">
                         </div>
                         <div class="form-group">
                             <label>GitHub URL (optional)</label>
-                            <input type="url" id="projectGithubUrl" placeholder="https://github.com/...">
+                            <input type="url" id="projectGithubUrl">
                         </div>
                     `;
                     break;
@@ -2093,19 +2099,19 @@
                     fields = `
                         <div class="form-group">
                             <label>Full Name</label>
-                            <input type="text" id="refereeName" placeholder="e.g., Steven Ajulu Otieno" required>
+                            <input type="text" id="refereeName" required>
                         </div>
                         <div class="form-group">
                             <label>Position</label>
-                            <input type="text" id="refereePosition" placeholder="e.g., Head of IT Department" required>
+                            <input type="text" id="refereePosition" required>
                         </div>
                         <div class="form-group">
                             <label>Organization</label>
-                            <input type="text" id="refereeOrganization" placeholder="e.g., Kenya National Library Service" required>
+                            <input type="text" id="refereeOrganization" required>
                         </div>
                         <div class="form-group">
                             <label>Phone</label>
-                            <input type="text" id="refereePhone" placeholder="e.g., 0740128010" required>
+                            <input type="text" id="refereePhone" required>
                         </div>
                     `;
                     break;
@@ -2294,7 +2300,6 @@
                         name: document.getElementById('certName').value,
                         description: document.getElementById('certDescription').value
                     };
-                    
                     if (editIndex === -1) {
                         portfolioData.certifications.push(newItem);
                     } else {
@@ -2435,15 +2440,12 @@
             }
         }
 
-        // Page navigation
         function showPage(pageId) {
-            // Update pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
             
-            // Update nav links
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('data-page') === pageId) {
@@ -2451,15 +2453,12 @@
                 }
             });
             
-            // Close mobile menu
             document.querySelector('.nav-links').classList.remove('active');
         }
 
-        // Initialize everything
         document.addEventListener('DOMContentLoaded', () => {
             loadData();
             
-            // Mobile menu toggle
             const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
             const navLinks = document.querySelector('.nav-links');
             
@@ -2467,13 +2466,9 @@
                 navLinks.classList.toggle('active');
             });
             
-            // Admin button - show passcode modal first
             document.getElementById('adminToggle').addEventListener('click', openPasscodeModal);
-            
-            // Close admin panel
             document.getElementById('closeAdmin').addEventListener('click', closeAdminPanel);
             
-            // Overlay click - close everything
             document.getElementById('overlay').addEventListener('click', () => {
                 closePasscodeModal();
                 closeAdminPanel();
@@ -2481,14 +2476,12 @@
                 hideProfileForm();
             });
             
-            // Passcode input enter key
             document.getElementById('passcode').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     verifyPasscode();
                 }
             });
             
-            // Navigation
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -2497,7 +2490,6 @@
                 });
             });
             
-            // Next/Prev buttons
             document.querySelectorAll('.next-btn, .prev-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const nextPage = btn.getAttribute('data-next');
@@ -2507,13 +2499,11 @@
                 });
             });
             
-            // Logo click
             document.querySelector('.logo').addEventListener('click', () => {
                 showPage('profile');
             });
         });
 
-        // Make functions globally available
         window.showPage = showPage;
         window.showAddForm = showAddForm;
         window.hideForm = hideForm;
