@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Celestino Onyango | Portfolio</title>
+    <title>Celestino Onyango | Portfolio - Full Interactive</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -328,6 +328,12 @@
             padding: 20px;
             border-radius: 16px;
             border-left: 4px solid #1e6f9f;
+            transition: transform 0.2s;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .project-item h4 {
@@ -346,10 +352,13 @@
             font-size: 0.8rem;
             margin-top: 12px;
             margin-right: 10px;
+            transition: all 0.2s;
+            cursor: pointer;
         }
         
         .project-link:hover {
             background: #0a2f44;
+            transform: translateY(-2px);
         }
         
         /* Pagination */
@@ -398,6 +407,10 @@
         footer a {
             color: #64b5f6;
             text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
         }
         
         /* Modal */
@@ -689,7 +702,7 @@
     </div>
     
     <script>
-        // Portfolio Data
+        // Portfolio Data (Fixed missing commas and array issues)
         let portfolioData = {
             profile: {
                 name: "OTIENO CELESTINO ONYANGO",
@@ -707,20 +720,18 @@
             ],
             experience: [
                 {
-                    title: " School Librarian",
+                    title: "School Librarian",
                     company: "Lukenya British Curriculum School – Machakos, Kenya",
                     duration: "August 2024 – Present",
                     responsibilities: [
                         "Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.",
-                        "Oversee the use of Library System (for circulation, cataloguing, and reporting.",
+                        "Oversee the use of Library System (for circulation, cataloguing, and reporting).",
                         "Train students and staff on information literacy, research skills, and use of digital resources.",
                         "Maintain digital and physical collections aligned with the British Curriculum standards.",
-                        "Implement systems to improve user access and borrowing efficiency."
+                        "Implement systems to improve user access and borrowing efficiency.",
                         "Support teachers in integrating library resources into classroom instruction."
                     ],
-                    achievements: [
-                        "Introduced structured library orientation and user education sessions."
-                    ]
+                    achievements: ["Introduced structured library orientation and user education sessions."]
                 },
                 {
                     title: "System Librarian Intern",
@@ -729,26 +740,24 @@
                     responsibilities: [
                         "Assisted in network troubleshooting and maintenance of 50+ workstations.",
                         "Supported digital cataloguing initiative for archival materials using MARC21 standards.",
-                        "Provided end-user support and IT orientation for library patrons."
-                        "Assisted in the migration of library data to Koha and maintenance of system backups."
+                        "Provided end-user support and IT orientation for library patrons.",
+                        "Assisted in the migration of library data to Koha and maintenance of system backups.",
                         "Provided front-desk and reference services to user."
                     ],
-                    achievements: ["Trained staff and library users on digital literacy and use of library systems.
-                                "Conducted workshops on e-resources and online research tools."]
+                    achievements: ["Trained staff and library users on digital literacy and use of library systems.", "Conducted workshops on e-resources and online research tools."]
                 }
             ],
             education: [
-                { degree: "Bachelor of Science in Information Science (ICT Option)", institution: "Meru University of Science and Technology", year: "2020 – 2024", details: "Second Class Lower Division | Coursework: Impact of ICT intergration on Students' decision making and information retrieval" },
+                { degree: "Bachelor of Science in Information Science (ICT Option)", institution: "Meru University of Science and Technology", year: "2020 – 2024", details: "Second Class Lower Division | Coursework: Impact of ICT integration on Students' decision making and information retrieval" },
                 { degree: "Kenya Certificate of Secondary Education (KCSE)", institution: "Nyarach Mixed Day Secondary School", year: "2015 – 2019", details: "Grade: C+ (Aggregate 51 points)" }
             ],
             certifications: [
                 { name: "Advanced Cybersecurity - Threats & Governance", issuer: "Great Learning Academy", year: "2025" },
                 { name: "Data Visualization with Power BI", issuer: "Great Learning Academy", year: "2025" },
                 { name: "Cyber Forensics", issuer: "Great Learning Academy", year: "2025" },
-                { name: "Infection Prevention & Control", issuer: "The National College", year: "2026" }
-                { name: "Recognising and supporting pupils with ADHD", issuer: "The National College", year: "2026" }
-                { name: "Health Safety for Staff",issuer: "The National College", year: "2026" }
-                 
+                { name: "Infection Prevention & Control", issuer: "The National College", year: "2026" },
+                { name: "Recognising and supporting pupils with ADHD", issuer: "The National College", year: "2026" },
+                { name: "Health Safety for Staff", issuer: "The National College", year: "2026" }
             ],
             skills: [
                 { category: "ICT Infrastructure", description: "Hardware/software troubleshooting, network setup (LAN/Wi-Fi), system imaging, printer management." },
@@ -762,17 +771,16 @@
                 "Technical Documentation", "Team Collaboration", "Problem Solving"
             ],
             projects: [
-                { title: "Lukenya Voting System", description: "Secure web-based voting platform for student elections using HTML/CSS/JS; reduced election time by 70%. Implemented real-time result display and secure authentication.", liveUrl: "https://carlesy6.github.io/lukenya-Voting-System/", githubUrl: "" },
+                { title: "Lukenya Voting System", description: "Secure web-based voting platform for student elections using HTML/CSS/JS; reduced election time by 70%. Implemented real-time result display and secure authentication.", liveUrl: "https://carlesy6.github.io/lukenya-Voting-System/", githubUrl: "https://github.com/CELESTINO-UX" },
                 { title: "Professional Portfolio & CV Hub", description: "Responsive portfolio website with dynamic CV generator; showcases skills, experience, and serves as interactive resume for employers.", liveUrl: "#", githubUrl: "https://github.com/CELESTINO-UX" }
             ],
             referees: [
-                { name: "Colins Kirui", position: "Dean of Students & Examinations", organization: "Lukenya British Curriculum School", phone: "+254 702 194 494", email: "" },
+                { name: "Colins Kirui", position: "Dean of Students & Examinations", organization: "Lukenya British Curriculum School", phone: "+254 702 194 494", email: "colins@lukenya.ac.ke" },
                 { name: "John Gitau Nganga", position: "Lecturer, Information Science", organization: "Meru University of Science and Technology", phone: "+254720877605", email: "jgitau@must.ac.ke" },
-                { name: "Steven Ajulu Otieno", position: "Head of IT Department", organization: "Kenya National Library Service, Nakuru", phone: "0740128010", email: "" }
+                { name: "Steven Ajulu Otieno", position: "Head of IT Department", organization: "Kenya National Library Service, Nakuru", phone: "0740128010", email: "steven.ajulu@knls.ac.ke" }
             ]
         };
         
-        // Generate PDF Blob URL (download first, then print)
         let currentPdfBlobUrl = null;
         
         function generatePdfBlob() {
@@ -825,95 +833,36 @@
             </div>
             </body>
             </html>`;
-            
             const blob = new Blob([cvHTML], { type: 'text/html' });
-            if (currentPdfBlobUrl) {
-                URL.revokeObjectURL(currentPdfBlobUrl);
-            }
+            if (currentPdfBlobUrl) URL.revokeObjectURL(currentPdfBlobUrl);
             currentPdfBlobUrl = URL.createObjectURL(blob);
             return currentPdfBlobUrl;
         }
         
-        // Download first (trigger save as), then offer print option
         async function downloadThenPrint() {
             const downloadBtn = document.getElementById('downloadCVBtn');
             const profileBtn = document.getElementById('profileCVBtn');
             const buttons = [downloadBtn, profileBtn];
-            
-            // Disable buttons and show loading state
-            buttons.forEach(btn => {
-                if (btn) {
-                    btn.disabled = true;
-                    const originalHtml = btn.innerHTML;
-                    btn.setAttribute('data-original', originalHtml);
-                    btn.innerHTML = '<span class="loading-spinner"></span> Preparing...';
-                }
-            });
-            
+            buttons.forEach(btn => { if(btn) { btn.disabled = true; btn.innerHTML = '<span class="loading-spinner"></span> Preparing...'; } });
             try {
-                // Generate fresh blob URL
                 const blobUrl = generatePdfBlob();
-                
-                // Step 1: Create download link and trigger download (save to device)
                 const downloadLink = document.createElement('a');
                 downloadLink.href = blobUrl;
                 downloadLink.download = `Celestino_Onyango_CV_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.html`;
                 document.body.appendChild(downloadLink);
                 downloadLink.click();
                 document.body.removeChild(downloadLink);
-                
-                showToast("✅ CV downloaded! Opening print window...");
-                
-                // Step 2: Wait a moment for download to initiate, then open print view
+                showToast("✅ CV downloaded! Opening print preview...");
                 setTimeout(() => {
-                    // Open a new window with the same content for printing
                     const printWindow = window.open(blobUrl, '_blank');
-                    if (printWindow) {
-                        printWindow.onload = () => {
-                            setTimeout(() => {
-                                printWindow.print();
-                                showToast("📄 Print dialog opened - Save as PDF if needed");
-                            }, 500);
-                        };
-                    } else {
-                        // Fallback: create hidden iframe
-                        const iframe = document.createElement('iframe');
-                        iframe.style.position = 'absolute';
-                        iframe.style.width = '0';
-                        iframe.style.height = '0';
-                        iframe.style.border = 'none';
-                        document.body.appendChild(iframe);
-                        iframe.src = blobUrl;
-                        iframe.onload = () => {
-                            setTimeout(() => {
-                                iframe.contentWindow.print();
-                                setTimeout(() => document.body.removeChild(iframe), 1000);
-                            }, 300);
-                        };
-                    }
+                    if(printWindow) printWindow.onload = () => setTimeout(() => printWindow.print(), 500);
+                    else showToast("⚠️ Popup blocked! Check browser settings.");
                 }, 400);
-                
-            } catch (error) {
-                console.error('Download failed:', error);
-                showToast("❌ Error preparing CV. Please try again.");
-            } finally {
-                // Re-enable buttons after operation completes
-                setTimeout(() => {
-                    buttons.forEach(btn => {
-                        if (btn) {
-                            btn.disabled = false;
-                            const original = btn.getAttribute('data-original');
-                            if (original) btn.innerHTML = original;
-                            else btn.innerHTML = '<i class="fas fa-download"></i><span> CV</span>';
-                        }
-                    });
-                }, 1500);
-            }
+            } catch(e) { showToast("❌ Error generating CV"); }
+            finally { setTimeout(() => { buttons.forEach(btn => { if(btn) { btn.disabled = false; btn.innerHTML = btn.id === 'profileCVBtn' ? '<i class="fas fa-file-pdf"></i> Download Full CV (PDF)' : '<i class="fas fa-download"></i><span> CV</span>'; } }); }, 1500); }
         }
         
-        // Render all content
         function renderAll() {
-            // Profile
             document.getElementById('profileName').textContent = portfolioData.profile.name;
             document.getElementById('profileTitle').textContent = portfolioData.profile.title;
             document.getElementById('profileBio').textContent = portfolioData.profile.bio;
@@ -924,159 +873,34 @@
                 <div class="contact-item"><i class="fab fa-linkedin"></i><span>linkedin.com/in/celestino-otieno</span></div>
                 <div class="contact-item"><i class="fab fa-github"></i><span>github.com/CELESTINO-UX</span></div>
             `;
-            
-            // Professional Profile
             document.getElementById('professionalProfileList').innerHTML = portfolioData.professionalProfile.map(i => `<li>${i}</li>`).join('');
-            
-            // Experience
-            document.getElementById('experienceContent').innerHTML = portfolioData.experience.map(exp => `
-                <div class="experience-item">
-                    <h4>${exp.title}</h4>
-                    <div class="company">${exp.company}</div>
-                    <div class="duration">${exp.duration}</div>
-                    <strong>Key Responsibilities:</strong>
-                    <ul>${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>
-                    ${exp.achievements.length ? `<strong>Key Achievements:</strong><ul>${exp.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}
-                </div>
-            `).join('');
-            
-            // Education
-            document.getElementById('educationContent').innerHTML = portfolioData.education.map(edu => `
-                <div class="education-item">
-                    <h4>${edu.degree}</h4>
-                    <div class="institution">${edu.institution}</div>
-                    <div class="duration">${edu.year}</div>
-                    <p>${edu.details}</p>
-                </div>
-            `).join('');
-            
-            // Certifications
-            document.getElementById('certificationsContent').innerHTML = portfolioData.certifications.map(cert => `
-                <div class="certificate-item">
-                    <h4>${cert.name}</h4>
-                    <p>${cert.issuer} | ${cert.year}</p>
-                </div>
-            `).join('');
-            
-            // Skills
-            document.getElementById('skillsList').innerHTML = portfolioData.skills.map(skill => `
-                <div class="skill-category">
-                    <h4>${skill.category}</h4>
-                    <p>${skill.description}</p>
-                </div>
-            `).join('');
-            
-            // Competencies
+            document.getElementById('experienceContent').innerHTML = portfolioData.experience.map(exp => `<div class="experience-item"><h4>${exp.title}</h4><div class="company">${exp.company}</div><div class="duration">${exp.duration}</div><strong>Key Responsibilities:</strong><ul>${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>${exp.achievements.length ? `<strong>Key Achievements:</strong><ul>${exp.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}</div>`).join('');
+            document.getElementById('educationContent').innerHTML = portfolioData.education.map(edu => `<div class="education-item"><h4>${edu.degree}</h4><div class="institution">${edu.institution}</div><div class="duration">${edu.year}</div><p>${edu.details}</p></div>`).join('');
+            document.getElementById('certificationsContent').innerHTML = portfolioData.certifications.map(cert => `<div class="certificate-item"><h4>${cert.name}</h4><p>${cert.issuer} | ${cert.year}</p></div>`).join('');
+            document.getElementById('skillsList').innerHTML = portfolioData.skills.map(skill => `<div class="skill-category"><h4>${skill.category}</h4><p>${skill.description}</p></div>`).join('');
             document.getElementById('competenciesList').innerHTML = portfolioData.competencies.map(c => `<li>${c}</li>`).join('');
-            
-            // Projects
-            document.getElementById('projectsList').innerHTML = portfolioData.projects.map(proj => `
-                <div class="project-item">
-                    <h4>${proj.title}</h4>
-                    <p>${proj.description}</p>
-                    ${proj.liveUrl && proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
-                    ${proj.githubUrl ? `<a href="${proj.githubUrl}" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>` : ''}
-                </div>
-            `).join('');
-            
-            // Referees
-            document.getElementById('refereesContent').innerHTML = portfolioData.referees.map(ref => `
-                <div class="referee-item">
-                    <h4>${ref.name}</h4>
-                    <p><strong>${ref.position}</strong><br>${ref.organization}<br>📞 ${ref.phone}${ref.email ? `<br>✉️ ${ref.email}` : ''}</p>
-                </div>
-            `).join('');
+            document.getElementById('projectsList').innerHTML = portfolioData.projects.map(proj => `<div class="project-item"><h4>${proj.title}</h4><p>${proj.description}</p>${proj.liveUrl && proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}${proj.githubUrl ? `<a href="${proj.githubUrl}" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>` : ''}</div>`).join('');
+            document.getElementById('refereesContent').innerHTML = portfolioData.referees.map(ref => `<div class="referee-item"><h4>${ref.name}</h4><p><strong>${ref.position}</strong><br>${ref.organization}<br>📞 ${ref.phone}${ref.email ? `<br>✉️ ${ref.email}` : ''}</p></div>`).join('');
         }
         
-        // Toast notification
-        function showToast(msg) {
-            const toast = document.getElementById('toastMsg');
-            document.getElementById('toastText').textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
+        function showToast(msg) { const toast = document.getElementById('toastMsg'); document.getElementById('toastText').textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
+        function openAdminModal() { document.getElementById('adminModal').classList.add('active'); }
+        function closeAdminModal() { document.getElementById('adminModal').classList.remove('active'); document.getElementById('adminPasscode').value = ''; document.getElementById('passcodeError').style.display = 'none'; }
+        function verifyPasscode() { if(document.getElementById('adminPasscode').value === '1997') { closeAdminModal(); showToast('Admin access granted!'); alert('Admin Panel Demo\n\nData is stored in browser memory. To modify data, edit the portfolioData object in console.\n\nPasscode: 1997'); } else { document.getElementById('passcodeError').style.display = 'block'; } }
+        function showPage(pageId) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); document.querySelectorAll('.nav-links a').forEach(link => { link.classList.remove('active'); if(link.getAttribute('data-page') === pageId) link.classList.add('active'); }); document.getElementById('navLinks').classList.remove('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
         
-        // Admin Modal
-        function openAdminModal() { 
-            document.getElementById('adminModal').classList.add('active'); 
-        }
-        function closeAdminModal() { 
-            document.getElementById('adminModal').classList.remove('active'); 
-            document.getElementById('adminPasscode').value = ''; 
-            document.getElementById('passcodeError').style.display = 'none'; 
-        }
-        function verifyPasscode() {
-            if (document.getElementById('adminPasscode').value === '1997') {
-                closeAdminModal();
-                showToast('Admin access granted!');
-                alert('Admin Panel Demo\n\nData is stored in browser memory. To modify data, edit the portfolioData object in the JavaScript console.\n\nPasscode: 1997');
-            } else {
-                document.getElementById('passcodeError').style.display = 'block';
-            }
-        }
-        
-        // Page Navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId) link.classList.add('active');
-            });
-            document.getElementById('navLinks').classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        // Event Listeners
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active');
-        });
-        
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
         document.getElementById('adminBtn').addEventListener('click', openAdminModal);
+        document.getElementById('downloadCVBtn')?.addEventListener('click', downloadThenPrint);
+        document.getElementById('profileCVBtn')?.addEventListener('click', downloadThenPrint);
+        document.querySelectorAll('.next-btn, .prev-btn').forEach(btn => btn.addEventListener('click', function() { if(this.getAttribute('data-next')) showPage(this.getAttribute('data-next')); if(this.getAttribute('data-prev')) showPage(this.getAttribute('data-prev')); }));
+        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', (e) => { e.preventDefault(); showPage(link.getAttribute('data-page')); }));
+        document.querySelector('.logo').addEventListener('click', () => showPage('profile'));
+        document.getElementById('adminModal').addEventListener('click', (e) => { if(e.target === document.getElementById('adminModal')) closeAdminModal(); });
+        document.getElementById('adminPasscode').addEventListener('keypress', (e) => { if(e.key === 'Enter') verifyPasscode(); });
         
-        // Attach download handlers (download first, then print)
-        const cvBtn = document.getElementById('downloadCVBtn');
-        const profileCvBtn = document.getElementById('profileCVBtn');
-        if (cvBtn) cvBtn.addEventListener('click', downloadThenPrint);
-        if (profileCvBtn) profileCvBtn.addEventListener('click', downloadThenPrint);
-        
-        document.querySelectorAll('.next-btn, .prev-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const next = this.getAttribute('data-next');
-                const prev = this.getAttribute('data-prev');
-                if (next) showPage(next);
-                if (prev) showPage(prev);
-            });
-        });
-        
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const pageId = this.getAttribute('data-page');
-                showPage(pageId);
-            });
-        });
-        
-        document.querySelector('.logo').addEventListener('click', function() { 
-            showPage('profile'); 
-        });
-        
-        // Close modal when clicking outside
-        document.getElementById('adminModal').addEventListener('click', function(e) {
-            if (e.target === this) closeAdminModal();
-        });
-        
-        document.getElementById('adminPasscode').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') verifyPasscode();
-        });
-        
-        // Initialize
         renderAll();
-        
-        // Expose globals
-        window.showPage = showPage;
-        window.verifyPasscode = verifyPasscode;
-        window.closeAdminModal = closeAdminModal;
+        window.showPage = showPage; window.verifyPasscode = verifyPasscode; window.closeAdminModal = closeAdminModal;
     </script>
 </body>
 </html>
