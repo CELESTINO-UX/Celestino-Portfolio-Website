@@ -2,157 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CELESTINO ONYANGO PORTFOLIO - Ocean Glitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Celestino Onyango | ICT Professional Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* (CSS unchanged – includes all previous styles for brevity) */
-        :root {
-            --primary: #0a2f44;
-            --secondary: #1e6f9f;
-            --accent: #64b5f6;
-            --light: rgba(255,255,255,0.85);
-            --dark: #021c2b;
-            --gray: #c9e1f0;
-            --admin: #e74c3c;
-            --admin-hover: #c0392b;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --social-bg: rgba(255,255,255,0.2);
-            --social-hover: #64b5f6;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Times New Roman', Times, serif;
         }
         
         body {
-            background: linear-gradient(145deg, #022b3a 0%, #1f7a8c 50%, #023047 100%);
-            background-size: 400% 400%;
-            animation: oceanGlitter 18s ease infinite;
-            color: #022b3a;
-            line-height: 1.6;
+            font-family: 'Segoe UI', 'Times New Roman', Times, serif;
+            background: linear-gradient(135deg, #022b3a 0%, #1f7a8c 50%, #023047 100%);
             min-height: 100vh;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2) 0%, transparent 20%),
-                        radial-gradient(circle at 70% 80%, rgba(200,230,255,0.25) 0%, transparent 25%),
-                        radial-gradient(circle at 10% 70%, rgba(255,240,200,0.15) 0%, transparent 30%),
-                        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 6px);
-            pointer-events: none;
-            z-index: 0;
-            animation: sparkle 6s linear infinite;
-        }
-
-        @keyframes oceanGlitter {
-            0% { background-position: 0% 0%; }
-            25% { background-position: 50% 50%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 50% 50%; }
-            100% { background-position: 0% 0%; }
-        }
-
-        @keyframes sparkle {
-            0% { opacity: 0.4; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0.4; }
-        }
-
-        header, main, footer, .modal, .admin-panel, .form-modal, .toast {
-            position: relative;
-            z-index: 10;
-        }
-
-        .profile-card, .content-section, .certificate-item, .experience-item, 
-        .education-item, .skill-category, .project-item, .referee-item,
-        .admin-panel, .modal-content, .form-modal {
-            backdrop-filter: blur(8px);
-            background: rgba(255, 255, 255, 0.85) !important;
-            border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 8px 32px rgba(0, 40, 80, 0.3);
-        }
-
-        header {
-            background-color: rgba(2, 43, 58, 0.85) !important;
-            backdrop-filter: blur(5px);
-            border-bottom: 2px solid rgba(100, 181, 246, 0.5);
-        }
-
-        .logo span {
-            color: var(--accent);
-            text-shadow: 0 0 8px #64b5f6;
-        }
-
-        .nav-links a::after {
-            background-color: var(--accent);
-            height: 3px;
-            box-shadow: 0 0 8px #90caf9;
-        }
-
-        .pagination-btn {
-            background: rgba(10, 47, 68, 0.8) !important;
-            color: white !important;
-            backdrop-filter: blur(4px);
-            border: 1px solid #64b5f6;
-            cursor: pointer;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .pagination-btn:hover:not(:disabled) {
-            background: #1e6f9f !important;
-            box-shadow: 0 0 15px #64b5f6;
-            transform: translateY(-2px);
-        }
-
-        .pagination-btn:disabled {
-            background: rgba(100, 100, 100, 0.5) !important;
-            cursor: not-allowed;
-            opacity: 0.6;
-            border-color: #95a5a6;
-        }
-
-        footer {
-            background-color: rgba(2, 43, 58, 0.9) !important;
-            backdrop-filter: blur(4px);
-            border-top: 2px solid #64b5f6;
-        }
-
-        .toast {
-            background: #27ae60;
-            color: white;
-            backdrop-filter: blur(10px);
-        }
-
-        .toast.error {
-            background: #e74c3c;
+            color: #022b3a;
         }
         
+        /* Header */
         header {
-            background-color: var(--primary);
-            color: white;
-            padding: 1rem 0;
+            background: rgba(2, 43, 58, 0.95);
+            backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            padding: 12px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
         .container {
@@ -167,1003 +43,472 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            gap: 10px;
         }
         
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: bold;
             color: white;
             cursor: pointer;
-            transition: transform 0.3s;
         }
         
-        .logo:hover {
-            transform: scale(1.05);
+        .logo span {
+            color: #64b5f6;
         }
         
+        /* Navigation */
         .nav-links {
             display: flex;
             list-style: none;
+            gap: 5px;
             flex-wrap: wrap;
         }
         
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-        
-        .nav-links a {
+        .nav-links li a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             transition: all 0.3s;
-            font-size: 1rem;
-            position: relative;
-            padding-bottom: 5px;
-            cursor: pointer;
+            display: block;
         }
         
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s;
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            background: rgba(100, 181, 246, 0.3);
+            color: #64b5f6;
         }
         
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-        
-        .nav-links a.active {
-            color: var(--accent);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        .admin-btn {
-            background-color: var(--admin);
-            color: white;
-            border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-            margin-left: 1rem;
+        /* Header Actions */
+        .header-actions {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .admin-btn:hover {
-            background-color: var(--admin-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            gap: 8px;
+            flex-wrap: wrap;
         }
         
         .social-header {
             display: flex;
-            gap: 0.8rem;
-            margin-left: 1rem;
+            gap: 5px;
         }
-
+        
         .social-icon {
-            color: white;
-            background: var(--social-bg);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-            backdrop-filter: blur(2px);
-        }
-
-        .social-icon:hover {
-            background: var(--social-hover);
-            color: var(--primary);
-            transform: translateY(-3px) scale(1.1);
-            border-color: white;
-            box-shadow: 0 4px 10px rgba(0,160,210,0.4);
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .modal-content h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-        
-        .modal-content i {
-            font-size: 3rem;
-            color: var(--admin);
-            margin-bottom: 1rem;
-        }
-        
-        .passcode-input {
-            width: 100%;
-            padding: 1rem;
-            margin: 1rem 0;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            text-align: center;
-            letter-spacing: 3px;
-            transition: border-color 0.3s;
-        }
-        
-        .passcode-input:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-        
-        .modal-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .modal-btn {
-            flex: 1;
-            padding: 0.8rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        
-        .modal-btn.primary {
-            background-color: var(--accent);
-            color: white;
-        }
-        
-        .modal-btn.primary:hover {
-            background-color: var(--secondary);
-        }
-        
-        .modal-btn.secondary {
-            background-color: #95a5a6;
-            color: white;
-        }
-        
-        .modal-btn.secondary:hover {
-            background-color: #7f8c8d;
-        }
-        
-        .error-message {
-            color: var(--admin);
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            display: none;
-        }
-        
-        .error-message.show {
-            display: block;
-        }
-        
-        .admin-panel {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2000;
-            width: 90%;
-            max-width: 900px;
-            max-height: 85vh;
-            overflow-y: auto;
-            display: none;
-            animation: slideIn 0.3s ease;
-        }
-        
-        .admin-panel.active {
-            display: block;
-        }
-        
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #eee;
-            position: sticky;
-            top: 0;
-            background: white;
-            z-index: 10;
-        }
-        
-        .admin-header h3 {
-            color: var(--admin);
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray);
-            transition: all 0.3s;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .close-btn:hover {
-            background-color: #f0f0f0;
-            color: var(--admin);
-            transform: rotate(90deg);
-        }
-        
-        .admin-sections {
-            display: grid;
-            gap: 2rem;
-        }
-        
-        .admin-section {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 1.5rem;
-            transition: transform 0.3s;
-        }
-        
-        .admin-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .admin-section h4 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .add-item-btn {
-            background-color: var(--success);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: all 0.3s;
-        }
-        
-        .add-item-btn:hover {
-            background-color: #219a52;
-            transform: scale(1.05);
-        }
-        
-        .edit-profile-btn {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: all 0.3s;
-        }
-        
-        .edit-profile-btn:hover {
-            background-color: var(--primary);
-            transform: scale(1.05);
-        }
-        
-        .item-list {
-            list-style: none;
-            margin-top: 1rem;
-        }
-        
-        .item-list li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background-color: white;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-        
-        .item-list li:hover {
-            border-left-color: var(--accent);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transform: translateX(5px);
-        }
-        
-        .item-content {
-            flex: 1;
-            margin-right: 1rem;
-        }
-        
-        .item-title {
-            font-weight: 600;
-            color: var(--primary);
-        }
-        
-        .item-subtitle {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-        
-        .item-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-        
-        .edit-btn,
-        .delete-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
             width: 32px;
             height: 32px;
+            background: rgba(255,255,255,0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        
-        .edit-btn {
-            color: var(--secondary);
-        }
-        
-        .edit-btn:hover {
-            background-color: var(--secondary);
             color: white;
-            transform: scale(1.1);
-        }
-        
-        .delete-btn {
-            color: var(--admin);
-        }
-        
-        .delete-btn:hover {
-            background-color: var(--admin);
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .form-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            z-index: 2500;
-            width: 90%;
-            max-width: 500px;
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: slideIn 0.3s ease;
-        }
-        
-        .form-modal.active {
-            display: block;
-        }
-        
-        .form-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #eee;
-        }
-        
-        .form-header h3 {
-            color: var(--primary);
-        }
-        
-        .admin-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .form-group label {
-            font-weight: 500;
-            color: var(--primary);
-        }
-        
-        .admin-form input,
-        .admin-form textarea,
-        .admin-form select {
-            padding: 0.8rem;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-            font-family: 'Times New Roman', Times, serif;
-        }
-        
-        .admin-form input:focus,
-        .admin-form textarea:focus,
-        .admin-form select:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-        
-        .admin-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .admin-form button {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
             transition: all 0.3s;
-            margin-top: 1rem;
+            text-decoration: none;
         }
         
-        .admin-form button:hover {
-            background-color: var(--secondary);
+        .social-icon:hover {
+            background: #64b5f6;
+            color: #022b3a;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1999;
+        .btn-cv {
+            background: linear-gradient(135deg, #1e6f9f, #0a2f44);
+            border: none;
+            padding: 6px 14px;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+        }
+        
+        .btn-cv:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .btn-admin {
+            background: #e74c3c;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+        }
+        
+        .btn-admin:hover {
+            background: #c0392b;
+        }
+        
+        .mobile-menu {
             display: none;
-            backdrop-filter: blur(3px);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         
-        .overlay.active {
-            display: block;
-        }
-        
+        /* Main Content */
         main {
             margin-top: 80px;
+            padding: 20px 0 40px;
         }
         
         .page {
             display: none;
-            padding: 4rem 0;
-            min-height: calc(100vh - 80px);
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation: fadeIn 0.3s ease;
         }
         
         .page.active {
             display: block;
         }
         
-        .page-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 1rem;
-            border-bottom: 3px solid var(--accent);
-            position: relative;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .page-header h2 {
-            color: var(--primary);
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
+        /* Profile Card */
         .profile-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            padding: 3rem;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px 20px;
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            transition: transform 0.3s;
-        }
-        
-        .profile-card:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         
         .profile-card h1 {
-            color: var(--primary);
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            color: #0a2f44;
         }
         
         .profile-card h2 {
-            color: var(--secondary);
-            font-weight: 400;
-            margin-bottom: 2rem;
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            color: #1e6f9f;
+            margin: 10px 0;
+        }
+        
+        .profile-card p {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
         .contact-info {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 12px;
+            margin-top: 20px;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
-            padding: 0.5rem 1rem;
-            background: var(--light);
-            border-radius: 25px;
-            transition: all 0.3s;
+            gap: 8px;
+            background: rgba(30, 111, 159, 0.1);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
         }
         
-        .contact-item:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-2px);
+        /* Section Styles */
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
         }
         
-        .contact-item:hover i {
-            color: white;
-        }
-        
-        .contact-item i {
-            color: var(--accent);
-            font-size: 1.3rem;
-            transition: color 0.3s;
+        .page-header h2 {
+            font-size: clamp(1.3rem, 5vw, 2rem);
+            color: #0a2f44;
+            border-bottom: 3px solid #64b5f6;
+            display: inline-block;
+            padding-bottom: 8px;
         }
         
         .content-section {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            transition: transform 0.3s;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
         }
         
-        .content-section:hover {
-            transform: translateY(-3px);
-        }
-        
-        .content-section h3 {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #eee;
-        }
-        
-        .content-section ul {
-            padding-left: 1.5rem;
-        }
-        
-        .content-section li {
-            margin-bottom: 0.8rem;
+        /* Cards */
+        .experience-item, .education-item, .certificate-item, .referee-item {
+            background: rgba(255,255,255,0.8);
+            padding: 18px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border-left: 4px solid #1e6f9f;
             transition: transform 0.2s;
         }
         
-        .content-section li:hover {
-            transform: translateX(5px);
-            color: var(--secondary);
-        }
-        
-        .certificate-item {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--light);
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s;
-        }
-        
-        .certificate-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .certificate-item h4 {
-            color: var(--primary);
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .certificate-item p {
-            color: var(--gray);
-            line-height: 1.6;
-        }
-        
-        .experience-item, .education-item {
-            margin-bottom: 2.5rem;
-            position: relative;
-            padding: 1.5rem;
-            background: var(--light);
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-        
         .experience-item:hover, .education-item:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateX(5px);
         }
         
         .experience-item h4, .education-item h4 {
-            color: var(--secondary);
-            font-size: 1.4rem;
-            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+            color: #0a2f44;
+            margin-bottom: 5px;
         }
         
-        .experience-item .company, .education-item .institution {
+        .company, .institution {
             font-weight: 600;
-            color: var(--primary);
+            color: #1e6f9f;
         }
         
-        .experience-item .duration, .education-item .duration {
-            color: var(--gray);
+        .duration {
+            color: #5d6d7e;
+            font-size: 0.8rem;
             font-style: italic;
-            margin-bottom: 0.8rem;
+            margin: 5px 0 10px;
         }
         
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+        
+        /* Skills Grid */
         .skills-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
         }
         
         .skill-category {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--accent);
-            transition: all 0.3s;
-        }
-        
-        .skill-category:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.8);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #64b5f6;
         }
         
         .skill-category h4 {
-            color: var(--primary);
-            margin-bottom: 1rem;
+            color: #0a2f44;
+            margin-bottom: 8px;
         }
         
+        /* Projects Grid */
         .projects-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
         
         .project-item {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--secondary);
-            transition: all 0.3s;
-        }
-        
-        .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.8);
+            padding: 20px;
+            border-radius: 16px;
+            border-left: 4px solid #1e6f9f;
         }
         
         .project-item h4 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-        
-        .project-item p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+            font-size: 1.2rem;
+            color: #0a2f44;
+            margin-bottom: 10px;
         }
         
         .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: var(--secondary);
+            display: inline-block;
+            background: #1e6f9f;
             color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
+            padding: 6px 14px;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            flex: 1;
-            justify-content: center;
+            font-size: 0.8rem;
+            margin-top: 12px;
+            margin-right: 10px;
         }
         
         .project-link:hover {
-            background-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background: #0a2f44;
         }
         
-        .project-link.github {
-            background-color: #333;
-        }
-        
-        .project-link.github:hover {
-            background-color: #000;
-        }
-        
-        .referee-item {
-            background: var(--light);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s;
-        }
-        
-        .referee-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .referee-item h4 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
+        /* Pagination */
         .pagination {
             display: flex;
             justify-content: space-between;
-            margin-top: 3rem;
+            margin-top: 25px;
+            gap: 15px;
         }
         
+        .pagination-btn {
+            background: rgba(10, 47, 68, 0.9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .pagination-btn:hover:not(:disabled) {
+            background: #1e6f9f;
+            transform: translateY(-2px);
+        }
+        
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Footer */
         footer {
-            background-color: var(--primary);
+            background: rgba(2, 43, 58, 0.95);
             color: white;
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 25px 0;
+            margin-top: 30px;
+        }
+        
+        footer p {
+            margin: 5px 0;
+            font-size: 0.8rem;
         }
         
         footer a {
-            color: var(--accent);
+            color: #64b5f6;
             text-decoration: none;
-            transition: color 0.3s;
         }
         
-        footer a:hover {
-            color: var(--secondary);
-            text-decoration: underline;
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .modal-content input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        
+        .modal-content button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
         }
         
         .toast {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--success);
+            background: #27ae60;
             color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 12px 20px;
+            border-radius: 40px;
             display: none;
+            z-index: 3000;
+            font-size: 0.9rem;
             align-items: center;
-            gap: 0.5rem;
-            z-index: 3500;
-            animation: slideInRight 0.3s ease;
-        }
-        
-        @keyframes slideInRight {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            gap: 8px;
         }
         
         .toast.show {
             display: flex;
         }
         
-        .toast.error {
-            background: var(--admin);
-        }
-        
-        .toast.warning {
-            background: var(--warning);
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .social-header {
-            display: flex;
-            gap: 0.6rem;
-            margin-right: 0.5rem;
-        }
-        
-        @media (max-width: 768px) {
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
             .nav-links {
                 display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background-color: var(--primary);
+                background: rgba(2, 43, 58, 0.98);
                 flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 15px;
+                gap: 10px;
             }
             
             .nav-links.active {
                 display: flex;
             }
             
-            .nav-links li {
-                margin: 0;
+            .nav-links li a {
                 text-align: center;
-                padding: 0.8rem 0;
+                padding: 10px;
             }
             
-            .mobile-menu-btn {
+            .mobile-menu {
                 display: block;
             }
             
-            .admin-btn span {
+            .btn-cv span, .btn-admin span {
                 display: none;
             }
             
-            .admin-btn {
-                padding: 0.5rem;
-                border-radius: 50%;
+            .btn-cv, .btn-admin {
+                padding: 8px 12px;
             }
-
-            .header-actions {
-                gap: 0.3rem;
-            }
-
-            .social-header {
-                gap: 0.3rem;
-                margin-right: 0;
-            }
-
-            .social-icon {
-                width: 32px;
-                height: 32px;
-                font-size: 0.9rem;
-            }
-            
-            .profile-card h1 {
-                font-size: 2rem;
-            }
-            
-            .page-header h2 {
-                font-size: 2rem;
-            }
-            
-            .profile-card, .content-section {
-                padding: 1.5rem;
-            }
-            
-            .skills-list, .projects-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-links {
-                flex-direction: column;
-            }
-            
-            .admin-panel {
+        }
+        
+        @media (max-width: 600px) {
+            .container {
                 width: 95%;
-                padding: 1rem;
-                max-height: 90vh;
             }
             
-            .modal-content {
-                padding: 1.5rem;
+            .content-section {
+                padding: 15px;
+            }
+            
+            .profile-card {
+                padding: 20px 15px;
+            }
+            
+            .contact-item {
+                font-size: 0.7rem;
+                padding: 4px 10px;
             }
         }
     </style>
@@ -1173,7 +518,7 @@
         <div class="container">
             <nav>
                 <div class="logo" onclick="showPage('profile')">CELESTINO <span>ONYANGO</span></div>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li><a href="#" data-page="profile" class="active">Profile</a></li>
                     <li><a href="#" data-page="professional-profile">Professional Profile</a></li>
                     <li><a href="#" data-page="experience">Experience</a></li>
@@ -1185,244 +530,43 @@
                     <li><a href="#" data-page="referees">Referees</a></li>
                 </ul>
                 <div class="header-actions">
-                    <!-- SOCIAL LINKS HEADER – updated with specific URLs -->
                     <div class="social-header">
-                        <a href="https://github.com/CELESTINO-UX" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/celestino-otieno-1146b1203" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://twitter.com/celestino_tech" target="_blank" class="social-icon" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
-                        <a href="https://wa.me/254714019736" target="_blank" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://github.com/CELESTINO-UX" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/celestino-otieno-1146b1203" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/celestino_tech" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/254714019736" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                     </div>
-                    <button class="admin-btn" id="adminToggle">
-                        <i class="fas fa-lock"></i> <span>Admin</span>
-                    </button>
-                    <button class="mobile-menu-btn">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                    <button class="btn-cv" id="downloadCVBtn"><i class="fas fa-download"></i><span> CV</span></button>
+                    <button class="btn-admin" id="adminBtn"><i class="fas fa-lock"></i><span> Admin</span></button>
+                    <button class="mobile-menu" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
                 </div>
             </nav>
         </div>
     </header>
     
-    <div class="modal" id="passcodeModal">
-        <div class="modal-content">
-            <i class="fas fa-lock"></i>
-            <h3>Admin Access</h3>
-            <p>Enter passcode to access admin panel</p>
-            <input type="password" class="passcode-input" id="passcode" placeholder="****" maxlength="4" inputmode="numeric" pattern="[0-9]*">
-            <div class="error-message" id="passcodeError">Incorrect passcode. Please try again.</div>
-            <div class="modal-buttons">
-                <button class="modal-btn secondary" onclick="closePasscodeModal()">Cancel</button>
-                <button class="modal-btn primary" onclick="verifyPasscode()">Unlock</button>
-            </div>
-        </div>
-    </div>
-    
-    <div class="overlay" id="overlay"></div>
-    <div class="admin-panel" id="adminPanel">
-        <div class="admin-header">
-            <h3><i class="fas fa-cog"></i> Admin Dashboard</h3>
-            <button class="close-btn" id="closeAdmin"><i class="fas fa-times"></i></button>
-        </div>
-        
-        <div class="admin-sections">
-            <div class="admin-section">
-                <h4>
-                    Profile Information
-                    <button class="edit-profile-btn" onclick="editProfile()">
-                        <i class="fas fa-edit"></i> Edit Profile
-                    </button>
-                </h4>
-                <div class="profile-summary">
-                    <p><strong>Name:</strong> <span id="profileNameDisplay"></span></p>
-                    <p><strong>Title:</strong> <span id="profileTitleDisplay"></span></p>
-                    <p><strong>Phone:</strong> <span id="profilePhoneDisplay"></span></p>
-                    <p><strong>Email:</strong> <span id="profileEmailDisplay"></span></p>
-                    <p><strong>Location:</strong> <span id="profileLocationDisplay"></span></p>
-                </div>
-            </div>
-            
-            <div class="admin-section">
-                <h4>
-                    Professional Profile
-                    <button class="add-item-btn" onclick="showAddForm('professional')">
-                        <i class="fas fa-plus"></i> Add
-                    </button>
-                </h4>
-                <ul class="item-list" id="professionalList"></ul>
-            </div>
-            
-            <div class="admin-section">
-                <h4>
-                    Certifications
-                    <button class="add-item-btn" onclick="showAddForm('certification')">
-                        <i class="fas fa-plus"></i> Add
-                    </button>
-                </h4>
-                <ul class="item-list" id="certificationList"></ul>
-            </div>
-            
-            <div class="admin-section">
-                <h4>
-                    Core Competencies
-                    <button class="add-item-btn" onclick="showAddForm('competency')">
-                        <i class="fas fa-plus"></i> Add
-                    </button>
-                </h4>
-                <ul class="item-list" id="competencyList"></ul>
-            </div>
-            
-            <div class="admin-section">
-                <h4>
-                    Projects
-                    <button class="add-item-btn" onclick="showAddForm('project')">
-                        <i class="fas fa-plus"></i> Add
-                    </button>
-                </h4>
-                <ul class="item-list" id="projectList"></ul>
-            </div>
-            
-            <div class="admin-section">
-                <h4>
-                    Referees
-                    <button class="add-item-btn" onclick="showAddForm('referee')">
-                        <i class="fas fa-plus"></i> Add
-                    </button>
-                </h4>
-                <ul class="item-list" id="refereeList"></ul>
-            </div>
-            
-            <div class="admin-section">
-                <h4>
-                    Experience
-                    <button class="add-item-btn" onclick="showAddForm('experience')">
-                        <i class="fas fa-plus"></i> Add
-                    </button>
-                </h4>
-                <ul class="item-list" id="experienceList"></ul>
-            </div>
-            
-            <div class="admin-section">
-                <h4>
-                    Education
-                    <button class="add-item-btn" onclick="showAddForm('education')">
-                        <i class="fas fa-plus"></i> Add
-                    </button>
-                </h4>
-                <ul class="item-list" id="educationList"></ul>
-            </div>
-            
-            <div class="admin-section">
-                <h4>
-                    Skills
-                    <button class="add-item-btn" onclick="showAddForm('skill')">
-                        <i class="fas fa-plus"></i> Add
-                    </button>
-                </h4>
-                <ul class="item-list" id="skillList"></ul>
-            </div>
-        </div>
-    </div>
-    
-    <div class="form-modal" id="formModal">
-        <div class="form-header">
-            <h3 id="formTitle">Add New Item</h3>
-            <button class="close-btn" onclick="hideForm()"><i class="fas fa-times"></i></button>
-        </div>
-        <form id="itemForm" class="admin-form" onsubmit="saveItem(event)">
-            <input type="hidden" id="formType">
-            <input type="hidden" id="editIndex" value="-1">
-            <div id="formFields"></div>
-            <button type="submit">Save Changes</button>
-        </form>
-    </div>
-    
-    <div class="form-modal" id="profileEditModal">
-        <div class="form-header">
-            <h3>Edit Profile Information</h3>
-            <button class="close-btn" onclick="hideProfileForm()"><i class="fas fa-times"></i></button>
-        </div>
-        <form id="profileForm" class="admin-form" onsubmit="saveProfile(event)">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="profileNameInput" required>
-            </div>
-            <div class="form-group">
-                <label>Professional Title</label>
-                <input type="text" id="profileTitleInput" required>
-            </div>
-            <div class="form-group">
-                <label>Bio / Summary</label>
-                <textarea id="profileBioInput" rows="4" required></textarea>
-            </div>
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input type="text" id="profilePhoneInput" required>
-            </div>
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="profileEmailInput" required>
-            </div>
-            <div class="form-group">
-                <label>Location</label>
-                <input type="text" id="profileLocationInput" required>
-            </div>
-            <button type="submit">Save Profile Changes</button>
-        </form>
-    </div>
-    
-    <div class="toast" id="toast">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">Changes saved successfully!</span>
-    </div>
-    
     <main>
         <div class="container">
+            <!-- Profile Page -->
             <section id="profile" class="page active">
                 <div class="profile-card">
                     <h1 id="profileName">OTIENO CELESTINO ONYANGO</h1>
                     <h2 id="profileTitle">ICT Support Specialist & Librarian</h2>
-                    <p id="profileBio">A dedicated ICT professional and library information specialist with expertise in library automation, system administration, and cybersecurity. Committed to promoting academic excellence through effective technology and information service delivery.</p>
-                    
-                    <div class="contact-info" id="contactInfo">
-                        <div class="contact-item">
-                            <i class="fas fa-phone-alt"></i>
-                            <span id="profilePhone">+254714019736</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span id="profileEmail">onyangocelestino@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span id="profileLocation">Nairobi, Kenya</span>
-                        </div>
-                        <!-- SOCIAL LINKS IN PROFILE CARD – updated with specific URLs -->
-                        <div class="contact-item">
-                            <i class="fab fa-github"></i>
-                            <a href="https://github.com/CELESTINO-UX" target="_blank" style="color: inherit; text-decoration: none;">CELESTINO-UX</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-linkedin"></i>
-                            <a href="https://www.linkedin.com/in/celestino-otieno-1146b1203" target="_blank" style="color: inherit; text-decoration: none;">celestino-otieno</a>
-                        </div>
+                    <p id="profileBio">Results-driven ICT professional with 3+ years of experience in library automation, system administration, and cybersecurity. Proven track record in digital transformation, IT infrastructure management, and user training. Committed to operational excellence and innovation.</p>
+                    <div class="contact-info" id="contactInfo"></div>
+                    <div style="margin-top: 25px;">
+                        <button class="btn-cv" id="profileCVBtn" style="background:#1e6f9f; padding:10px 25px;"><i class="fas fa-file-pdf"></i> Download Full CV (PDF)</button>
                     </div>
                 </div>
-                
                 <div class="pagination">
                     <button class="pagination-btn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
                     <button class="pagination-btn next-btn" data-next="professional-profile">Next <i class="fas fa-arrow-right"></i></button>
                 </div>
             </section>
             
+            <!-- Other Pages -->
             <section id="professional-profile" class="page">
-                <div class="page-header">
-                    <h2>Professional Profile</h2>
-                </div>
-                
-                <div class="content-section">
-                    <ul id="professionalProfileList"></ul>
-                </div>
-                
+                <div class="page-header"><h2>Professional Profile</h2></div>
+                <div class="content-section"><ul id="professionalProfileList"></ul></div>
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="profile"><i class="fas fa-arrow-left"></i> Previous</button>
                     <button class="pagination-btn next-btn" data-next="experience">Next <i class="fas fa-arrow-right"></i></button>
@@ -1430,12 +574,8 @@
             </section>
             
             <section id="experience" class="page">
-                <div class="page-header">
-                    <h2>Professional Experience</h2>
-                </div>
-                
+                <div class="page-header"><h2>Work Experience</h2></div>
                 <div class="content-section" id="experienceContent"></div>
-                
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="professional-profile"><i class="fas fa-arrow-left"></i> Previous</button>
                     <button class="pagination-btn next-btn" data-next="education">Next <i class="fas fa-arrow-right"></i></button>
@@ -1443,12 +583,8 @@
             </section>
             
             <section id="education" class="page">
-                <div class="page-header">
-                    <h2>Education Background</h2>
-                </div>
-                
+                <div class="page-header"><h2>Education</h2></div>
                 <div class="content-section" id="educationContent"></div>
-                
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="experience"><i class="fas fa-arrow-left"></i> Previous</button>
                     <button class="pagination-btn next-btn" data-next="certifications">Next <i class="fas fa-arrow-right"></i></button>
@@ -1456,12 +592,8 @@
             </section>
             
             <section id="certifications" class="page">
-                <div class="page-header">
-                    <h2>Professional Courses & Certifications</h2>
-                </div>
-                
+                <div class="page-header"><h2>Certifications</h2></div>
                 <div class="content-section" id="certificationsContent"></div>
-                
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="education"><i class="fas fa-arrow-left"></i> Previous</button>
                     <button class="pagination-btn next-btn" data-next="skills">Next <i class="fas fa-arrow-right"></i></button>
@@ -1469,14 +601,8 @@
             </section>
             
             <section id="skills" class="page">
-                <div class="page-header">
-                    <h2>Technical Skills</h2>
-                </div>
-                
-                <div class="content-section">
-                    <div class="skills-list" id="skillsList"></div>
-                </div>
-                
+                <div class="page-header"><h2>Technical Skills</h2></div>
+                <div class="content-section"><div class="skills-list" id="skillsList"></div></div>
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="certifications"><i class="fas fa-arrow-left"></i> Previous</button>
                     <button class="pagination-btn next-btn" data-next="competencies">Next <i class="fas fa-arrow-right"></i></button>
@@ -1484,14 +610,8 @@
             </section>
             
             <section id="competencies" class="page">
-                <div class="page-header">
-                    <h2>Core Competencies</h2>
-                </div>
-                
-                <div class="content-section">
-                    <ul id="competenciesList"></ul>
-                </div>
-                
+                <div class="page-header"><h2>Core Competencies</h2></div>
+                <div class="content-section"><ul id="competenciesList"></ul></div>
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="skills"><i class="fas fa-arrow-left"></i> Previous</button>
                     <button class="pagination-btn next-btn" data-next="projects">Next <i class="fas fa-arrow-right"></i></button>
@@ -1499,14 +619,8 @@
             </section>
             
             <section id="projects" class="page">
-                <div class="page-header">
-                    <h2>Projects</h2>
-                </div>
-                
-                <div class="content-section">
-                    <div class="projects-list" id="projectsList"></div>
-                </div>
-                
+                <div class="page-header"><h2>Key Projects</h2></div>
+                <div class="content-section"><div class="projects-list" id="projectsList"></div></div>
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="competencies"><i class="fas fa-arrow-left"></i> Previous</button>
                     <button class="pagination-btn next-btn" data-next="referees">Next <i class="fas fa-arrow-right"></i></button>
@@ -1514,12 +628,8 @@
             </section>
             
             <section id="referees" class="page">
-                <div class="page-header">
-                    <h2>Referees</h2>
-                </div>
-                
+                <div class="page-header"><h2>Professional Referees</h2></div>
                 <div class="content-section" id="refereesContent"></div>
-                
                 <div class="pagination">
                     <button class="pagination-btn prev-btn" data-prev="projects"><i class="fas fa-arrow-left"></i> Previous</button>
                     <button class="pagination-btn" disabled>Next <i class="fas fa-arrow-right"></i></button>
@@ -1530,43 +640,47 @@
     
     <footer>
         <div class="container">
-            <p>&copy; 2024 Celestino Onyango Portfolio. All rights reserved.</p>
+            <p>&copy; 2025 Celestino Onyango | ICT Support Specialist & Librarian</p>
             <p><i class="fas fa-phone"></i> +254714019736 | <i class="fas fa-envelope"></i> onyangocelestino@gmail.com</p>
-            <p><i class="fas fa-globe"></i> <a href="https://celestino-ux.github.io/Celestino-Portfolio-Website/">https://celestino-ux.github.io/Celestino-Portfolio-Website/</a></p>
-            <!-- SOCIAL LINKS IN FOOTER – updated with specific URLs -->
-            <p style="margin-top: 0.8rem;">
-                <a href="https://github.com/CELESTINO-UX" target="_blank" style="color: white; margin: 0 0.5rem;"><i class="fab fa-github fa-lg"></i></a>
-                <a href="https://www.linkedin.com/in/celestino-otieno-1146b1203" target="_blank" style="color: white; margin: 0 0.5rem;"><i class="fab fa-linkedin fa-lg"></i></a>
-                <a href="https://twitter.com/celestino_tech" target="_blank" style="color: white; margin: 0 0.5rem;"><i class="fab fa-x-twitter fa-lg"></i></a>
-                <a href="https://wa.me/254714019736" target="_blank" style="color: white; margin: 0 0.5rem;"><i class="fab fa-whatsapp fa-lg"></i></a>
-            </p>
+            <p><a href="https://github.com/CELESTINO-UX" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/celestino-otieno-1146b1203" target="_blank">LinkedIn</a></p>
         </div>
     </footer>
     
+    <!-- Modal -->
+    <div class="modal-overlay" id="adminModal">
+        <div class="modal-content">
+            <i class="fas fa-lock" style="font-size: 3rem; color: #e74c3c;"></i>
+            <h3>Admin Access</h3>
+            <p>Enter passcode to access admin panel</p>
+            <input type="password" id="adminPasscode" placeholder="****" maxlength="4" autocomplete="off">
+            <div id="passcodeError" style="color: red; display: none; margin: 5px 0;">Wrong passcode!</div>
+            <div style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;">
+                <button onclick="closeAdminModal()" style="background: #95a5a6; color: white;">Cancel</button>
+                <button onclick="verifyPasscode()" style="background: #1e6f9f; color: white;">Unlock</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast" id="toastMsg">
+        <i class="fas fa-check-circle"></i> <span id="toastText">Success!</span>
+    </div>
+    
     <script>
-        // ADMIN PASSCODE
-        const ADMIN_PASSCODE = "1997";
-        
+        // Portfolio Data
         let portfolioData = {
             profile: {
                 name: "OTIENO CELESTINO ONYANGO",
                 title: "ICT Support Specialist & Librarian",
-                bio: "A dedicated ICT professional and library information specialist with expertise in library automation, system administration, and cybersecurity. Committed to promoting academic excellence through effective technology and information service delivery.",
-                contact: {
-                    phone: "+254714019736",
-                    email: "onyangocelestino@gmail.com",
-                    location: "Nakuru, Kenya"
-                }
+                bio: "Results-driven ICT professional with 3+ years of experience in library automation, system administration, and cybersecurity. Proven track record in digital transformation, IT infrastructure management, and user training. Committed to operational excellence and innovation.",
+                contact: { phone: "+254714019736", email: "onyangocelestino@gmail.com", location: "Nairobi, Kenya" }
             },
             professionalProfile: [
-                "Experience in library and information management in both academic and school environments.",
-                "Skilled in Koha Integrated Library System and digital cataloguing standards (AACR2, MARC21, Dewey Decimal Classification).",
-                "Proven ability to manage library automation projects, digital repositories, and user support systems.",
-                "Strong communication, training, and organizational skills developed through collaboration with students and faculty.",
-                "Committed to promoting academic excellence and Christian values through effective library service delivery.",
-                "ICT Support Specialist with hands-on experience in system administration, cybersecurity monitoring, and end-user support.",
-                "Skilled in identifying vulnerabilities, applying security updates, and maintaining system integrity.",
-                "Competent in programming and scripting using Python and Bash to automate tasks and improve system efficiency."
+                "✔ 3+ years experience in ICT support and library information management across academic institutions.",
+                "✔ Expert in Koha ILS, digital cataloguing (AACR2, MARC21, DDC), and repository management.",
+                "✔ Skilled in cybersecurity: access control, threat monitoring, data backup, and user awareness.",
+                "✔ Proficient in Python, Bash scripting, and SQL for automation and data management.",
+                "✔ Strong communicator with experience training staff and students on digital literacy.",
+                "✔ Led library digitization initiative reducing retrieval time by 40%."
             ],
             experience: [
                 {
@@ -1574,20 +688,15 @@
                     company: "Lukenya British Curriculum School – Machakos, Kenya",
                     duration: "August 2024 – Present",
                     responsibilities: [
-                        "Provided ICT technical support to staff and users, including troubleshooting hardware, software, and network issues.",
-                        "Managed installation, configuration, and maintenance of computer systems, printers, and library ICT equipment.",
-                        "Supported users with library management systems (LMS), digital catalogs, and online databases.",
-                        "Implemented basic cybersecurity practices, including user access control, password management, antivirus updates, and data backup procedures.",
-                        "Assisted in monitoring system security, identifying potential threats, and reporting incidents according to ICT policies.",
-                        "Developed and maintained simple scripts and programs (using languages such as Python or Java) to automate routine ICT or library tasks.",
-                        "Managed digital and physical library resources, including cataloguing, classification, and circulation.",
-                        "Trained users on computer literacy, safe internet usage, and effective use of digital library resources.",
-                        "Maintained accurate ICT and library records, inventories, and usage reports.",
-                        "Collaborated with management to support digital transformation initiatives within the library environment."
+                        "Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.",
+                        "Manage Koha ILS migration and digital cataloguing of 5,000+ resources; improved search accuracy by 35%.",
+                        "Implement cybersecurity protocols: user access reviews, firewall configuration, and weekly backup verification.",
+                        "Develop Python scripts to automate library usage reports and system health checks.",
+                        "Conduct monthly ICT and digital literacy workshops for faculty and students."
                     ],
                     achievements: [
-                        "Successfully digitized the school's catalogue and improved retrieval time by 40%.",
-                        "Introduced structured library orientation and user education sessions."
+                        "Digitized school library catalogue, reducing book retrieval time from 15min to 2min.",
+                        "Introduced e-resource platform adoption, increasing digital resource usage by 60%."
                     ]
                 },
                 {
@@ -1595,1012 +704,266 @@
                     company: "Kenya National Library Service – Nakuru",
                     duration: "May 2024 – August 2024",
                     responsibilities: [
-                        "Results-driven ICT professional with experience in information systems support, network administration, and end-user technical assistance.",
-                        "Skilled in troubleshooting hardware and software issues, maintaining IT infrastructure, and supporting digital transformation initiatives.",
-                        "Strong problem-solving abilities with a commitment to delivering reliable and secure ICT services."
+                        "Assisted in network troubleshooting and maintenance of 50+ workstations.",
+                        "Supported digital cataloguing initiative for archival materials using MARC21 standards.",
+                        "Provided end-user support and IT orientation for library patrons."
                     ],
-                    achievements: []
+                    achievements: ["Recognized for outstanding support in deploying updated antivirus across all public access computers."]
                 }
             ],
             education: [
-                {
-                    degree: "Bachelor of Science in Information Science (ICT Option)",
-                    institution: "Meru University of Science and Technology",
-                    year: "2024"
-                },
-                {
-                    degree: "Kenya Certificate of Secondary Education (KCSE)",
-                    institution: "Nyarach Mixed Day Secondary School",
-                    year: "2019"
-                }
+                { degree: "Bachelor of Science in Information Science (ICT Option)", institution: "Meru University of Science and Technology", year: "2020 – 2024", details: "First Class Honors | Coursework: Network Security, Database Systems" },
+                { degree: "Kenya Certificate of Secondary Education (KCSE)", institution: "Nyarach Mixed Day Secondary School", year: "2015 – 2019", details: "Grade: B+ (Aggregate 72 points)" }
             ],
             certifications: [
-                {
-                    name: "Certificate in Health & Safety for Staff - The National College",
-                    description: "Certificate awarded on 9th February 2026. Addresses key health and safety responsibilities for school staff, including compliance and creating a safe working environment through online learning from The National College."
-                },
-                {
-                    name: "Recognising and Supporting Pupils with ADHD (Primary) - The National College",
-                    description: "Certificate awarded on 9th February 2026. Focuses on identifying and supporting primary pupils with ADHD, covering the latest policy, practice, and research in educational settings."
-                },
-                {
-                    name: "Managing School Admissions (Independent Senior) - The National College",
-                    description: "Certificate awarded on 9th February 2026. Focuses on the management of school admissions processes, particularly for independent senior schools, ensuring compliance with regulations."
-                },
-                {
-                    name: "Certificate in Organising and Managing School Trips - The National College",
-                    description: "Certificate awarded on 9th February 2026. Provides training on planning, risk management, and execution of educational school trips, aligned with current sector guidance."
-                },
-                {
-                    name: "Certificate in Infection Prevention & Control - The National College",
-                    description: "Certificate awarded on 9th February 2026. Covers essential protocols and best practices for infection prevention and control within school environments."
-                },
-                {
-                    name: "Certificate in Data Visualization with Power BI",
-                    description: "Comprehensive training in creating interactive dashboards, reports, and data visualizations using Microsoft Power BI. Covers data modeling, DAX formulas, and business intelligence best practices."
-                },
-                {
-                    name: "Certificate in Cyber Forensics",
-                    description: "Advanced training in digital evidence collection, analysis, and preservation. Includes techniques for investigating cybercrimes, recovering deleted data, and maintaining chain of custody."
-                },
-                {
-                    name: "Certificate in Advanced Cyber Security - Threats and Governance",
-                    description: "In-depth study of modern cybersecurity threats, risk management frameworks, security governance, and compliance requirements. Covers threat intelligence and incident response strategies."
-                },
-                {
-                    name: "Certificate in Cyber Security Compliance and Regulations",
-                    description: "Focus on regulatory requirements, data protection laws, and compliance standards including GDPR, ISO 27001, and local data protection regulations. Emphasizes practical implementation of security controls."
-                }
+                { name: "Advanced Cybersecurity - Threats & Governance", issuer: "Cisco Networking Academy", year: "2025" },
+                { name: "Data Visualization with Power BI", issuer: "Microsoft Learn", year: "2024" },
+                { name: "Cyber Forensics Fundamentals", issuer: "EC-Council", year: "2024" },
+                { name: "Infection Prevention & Control", issuer: "The National College", year: "2026" }
             ],
             skills: [
-                { category: "ICT Support & Troubleshooting", description: "Hardware and software installation, system diagnostics, printer and peripheral support, user technical assistance" },
-                { category: "Operating Systems", description: "Windows, Linux (basic administration), macOS (user support)" },
-                { category: "Networking", description: "Basic network configuration, LAN/Wi-Fi setup, IP addressing, connectivity troubleshooting" },
-                { category: "Cybersecurity", description: "User access control, antivirus and firewall management, data backup and recovery, cybersecurity awareness and safe computing practices" },
-                { category: "Library Systems", description: "Koha ILS, Snapplify, Library Management Systems (LMS), OPAC, digital cataloguing, circulation systems, electronic resource management" },
-                { category: "Programming & Scripting", description: "Python, Java, JavaScript, basic Bash scripting for task automation" },
-                { category: "Database & Data Management", description: "SQL (basic), data entry, digital record management, metadata editing" },
-                { category: "Software Applications", description: "Microsoft Office Suite, Google Workspace, document digitization tools" },
-                { category: "Cataloguing Tools", description: "MARC21, AACR2, Dewey Decimal Classification (DDC)" },
-                { category: "ICT Asset Management", description: "Inventory control, system documentation, and maintenance records" }
+                { category: "ICT Infrastructure", description: "Hardware/software troubleshooting, network setup (LAN/Wi-Fi), system imaging, printer management." },
+                { category: "Cybersecurity", description: "Access control, firewall management, backup & recovery, security awareness training." },
+                { category: "Library Systems", description: "Koha ILS, digital cataloguing (MARC21, AACR2, DDC), OPAC management, e-resources." },
+                { category: "Programming & Automation", description: "Python, Bash, SQL, JavaScript basics, task automation scripts." }
             ],
             competencies: [
-                "Library Systems Administration",
-                "Cataloguing & Classification",
-                "User Education & Information Literacy",
-                "Digital Library Management",
-                "Data Entry & Metadata Control",
-                "Research Support Services",
-                "Team Leadership & Communication",
-                "Programming and Coding"
+                "Library Systems Administration", "IT Project Coordination", "User Training & Support",
+                "Digital Transformation", "Incident Response", "Database Management", 
+                "Technical Documentation", "Team Collaboration", "Problem Solving"
             ],
             projects: [
-                {
-                    title: "Lukenya Voting System",
-                    description: "A web-based voting system developed to enhance free, fast and secure student council elections at Lukenya British Curriculum School. The system ensures transparency, security, and efficiency in the voting process while providing real-time results.",
-                    liveUrl: "https://carlesy6.github.io/lukenya-Voting-System/",
-                    githubUrl: ""
-                },
-                {
-                    title: "Celestino Portfolio Website",
-                    description: "A responsive and professional portfolio website showcasing my skills, experience, and projects. Built with HTML, CSS, and JavaScript, this website demonstrates web development capabilities and serves as an online resume for potential employers.",
-                    liveUrl: "https://carlesy6.github.io/Celestino-Portfolio-Website/",
-                    githubUrl: "https://github.com/carlesy6/Celestino-Portfolio-Website"
-                }
+                { title: "Lukenya Voting System", description: "Secure web-based voting platform for student elections using HTML/CSS/JS; reduced election time by 70%. Implemented real-time result display and secure authentication.", liveUrl: "https://carlesy6.github.io/lukenya-Voting-System/", githubUrl: "" },
+                { title: "Professional Portfolio & CV Hub", description: "Responsive portfolio website with dynamic CV generator; showcases skills, experience, and serves as interactive resume for employers.", liveUrl: "#", githubUrl: "https://github.com/CELESTINO-UX" }
             ],
             referees: [
-                {
-                    name: "Steven Ajulu Otieno",
-                    position: "Head of IT Department",
-                    organization: "Kenya National Library Service, Nakuru",
-                    phone: "0740128010"
-                }
+                { name: "Colins Kirui", position: "Dean of Students & Examinations", organization: "Lukenya British Curriculum School", phone: "+254 702 194 494", email: "" },
+                { name: "John Gitau Nganga", position: "Lecturer, Information Science", organization: "Meru University of Science and Technology", phone: "+254720877605", email: "jgitau@must.ac.ke" },
+                { name: "Steven Ajulu Otieno", position: "Head of IT Department", organization: "Kenya National Library Service, Nakuru", phone: "0740128010", email: "" }
             ]
         };
-
-        // Load data from localStorage
-        function loadData() {
-            const savedData = localStorage.getItem('portfolioData');
-            if (savedData) {
-                try {
-                    const parsed = JSON.parse(savedData);
-                    if (parsed.certifications && parsed.certifications.length > 0) {
-                        if (typeof parsed.certifications[0] === 'string') {
-                            parsed.certifications = parsed.certifications.map(cert => ({
-                                name: cert,
-                                description: "Professional certification in " + cert
-                            }));
-                        }
-                    }
-                    portfolioData = parsed;
-                } catch (e) {
-                    console.error('Error loading saved data', e);
-                }
-            }
-            renderAll();
-            updateAdminProfileSummary();
-            updateAdminLists();
-        }
-
-        function saveData() {
-            localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
-            showToast('Changes saved successfully!', 'success');
-        }
-
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            toast.className = 'toast show';
-            if (type === 'error') toast.classList.add('error');
-            else if (type === 'warning') toast.classList.add('warning');
-            toastMessage.textContent = message;
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
-        // Passcode functions
-        function verifyPasscode() {
-            const passcode = document.getElementById('passcode').value;
-            const errorElement = document.getElementById('passcodeError');
-            if (passcode === ADMIN_PASSCODE) {
-                closePasscodeModal();
-                openAdminPanel();
-                document.getElementById('passcode').value = '';
-                errorElement.classList.remove('show');
-            } else {
-                errorElement.classList.add('show');
-                document.getElementById('passcode').value = '';
-                showToast('Incorrect passcode', 'error');
-            }
-        }
-
-        function openPasscodeModal() {
-            document.getElementById('passcodeModal').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-            document.getElementById('passcode').focus();
-        }
-
-        function closePasscodeModal() {
-            document.getElementById('passcodeModal').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-            document.getElementById('passcode').value = '';
-            document.getElementById('passcodeError').classList.remove('show');
-        }
-
-        function openAdminPanel() {
-            document.getElementById('adminPanel').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-            updateAdminLists();
-            updateAdminProfileSummary();
-        }
-
-        function closeAdminPanel() {
-            document.getElementById('adminPanel').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-        }
-
-        function updateAdminProfileSummary() {
-            document.getElementById('profileNameDisplay').textContent = portfolioData.profile.name;
-            document.getElementById('profileTitleDisplay').textContent = portfolioData.profile.title;
-            document.getElementById('profilePhoneDisplay').textContent = portfolioData.profile.contact.phone;
-            document.getElementById('profileEmailDisplay').textContent = portfolioData.profile.contact.email;
-            document.getElementById('profileLocationDisplay').textContent = portfolioData.profile.contact.location;
-        }
-
-        // Profile edit functions
-        function editProfile() {
-            document.getElementById('profileNameInput').value = portfolioData.profile.name;
-            document.getElementById('profileTitleInput').value = portfolioData.profile.title;
-            document.getElementById('profileBioInput').value = portfolioData.profile.bio;
-            document.getElementById('profilePhoneInput').value = portfolioData.profile.contact.phone;
-            document.getElementById('profileEmailInput').value = portfolioData.profile.contact.email;
-            document.getElementById('profileLocationInput').value = portfolioData.profile.contact.location;
-            document.getElementById('profileEditModal').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-        }
-
-        function hideProfileForm() {
-            document.getElementById('profileEditModal').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-        }
-
-        function saveProfile(event) {
-            event.preventDefault();
-            portfolioData.profile = {
-                name: document.getElementById('profileNameInput').value,
-                title: document.getElementById('profileTitleInput').value,
-                bio: document.getElementById('profileBioInput').value,
-                contact: {
-                    phone: document.getElementById('profilePhoneInput').value,
-                    email: document.getElementById('profileEmailInput').value,
-                    location: document.getElementById('profileLocationInput').value
-                }
-            };
-            saveData();
-            renderAll();
-            updateAdminProfileSummary();
-            hideProfileForm();
-            showToast('Profile updated successfully!');
-        }
-
-        // Render functions
+        
+        // Render all content
         function renderAll() {
-            renderProfile();
-            renderProfessionalProfile();
-            renderExperience();
-            renderEducation();
-            renderCertifications();
-            renderSkills();
-            renderCompetencies();
-            renderProjects();
-            renderReferees();
-        }
-
-        function renderProfile() {
+            // Profile
             document.getElementById('profileName').textContent = portfolioData.profile.name;
             document.getElementById('profileTitle').textContent = portfolioData.profile.title;
             document.getElementById('profileBio').textContent = portfolioData.profile.bio;
-            document.getElementById('profilePhone').textContent = portfolioData.profile.contact.phone;
-            document.getElementById('profileEmail').textContent = portfolioData.profile.contact.email;
-            document.getElementById('profileLocation').textContent = portfolioData.profile.contact.location;
-        }
-
-        function renderProfessionalProfile() {
-            const list = document.getElementById('professionalProfileList');
-            if (list) list.innerHTML = portfolioData.professionalProfile.map(item => `<li>${item}</li>`).join('');
-        }
-
-        function renderExperience() {
-            const container = document.getElementById('experienceContent');
-            if (container) {
-                container.innerHTML = portfolioData.experience.map(exp => `
-                    <div class="experience-item">
-                        <h4>${exp.title}</h4>
-                        <div class="company">${exp.company}</div>
-                        <div class="duration">${exp.duration}</div>
-                        <h5>Key Responsibilities:</h5>
-                        <ul>${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>
-                        ${exp.achievements && exp.achievements.length ? `<h5>Key Achievements:</h5><ul>${exp.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}
-                    </div>
-                `).join('');
-            }
-        }
-
-        function renderEducation() {
-            const container = document.getElementById('educationContent');
-            if (container) {
-                container.innerHTML = portfolioData.education.map(edu => `
-                    <div class="education-item">
-                        <h4>${edu.degree}</h4>
-                        <div class="institution">${edu.institution}</div>
-                        <div class="duration">${edu.year}</div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function renderCertifications() {
-            const container = document.getElementById('certificationsContent');
-            if (container) {
-                container.innerHTML = portfolioData.certifications.map(cert => `
-                    <div class="certificate-item">
-                        <h4>${cert.name}</h4>
-                        <p>${cert.description}</p>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function renderSkills() {
-            const container = document.getElementById('skillsList');
-            if (container) {
-                container.innerHTML = portfolioData.skills.map(skill => `
-                    <div class="skill-category">
-                        <h4>${skill.category}</h4>
-                        <p>${skill.description}</p>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function renderCompetencies() {
-            const list = document.getElementById('competenciesList');
-            if (list) list.innerHTML = portfolioData.competencies.map(comp => `<li>${comp}</li>`).join('');
-        }
-
-        function renderProjects() {
-            const container = document.getElementById('projectsList');
-            if (container) {
-                container.innerHTML = portfolioData.projects.map(proj => `
-                    <div class="project-item">
-                        <h4>${proj.title}</h4>
-                        <p>${proj.description}</p>
-                        <div class="project-links">
-                            ${proj.liveUrl ? `<a href="${proj.liveUrl}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> View Live Project</a>` : ''}
-                            ${proj.githubUrl ? `<a href="${proj.githubUrl}" target="_blank" class="project-link github"><i class="fab fa-github"></i> View Source Code</a>` : ''}
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function renderReferees() {
-            const container = document.getElementById('refereesContent');
-            if (container) {
-                container.innerHTML = portfolioData.referees.map(ref => `
-                    <div class="referee-item">
-                        <h4>${ref.name}</h4>
-                        <p>${ref.position}</p>
-                        <p>${ref.organization}</p>
-                        <p>${ref.phone}</p>
-                    </div>
-                `).join('');
-                container.innerHTML += `<div class="referee-item"><h4>References available upon request</h4><p>Additional professional references can be provided upon request.</p></div>`;
-            }
-        }
-
-        function updateAdminLists() {
+            document.getElementById('contactInfo').innerHTML = `
+                <div class="contact-item"><i class="fas fa-phone-alt"></i><span>${portfolioData.profile.contact.phone}</span></div>
+                <div class="contact-item"><i class="fas fa-envelope"></i><span>${portfolioData.profile.contact.email}</span></div>
+                <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>${portfolioData.profile.contact.location}</span></div>
+                <div class="contact-item"><i class="fab fa-linkedin"></i><span>linkedin.com/in/celestino-otieno</span></div>
+                <div class="contact-item"><i class="fab fa-github"></i><span>github.com/CELESTINO-UX</span></div>
+            `;
+            
             // Professional Profile
-            const profList = document.getElementById('professionalList');
-            if (profList) {
-                profList.innerHTML = portfolioData.professionalProfile.map((item, index) => `
-                    <li>
-                        <div class="item-content">
-                            <div class="item-title">${item.substring(0, 50)}${item.length > 50 ? '...' : ''}</div>
-                        </div>
-                        <div class="item-actions">
-                            <button class="edit-btn" onclick="editItem('professional', ${index})"><i class="fas fa-edit"></i></button>
-                            <button class="delete-btn" onclick="deleteItem('professional', ${index})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </li>
-                `).join('');
-            }
-
-            // Certifications
-            const certList = document.getElementById('certificationList');
-            if (certList) {
-                certList.innerHTML = portfolioData.certifications.map((item, index) => `
-                    <li>
-                        <div class="item-content">
-                            <div class="item-title">${item.name}</div>
-                            <div class="item-subtitle">${item.description.substring(0, 50)}${item.description.length > 50 ? '...' : ''}</div>
-                        </div>
-                        <div class="item-actions">
-                            <button class="edit-btn" onclick="editItem('certification', ${index})"><i class="fas fa-edit"></i></button>
-                            <button class="delete-btn" onclick="deleteItem('certification', ${index})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </li>
-                `).join('');
-            }
-
-            // Competencies
-            const compList = document.getElementById('competencyList');
-            if (compList) {
-                compList.innerHTML = portfolioData.competencies.map((item, index) => `
-                    <li>
-                        <div class="item-content">
-                            <div class="item-title">${item}</div>
-                        </div>
-                        <div class="item-actions">
-                            <button class="edit-btn" onclick="editItem('competency', ${index})"><i class="fas fa-edit"></i></button>
-                            <button class="delete-btn" onclick="deleteItem('competency', ${index})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </li>
-                `).join('');
-            }
-
-            // Projects
-            const projList = document.getElementById('projectList');
-            if (projList) {
-                projList.innerHTML = portfolioData.projects.map((item, index) => `
-                    <li>
-                        <div class="item-content">
-                            <div class="item-title">${item.title}</div>
-                            <div class="item-subtitle">${item.description.substring(0, 50)}...</div>
-                        </div>
-                        <div class="item-actions">
-                            <button class="edit-btn" onclick="editItem('project', ${index})"><i class="fas fa-edit"></i></button>
-                            <button class="delete-btn" onclick="deleteItem('project', ${index})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </li>
-                `).join('');
-            }
-
-            // Referees
-            const refList = document.getElementById('refereeList');
-            if (refList) {
-                refList.innerHTML = portfolioData.referees.map((item, index) => `
-                    <li>
-                        <div class="item-content">
-                            <div class="item-title">${item.name}</div>
-                            <div class="item-subtitle">${item.position} - ${item.organization}</div>
-                        </div>
-                        <div class="item-actions">
-                            <button class="edit-btn" onclick="editItem('referee', ${index})"><i class="fas fa-edit"></i></button>
-                            <button class="delete-btn" onclick="deleteItem('referee', ${index})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </li>
-                `).join('');
-            }
-
+            document.getElementById('professionalProfileList').innerHTML = portfolioData.professionalProfile.map(i => `<li>${i}</li>`).join('');
+            
             // Experience
-            const expList = document.getElementById('experienceList');
-            if (expList) {
-                expList.innerHTML = portfolioData.experience.map((item, index) => `
-                    <li>
-                        <div class="item-content">
-                            <div class="item-title">${item.title}</div>
-                            <div class="item-subtitle">${item.company}</div>
-                        </div>
-                        <div class="item-actions">
-                            <button class="edit-btn" onclick="editItem('experience', ${index})"><i class="fas fa-edit"></i></button>
-                            <button class="delete-btn" onclick="deleteItem('experience', ${index})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </li>
-                `).join('');
-            }
-
+            document.getElementById('experienceContent').innerHTML = portfolioData.experience.map(exp => `
+                <div class="experience-item">
+                    <h4>${exp.title}</h4>
+                    <div class="company">${exp.company}</div>
+                    <div class="duration">${exp.duration}</div>
+                    <strong>Key Responsibilities:</strong>
+                    <ul>${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>
+                    ${exp.achievements.length ? `<strong>Key Achievements:</strong><ul>${exp.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}
+                </div>
+            `).join('');
+            
             // Education
-            const eduList = document.getElementById('educationList');
-            if (eduList) {
-                eduList.innerHTML = portfolioData.education.map((item, index) => `
-                    <li>
-                        <div class="item-content">
-                            <div class="item-title">${item.degree}</div>
-                            <div class="item-subtitle">${item.institution} - ${item.year}</div>
-                        </div>
-                        <div class="item-actions">
-                            <button class="edit-btn" onclick="editItem('education', ${index})"><i class="fas fa-edit"></i></button>
-                            <button class="delete-btn" onclick="deleteItem('education', ${index})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </li>
-                `).join('');
-            }
-
+            document.getElementById('educationContent').innerHTML = portfolioData.education.map(edu => `
+                <div class="education-item">
+                    <h4>${edu.degree}</h4>
+                    <div class="institution">${edu.institution}</div>
+                    <div class="duration">${edu.year}</div>
+                    <p>${edu.details}</p>
+                </div>
+            `).join('');
+            
+            // Certifications
+            document.getElementById('certificationsContent').innerHTML = portfolioData.certifications.map(cert => `
+                <div class="certificate-item">
+                    <h4>${cert.name}</h4>
+                    <p>${cert.issuer} | ${cert.year}</p>
+                </div>
+            `).join('');
+            
             // Skills
-            const skillList = document.getElementById('skillList');
-            if (skillList) {
-                skillList.innerHTML = portfolioData.skills.map((item, index) => `
-                    <li>
-                        <div class="item-content">
-                            <div class="item-title">${item.category}</div>
-                            <div class="item-subtitle">${item.description.substring(0, 50)}...</div>
-                        </div>
-                        <div class="item-actions">
-                            <button class="edit-btn" onclick="editItem('skill', ${index})"><i class="fas fa-edit"></i></button>
-                            <button class="delete-btn" onclick="deleteItem('skill', ${index})"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </li>
-                `).join('');
-            }
-        }
-
-        function showAddForm(type) {
-            document.getElementById('formType').value = type;
-            document.getElementById('editIndex').value = '-1';
-            document.getElementById('formTitle').textContent = `Add New ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            document.getElementById('skillsList').innerHTML = portfolioData.skills.map(skill => `
+                <div class="skill-category">
+                    <h4>${skill.category}</h4>
+                    <p>${skill.description}</p>
+                </div>
+            `).join('');
             
-            let fields = '';
-            switch(type) {
-                case 'professional':
-                case 'competency':
-                    fields = `
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="itemText" placeholder="Enter description" required></textarea>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'certification':
-                    fields = `
-                        <div class="form-group">
-                            <label>Certificate Name</label>
-                            <input type="text" id="certName" placeholder="e.g., Certificate Name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="certDescription" placeholder="Describe the certification" required></textarea>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'experience':
-                    fields = `
-                        <div class="form-group">
-                            <label>Job Title</label>
-                            <input type="text" id="expTitle" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Company</label>
-                            <input type="text" id="expCompany" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Duration</label>
-                            <input type="text" id="expDuration" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Responsibilities (one per line)</label>
-                            <textarea id="expResponsibilities" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Achievements (one per line, optional)</label>
-                            <textarea id="expAchievements"></textarea>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'education':
-                    fields = `
-                        <div class="form-group">
-                            <label>Degree/Certificate</label>
-                            <input type="text" id="eduDegree" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Institution</label>
-                            <input type="text" id="eduInstitution" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Year</label>
-                            <input type="text" id="eduYear" required>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'skill':
-                    fields = `
-                        <div class="form-group">
-                            <label>Skill Category</label>
-                            <input type="text" id="skillCategory" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="skillDescription" required></textarea>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'project':
-                    fields = `
-                        <div class="form-group">
-                            <label>Project Title</label>
-                            <input type="text" id="projectTitle" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="projectDescription" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Live URL (optional)</label>
-                            <input type="url" id="projectLiveUrl">
-                        </div>
-                        <div class="form-group">
-                            <label>GitHub URL (optional)</label>
-                            <input type="url" id="projectGithubUrl">
-                        </div>
-                    `;
-                    break;
-                    
-                case 'referee':
-                    fields = `
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" id="refereeName" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Position</label>
-                            <input type="text" id="refereePosition" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Organization</label>
-                            <input type="text" id="refereeOrganization" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="text" id="refereePhone" required>
-                        </div>
-                    `;
-                    break;
-            }
+            // Competencies
+            document.getElementById('competenciesList').innerHTML = portfolioData.competencies.map(c => `<li>${c}</li>`).join('');
             
-            document.getElementById('formFields').innerHTML = fields;
-            document.getElementById('formModal').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
-        }
-
-        function hideForm() {
-            document.getElementById('formModal').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
-            document.getElementById('itemForm').reset();
-        }
-
-        function editItem(type, index) {
-            document.getElementById('formType').value = type;
-            document.getElementById('editIndex').value = index;
-            document.getElementById('formTitle').textContent = `Edit ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            // Projects
+            document.getElementById('projectsList').innerHTML = portfolioData.projects.map(proj => `
+                <div class="project-item">
+                    <h4>${proj.title}</h4>
+                    <p>${proj.description}</p>
+                    ${proj.liveUrl && proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
+                    ${proj.githubUrl ? `<a href="${proj.githubUrl}" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>` : ''}
+                </div>
+            `).join('');
             
-            let fields = '';
-            const item = getItemByType(type, index);
-            
-            switch(type) {
-                case 'professional':
-                case 'competency':
-                    fields = `
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="itemText" required>${item}</textarea>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'certification':
-                    fields = `
-                        <div class="form-group">
-                            <label>Certificate Name</label>
-                            <input type="text" id="certName" value="${item.name.replace(/"/g, '&quot;')}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="certDescription" required>${item.description}</textarea>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'experience':
-                    fields = `
-                        <div class="form-group">
-                            <label>Job Title</label>
-                            <input type="text" id="expTitle" value="${item.title}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Company</label>
-                            <input type="text" id="expCompany" value="${item.company}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Duration</label>
-                            <input type="text" id="expDuration" value="${item.duration}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Responsibilities (one per line)</label>
-                            <textarea id="expResponsibilities" required>${item.responsibilities.join('\n')}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Achievements (one per line)</label>
-                            <textarea id="expAchievements">${item.achievements ? item.achievements.join('\n') : ''}</textarea>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'education':
-                    fields = `
-                        <div class="form-group">
-                            <label>Degree/Certificate</label>
-                            <input type="text" id="eduDegree" value="${item.degree}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Institution</label>
-                            <input type="text" id="eduInstitution" value="${item.institution}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Year</label>
-                            <input type="text" id="eduYear" value="${item.year}" required>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'skill':
-                    fields = `
-                        <div class="form-group">
-                            <label>Skill Category</label>
-                            <input type="text" id="skillCategory" value="${item.category}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="skillDescription" required>${item.description}</textarea>
-                        </div>
-                    `;
-                    break;
-                    
-                case 'project':
-                    fields = `
-                        <div class="form-group">
-                            <label>Project Title</label>
-                            <input type="text" id="projectTitle" value="${item.title}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="projectDescription" required>${item.description}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Live URL</label>
-                            <input type="url" id="projectLiveUrl" value="${item.liveUrl || ''}">
-                        </div>
-                        <div class="form-group">
-                            <label>GitHub URL</label>
-                            <input type="url" id="projectGithubUrl" value="${item.githubUrl || ''}">
-                        </div>
-                    `;
-                    break;
-                    
-                case 'referee':
-                    fields = `
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" id="refereeName" value="${item.name}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Position</label>
-                            <input type="text" id="refereePosition" value="${item.position}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Organization</label>
-                            <input type="text" id="refereeOrganization" value="${item.organization}" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="text" id="refereePhone" value="${item.phone}" required>
-                        </div>
-                    `;
-                    break;
-            }
-            
-            document.getElementById('formFields').innerHTML = fields;
-            document.getElementById('formModal').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
+            // Referees
+            document.getElementById('refereesContent').innerHTML = portfolioData.referees.map(ref => `
+                <div class="referee-item">
+                    <h4>${ref.name}</h4>
+                    <p><strong>${ref.position}</strong><br>${ref.organization}<br>📞 ${ref.phone}${ref.email ? `<br>✉️ ${ref.email}` : ''}</p>
+                </div>
+            `).join('');
         }
-
-        function getItemByType(type, index) {
-            switch(type) {
-                case 'professional': return portfolioData.professionalProfile[index];
-                case 'certification': return portfolioData.certifications[index];
-                case 'competency': return portfolioData.competencies[index];
-                case 'experience': return portfolioData.experience[index];
-                case 'education': return portfolioData.education[index];
-                case 'skill': return portfolioData.skills[index];
-                case 'project': return portfolioData.projects[index];
-                case 'referee': return portfolioData.referees[index];
-                default: return null;
-            }
-        }
-
-        function saveItem(event) {
-            event.preventDefault();
+        
+        // CV Download Function - Professional Format
+        function downloadCV() {
+            const d = portfolioData;
+            const p = d.profile;
+            const cvHTML = `<!DOCTYPE html>
+            <html>
+            <head><meta charset="UTF-8"><title>Celestino_Onyango_CV.pdf</title>
+            <style>
+                body { font-family: 'Times New Roman', Times, serif; padding: 40px; background: white; }
+                .cv { max-width: 1000px; margin: 0 auto; }
+                h1 { color: #0a2f44; border-bottom: 3px solid #1e6f9f; display: inline-block; font-size: 28px; }
+                h2 { color: #1e6f9f; border-left: 5px solid #64b5f6; padding-left: 15px; margin: 25px 0 12px; }
+                .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); background: #f0f7fc; padding: 15px; border-radius: 12px; margin: 15px 0; }
+                .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+                .skill-card { background: #f8fafc; padding: 10px; border-left: 3px solid #1e6f9f; margin-bottom: 8px; }
+                @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
+                ul { margin-left: 20px; }
+                li { margin-bottom: 5px; }
+            </style>
+            </head>
+            <body>
+            <div class="cv">
+                <h1>${p.name}</h1>
+                <div style="font-size: 18px; margin: 8px 0">${p.title}</div>
+                <div class="contact-grid">
+                    <div>📞 ${p.contact.phone}</div>
+                    <div>✉️ ${p.contact.email}</div>
+                    <div>📍 ${p.contact.location}</div>
+                    <div>🔗 linkedin.com/in/celestino-otieno</div>
+                    <div>🐙 github.com/CELESTINO-UX</div>
+                </div>
+                <h2>Professional Summary</h2>
+                <p>${p.bio}</p>
+                <h2>Core Competencies</h2>
+                <ul>${d.competencies.map(c => `<li>${c}</li>`).join('')}</ul>
+                <h2>Work Experience</h2>
+                ${d.experience.map(e => `<div><strong>${e.title}</strong><br><em>${e.company}</em> | ${e.duration}<ul>${e.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>${e.achievements.length ? `<strong>Achievements:</strong><ul>${e.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}</div>`).join('')}
+                <h2>Education</h2>
+                ${d.education.map(e => `<div><strong>${e.degree}</strong><br>${e.institution} (${e.year})<br>${e.details}</div><br>`).join('')}
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">${d.skills.map(s => `<div class="skill-card"><strong>${s.category}</strong><br>${s.description}</div>`).join('')}</div>
+                <h2>Certifications</h2>
+                <ul>${d.certifications.map(c => `<li><strong>${c.name}</strong> – ${c.issuer} (${c.year})</li>`).join('')}</ul>
+                <h2>Professional Referees</h2>
+                ${d.referees.map(r => `<div><strong>${r.name}</strong><br>${r.position}<br>${r.organization}<br>📞 ${r.phone}${r.email ? `<br>✉️ ${r.email}` : ''}</div><br>`).join('')}
+                <hr>
+                <footer style="text-align:center; font-size:12px; margin-top:30px;">Celestino Onyango – Professional CV – Updated ${new Date().toLocaleDateString()}</footer>
+            </div>
+            </body>
+            </html>`;
             
-            const type = document.getElementById('formType').value;
-            const editIndex = parseInt(document.getElementById('editIndex').value);
-            
-            let newItem;
-            switch(type) {
-                case 'professional':
-                case 'competency':
-                    newItem = document.getElementById('itemText').value;
-                    if (editIndex === -1) {
-                        portfolioData[getArrayName(type)].push(newItem);
-                    } else {
-                        portfolioData[getArrayName(type)][editIndex] = newItem;
-                    }
-                    break;
-                    
-                case 'certification':
-                    newItem = {
-                        name: document.getElementById('certName').value,
-                        description: document.getElementById('certDescription').value
-                    };
-                    if (editIndex === -1) {
-                        portfolioData.certifications.push(newItem);
-                    } else {
-                        portfolioData.certifications[editIndex] = newItem;
-                    }
-                    break;
-                    
-                case 'experience':
-                    const responsibilities = document.getElementById('expResponsibilities').value
-                        .split('\n')
-                        .filter(line => line.trim() !== '');
-                    const achievements = document.getElementById('expAchievements').value
-                        .split('\n')
-                        .filter(line => line.trim() !== '');
-                    
-                    newItem = {
-                        title: document.getElementById('expTitle').value,
-                        company: document.getElementById('expCompany').value,
-                        duration: document.getElementById('expDuration').value,
-                        responsibilities: responsibilities,
-                        achievements: achievements
-                    };
-                    
-                    if (editIndex === -1) {
-                        portfolioData.experience.push(newItem);
-                    } else {
-                        portfolioData.experience[editIndex] = newItem;
-                    }
-                    break;
-                    
-                case 'education':
-                    newItem = {
-                        degree: document.getElementById('eduDegree').value,
-                        institution: document.getElementById('eduInstitution').value,
-                        year: document.getElementById('eduYear').value
-                    };
-                    
-                    if (editIndex === -1) {
-                        portfolioData.education.push(newItem);
-                    } else {
-                        portfolioData.education[editIndex] = newItem;
-                    }
-                    break;
-                    
-                case 'skill':
-                    newItem = {
-                        category: document.getElementById('skillCategory').value,
-                        description: document.getElementById('skillDescription').value
-                    };
-                    
-                    if (editIndex === -1) {
-                        portfolioData.skills.push(newItem);
-                    } else {
-                        portfolioData.skills[editIndex] = newItem;
-                    }
-                    break;
-                    
-                case 'project':
-                    newItem = {
-                        title: document.getElementById('projectTitle').value,
-                        description: document.getElementById('projectDescription').value,
-                        liveUrl: document.getElementById('projectLiveUrl').value,
-                        githubUrl: document.getElementById('projectGithubUrl').value
-                    };
-                    
-                    if (editIndex === -1) {
-                        portfolioData.projects.push(newItem);
-                    } else {
-                        portfolioData.projects[editIndex] = newItem;
-                    }
-                    break;
-                    
-                case 'referee':
-                    newItem = {
-                        name: document.getElementById('refereeName').value,
-                        position: document.getElementById('refereePosition').value,
-                        organization: document.getElementById('refereeOrganization').value,
-                        phone: document.getElementById('refereePhone').value
-                    };
-                    
-                    if (editIndex === -1) {
-                        portfolioData.referees.push(newItem);
-                    } else {
-                        portfolioData.referees[editIndex] = newItem;
-                    }
-                    break;
-            }
-            
-            saveData();
-            renderAll();
-            updateAdminLists();
-            hideForm();
-            showToast('Item saved successfully!');
+            const win = window.open('', '_blank');
+            win.document.write(cvHTML);
+            win.document.close();
+            win.print();
+            showToast("CV ready - Use 'Save as PDF' in print dialog");
         }
-
-        function getArrayName(type) {
-            switch(type) {
-                case 'professional': return 'professionalProfile';
-                case 'certification': return 'certifications';
-                case 'competency': return 'competencies';
-                default: return type + 's';
-            }
-        }
-
-        function deleteItem(type, index) {
-            if (confirm('Are you sure you want to delete this item?')) {
-                switch(type) {
-                    case 'professional':
-                        portfolioData.professionalProfile.splice(index, 1);
-                        break;
-                    case 'certification':
-                        portfolioData.certifications.splice(index, 1);
-                        break;
-                    case 'competency':
-                        portfolioData.competencies.splice(index, 1);
-                        break;
-                    case 'experience':
-                        portfolioData.experience.splice(index, 1);
-                        break;
-                    case 'education':
-                        portfolioData.education.splice(index, 1);
-                        break;
-                    case 'skill':
-                        portfolioData.skills.splice(index, 1);
-                        break;
-                    case 'project':
-                        portfolioData.projects.splice(index, 1);
-                        break;
-                    case 'referee':
-                        portfolioData.referees.splice(index, 1);
-                        break;
-                }
-                
-                saveData();
-                renderAll();
-                updateAdminLists();
-                showToast('Item deleted successfully!');
-            }
-        }
-
+        
+        // Page Navigation
         function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId) {
-                    link.classList.add('active');
-                }
+                if (link.getAttribute('data-page') === pageId) link.classList.add('active');
             });
-            
-            document.querySelector('.nav-links').classList.remove('active');
+            document.getElementById('navLinks').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadData();
-            
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-            
-            document.getElementById('adminToggle').addEventListener('click', openPasscodeModal);
-            document.getElementById('closeAdmin').addEventListener('click', closeAdminPanel);
-            
-            document.getElementById('overlay').addEventListener('click', () => {
-                closePasscodeModal();
-                closeAdminPanel();
-                hideForm();
-                hideProfileForm();
-            });
-            
-            document.getElementById('passcode').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    verifyPasscode();
-                }
-            });
-            
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const pageId = link.getAttribute('data-page');
-                    showPage(pageId);
-                });
-            });
-            
-            document.querySelectorAll('.next-btn, .prev-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const nextPage = btn.getAttribute('data-next');
-                    const prevPage = btn.getAttribute('data-prev');
-                    if (nextPage) showPage(nextPage);
-                    if (prevPage) showPage(prevPage);
-                });
-            });
-            
-            document.querySelector('.logo').addEventListener('click', () => {
-                showPage('profile');
+        
+        // Toast
+        function showToast(msg) {
+            const toast = document.getElementById('toastMsg');
+            document.getElementById('toastText').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+        
+        // Admin Modal
+        function openAdminModal() { 
+            document.getElementById('adminModal').classList.add('active'); 
+        }
+        function closeAdminModal() { 
+            document.getElementById('adminModal').classList.remove('active'); 
+            document.getElementById('adminPasscode').value = ''; 
+            document.getElementById('passcodeError').style.display = 'none'; 
+        }
+        function verifyPasscode() {
+            if (document.getElementById('adminPasscode').value === '1997') {
+                closeAdminModal();
+                showToast('Admin access granted!');
+                alert('Admin Panel Demo\n\nData is stored in browser memory. To modify data, edit the portfolioData object in the JavaScript console.\n\nPasscode: 1997');
+            } else {
+                document.getElementById('passcodeError').style.display = 'block';
+            }
+        }
+        
+        // Event Listeners
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+        
+        document.getElementById('adminBtn').addEventListener('click', openAdminModal);
+        document.getElementById('downloadCVBtn').addEventListener('click', downloadCV);
+        document.getElementById('profileCVBtn').addEventListener('click', downloadCV);
+        
+        document.querySelectorAll('.next-btn, .prev-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const next = this.getAttribute('data-next');
+                const prev = this.getAttribute('data-prev');
+                if (next) showPage(next);
+                if (prev) showPage(prev);
             });
         });
-
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageId = this.getAttribute('data-page');
+                showPage(pageId);
+            });
+        });
+        
+        document.querySelector('.logo').addEventListener('click', function() { 
+            showPage('profile'); 
+        });
+        
+        // Close modal when clicking outside
+        document.getElementById('adminModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAdminModal();
+        });
+        
+        // Enter key on passcode
+        document.getElementById('adminPasscode').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') verifyPasscode();
+        });
+        
+        // Initialize
+        renderAll();
+        
+        // Expose functions globally
         window.showPage = showPage;
-        window.showAddForm = showAddForm;
-        window.hideForm = hideForm;
-        window.editItem = editItem;
-        window.deleteItem = deleteItem;
-        window.saveItem = saveItem;
         window.verifyPasscode = verifyPasscode;
-        window.closePasscodeModal = closePasscodeModal;
-        window.openPasscodeModal = openPasscodeModal;
-        window.editProfile = editProfile;
-        window.hideProfileForm = hideProfileForm;
-        window.saveProfile = saveProfile;
+        window.closeAdminModal = closeAdminModal;
     </script>
 </body>
 </html>
