@@ -125,11 +125,18 @@
             align-items: center;
             gap: 6px;
             font-size: 0.8rem;
+            transition: all 0.2s;
         }
         
         .btn-cv:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .btn-cv:disabled {
+            opacity: 0.6;
+            cursor: wait;
+            transform: none;
         }
         
         .btn-admin {
@@ -457,6 +464,22 @@
             display: flex;
         }
         
+        /* Loading indicator */
+        .loading-spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 6px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
         /* Mobile Responsive */
         @media (max-width: 900px) {
             .nav-links {
@@ -743,6 +766,145 @@
             ]
         };
         
+        // Generate PDF Blob URL (download first, then print)
+        let currentPdfBlobUrl = null;
+        
+        function generatePdfBlob() {
+            const d = portfolioData;
+            const p = d.profile;
+            const cvHTML = `<!DOCTYPE html>
+            <html>
+            <head><meta charset="UTF-8"><title>Celestino_Onyango_CV</title>
+            <style>
+                body { font-family: 'Times New Roman', Times, serif; padding: 40px; background: white; margin: 0; }
+                .cv { max-width: 1000px; margin: 0 auto; }
+                h1 { color: #0a2f44; border-bottom: 3px solid #1e6f9f; display: inline-block; font-size: 28px; }
+                h2 { color: #1e6f9f; border-left: 5px solid #64b5f6; padding-left: 15px; margin: 25px 0 12px; }
+                .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); background: #f0f7fc; padding: 15px; border-radius: 12px; margin: 15px 0; }
+                .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+                .skill-card { background: #f8fafc; padding: 10px; border-left: 3px solid #1e6f9f; margin-bottom: 8px; }
+                @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
+                ul { margin-left: 20px; }
+                li { margin-bottom: 5px; }
+                hr { margin: 20px 0; }
+            </style>
+            </head>
+            <body>
+            <div class="cv">
+                <h1>${p.name}</h1>
+                <div style="font-size: 18px; margin: 8px 0">${p.title}</div>
+                <div class="contact-grid">
+                    <div>📞 ${p.contact.phone}</div>
+                    <div>✉️ ${p.contact.email}</div>
+                    <div>📍 ${p.contact.location}</div>
+                    <div>🔗 linkedin.com/in/celestino-otieno</div>
+                    <div>🐙 github.com/CELESTINO-UX</div>
+                </div>
+                <h2>Professional Summary</h2>
+                <p>${p.bio}</p>
+                <h2>Core Competencies</h2>
+                <ul>${d.competencies.map(c => `<li>${c}</li>`).join('')}</ul>
+                <h2>Work Experience</h2>
+                ${d.experience.map(e => `<div><strong>${e.title}</strong><br><em>${e.company}</em> | ${e.duration}<ul>${e.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>${e.achievements.length ? `<strong>Achievements:</strong><ul>${e.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}</div><br>`).join('')}
+                <h2>Education</h2>
+                ${d.education.map(e => `<div><strong>${e.degree}</strong><br>${e.institution} (${e.year})<br>${e.details}</div><br>`).join('')}
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">${d.skills.map(s => `<div class="skill-card"><strong>${s.category}</strong><br>${s.description}</div>`).join('')}</div>
+                <h2>Certifications</h2>
+                <ul>${d.certifications.map(c => `<li><strong>${c.name}</strong> – ${c.issuer} (${c.year})</li>`).join('')}</ul>
+                <h2>Professional Referees</h2>
+                ${d.referees.map(r => `<div><strong>${r.name}</strong><br>${r.position}<br>${r.organization}<br>📞 ${r.phone}${r.email ? `<br>✉️ ${r.email}` : ''}</div><br>`).join('')}
+                <hr>
+                <footer style="text-align:center; font-size:12px; margin-top:30px;">Celestino Onyango – Professional CV – Updated ${new Date().toLocaleDateString()}</footer>
+            </div>
+            </body>
+            </html>`;
+            
+            const blob = new Blob([cvHTML], { type: 'text/html' });
+            if (currentPdfBlobUrl) {
+                URL.revokeObjectURL(currentPdfBlobUrl);
+            }
+            currentPdfBlobUrl = URL.createObjectURL(blob);
+            return currentPdfBlobUrl;
+        }
+        
+        // Download first (trigger save as), then offer print option
+        async function downloadThenPrint() {
+            const downloadBtn = document.getElementById('downloadCVBtn');
+            const profileBtn = document.getElementById('profileCVBtn');
+            const buttons = [downloadBtn, profileBtn];
+            
+            // Disable buttons and show loading state
+            buttons.forEach(btn => {
+                if (btn) {
+                    btn.disabled = true;
+                    const originalHtml = btn.innerHTML;
+                    btn.setAttribute('data-original', originalHtml);
+                    btn.innerHTML = '<span class="loading-spinner"></span> Preparing...';
+                }
+            });
+            
+            try {
+                // Generate fresh blob URL
+                const blobUrl = generatePdfBlob();
+                
+                // Step 1: Create download link and trigger download (save to device)
+                const downloadLink = document.createElement('a');
+                downloadLink.href = blobUrl;
+                downloadLink.download = `Celestino_Onyango_CV_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.html`;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                
+                showToast("✅ CV downloaded! Opening print window...");
+                
+                // Step 2: Wait a moment for download to initiate, then open print view
+                setTimeout(() => {
+                    // Open a new window with the same content for printing
+                    const printWindow = window.open(blobUrl, '_blank');
+                    if (printWindow) {
+                        printWindow.onload = () => {
+                            setTimeout(() => {
+                                printWindow.print();
+                                showToast("📄 Print dialog opened - Save as PDF if needed");
+                            }, 500);
+                        };
+                    } else {
+                        // Fallback: create hidden iframe
+                        const iframe = document.createElement('iframe');
+                        iframe.style.position = 'absolute';
+                        iframe.style.width = '0';
+                        iframe.style.height = '0';
+                        iframe.style.border = 'none';
+                        document.body.appendChild(iframe);
+                        iframe.src = blobUrl;
+                        iframe.onload = () => {
+                            setTimeout(() => {
+                                iframe.contentWindow.print();
+                                setTimeout(() => document.body.removeChild(iframe), 1000);
+                            }, 300);
+                        };
+                    }
+                }, 400);
+                
+            } catch (error) {
+                console.error('Download failed:', error);
+                showToast("❌ Error preparing CV. Please try again.");
+            } finally {
+                // Re-enable buttons after operation completes
+                setTimeout(() => {
+                    buttons.forEach(btn => {
+                        if (btn) {
+                            btn.disabled = false;
+                            const original = btn.getAttribute('data-original');
+                            if (original) btn.innerHTML = original;
+                            else btn.innerHTML = '<i class="fas fa-download"></i><span> CV</span>';
+                        }
+                    });
+                }, 1500);
+            }
+        }
+        
         // Render all content
         function renderAll() {
             // Profile
@@ -820,82 +982,12 @@
             `).join('');
         }
         
-        // CV Download Function - Professional Format
-        function downloadCV() {
-            const d = portfolioData;
-            const p = d.profile;
-            const cvHTML = `<!DOCTYPE html>
-            <html>
-            <head><meta charset="UTF-8"><title>Celestino_Onyango_CV.pdf</title>
-            <style>
-                body { font-family: 'Times New Roman', Times, serif; padding: 40px; background: white; }
-                .cv { max-width: 1000px; margin: 0 auto; }
-                h1 { color: #0a2f44; border-bottom: 3px solid #1e6f9f; display: inline-block; font-size: 28px; }
-                h2 { color: #1e6f9f; border-left: 5px solid #64b5f6; padding-left: 15px; margin: 25px 0 12px; }
-                .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); background: #f0f7fc; padding: 15px; border-radius: 12px; margin: 15px 0; }
-                .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-                .skill-card { background: #f8fafc; padding: 10px; border-left: 3px solid #1e6f9f; margin-bottom: 8px; }
-                @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
-                ul { margin-left: 20px; }
-                li { margin-bottom: 5px; }
-            </style>
-            </head>
-            <body>
-            <div class="cv">
-                <h1>${p.name}</h1>
-                <div style="font-size: 18px; margin: 8px 0">${p.title}</div>
-                <div class="contact-grid">
-                    <div>📞 ${p.contact.phone}</div>
-                    <div>✉️ ${p.contact.email}</div>
-                    <div>📍 ${p.contact.location}</div>
-                    <div>🔗 linkedin.com/in/celestino-otieno</div>
-                    <div>🐙 github.com/CELESTINO-UX</div>
-                </div>
-                <h2>Professional Summary</h2>
-                <p>${p.bio}</p>
-                <h2>Core Competencies</h2>
-                <ul>${d.competencies.map(c => `<li>${c}</li>`).join('')}</ul>
-                <h2>Work Experience</h2>
-                ${d.experience.map(e => `<div><strong>${e.title}</strong><br><em>${e.company}</em> | ${e.duration}<ul>${e.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>${e.achievements.length ? `<strong>Achievements:</strong><ul>${e.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}</div>`).join('')}
-                <h2>Education</h2>
-                ${d.education.map(e => `<div><strong>${e.degree}</strong><br>${e.institution} (${e.year})<br>${e.details}</div><br>`).join('')}
-                <h2>Technical Skills</h2>
-                <div class="skills-grid">${d.skills.map(s => `<div class="skill-card"><strong>${s.category}</strong><br>${s.description}</div>`).join('')}</div>
-                <h2>Certifications</h2>
-                <ul>${d.certifications.map(c => `<li><strong>${c.name}</strong> – ${c.issuer} (${c.year})</li>`).join('')}</ul>
-                <h2>Professional Referees</h2>
-                ${d.referees.map(r => `<div><strong>${r.name}</strong><br>${r.position}<br>${r.organization}<br>📞 ${r.phone}${r.email ? `<br>✉️ ${r.email}` : ''}</div><br>`).join('')}
-                <hr>
-                <footer style="text-align:center; font-size:12px; margin-top:30px;">Celestino Onyango – Professional CV – Updated ${new Date().toLocaleDateString()}</footer>
-            </div>
-            </body>
-            </html>`;
-            
-            const win = window.open('', '_blank');
-            win.document.write(cvHTML);
-            win.document.close();
-            win.print();
-            showToast("CV ready - Use 'Save as PDF' in print dialog");
-        }
-        
-        // Page Navigation
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-page') === pageId) link.classList.add('active');
-            });
-            document.getElementById('navLinks').classList.remove('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
-        // Toast
+        // Toast notification
         function showToast(msg) {
             const toast = document.getElementById('toastMsg');
             document.getElementById('toastText').textContent = msg;
             toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
         
         // Admin Modal
@@ -917,14 +1009,30 @@
             }
         }
         
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) link.classList.add('active');
+            });
+            document.getElementById('navLinks').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
         // Event Listeners
         document.getElementById('mobileMenuBtn').addEventListener('click', function() {
             document.getElementById('navLinks').classList.toggle('active');
         });
         
         document.getElementById('adminBtn').addEventListener('click', openAdminModal);
-        document.getElementById('downloadCVBtn').addEventListener('click', downloadCV);
-        document.getElementById('profileCVBtn').addEventListener('click', downloadCV);
+        
+        // Attach download handlers (download first, then print)
+        const cvBtn = document.getElementById('downloadCVBtn');
+        const profileCvBtn = document.getElementById('profileCVBtn');
+        if (cvBtn) cvBtn.addEventListener('click', downloadThenPrint);
+        if (profileCvBtn) profileCvBtn.addEventListener('click', downloadThenPrint);
         
         document.querySelectorAll('.next-btn, .prev-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -952,7 +1060,6 @@
             if (e.target === this) closeAdminModal();
         });
         
-        // Enter key on passcode
         document.getElementById('adminPasscode').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') verifyPasscode();
         });
@@ -960,7 +1067,7 @@
         // Initialize
         renderAll();
         
-        // Expose functions globally
+        // Expose globals
         window.showPage = showPage;
         window.verifyPasscode = verifyPasscode;
         window.closeAdminModal = closeAdminModal;
