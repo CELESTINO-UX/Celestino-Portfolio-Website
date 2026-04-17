@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Celestino Otieno – Portfolio | Library & ICT Specialist</title>
-  <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <meta name="description" content="Professional portfolio of Otieno Celestino Onyango - Record Manager, ICT Support Specialist, School Librarian, and System Librarian with multi-page navigation and export features.">
+  <title>Celestino Otieno | Multi-Page Portfolio</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- html2pdf & FileSaver for PDF generation; docx library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <!-- PDF & DOCX libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.js"></script>
   <style>
     * {
@@ -19,495 +20,484 @@
     }
 
     body {
-      background: #f0f4f8;
+      background: linear-gradient(135deg, #e0e8f0 0%, #d1dce8 100%);
       font-family: 'Inter', sans-serif;
-      color: #1e2a3e;
+      color: #1a2c3e;
       line-height: 1.5;
-      padding: 2rem 1rem;
     }
 
-    /* main container */
-    .portfolio-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 28px;
-      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: all 0.2s;
+    /* main app container */
+    .app-wrapper {
+      max-width: 1300px;
+      margin: 2rem auto;
+      background: transparent;
     }
 
-    /* header area */
-    .header {
-      background: linear-gradient(135deg, #0b2b3f 0%, #1a4a6f 100%);
+    /* header & toolbar */
+    .global-header {
+      background: linear-gradient(115deg, #0a2f44 0%, #135b7a 100%);
       color: white;
-      padding: 2rem 2rem 1.8rem;
+      padding: 1.8rem 2.5rem;
+      border-radius: 1.5rem 1.5rem 0 0;
     }
-    .name-title h1 {
+    .global-header h1 {
       font-size: 2.4rem;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 0.4rem;
     }
-    .badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.18);
-      backdrop-filter: blur(4px);
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      font-size: 0.9rem;
-      font-weight: 500;
+    .global-header p {
+      opacity: 0.85;
       margin-top: 0.5rem;
     }
-    .contact-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
-      background: rgba(0,0,0,0.2);
-      padding: 0.8rem 1rem;
-      border-radius: 60px;
-    }
-    .contact-bar i {
-      width: 1.6rem;
-    }
-    .contact-bar a {
-      color: #ffeaD0;
-      text-decoration: none;
-    }
-    .btn-group {
+    .toolbar-group {
       display: flex;
       gap: 1rem;
       margin-top: 1.5rem;
       flex-wrap: wrap;
     }
-    .download-btn {
+    .btn-ex {
       background: white;
-      color: #1a4a6f;
+      color: #135b7a;
       border: none;
       padding: 0.6rem 1.5rem;
       border-radius: 40px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.85rem;
       cursor: pointer;
       transition: 0.2s;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    .download-btn:hover {
-      background: #eef2ff;
+    .btn-ex:hover {
       transform: translateY(-2px);
-    }
-    .download-btn i {
-      font-size: 1rem;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
     }
 
-    /* main content grid */
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1fr 2.1fr;
-      gap: 0;
-    }
-    /* sidebar */
-    .sidebar {
-      background: #f9fafc;
-      border-right: 1px solid #e4e9f0;
-      padding: 1.8rem;
-    }
-    .main-content {
-      padding: 1.8rem 2rem;
-      background: white;
-    }
-    .section {
-      margin-bottom: 2rem;
-    }
-    .section h2 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      border-left: 5px solid #1e6f5c;
-      padding-left: 0.8rem;
-      margin-bottom: 1rem;
-      color: #0f2c3d;
-    }
-    .section h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 1rem 0 0.2rem;
-      color: #1e4663;
-    }
-    .job, .edu-item, .cert-item {
-      margin-bottom: 1rem;
-    }
-    .job strong, .project-item strong {
-      font-weight: 700;
-    }
-    ul {
-      padding-left: 1.3rem;
-      margin: 0.5rem 0;
-    }
-    li {
-      margin: 0.3rem 0;
-    }
-    .skills-list {
+    /* page navigation tabs */
+    .page-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      background: white;
+      padding: 0.5rem 1rem 0 1rem;
+      gap: 0.2rem;
+      border-bottom: 2px solid #e2edf2;
     }
-    .skill-tag {
-      background: #e2e8f0;
-      padding: 0.2rem 0.8rem;
+    .nav-tab {
+      padding: 0.8rem 1.8rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: #f1f5f9;
+      border: none;
+      border-radius: 1rem 1rem 0 0;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #2c4f6e;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-tab i { font-size: 1rem; }
+    .nav-tab.active {
+      background: #ffffff;
+      color: #0f6b58;
+      border-bottom: 3px solid #1f8a6b;
+      font-weight: 700;
+    }
+    .nav-tab:hover:not(.active) {
+      background: #e6edf4;
+    }
+
+    /* page container */
+    .pages-container {
+      background: white;
+      border-radius: 0 0 1.5rem 1.5rem;
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .page {
+      display: none;
+      padding: 2rem 2.2rem;
+      animation: fade 0.25s ease;
+    }
+    .page.active-page {
+      display: block;
+    }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* individual page styling */
+    .page-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0a4b5e;
+      border-left: 6px solid #1f8a6b;
+      padding-left: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .section-card {
+      background: #fefefe;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+    }
+    .resp-category-page {
+      background: #f9fefb;
+      border: 1px solid #e0f0e9;
+      border-radius: 1rem;
+      padding: 1rem 1.3rem;
+      margin-bottom: 1.2rem;
+      transition: 0.1s;
+    }
+    .resp-category-page h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1c6d5e;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .skill-badge-lg {
+      background: #e4edf2;
+      padding: 0.3rem 1rem;
       border-radius: 30px;
       font-size: 0.75rem;
-      font-weight: 500;
+      font-weight: 600;
+      display: inline-block;
+      margin: 0.2rem;
     }
-    .referee {
-      font-size: 0.85rem;
-      margin-bottom: 0.8rem;
-      border-left: 2px solid #cbd5e1;
-      padding-left: 0.8rem;
+    .exp-item-page {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px dashed #dce5ec;
+      padding-bottom: 1rem;
     }
-    hr {
-      margin: 1rem 0;
-      border: 0;
-      height: 1px;
-      background: #e2e8f0;
-    }
-    .footer-note {
+    .footer-small {
       text-align: center;
       font-size: 0.7rem;
       padding: 1rem;
-      background: #f1f5f9;
-      color: #334155;
+      background: #f8fafd;
+      color: #5b7a9a;
+      border-top: 1px solid #e2edf2;
     }
-    @media (max-width: 800px) {
-      .content-grid {
-        grid-template-columns: 1fr;
-      }
-      .sidebar {
-        border-right: none;
-        border-bottom: 1px solid #e4e9f0;
-      }
-      .header {
-        padding: 1.5rem;
-      }
+    @media (max-width: 680px) {
+      .page { padding: 1.2rem; }
+      .nav-tab { padding: 0.5rem 1rem; font-size: 0.75rem; }
+      .global-header h1 { font-size: 1.6rem; }
     }
-    .print-optimized {
-        background: white;
-    }
-    /* preserve spacing for docx */
-    .primary-responsibilities-grid {
-      display: block;
-    }
-    .resp-category {
-      margin-bottom: 1.2rem;
-    }
-    .resp-category h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      color: #0b4f6c;
-      margin-bottom: 0.4rem;
+    ul { padding-left: 1.4rem; margin: 0.6rem 0; }
+    li { margin: 0.4rem 0; }
+    .contact-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: #eef3fc;
+      padding: 0.8rem;
+      border-radius: 2rem;
+      margin: 1rem 0;
     }
   </style>
 </head>
 <body>
-<div class="portfolio-container" id="portfolioContent">
-  <!-- HEADER -->
-  <div class="header">
-    <div class="name-title">
-      <h1>OTIENO CELESTINO ONYANGO</h1>
-      <div class="badge">Record Manager | ICT Support Specialist | School Librarian | System Librarian</div>
-    </div>
-    <div class="contact-bar">
-      <span><i class="fas fa-phone-alt"></i> +254714019736</span>
-      <span><i class="fas fa-envelope"></i> onyangocelestino@gmail.com</span>
-      <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
-      <span><i class="fab fa-linkedin"></i> linkedin.com/in/celestino-otieno</span>
-      <span><i class="fab fa-github"></i> github.com/CELESTINO-UX</span>
-    </div>
-    <div class="btn-group" id="downloadButtons">
-      <button class="download-btn" id="downloadPDFBtn"><i class="fas fa-file-pdf"></i> Download as PDF</button>
-      <button class="download-btn" id="downloadDOCXBtn"><i class="fas fa-file-word"></i> Download as DOCX</button>
+<div class="app-wrapper">
+  <!-- Header with export tools -->
+  <div class="global-header">
+    <h1>OTIENO CELESTINO ONYANGO</h1>
+    <p><i class="fas fa-chalkboard-user"></i> Record Manager | ICT Support Specialist | School Librarian | System Librarian</p>
+    <div class="toolbar-group">
+      <button class="btn-ex" id="exportPDFBtn"><i class="fas fa-file-pdf"></i> Export Full Portfolio (PDF)</button>
+      <button class="btn-ex" id="exportDOCXBtn"><i class="fas fa-file-word"></i> Export Full Portfolio (DOCX)</button>
     </div>
   </div>
 
-  <div class="content-grid">
-    <!-- LEFT SIDEBAR -->
-    <div class="sidebar">
-      <div class="section">
-        <h2>Professional Profile</h2>
+  <!-- Navigation Tabs (each heading gets its own page) -->
+  <div class="page-nav">
+    <button class="nav-tab" data-page="page1"><i class="fas fa-user-tie"></i> Profile & Skills</button>
+    <button class="nav-tab" data-page="page2"><i class="fas fa-briefcase"></i> Work Experience</button>
+    <button class="nav-tab" data-page="page3"><i class="fas fa-landmark"></i> Library Space Mgt</button>
+    <button class="nav-tab" data-page="page4"><i class="fas fa-chalkboard"></i> Teacher Coordination</button>
+    <button class="nav-tab" data-page="page5"><i class="fas fa-graduation-cap"></i> Student Support</button>
+    <button class="nav-tab" data-page="page6"><i class="fas fa-users"></i> Supervision & Ops</button>
+    <button class="nav-tab" data-page="page7"><i class="fas fa-school"></i> General Duties & Edu</button>
+  </div>
+
+  <div class="pages-container" id="pagesContainer">
+    <!-- PAGE 1: Professional Profile + Skills + Certifications -->
+    <div class="page active-page" id="page1">
+      <div class="page-title"><i class="fas fa-id-card"></i> Professional Profile & Core Expertise</div>
+      <div class="contact-line">
+        <span><i class="fas fa-phone-alt"></i> +254714019736</span>
+        <span><i class="fas fa-envelope"></i> onyangocelestino@gmail.com</span>
+        <span><i class="fas fa-map-pin"></i> Nairobi, Kenya</span>
+        <span><i class="fab fa-linkedin"></i> linkedin.com/in/celestino-otieno</span>
+      </div>
+      <div class="section-card">
+        <h3 style="font-size:1.2rem; margin-bottom:0.8rem;"><i class="fas fa-check-circle" style="color:#1f8a6b;"></i> Highlights</h3>
         <ul>
-          <li>✔ 3+ years experience in record management, ICT support, and library information systems across academic institutions.</li>
-          <li>✔ Expert in records lifecycle: creation, classification, retention, disposal, and archival using ISO 15489 standards.</li>
-          <li>✔ Proficient in Koha ILS, digital cataloguing (AACR2, MARC21, DDC), and electronic document management systems (EDMS).</li>
-          <li>✔ Skilled in cybersecurity: access control, threat monitoring, data backup, and user awareness for records protection.</li>
-          <li>✔ Led library digitization and records digitization initiatives, reducing retrieval time by 40% and improving compliance.</li>
-          <li>✔ Strong communicator with experience training staff on records management policies and digital literacy.</li>
+          <li>✔ 3+ years experience in record management, ICT support, and library information systems.</li>
+          <li>✔ Expert in records lifecycle (ISO 15489): creation, classification, retention, disposal, archival.</li>
+          <li>✔ Koha ILS, AACR2, MARC21, DDC, Electronic Document Management Systems (EDMS).</li>
+          <li>✔ Cybersecurity: access control, threat monitoring, backup, data protection compliance.</li>
+          <li>✔ Led digitization initiatives reducing retrieval time by 40% and improving compliance.</li>
         </ul>
       </div>
-
-      <div class="section">
-        <h2>Technical Skills</h2>
-        <div class="skills-list">
-          <span class="skill-tag">Lifecycle management</span><span class="skill-tag">ISO 15489</span><span class="skill-tag">EDMS</span>
-          <span class="skill-tag">Koha ILS</span><span class="skill-tag">MARC21/AACR2</span><span class="skill-tag">OPAC</span>
-          <span class="skill-tag">Python/Bash/SQL</span><span class="skill-tag">Cybersecurity</span><span class="skill-tag">Data encryption</span>
-          <span class="skill-tag">Network setup</span><span class="skill-tag">User training</span><span class="skill-tag">Digital transformation</span>
+      <div class="section-card">
+        <h3><i class="fas fa-microchip"></i> Technical Skills</h3>
+        <div style="margin-top: 8px;">
+          <span class="skill-badge-lg">Records Lifecycle</span><span class="skill-badge-lg">ISO 15489</span><span class="skill-badge-lg">Koha ILS</span>
+          <span class="skill-badge-lg">MARC21/AACR2</span><span class="skill-badge-lg">EDMS</span><span class="skill-badge-lg">Python/SQL</span>
+          <span class="skill-badge-lg">Cybersecurity</span><span class="skill-badge-lg">Network Admin</span><span class="skill-badge-lg">Power BI</span>
         </div>
       </div>
-
-      <div class="section">
-        <h2>Certifications</h2>
-        <div><strong>Advanced Cybersecurity - Threats & Governance</strong> – Great Learning Academy (2025)</div>
-        <div><strong>Data Visualization with Power BI</strong> – Great Learning Academy (2022)</div>
-        <div><strong>Cyber Forensics</strong> – Great Learning Academy (2025)</div>
-        <div><strong>Infection Prevention & Control</strong> – The National College (2026)</div>
-        <div><strong>Recognising and supporting pupils with ADHD</strong> – The National College (2026)</div>
+      <div class="section-card">
+        <h3><i class="fas fa-certificate"></i> Certifications</h3>
+        <ul>
+          <li>Advanced Cybersecurity - Threats & Governance (Great Learning, 2025)</li>
+          <li>Data Visualization with Power BI (2022)</li>
+          <li>Cyber Forensics (2025)</li>
+          <li>Infection Prevention & Control (The National College, 2026)</li>
+          <li>Recognising and supporting pupils with ADHD (2026)</li>
+        </ul>
       </div>
-
-      <div class="section">
-        <h2>Core Competencies</h2>
-        <div class="skills-list">
-          <span class="skill-tag">Records Lifecycle</span><span class="skill-tag">Archival Admin</span><span class="skill-tag">EDMS</span>
-          <span class="skill-tag">Library Systems</span><span class="skill-tag">IT Project Coordination</span><span class="skill-tag">Data Privacy</span>
-          <span class="skill-tag">Incident Response</span><span class="skill-tag">Team Collaboration</span><span class="skill-tag">Problem Solving</span>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>Key Projects</h2>
-        <div class="project-item"><strong>Lukenya Voting System</strong> – Secure web-based voting platform (HTML/CSS/JS) reduced election time by 70%.</div>
-        <div class="project-item" style="margin-top:8px"><strong>Digital Records Archiving Initiative</strong> – Digitized student/administrative records, searchable EDMS, reduced retrieval by 40%.</div>
-      </div>
-
-      <div class="section">
-        <h2>Professional Referees</h2>
-        <div class="referee"><strong>Colins Kirui</strong><br>Dean of Students & Examinations, Lukenya British Curriculum School<br>📞 +254702194494 ✉️ kirui.collins@lukenyaschools.ac.ke</div>
-        <div class="referee"><strong>John Gitau Nganga</strong><br>Lecturer, Information Science, Meru University<br>📞 +254720877605 ✉️ jgitau@must.ac.ke</div>
-        <div class="referee"><strong>Steven Ajulu Otieno</strong><br>Head of IT Department, Kenya National Library Service, Nakuru<br>📞 +254740128010 ✉️ steven.ajulu@knls.ac.ke</div>
+      <div class="section-card">
+        <h3><i class="fas fa-crown"></i> Core Competencies</h3>
+        <div><span class="skill-badge-lg">Archival Admin</span><span class="skill-badge-lg">Digital Transformation</span><span class="skill-badge-lg">IT Project Coordination</span><span class="skill-badge-lg">Incident Response</span><span class="skill-badge-lg">Team Collaboration</span></div>
       </div>
     </div>
 
-    <!-- MAIN RIGHT: EXPERIENCE & NEW PRIMARY RESPONSIBILITIES (INCORPORATED) -->
-    <div class="main-content">
-      <!-- Work experience original -->
-      <div class="section">
-        <h2>Work Experience</h2>
-        <div class="job"><strong>School Librarian</strong> – Lukenya British Curriculum School, Machakos (Aug 2024 – Present)<br>
-          <ul>
-            <li>Manage full records lifecycle: creation, classification, retention scheduling, secure disposal.</li>
-            <li>Implement EDMS for student records, staff files, and administrative archives.</li>
-            <li>Provide tier-2/3 technical support for 200+ users; oversee Koha ILS circulation and cataloguing.</li>
-            <li>Develop records retention policies; train staff on best practices and digital archives.</li>
-            <li>Conduct audits ensuring data integrity and compliance – reduced misfiling by 60%, digitized 5+ years of records.</li>
-          </ul>
-        </div>
-        <div class="job"><strong>System Librarian</strong> – Kenya National Library Service, Nakuru (May 2024 – Aug 2024)<br>
-          <ul>
-            <li>Assisted in records inventory and archival management for historical government publications.</li>
-            <li>Digital cataloguing using MARC21/DDC; supported Koha migration and secure backups.</li>
-            <li>Trained 50+ staff on digital literacy and records retrieval; redesigned archival finding aids reducing research time by 25%.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- NEW: PRIMARY RESPONSIBILITIES (LIBRARY SPACE MGT, COORDINATION, STUDENT SUPPORT, ETC) -->
-      <div class="section" id="primaryResponsibilitiesSection">
-        <h2>Primary Responsibilities (MS/HS Library & School Portfolio)</h2>
-        
-        <div class="resp-category">
-          <h3>📚 Library Space Management</h3>
-          <ul>
-            <li>Oversee daily operations of the MS/HS library as an organized, welcoming, and purposeful learning environment.</li>
-            <li>Coordinate scheduling and use of the library space for classes, small groups, individual students, and special events.</li>
-            <li>Maintain clear procedures and routines that support respectful and effective use of the space.</li>
-            <li>Monitor student behavior in the library and ensure expectations for safety, care, and community are upheld.</li>
-            <li>Maintain organization and presentation of library spaces and materials.</li>
-            <li>Help maintain the library as an inviting hub for reading, study, and collaboration.</li>
-          </ul>
-        </div>
-
-        <div class="resp-category">
-          <h3>🤝 Coordination with Teachers and School Staff</h3>
-          <ul>
-            <li>Work closely with MS/HS teachers to coordinate class use of the library and respond to resource needs.</li>
-            <li>Help teachers and students access library materials and services connected to classroom learning.</li>
-            <li>Communicate effectively with faculty and administrators regarding scheduling, student use, and library operations.</li>
-            <li>Attend relevant divisional or operational meetings as required (Updated: April 2026).</li>
-          </ul>
-        </div>
-
-        <div class="resp-category">
-          <h3>🎓 Student Support</h3>
-          <ul>
-            <li>Provide day-to-day support to students using the library for reading, studying, research, and academic work.</li>
-            <li>Help students locate resources, use the library responsibly, and develop independence in accessing information.</li>
-            <li>Build positive relationships with students and contribute to a culture of inclusion, respect, and belonging.</li>
-            <li>Maintain a calm, supervised, and supportive environment for students throughout the school day.</li>
-          </ul>
-        </div>
-
-        <div class="resp-category">
-          <h3>👥 Supervision of Library Assistants</h3>
-          <ul>
-            <li>Supervise and support library assistants in their daily responsibilities.</li>
-            <li>Coordinate workflows related to circulation, shelving, resource organization, and general library operations.</li>
-            <li>Help ensure assistants are clear on priorities, schedules, and expectations.</li>
-            <li>Foster a collaborative and service-oriented team culture within the library.</li>
-          </ul>
-        </div>
-
-        <div class="resp-category">
-          <h3>📦 Resource and Operational Support</h3>
-          <ul>
-            <li>Maintain and organize the library collection.</li>
-            <li>Support circulation procedures, displays, reading promotion, and library communications.</li>
-            <li>Monitor supplies and resource needs.</li>
-            <li>Assist with administrative and operational tasks that support the effective running of the library.</li>
-          </ul>
-        </div>
-
-        <div class="resp-category">
-          <h3>🏫 General School Responsibilities</h3>
-          <ul>
-            <li>Fulfill supervision duties as assigned, including occasional evening or weekend events if needed.</li>
-            <li>Support schoolwide expectations related to child safeguarding, wellbeing, inclusion, and community engagement.</li>
-            <li>Adhere to ISK safeguarding policies and confidentiality standards.</li>
-            <li>Carry out other duties reasonably assigned by the administration.</li>
-          </ul>
-        </div>
-        <hr>
-      </div>
-
-      <!-- Education & Additional -->
-      <div class="section">
-        <h2>Education</h2>
-        <div><strong>Bachelor of Science in Information Science (ICT Option)</strong> – Meru University of Science and Technology (2020–2024)<br>Coursework: Records Management, Database Systems, Information Retrieval, ICT Integration</div>
-        <div style="margin-top:8px"><strong>KCSE</strong> – Nyarach Mixed Day Secondary School (2015–2019) | Grade C+</div>
-      </div>
-
-      <div class="section">
-        <h2>Additional Projects & Achievements</h2>
+    <!-- PAGE 2: Work Experience -->
+    <div class="page" id="page2">
+      <div class="page-title"><i class="fas fa-briefcase"></i> Work Experience</div>
+      <div class="exp-item-page">
+        <h3>🏫 School Librarian – Lukenya British Curriculum School (Aug 2024 – Present)</h3>
         <ul>
-          <li>Led digitization of historical records and implemented role-based access, reducing retrieval time by 40%.</li>
-          <li>Developed secure voting platform (Lukenya Voting System) – reduced election time by 70% with real-time display.</li>
-          <li>Automated records workflows using Python & SQL scripts; trained 100+ users in information literacy.</li>
+          <li>Manage full records lifecycle: creation, classification, retention scheduling, secure disposal.</li>
+          <li>Implement EDMS for student records, staff files; digitized 5+ years of academic records, retrieval -40%.</li>
+          <li>Provide tier-2/3 technical support for 200+ users; oversee Koha ILS circulation & cataloguing.</li>
+          <li>Reduced misfiling by 60% and ensured data integrity/compliance.</li>
         </ul>
       </div>
-      <p style="font-size:0.75rem; color:#4b5563; border-top:1px solid #e2e8f0; padding-top:0.8rem;">Last updated: April 2026 — Portfolio includes detailed primary responsibilities for library & school operations.</p>
+      <div class="exp-item-page">
+        <h3>📖 System Librarian – Kenya National Library Service, Nakuru (May 2024 – Aug 2024)</h3>
+        <ul>
+          <li>Assisted in archival management for historical government publications; MARC21/DDC cataloguing.</li>
+          <li>Supported Koha migration and secure backups; trained 50+ staff on digital literacy & retrieval.</li>
+          <li>Redesigned finding aids reducing research time by 25%.</li>
+        </ul>
+      </div>
+      <div class="section-card">
+        <h3><i class="fas fa-folder-open"></i> Key Projects</h3>
+        <ul>
+          <li><strong>Lukenya Voting System:</strong> web-based secure voting, reduced election time by 70%.</li>
+          <li><strong>Digital Records Archiving Initiative:</strong> searchable EDMS with metadata tagging, retrieval -40%.</li>
+          <li><strong>Koha ILS Migration & Training:</strong> improved cataloguing accuracy by 35%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PAGE 3: Library Space Management (detailed) -->
+    <div class="page" id="page3">
+      <div class="page-title"><i class="fas fa-building"></i> Library Space Management</div>
+      <div class="resp-category-page">
+        <h3><i class="fas fa-door-open"></i> Daily Operations & Environment</h3>
+        <ul>
+          <li>Oversee daily operations of the MS/HS library as an organized, welcoming, and purposeful learning environment.</li>
+          <li>Coordinate scheduling and use of the library space for classes, small groups, individual students, and special events.</li>
+          <li>Maintain clear procedures and routines that support respectful and effective use of the space.</li>
+          <li>Monitor student behavior in the library and ensure expectations for safety, care, and community are upheld.</li>
+          <li>Maintain organization and presentation of library spaces and materials.</li>
+          <li>Help maintain the library as an inviting hub for reading, study, and collaboration.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PAGE 4: Coordination with Teachers and School Staff -->
+    <div class="page" id="page4">
+      <div class="page-title"><i class="fas fa-chalkboard-user"></i> Coordination with Teachers & Staff</div>
+      <div class="resp-category-page">
+        <ul>
+          <li>Work closely with MS/HS teachers to coordinate class use of the library and respond to resource needs.</li>
+          <li>Help teachers and students access library materials and services connected to classroom learning.</li>
+          <li>Communicate effectively with faculty and administrators regarding scheduling, student use, and library operations.</li>
+          <li>Attend relevant divisional or operational meetings as required (Updated: April 2026).</li>
+        </ul>
+      </div>
+      <div class="section-card" style="margin-top:1rem;">
+        <h3><i class="fas fa-handshake"></i> Collaborative Impact</h3>
+        <p>Proven track record of integrating library resources into curriculum, supporting inquiry-based learning and faculty research needs.</p>
+      </div>
+    </div>
+
+    <!-- PAGE 5: Student Support -->
+    <div class="page" id="page5">
+      <div class="page-title"><i class="fas fa-graduation-cap"></i> Student Support & Engagement</div>
+      <div class="resp-category-page">
+        <ul>
+          <li>Provide day-to-day support to students using the library for reading, studying, research, and academic work.</li>
+          <li>Help students locate resources, use the library responsibly, and develop independence in accessing information.</li>
+          <li>Build positive relationships with students and contribute to a culture of inclusion, respect, and belonging.</li>
+          <li>Maintain a calm, supervised, and supportive environment for students throughout the school day.</li>
+        </ul>
+      </div>
+      <div class="section-card">
+        <h3><i class="fas fa-heart"></i> Student Success Initiatives</h3>
+        <p>Organized reading clubs, information literacy workshops, and one-on-one research coaching to enhance academic outcomes.</p>
+      </div>
+    </div>
+
+    <!-- PAGE 6: Supervision of Library Assistants + Resource/Operational Support -->
+    <div class="page" id="page6">
+      <div class="page-title"><i class="fas fa-users"></i> Supervision & Operational Support</div>
+      <div class="resp-category-page">
+        <h3><i class="fas fa-user-check"></i> Supervision of Library Assistants</h3>
+        <ul>
+          <li>Supervise and support library assistants in their daily responsibilities.</li>
+          <li>Coordinate workflows related to circulation, shelving, resource organization, and general library operations.</li>
+          <li>Help ensure assistants are clear on priorities, schedules, and expectations.</li>
+          <li>Foster a collaborative and service-oriented team culture within the library.</li>
+        </ul>
+      </div>
+      <div class="resp-category-page">
+        <h3><i class="fas fa-boxes"></i> Resource and Operational Support</h3>
+        <ul>
+          <li>Maintain and organize the library collection; support circulation procedures, displays, reading promotion, and library communications.</li>
+          <li>Monitor supplies and resource needs; assist with administrative and operational tasks that support the effective running of the library.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PAGE 7: General School Responsibilities + Education & Referees -->
+    <div class="page" id="page7">
+      <div class="page-title"><i class="fas fa-school"></i> General Duties & Credentials</div>
+      <div class="resp-category-page">
+        <h3>🏫 General School Responsibilities</h3>
+        <ul>
+          <li>Fulfill supervision duties as assigned, including occasional evening or weekend events if needed.</li>
+          <li>Support schoolwide expectations related to child safeguarding, wellbeing, inclusion, and community engagement.</li>
+          <li>Adhere to ISK safeguarding policies and confidentiality standards.</li>
+          <li>Carry out other duties reasonably assigned by the administration.</li>
+        </ul>
+      </div>
+      <div class="section-card">
+        <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+        <p><strong>Bachelor of Science in Information Science (ICT Option)</strong> – Meru University of Science and Technology (2020–2024)<br>Coursework: Records Management, Database Systems, Information Retrieval, ICT Integration</p>
+        <p><strong>KCSE</strong> – Nyarach Mixed Day Secondary School (2015–2019) | Grade C+</p>
+      </div>
+      <div class="section-card">
+        <h3><i class="fas fa-users"></i> Professional Referees</h3>
+        <p><strong>Colins Kirui</strong> – Dean of Students, Lukenya British Curriculum School<br>📞 +254702194494 ✉️ kirui.collins@lukenyaschools.ac.ke</p>
+        <p><strong>John Gitau Nganga</strong> – Lecturer, Meru University<br>📞 +254720877605 ✉️ jgitau@must.ac.ke</p>
+        <p><strong>Steven Ajulu Otieno</strong> – Head of IT, KNLS Nakuru<br>📞 +254740128010 ✉️ steven.ajulu@knls.ac.ke</p>
+      </div>
     </div>
   </div>
-  <div class="footer-note">
-    <i class="fas fa-database"></i> Celestino Otieno – Record Manager & Library Systems | Commitment to operational excellence and digital transformation
+  <div class="footer-small">
+    <i class="fas fa-database"></i> Celestino Otieno – Multi-page portfolio | Each core heading presented on dedicated page | Export entire portfolio as PDF/DOCX
   </div>
 </div>
 
 <script>
-  (function() {
-    // Helper: ensure styles are fully captured for docx/pdf. 
-    // For PDF we use html2pdf with explicit options; for DOCX we export the main container HTML with full style.
-    const portfolioElement = document.getElementById('portfolioContent');
-
-    // PDF download
-    document.getElementById('downloadPDFBtn').addEventListener('click', function() {
-      const element = portfolioElement;
-      const opt = {
-        margin:        [0.5, 0.5, 0.5, 0.5], // top, right, bottom, left in units
-        filename:     'Celestino_Otieno_Portfolio.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, letterRendering: true, useCORS: true, logging: false },
-        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-      };
-      // Use html2pdf library
-      html2pdf().set(opt).from(element).save();
+  // Multi-page navigation: switch active page
+  const tabs = document.querySelectorAll('.nav-tab');
+  const pages = document.querySelectorAll('.page');
+  function activatePage(pageId) {
+    pages.forEach(page => page.classList.remove('active-page'));
+    const targetPage = document.getElementById(pageId);
+    if(targetPage) targetPage.classList.add('active-page');
+    tabs.forEach(tab => {
+      const tabPage = tab.getAttribute('data-page');
+      if(tabPage === pageId) tab.classList.add('active');
+      else tab.classList.remove('active');
     });
+  }
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const pageId = tab.getAttribute('data-page');
+      activatePage(pageId);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
 
-    // DOCX generation using html-docx-js
-    document.getElementById('downloadDOCXBtn').addEventListener('click', function() {
-      // Clone the main container to avoid altering live view
-      const originalContainer = portfolioElement;
-      const cloneContainer = originalContainer.cloneNode(true);
-      
-      // Ensure all styles are applied inline? we keep the styles from head, but docx uses embedded styles.
-      // We'll create a full HTML document structure with styles.
-      const styles = document.querySelector('style').innerHTML;
-      const allStyles = document.querySelectorAll('style');
-      let styleContent = '';
-      allStyles.forEach(styleTag => {
-        styleContent += styleTag.innerHTML;
+  // EXPORT FULL PORTFOLIO (all pages combined into a single document)
+  // Build a clone that contains all page contents in order for exporting
+  function getAllPagesCombinedHTML() {
+    const mainWrapper = document.querySelector('.app-wrapper').cloneNode(true);
+    // Remove navigation and buttons from cloned version to keep clean export
+    const navClone = mainWrapper.querySelector('.page-nav');
+    if(navClone) navClone.remove();
+    // Make all pages visible in clone
+    const allPagesClone = mainWrapper.querySelectorAll('.page');
+    allPagesClone.forEach(pageClone => {
+      pageClone.style.display = 'block';
+      pageClone.classList.add('active-page');
+    });
+    // Remove any toolbar-group? keep export buttons but better remove for doc clarity
+    const toolbarClone = mainWrapper.querySelector('.toolbar-group');
+    if(toolbarClone) toolbarClone.remove();
+    // ensure footer stays
+    return mainWrapper.outerHTML;
+  }
+
+  // PDF export: use html2pdf on a temporary container that holds full combined content
+  const pdfBtn = document.getElementById('exportPDFBtn');
+  if(pdfBtn) {
+    pdfBtn.addEventListener('click', () => {
+      const fullHtmlContent = getAllPagesCombinedHTML();
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = fullHtmlContent;
+      tempDiv.style.background = 'white';
+      tempDiv.style.padding = '20px';
+      document.body.appendChild(tempDiv);
+      const opt = {
+        margin: [0.5, 0.5, 0.5, 0.5],
+        filename: 'Celestino_Otieno_Complete_Portfolio.pdf',
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 2, letterRendering: true },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(tempDiv).save().then(() => {
+        document.body.removeChild(tempDiv);
+      }).catch(() => {
+        document.body.removeChild(tempDiv);
       });
-      
-      // Also ensure FontAwesome is optionally loaded, but for docx we keep simple icons as text fallback. we don't rely on external fonts.
-      // Build full html string for docx conversion
-      const docHtml = `
+    });
+  }
+
+  // DOCX export: build full html doc
+  const docxBtn = document.getElementById('exportDOCXBtn');
+  if(docxBtn) {
+    docxBtn.addEventListener('click', () => {
+      const combinedHtml = getAllPagesCombinedHTML();
+      const styles = document.querySelector('style').innerHTML;
+      const fullDoc = `
         <!DOCTYPE html>
         <html>
         <head>
           <meta charset="UTF-8">
-          <title>Celestino Otieno - Portfolio</title>
+          <title>Celestino Otieno - Full Portfolio</title>
           <style>
-            /* reset & replicate main styles */
-            * { margin:0; padding:0; box-sizing: border-box; }
-            body {
-              font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-              background: white;
-              padding: 30px 20px;
-              color: #1e2a3e;
-              line-height: 1.4;
-            }
-            .portfolio-container {
-              max-width: 1100px;
-              margin: 0 auto;
-              background: white;
-              border-radius: 0;
-              box-shadow: none;
-            }
-            .header {
-              background: #0b2b3f;
-              color: white;
-              padding: 1.5rem;
-            }
-            .name-title h1 { font-size: 1.8rem; }
-            .badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 0.2rem 1rem; border-radius: 30px; font-size:0.8rem;}
-            .contact-bar { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; background: rgba(0,0,0,0.2); padding: 0.6rem; border-radius: 40px; font-size:0.8rem;}
-            .content-grid { display: grid; grid-template-columns: 1fr 2fr; gap:0; }
-            .sidebar { background: #f9fafc; padding: 1rem; border-right: 1px solid #ddd; }
-            .main-content { padding: 1rem 1.5rem; }
-            .section { margin-bottom: 1.5rem; }
-            .section h2 { font-size: 1.2rem; border-left: 4px solid #1e6f5c; padding-left: 0.6rem; margin-bottom: 0.6rem; }
-            .skills-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-            .skill-tag { background: #e2e8f0; padding: 0.2rem 0.7rem; border-radius: 20px; font-size:0.7rem;}
-            ul { padding-left: 1.2rem; margin:0.3rem 0; }
-            li { margin: 0.2rem 0; }
-            .resp-category h3 { font-size:0.9rem; font-weight:700; margin-top:0.6rem; color:#0b4f6c;}
-            .btn-group { display: none; }
-            .footer-note { text-align:center; font-size:0.7rem; background:#f1f5f9; padding:0.5rem;}
-            hr { margin:0.5rem 0; }
+            * { margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', Arial, sans-serif; }
+            body { padding: 30px; background: white; }
+            .page { display: block !important; margin-bottom: 40px; page-break-after: always; }
+            .page-nav, .toolbar-group { display: none; }
+            ${styles}
           </style>
-          ${styleContent ? `<style>${styleContent}</style>` : ''}
         </head>
         <body>
-          ${cloneContainer.outerHTML}
+          ${combinedHtml}
         </body>
         </html>
       `;
-      
-      // Remove any interactive buttons inside the clone to avoid weird duplication (but they are hidden via btn-group display none anyway)
-      // Use html-docx-js library to convert to blob
       if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
-        const convertedBlob = htmlDocx.asBlob(docHtml, { orientation: 'portrait' });
-        saveAs(convertedBlob, 'Celestino_Otieno_Portfolio.docx');
+        const docxBlob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait' });
+        saveAs(docxBlob, 'Celestino_Otieno_Complete_Portfolio.docx');
       } else {
-        // fallback using Blob + ms save or alternative
-        console.warn("html-docx-js not fully loaded? fallback");
-        const blob = new Blob([docHtml], { type: 'application/msword' });
-        saveAs(blob, 'Celestino_Otieno_Portfolio.doc');
+        const fallbackBlob = new Blob([fullDoc], { type: 'application/msword' });
+        saveAs(fallbackBlob, 'Celestino_Otieno_Portfolio.doc');
       }
     });
-  })();
+  }
 </script>
-<!-- Ensure FileSaver is available globally; html-docx-js is loaded from CDN -->
 </body>
 </html>
