@@ -1,909 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Celestino Onyango | Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', 'Times New Roman', Times, serif;
-            background: linear-gradient(135deg, #022b3a 0%, #1f7a8c 50%, #023047 100%);
-            min-height: 100vh;
-            color: #022b3a;
-        }
-        
-        /* Header */
-        header {
-            background: rgba(2, 43, 58, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 12px 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .logo {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-        }
-        
-        .logo span {
-            color: #64b5f6;
-        }
-        
-        /* Navigation */
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 5px;
-            flex-wrap: wrap;
-        }
-        
-        .nav-links li a {
-            color: white;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            display: block;
-        }
-        
-        .nav-links li a:hover,
-        .nav-links li a.active {
-            background: rgba(100, 181, 246, 0.3);
-            color: #64b5f6;
-        }
-        
-        /* Header Actions */
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        
-        .social-header {
-            display: flex;
-            gap: 5px;
-        }
-        
-        .social-icon {
-            width: 32px;
-            height: 32px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-        
-        .social-icon:hover {
-            background: #64b5f6;
-            color: #022b3a;
-            transform: translateY(-2px);
-        }
-        
-        .btn-cv {
-            background: linear-gradient(135deg, #1e6f9f, #0a2f44);
-            border: none;
-            padding: 6px 14px;
-            border-radius: 30px;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.8rem;
-            transition: all 0.2s;
-        }
-        
-        .btn-cv:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        
-        .btn-cv:disabled {
-            opacity: 0.6;
-            cursor: wait;
-            transform: none;
-        }
-        
-        .btn-admin {
-            background: #e74c3c;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 30px;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.8rem;
-        }
-        
-        .btn-admin:hover {
-            background: #c0392b;
-        }
-        
-        .mobile-menu {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* Main Content */
-        main {
-            margin-top: 80px;
-            padding: 20px 0 40px;
-        }
-        
-        .page {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .page.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Profile Card */
-        .profile-card {
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 30px 20px;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        
-        .profile-card h1 {
-            font-size: clamp(1.5rem, 6vw, 2.5rem);
-            color: #0a2f44;
-        }
-        
-        .profile-card h2 {
-            font-size: clamp(1rem, 4vw, 1.3rem);
-            color: #1e6f9f;
-            margin: 10px 0;
-        }
-        
-        .profile-card p {
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            line-height: 1.6;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(30, 111, 159, 0.1);
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-        }
-        
-        /* Section Styles */
-        .page-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .page-header h2 {
-            font-size: clamp(1.3rem, 5vw, 2rem);
-            color: #0a2f44;
-            border-bottom: 3px solid #64b5f6;
-            display: inline-block;
-            padding-bottom: 8px;
-        }
-        
-        .content-section {
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 25px;
-        }
-        
-        /* Cards */
-        .experience-item, .education-item, .certificate-item, .referee-item {
-            background: rgba(255,255,255,0.8);
-            padding: 18px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            border-left: 4px solid #1e6f9f;
-            transition: transform 0.2s;
-        }
-        
-        .experience-item:hover, .education-item:hover {
-            transform: translateX(5px);
-        }
-        
-        .experience-item h4, .education-item h4 {
-            font-size: 1.2rem;
-            color: #0a2f44;
-            margin-bottom: 5px;
-        }
-        
-        .company, .institution {
-            font-weight: 600;
-            color: #1e6f9f;
-        }
-        
-        .duration {
-            color: #5d6d7e;
-            font-size: 0.8rem;
-            font-style: italic;
-            margin: 5px 0 10px;
-        }
-        
-        ul {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-        
-        li {
-            margin-bottom: 6px;
-            line-height: 1.5;
-        }
-        
-        /* Skills Grid */
-        .skills-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-        }
-        
-        .skill-category {
-            background: rgba(255,255,255,0.8);
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid #64b5f6;
-        }
-        
-        .skill-category h4 {
-            color: #0a2f44;
-            margin-bottom: 8px;
-        }
-        
-        /* Projects Grid */
-        .projects-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .project-item {
-            background: rgba(255,255,255,0.8);
-            padding: 20px;
-            border-radius: 16px;
-            border-left: 4px solid #1e6f9f;
-            transition: transform 0.2s;
-        }
-        
-        .project-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .project-item h4 {
-            font-size: 1.2rem;
-            color: #0a2f44;
-            margin-bottom: 10px;
-        }
-        
-        .project-link {
-            display: inline-block;
-            background: #1e6f9f;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 0.8rem;
-            margin-top: 12px;
-            margin-right: 10px;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-        
-        .project-link:hover {
-            background: #0a2f44;
-            transform: translateY(-2px);
-        }
-        
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 25px;
-            gap: 15px;
-        }
-        
-        .pagination-btn {
-            background: rgba(10, 47, 68, 0.9);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .pagination-btn:hover:not(:disabled) {
-            background: #1e6f9f;
-            transform: translateY(-2px);
-        }
-        
-        .pagination-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        /* Footer */
-        footer {
-            background: rgba(2, 43, 58, 0.95);
-            color: white;
-            text-align: center;
-            padding: 25px 0;
-            margin-top: 30px;
-        }
-        
-        footer p {
-            margin: 5px 0;
-            font-size: 0.8rem;
-        }
-        
-        footer a {
-            color: #64b5f6;
-            text-decoration: none;
-        }
-        
-        footer a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-overlay.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-        }
-        
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin: 15px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-        
-        .modal-content button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #27ae60;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 40px;
-            display: none;
-            z-index: 3000;
-            font-size: 0.9rem;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .toast.show {
-            display: flex;
-        }
-        
-        /* Loading indicator */
-        .loading-spinner {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 0.8s linear infinite;
-            margin-right: 6px;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 900px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(2, 43, 58, 0.98);
-                flex-direction: column;
-                padding: 15px;
-                gap: 10px;
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .nav-links li a {
-                text-align: center;
-                padding: 10px;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .btn-cv span, .btn-admin span {
-                display: none;
-            }
-            
-            .btn-cv, .btn-admin {
-                padding: 8px 12px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                width: 95%;
-            }
-            
-            .content-section {
-                padding: 15px;
-            }
-            
-            .profile-card {
-                padding: 20px 15px;
-            }
-            
-            .contact-item {
-                font-size: 0.7rem;
-                padding: 4px 10px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Celestino Otieno – Portfolio | Library & ICT Specialist</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- html2pdf & FileSaver for PDF generation; docx library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f0f4f8;
+      font-family: 'Inter', sans-serif;
+      color: #1e2a3e;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+
+    /* main container */
+    .portfolio-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+
+    /* header area */
+    .header {
+      background: linear-gradient(135deg, #0b2b3f 0%, #1a4a6f 100%);
+      color: white;
+      padding: 2rem 2rem 1.8rem;
+    }
+    .name-title h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(4px);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.2);
+      padding: 0.8rem 1rem;
+      border-radius: 60px;
+    }
+    .contact-bar i {
+      width: 1.6rem;
+    }
+    .contact-bar a {
+      color: #ffeaD0;
+      text-decoration: none;
+    }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .download-btn {
+      background: white;
+      color: #1a4a6f;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .download-btn:hover {
+      background: #eef2ff;
+      transform: translateY(-2px);
+    }
+    .download-btn i {
+      font-size: 1rem;
+    }
+
+    /* main content grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 2.1fr;
+      gap: 0;
+    }
+    /* sidebar */
+    .sidebar {
+      background: #f9fafc;
+      border-right: 1px solid #e4e9f0;
+      padding: 1.8rem;
+    }
+    .main-content {
+      padding: 1.8rem 2rem;
+      background: white;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-left: 5px solid #1e6f5c;
+      padding-left: 0.8rem;
+      margin-bottom: 1rem;
+      color: #0f2c3d;
+    }
+    .section h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1rem 0 0.2rem;
+      color: #1e4663;
+    }
+    .job, .edu-item, .cert-item {
+      margin-bottom: 1rem;
+    }
+    .job strong, .project-item strong {
+      font-weight: 700;
+    }
+    ul {
+      padding-left: 1.3rem;
+      margin: 0.5rem 0;
+    }
+    li {
+      margin: 0.3rem 0;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      background: #e2e8f0;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .referee {
+      font-size: 0.85rem;
+      margin-bottom: 0.8rem;
+      border-left: 2px solid #cbd5e1;
+      padding-left: 0.8rem;
+    }
+    hr {
+      margin: 1rem 0;
+      border: 0;
+      height: 1px;
+      background: #e2e8f0;
+    }
+    .footer-note {
+      text-align: center;
+      font-size: 0.7rem;
+      padding: 1rem;
+      background: #f1f5f9;
+      color: #334155;
+    }
+    @media (max-width: 800px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid #e4e9f0;
+      }
+      .header {
+        padding: 1.5rem;
+      }
+    }
+    .print-optimized {
+        background: white;
+    }
+    /* preserve spacing for docx */
+    .primary-responsibilities-grid {
+      display: block;
+    }
+    .resp-category {
+      margin-bottom: 1.2rem;
+    }
+    .resp-category h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0b4f6c;
+      margin-bottom: 0.4rem;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo" onclick="showPage('profile')">CELESTINO <span>ONYANGO</span></div>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#" data-page="profile" class="active">Profile</a></li>
-                    <li><a href="#" data-page="professional-profile">Professional Profile</a></li>
-                    <li><a href="#" data-page="experience">Experience</a></li>
-                    <li><a href="#" data-page="education">Education</a></li>
-                    <li><a href="#" data-page="certifications">Certifications</a></li>
-                    <li><a href="#" data-page="skills">Skills</a></li>
-                    <li><a href="#" data-page="competencies">Competencies</a></li>
-                    <li><a href="#" data-page="projects">Projects</a></li>
-                    <li><a href="#" data-page="referees">Referees</a></li>
-                </ul>
-                <div class="header-actions">
-                    <div class="social-header">
-                        <a href="https://github.com/CELESTINO-UX" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/celestino-otieno-1146b1203" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://twitter.com/celestino_tech" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="https://wa.me/254714019736" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                    <button class="btn-cv" id="downloadCVBtn"><i class="fas fa-download"></i><span> CV</span></button>
-                    <button class="btn-admin" id="adminBtn"><i class="fas fa-lock"></i><span> Admin</span></button>
-                    <button class="mobile-menu" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-                </div>
-            </nav>
-        </div>
-    </header>
-    
-    <main>
-        <div class="container">
-            <!-- Profile Page -->
-            <section id="profile" class="page active">
-                <div class="profile-card">
-                    <h1 id="profileName">OTIENO CELESTINO ONYANGO</h1>
-                    <h2 id="profileTitle">Record Manager | ICT Support Specialist | School Librarian | System Librarian</h2>
-                    <p id="profileBio">Dynamic Record Manager and ICT professional with 3+ years of experience in records lifecycle management, library automation, system administration, and cybersecurity. Proven expertise in digital transformation, archival systems, and user-centered information services. Committed to operational excellence, data integrity, and innovation.</p>
-                    <div class="contact-info" id="contactInfo"></div>
-                    <div style="margin-top: 25px;">
-                        <button class="btn-cv" id="profileCVBtn" style="background:#1e6f9f; padding:10px 25px;"><i class="fas fa-file-pdf"></i> Download Full CV (PDF)</button>
-                    </div>
-                </div>
-                <div class="pagination">
-                    <button class="pagination-btn" disabled><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="pagination-btn next-btn" data-next="professional-profile">Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </section>
-            
-            <!-- Other Pages -->
-            <section id="professional-profile" class="page">
-                <div class="page-header"><h2>Professional Profile</h2></div>
-                <div class="content-section"><ul id="professionalProfileList"></ul></div>
-                <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="profile"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="pagination-btn next-btn" data-next="experience">Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </section>
-            
-            <section id="experience" class="page">
-                <div class="page-header"><h2>Work Experience</h2></div>
-                <div class="content-section" id="experienceContent"></div>
-                <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="professional-profile"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="pagination-btn next-btn" data-next="education">Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </section>
-            
-            <section id="education" class="page">
-                <div class="page-header"><h2>Education</h2></div>
-                <div class="content-section" id="educationContent"></div>
-                <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="experience"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="pagination-btn next-btn" data-next="certifications">Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </section>
-            
-            <section id="certifications" class="page">
-                <div class="page-header"><h2>Certifications</h2></div>
-                <div class="content-section" id="certificationsContent"></div>
-                <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="education"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="pagination-btn next-btn" data-next="skills">Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </section>
-            
-            <section id="skills" class="page">
-                <div class="page-header"><h2>Technical Skills</h2></div>
-                <div class="content-section"><div class="skills-list" id="skillsList"></div></div>
-                <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="certifications"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="pagination-btn next-btn" data-next="competencies">Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </section>
-            
-            <section id="competencies" class="page">
-                <div class="page-header"><h2>Core Competencies</h2></div>
-                <div class="content-section"><ul id="competenciesList"></ul></div>
-                <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="skills"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="pagination-btn next-btn" data-next="projects">Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </section>
-            
-            <section id="projects" class="page">
-                <div class="page-header"><h2>Key Projects</h2></div>
-                <div class="content-section"><div class="projects-list" id="projectsList"></div></div>
-                <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="competencies"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="pagination-btn next-btn" data-next="referees">Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </section>
-            
-            <section id="referees" class="page">
-                <div class="page-header"><h2>Professional Referees</h2></div>
-                <div class="content-section" id="refereesContent"></div>
-                <div class="pagination">
-                    <button class="pagination-btn prev-btn" data-prev="projects"><i class="fas fa-arrow-left"></i> Previous</button>
-                    <button class="pagination-btn" disabled>Next <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </section>
-        </div>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Celestino Onyango | Record Manager | ICT Support Specialist | School Librarian | System Librarian</p>
-            <p><i class="fas fa-phone"></i> +254714019736 | <i class="fas fa-envelope"></i> onyangocelestino@gmail.com</p>
-            <p><a href="https://github.com/CELESTINO-UX" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/celestino-otieno-1146b1203" target="_blank">LinkedIn</a></p>
-        </div>
-    </footer>
-    
-    <!-- Modal -->
-    <div class="modal-overlay" id="adminModal">
-        <div class="modal-content">
-            <i class="fas fa-lock" style="font-size: 3rem; color: #e74c3c;"></i>
-            <h3>Admin Access</h3>
-            <p>Enter passcode to access admin panel</p>
-            <input type="password" id="adminPasscode" placeholder="****" maxlength="4" autocomplete="off">
-            <div id="passcodeError" style="color: red; display: none; margin: 5px 0;">Wrong passcode!</div>
-            <div style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;">
-                <button onclick="closeAdminModal()" style="background: #95a5a6; color: white;">Cancel</button>
-                <button onclick="verifyPasscode()" style="background: #1e6f9f; color: white;">Unlock</button>
-            </div>
-        </div>
+<div class="portfolio-container" id="portfolioContent">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="name-title">
+      <h1>OTIENO CELESTINO ONYANGO</h1>
+      <div class="badge">Record Manager | ICT Support Specialist | School Librarian | System Librarian</div>
     </div>
-    
-    <div class="toast" id="toastMsg">
-        <i class="fas fa-check-circle"></i> <span id="toastText">Success!</span>
+    <div class="contact-bar">
+      <span><i class="fas fa-phone-alt"></i> +254714019736</span>
+      <span><i class="fas fa-envelope"></i> onyangocelestino@gmail.com</span>
+      <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
+      <span><i class="fab fa-linkedin"></i> linkedin.com/in/celestino-otieno</span>
+      <span><i class="fab fa-github"></i> github.com/CELESTINO-UX</span>
     </div>
-    
-    <script>
-        // Updated Portfolio Data with Record Manager roles and competencies
-        let portfolioData = {
-            profile: {
-                name: "OTIENO CELESTINO ONYANGO",
-                title: "Record Manager | ICT Support Specialist | School Librarian | System Librarian",
-                bio: "Results-driven Record Manager and ICT professional with 3+ years of experience in records lifecycle management, library automation, system administration, and cybersecurity. Proven track record in digital transformation, archival systems, user training, and IT infrastructure management. Committed to operational excellence and innovation.",
-                contact: { phone: "+254714019736", email: "onyangocelestino@gmail.com", location: "Nairobi, Kenya" }
-            },
-            professionalProfile: [
-                "✔ 3+ years experience in record management, ICT support, and library information systems across academic institutions.",
-                "✔ Expert in records lifecycle: creation, classification, retention, disposal, and archival using ISO 15489 standards.",
-                "✔ Proficient in Koha ILS, digital cataloguing (AACR2, MARC21, DDC), and electronic document management systems (EDMS).",
-                "✔ Skilled in cybersecurity: access control, threat monitoring, data backup, and user awareness for records protection.",
-                "✔ Led library digitization and records digitization initiatives, reducing retrieval time by 40% and improving compliance.",
-                "✔ Strong communicator with experience training staff on records management policies and digital literacy."
-            ],
-            experience: [
-                {
-                    title: "School Librarian",
-                    company: "Lukenya British Curriculum School – Machakos, Kenya",
-                    duration: "August 2024 – Present",
-                    responsibilities: [
-                        "Manage full records lifecycle: creation, classification, retention scheduling, and secure disposal of institutional records.",
-                        "Implement electronic document management system (EDMS) for student records, staff files, and administrative archives.",
-                        "Provide tier-2/3 technical support for 200+ users across hardware, network, and library management systems.",
-                        "Oversee library system operations (Koha ILS) for circulation, cataloguing, and reporting; maintain digital/physical collections.",
-                        "Develop and enforce records retention policies aligned with legal and educational standards.",
-                        "Train staff and students on records management best practices, information literacy, and use of digital archives.",
-                        "Conduct regular audits to ensure data integrity, confidentiality, and compliance with data protection regulations."
-                    ],
-                    achievements: ["Implemented structured records classification system reducing misfiling by 60%.", "Digitized 5+ years of student academic records into searchable EDMS."]
-                },
-                {
-                    title: "System Librarian",
-                    company: "Kenya National Library Service – Nakuru",
-                    duration: "May 2024 – August 2024",
-                    responsibilities: [
-                        "Assisted in records inventory and archival management for historical government publications.",
-                        "Supported digital cataloguing and metadata creation for archival materials using MARC21 and DDC standards.",
-                        "Provided end-user support and IT orientation for library patrons; managed records request workflows.",
-                        "Assisted in migration of library data to Koha and maintained secure backups of digital records.",
-                        "Implemented basic classification and indexing for special collections to improve retrieval efficiency.",
-                        "Collaborated on records disposal procedures in compliance with national archives guidelines."
-                    ],
-                    achievements: ["Trained 50+ staff and users on digital literacy and records retrieval systems.", "Redesigned archival finding aids, reducing research time by 25%."]
-                }
-            ],
-            education: [
-                { degree: "Bachelor of Science in Information Science (ICT Option)", institution: "Meru University of Science and Technology", year: "2020 – 2024", details: "Second Class Lower Division | Coursework: Records Management, Database Systems, Information Retrieval, ICT Integration" },
-                { degree: "Kenya Certificate of Secondary Education (KCSE)", institution: "Nyarach Mixed Day Secondary School", year: "2015 – 2019", details: "Grade: C+ (Aggregate 51 points)" }
-            ],
-            certifications: [
-                { name: "Advanced Cybersecurity - Threats & Governance", issuer: "Great Learning Academy", year: "2025" },
-                { name: "Data Visualization with Power BI", issuer: "Great Learning Academy", year: "2022" },
-                { name: "Cyber Forensics", issuer: "Great Learning Academy", year: "2025" },
-                { name: "Infection Prevention & Control", issuer: "The National College", year: "2026" },
-                { name: "Recognising and supporting pupils with ADHD", issuer: "The National College", year: "2026" }
-            ],
-            skills: [
-                { category: "Records & Information Management", description: "Lifecycle management, classification schemes, retention scheduling, EDMS, archival standards (ISO 15489), digitization workflows." },
-                { category: "ICT Infrastructure & Support", description: "Hardware/software troubleshooting, network setup (LAN/Wi-Fi), system imaging, printer management, user support." },
-                { category: "Cybersecurity for Records", description: "Access control, data encryption, backup & recovery, security audits, compliance with data protection laws." },
-                { category: "Library Systems & Automation", description: "Koha ILS, digital cataloguing (MARC21, AACR2, DDC), OPAC management, e-resources, repository platforms." },
-                { category: "Programming & Automation", description: "Python, Bash, SQL, JavaScript basics, task automation for records workflows and reporting." }
-            ],
-            competencies: [
-                "Records Lifecycle Management", "Archival Administration", "Electronic Document Management Systems (EDMS)",
-                "Library Systems Administration", "IT Project Coordination", "User Training & Support",
-                "Digital Transformation", "Data Privacy & Compliance", "Incident Response",
-                "Database Management", "Technical Documentation", "Team Collaboration", "Problem Solving"
-            ],
-            projects: [
-                { title: "Lukenya Voting System", description: "Secure web-based voting platform for student elections using HTML/CSS/JS; reduced election time by 70%. Implemented real-time result display and secure authentication.", liveUrl: "https://carlesy6.github.io/lukenya-Voting-System/", githubUrl: "https://github.com/CELESTINO-UX" },
-                { title: "Digital Records Archiving Initiative", description: "Led digitization of student and administrative records at Lukenya School, creating searchable EDMS with metadata tagging and role-based access control, reducing retrieval time by 40%.", liveUrl: "#", githubUrl: "https://github.com/CELESTINO-UX" }
-            ],
-            referees: [
-                { name: "Colins Kirui", position: "Dean of Students & Examinations", organization: "Lukenya British Curriculum School", phone: "+254702194494", email: "kirui.collins@lukenyaschools.ac.ke" },
-                { name: "John Gitau Nganga", position: "Lecturer, Information Science", organization: "Meru University of Science and Technology", phone: "+254720877605", email: "jgitau@must.ac.ke" },
-                { name: "Steven Ajulu Otieno", position: "Head of IT Department", organization: "Kenya National Library Service, Nakuru", phone: "+254740128010", email: "steven.ajulu@knls.ac.ke" }
-            ]
-        };
+    <div class="btn-group" id="downloadButtons">
+      <button class="download-btn" id="downloadPDFBtn"><i class="fas fa-file-pdf"></i> Download as PDF</button>
+      <button class="download-btn" id="downloadDOCXBtn"><i class="fas fa-file-word"></i> Download as DOCX</button>
+    </div>
+  </div>
+
+  <div class="content-grid">
+    <!-- LEFT SIDEBAR -->
+    <div class="sidebar">
+      <div class="section">
+        <h2>Professional Profile</h2>
+        <ul>
+          <li>✔ 3+ years experience in record management, ICT support, and library information systems across academic institutions.</li>
+          <li>✔ Expert in records lifecycle: creation, classification, retention, disposal, and archival using ISO 15489 standards.</li>
+          <li>✔ Proficient in Koha ILS, digital cataloguing (AACR2, MARC21, DDC), and electronic document management systems (EDMS).</li>
+          <li>✔ Skilled in cybersecurity: access control, threat monitoring, data backup, and user awareness for records protection.</li>
+          <li>✔ Led library digitization and records digitization initiatives, reducing retrieval time by 40% and improving compliance.</li>
+          <li>✔ Strong communicator with experience training staff on records management policies and digital literacy.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Technical Skills</h2>
+        <div class="skills-list">
+          <span class="skill-tag">Lifecycle management</span><span class="skill-tag">ISO 15489</span><span class="skill-tag">EDMS</span>
+          <span class="skill-tag">Koha ILS</span><span class="skill-tag">MARC21/AACR2</span><span class="skill-tag">OPAC</span>
+          <span class="skill-tag">Python/Bash/SQL</span><span class="skill-tag">Cybersecurity</span><span class="skill-tag">Data encryption</span>
+          <span class="skill-tag">Network setup</span><span class="skill-tag">User training</span><span class="skill-tag">Digital transformation</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Certifications</h2>
+        <div><strong>Advanced Cybersecurity - Threats & Governance</strong> – Great Learning Academy (2025)</div>
+        <div><strong>Data Visualization with Power BI</strong> – Great Learning Academy (2022)</div>
+        <div><strong>Cyber Forensics</strong> – Great Learning Academy (2025)</div>
+        <div><strong>Infection Prevention & Control</strong> – The National College (2026)</div>
+        <div><strong>Recognising and supporting pupils with ADHD</strong> – The National College (2026)</div>
+      </div>
+
+      <div class="section">
+        <h2>Core Competencies</h2>
+        <div class="skills-list">
+          <span class="skill-tag">Records Lifecycle</span><span class="skill-tag">Archival Admin</span><span class="skill-tag">EDMS</span>
+          <span class="skill-tag">Library Systems</span><span class="skill-tag">IT Project Coordination</span><span class="skill-tag">Data Privacy</span>
+          <span class="skill-tag">Incident Response</span><span class="skill-tag">Team Collaboration</span><span class="skill-tag">Problem Solving</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Key Projects</h2>
+        <div class="project-item"><strong>Lukenya Voting System</strong> – Secure web-based voting platform (HTML/CSS/JS) reduced election time by 70%.</div>
+        <div class="project-item" style="margin-top:8px"><strong>Digital Records Archiving Initiative</strong> – Digitized student/administrative records, searchable EDMS, reduced retrieval by 40%.</div>
+      </div>
+
+      <div class="section">
+        <h2>Professional Referees</h2>
+        <div class="referee"><strong>Colins Kirui</strong><br>Dean of Students & Examinations, Lukenya British Curriculum School<br>📞 +254702194494 ✉️ kirui.collins@lukenyaschools.ac.ke</div>
+        <div class="referee"><strong>John Gitau Nganga</strong><br>Lecturer, Information Science, Meru University<br>📞 +254720877605 ✉️ jgitau@must.ac.ke</div>
+        <div class="referee"><strong>Steven Ajulu Otieno</strong><br>Head of IT Department, Kenya National Library Service, Nakuru<br>📞 +254740128010 ✉️ steven.ajulu@knls.ac.ke</div>
+      </div>
+    </div>
+
+    <!-- MAIN RIGHT: EXPERIENCE & NEW PRIMARY RESPONSIBILITIES (INCORPORATED) -->
+    <div class="main-content">
+      <!-- Work experience original -->
+      <div class="section">
+        <h2>Work Experience</h2>
+        <div class="job"><strong>School Librarian</strong> – Lukenya British Curriculum School, Machakos (Aug 2024 – Present)<br>
+          <ul>
+            <li>Manage full records lifecycle: creation, classification, retention scheduling, secure disposal.</li>
+            <li>Implement EDMS for student records, staff files, and administrative archives.</li>
+            <li>Provide tier-2/3 technical support for 200+ users; oversee Koha ILS circulation and cataloguing.</li>
+            <li>Develop records retention policies; train staff on best practices and digital archives.</li>
+            <li>Conduct audits ensuring data integrity and compliance – reduced misfiling by 60%, digitized 5+ years of records.</li>
+          </ul>
+        </div>
+        <div class="job"><strong>System Librarian</strong> – Kenya National Library Service, Nakuru (May 2024 – Aug 2024)<br>
+          <ul>
+            <li>Assisted in records inventory and archival management for historical government publications.</li>
+            <li>Digital cataloguing using MARC21/DDC; supported Koha migration and secure backups.</li>
+            <li>Trained 50+ staff on digital literacy and records retrieval; redesigned archival finding aids reducing research time by 25%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- NEW: PRIMARY RESPONSIBILITIES (LIBRARY SPACE MGT, COORDINATION, STUDENT SUPPORT, ETC) -->
+      <div class="section" id="primaryResponsibilitiesSection">
+        <h2>Primary Responsibilities (MS/HS Library & School Portfolio)</h2>
         
-        let currentPdfBlobUrl = null;
-        
-        function generatePdfBlob() {
-            const d = portfolioData;
-            const p = d.profile;
-            const cvHTML = `<!DOCTYPE html>
-            <html>
-            <head><meta charset="UTF-8"><title>Celestino_Onyango_Record_Manager_CV</title>
-            <style>
-                body { font-family: 'Times New Roman', Times, serif; padding: 40px; background: white; margin: 0; }
-                .cv { max-width: 1000px; margin: 0 auto; }
-                h1 { color: #0a2f44; border-bottom: 3px solid #1e6f9f; display: inline-block; font-size: 28px; }
-                h2 { color: #1e6f9f; border-left: 5px solid #64b5f6; padding-left: 15px; margin: 25px 0 12px; }
-                .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); background: #f0f7fc; padding: 15px; border-radius: 12px; margin: 15px 0; }
-                .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-                .skill-card { background: #f8fafc; padding: 10px; border-left: 3px solid #1e6f9f; margin-bottom: 8px; }
-                @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
-                ul { margin-left: 20px; }
-                li { margin-bottom: 5px; }
-                hr { margin: 20px 0; }
-            </style>
-            </head>
-            <body>
-            <div class="cv">
-                <h1>${p.name}</h1>
-                <div style="font-size: 18px; margin: 8px 0">${p.title}</div>
-                <div class="contact-grid">
-                    <div>📞 ${p.contact.phone}</div>
-                    <div>✉️ ${p.contact.email}</div>
-                    <div>📍 ${p.contact.location}</div>
-                    <div>🔗 linkedin.com/in/celestino-otieno</div>
-                    <div>🐙 github.com/CELESTINO-UX</div>
-                </div>
-                <h2>Professional Summary</h2>
-                <p>${p.bio}</p>
-                <h2>Core Competencies</h2>
-                <ul>${d.competencies.map(c => `<li>${c}</li>`).join('')}</ul>
-                <h2>Work Experience</h2>
-                ${d.experience.map(e => `<div><strong>${e.title}</strong><br><em>${e.company}</em> | ${e.duration}<ul>${e.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>${e.achievements.length ? `<strong>Achievements:</strong><ul>${e.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}</div><br>`).join('')}
-                <h2>Education</h2>
-                ${d.education.map(e => `<div><strong>${e.degree}</strong><br>${e.institution} (${e.year})<br>${e.details}</div><br>`).join('')}
-                <h2>Technical Skills</h2>
-                <div class="skills-grid">${d.skills.map(s => `<div class="skill-card"><strong>${s.category}</strong><br>${s.description}</div>`).join('')}</div>
-                <h2>Certifications</h2>
-                <ul>${d.certifications.map(c => `<li><strong>${c.name}</strong> – ${c.issuer} (${c.year})</li>`).join('')}</ul>
-                <h2>Professional Referees</h2>
-                ${d.referees.map(r => `<div><strong>${r.name}</strong><br>${r.position}<br>${r.organization}<br>📞 ${r.phone}${r.email ? `<br>✉️ ${r.email}` : ''}</div><br>`).join('')}
-                <hr>
-                <footer style="text-align:center; font-size:12px; margin-top:30px;">Celestino Onyango – Professional CV – Updated ${new Date().toLocaleDateString()}</footer>
-            </div>
-            </body>
-            </html>`;
-            const blob = new Blob([cvHTML], { type: 'text/html' });
-            if (currentPdfBlobUrl) URL.revokeObjectURL(currentPdfBlobUrl);
-            currentPdfBlobUrl = URL.createObjectURL(blob);
-            return currentPdfBlobUrl;
-        }
-        
-        async function downloadThenPrint() {
-            const downloadBtn = document.getElementById('downloadCVBtn');
-            const profileBtn = document.getElementById('profileCVBtn');
-            const buttons = [downloadBtn, profileBtn];
-            buttons.forEach(btn => { if(btn) { btn.disabled = true; btn.innerHTML = '<span class="loading-spinner"></span> Preparing...'; } });
-            try {
-                const blobUrl = generatePdfBlob();
-                const downloadLink = document.createElement('a');
-                downloadLink.href = blobUrl;
-                downloadLink.download = `Celestino_Onyango_Record_Manager_CV_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.html`;
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-                showToast("✅ CV downloaded! Opening print preview...");
-                setTimeout(() => {
-                    const printWindow = window.open(blobUrl, '_blank');
-                    if(printWindow) printWindow.onload = () => setTimeout(() => printWindow.print(), 500);
-                    else showToast("⚠️ Popup blocked! Check browser settings.");
-                }, 400);
-            } catch(e) { showToast("❌ Error generating CV"); }
-            finally { setTimeout(() => { buttons.forEach(btn => { if(btn) { btn.disabled = false; btn.innerHTML = btn.id === 'profileCVBtn' ? '<i class="fas fa-file-pdf"></i> Download Full CV (PDF)' : '<i class="fas fa-download"></i><span> CV</span>'; } }); }, 1500); }
-        }
-        
-        function renderAll() {
-            document.getElementById('profileName').textContent = portfolioData.profile.name;
-            document.getElementById('profileTitle').textContent = portfolioData.profile.title;
-            document.getElementById('profileBio').textContent = portfolioData.profile.bio;
-            document.getElementById('contactInfo').innerHTML = `
-                <div class="contact-item"><i class="fas fa-phone-alt"></i><span>${portfolioData.profile.contact.phone}</span></div>
-                <div class="contact-item"><i class="fas fa-envelope"></i><span>${portfolioData.profile.contact.email}</span></div>
-                <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>${portfolioData.profile.contact.location}</span></div>
-                <div class="contact-item"><i class="fab fa-linkedin"></i><span>linkedin.com/in/celestino-otieno</span></div>
-                <div class="contact-item"><i class="fab fa-github"></i><span>github.com/CELESTINO-UX</span></div>
-            `;
-            document.getElementById('professionalProfileList').innerHTML = portfolioData.professionalProfile.map(i => `<li>${i}</li>`).join('');
-            document.getElementById('experienceContent').innerHTML = portfolioData.experience.map(exp => `<div class="experience-item"><h4>${exp.title}</h4><div class="company">${exp.company}</div><div class="duration">${exp.duration}</div><strong>Key Responsibilities:</strong><ul>${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}</ul>${exp.achievements.length ? `<strong>Key Achievements:</strong><ul>${exp.achievements.map(a => `<li>${a}</li>`).join('')}</ul>` : ''}</div>`).join('');
-            document.getElementById('educationContent').innerHTML = portfolioData.education.map(edu => `<div class="education-item"><h4>${edu.degree}</h4><div class="institution">${edu.institution}</div><div class="duration">${edu.year}</div><p>${edu.details}</p></div>`).join('');
-            document.getElementById('certificationsContent').innerHTML = portfolioData.certifications.map(cert => `<div class="certificate-item"><h4>${cert.name}</h4><p>${cert.issuer} | ${cert.year}</p></div>`).join('');
-            document.getElementById('skillsList').innerHTML = portfolioData.skills.map(skill => `<div class="skill-category"><h4>${skill.category}</h4><p>${skill.description}</p></div>`).join('');
-            document.getElementById('competenciesList').innerHTML = portfolioData.competencies.map(c => `<li>${c}</li>`).join('');
-            document.getElementById('projectsList').innerHTML = portfolioData.projects.map(proj => `<div class="project-item"><h4>${proj.title}</h4><p>${proj.description}</p>${proj.liveUrl && proj.liveUrl !== '#' ? `<a href="${proj.liveUrl}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}${proj.githubUrl ? `<a href="${proj.githubUrl}" target="_blank" class="project-link"><i class="fab fa-github"></i> GitHub</a>` : ''}</div>`).join('');
-            document.getElementById('refereesContent').innerHTML = portfolioData.referees.map(ref => `<div class="referee-item"><h4>${ref.name}</h4><p><strong>${ref.position}</strong><br>${ref.organization}<br>📞 ${ref.phone}${ref.email ? `<br>✉️ ${ref.email}` : ''}</p></div>`).join('');
-        }
-        
-        function showToast(msg) { const toast = document.getElementById('toastMsg'); document.getElementById('toastText').textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
-        function openAdminModal() { document.getElementById('adminModal').classList.add('active'); }
-        function closeAdminModal() { document.getElementById('adminModal').classList.remove('active'); document.getElementById('adminPasscode').value = ''; document.getElementById('passcodeError').style.display = 'none'; }
-        function verifyPasscode() { if(document.getElementById('adminPasscode').value === '1997') { closeAdminModal(); showToast('Admin access granted!'); alert('Admin Panel Demo\n\nData is stored in browser memory. To modify data, edit the portfolioData object in console.\n\nPasscode: 1997'); } else { document.getElementById('passcodeError').style.display = 'block'; } }
-        function showPage(pageId) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); document.querySelectorAll('.nav-links a').forEach(link => { link.classList.remove('active'); if(link.getAttribute('data-page') === pageId) link.classList.add('active'); }); document.getElementById('navLinks').classList.remove('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-        
-        document.getElementById('mobileMenuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
-        document.getElementById('adminBtn').addEventListener('click', openAdminModal);
-        document.getElementById('downloadCVBtn')?.addEventListener('click', downloadThenPrint);
-        document.getElementById('profileCVBtn')?.addEventListener('click', downloadThenPrint);
-        document.querySelectorAll('.next-btn, .prev-btn').forEach(btn => btn.addEventListener('click', function() { if(this.getAttribute('data-next')) showPage(this.getAttribute('data-next')); if(this.getAttribute('data-prev')) showPage(this.getAttribute('data-prev')); }));
-        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', (e) => { e.preventDefault(); showPage(link.getAttribute('data-page')); }));
-        document.querySelector('.logo').addEventListener('click', () => showPage('profile'));
-        document.getElementById('adminModal').addEventListener('click', (e) => { if(e.target === document.getElementById('adminModal')) closeAdminModal(); });
-        document.getElementById('adminPasscode').addEventListener('keypress', (e) => { if(e.key === 'Enter') verifyPasscode(); });
-        
-        renderAll();
-        window.showPage = showPage; window.verifyPasscode = verifyPasscode; window.closeAdminModal = closeAdminModal;
-    </script>
+        <div class="resp-category">
+          <h3>📚 Library Space Management</h3>
+          <ul>
+            <li>Oversee daily operations of the MS/HS library as an organized, welcoming, and purposeful learning environment.</li>
+            <li>Coordinate scheduling and use of the library space for classes, small groups, individual students, and special events.</li>
+            <li>Maintain clear procedures and routines that support respectful and effective use of the space.</li>
+            <li>Monitor student behavior in the library and ensure expectations for safety, care, and community are upheld.</li>
+            <li>Maintain organization and presentation of library spaces and materials.</li>
+            <li>Help maintain the library as an inviting hub for reading, study, and collaboration.</li>
+          </ul>
+        </div>
+
+        <div class="resp-category">
+          <h3>🤝 Coordination with Teachers and School Staff</h3>
+          <ul>
+            <li>Work closely with MS/HS teachers to coordinate class use of the library and respond to resource needs.</li>
+            <li>Help teachers and students access library materials and services connected to classroom learning.</li>
+            <li>Communicate effectively with faculty and administrators regarding scheduling, student use, and library operations.</li>
+            <li>Attend relevant divisional or operational meetings as required (Updated: April 2026).</li>
+          </ul>
+        </div>
+
+        <div class="resp-category">
+          <h3>🎓 Student Support</h3>
+          <ul>
+            <li>Provide day-to-day support to students using the library for reading, studying, research, and academic work.</li>
+            <li>Help students locate resources, use the library responsibly, and develop independence in accessing information.</li>
+            <li>Build positive relationships with students and contribute to a culture of inclusion, respect, and belonging.</li>
+            <li>Maintain a calm, supervised, and supportive environment for students throughout the school day.</li>
+          </ul>
+        </div>
+
+        <div class="resp-category">
+          <h3>👥 Supervision of Library Assistants</h3>
+          <ul>
+            <li>Supervise and support library assistants in their daily responsibilities.</li>
+            <li>Coordinate workflows related to circulation, shelving, resource organization, and general library operations.</li>
+            <li>Help ensure assistants are clear on priorities, schedules, and expectations.</li>
+            <li>Foster a collaborative and service-oriented team culture within the library.</li>
+          </ul>
+        </div>
+
+        <div class="resp-category">
+          <h3>📦 Resource and Operational Support</h3>
+          <ul>
+            <li>Maintain and organize the library collection.</li>
+            <li>Support circulation procedures, displays, reading promotion, and library communications.</li>
+            <li>Monitor supplies and resource needs.</li>
+            <li>Assist with administrative and operational tasks that support the effective running of the library.</li>
+          </ul>
+        </div>
+
+        <div class="resp-category">
+          <h3>🏫 General School Responsibilities</h3>
+          <ul>
+            <li>Fulfill supervision duties as assigned, including occasional evening or weekend events if needed.</li>
+            <li>Support schoolwide expectations related to child safeguarding, wellbeing, inclusion, and community engagement.</li>
+            <li>Adhere to ISK safeguarding policies and confidentiality standards.</li>
+            <li>Carry out other duties reasonably assigned by the administration.</li>
+          </ul>
+        </div>
+        <hr>
+      </div>
+
+      <!-- Education & Additional -->
+      <div class="section">
+        <h2>Education</h2>
+        <div><strong>Bachelor of Science in Information Science (ICT Option)</strong> – Meru University of Science and Technology (2020–2024)<br>Coursework: Records Management, Database Systems, Information Retrieval, ICT Integration</div>
+        <div style="margin-top:8px"><strong>KCSE</strong> – Nyarach Mixed Day Secondary School (2015–2019) | Grade C+</div>
+      </div>
+
+      <div class="section">
+        <h2>Additional Projects & Achievements</h2>
+        <ul>
+          <li>Led digitization of historical records and implemented role-based access, reducing retrieval time by 40%.</li>
+          <li>Developed secure voting platform (Lukenya Voting System) – reduced election time by 70% with real-time display.</li>
+          <li>Automated records workflows using Python & SQL scripts; trained 100+ users in information literacy.</li>
+        </ul>
+      </div>
+      <p style="font-size:0.75rem; color:#4b5563; border-top:1px solid #e2e8f0; padding-top:0.8rem;">Last updated: April 2026 — Portfolio includes detailed primary responsibilities for library & school operations.</p>
+    </div>
+  </div>
+  <div class="footer-note">
+    <i class="fas fa-database"></i> Celestino Otieno – Record Manager & Library Systems | Commitment to operational excellence and digital transformation
+  </div>
+</div>
+
+<script>
+  (function() {
+    // Helper: ensure styles are fully captured for docx/pdf. 
+    // For PDF we use html2pdf with explicit options; for DOCX we export the main container HTML with full style.
+    const portfolioElement = document.getElementById('portfolioContent');
+
+    // PDF download
+    document.getElementById('downloadPDFBtn').addEventListener('click', function() {
+      const element = portfolioElement;
+      const opt = {
+        margin:        [0.5, 0.5, 0.5, 0.5], // top, right, bottom, left in units
+        filename:     'Celestino_Otieno_Portfolio.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, letterRendering: true, useCORS: true, logging: false },
+        jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+      };
+      // Use html2pdf library
+      html2pdf().set(opt).from(element).save();
+    });
+
+    // DOCX generation using html-docx-js
+    document.getElementById('downloadDOCXBtn').addEventListener('click', function() {
+      // Clone the main container to avoid altering live view
+      const originalContainer = portfolioElement;
+      const cloneContainer = originalContainer.cloneNode(true);
+      
+      // Ensure all styles are applied inline? we keep the styles from head, but docx uses embedded styles.
+      // We'll create a full HTML document structure with styles.
+      const styles = document.querySelector('style').innerHTML;
+      const allStyles = document.querySelectorAll('style');
+      let styleContent = '';
+      allStyles.forEach(styleTag => {
+        styleContent += styleTag.innerHTML;
+      });
+      
+      // Also ensure FontAwesome is optionally loaded, but for docx we keep simple icons as text fallback. we don't rely on external fonts.
+      // Build full html string for docx conversion
+      const docHtml = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Celestino Otieno - Portfolio</title>
+          <style>
+            /* reset & replicate main styles */
+            * { margin:0; padding:0; box-sizing: border-box; }
+            body {
+              font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+              background: white;
+              padding: 30px 20px;
+              color: #1e2a3e;
+              line-height: 1.4;
+            }
+            .portfolio-container {
+              max-width: 1100px;
+              margin: 0 auto;
+              background: white;
+              border-radius: 0;
+              box-shadow: none;
+            }
+            .header {
+              background: #0b2b3f;
+              color: white;
+              padding: 1.5rem;
+            }
+            .name-title h1 { font-size: 1.8rem; }
+            .badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 0.2rem 1rem; border-radius: 30px; font-size:0.8rem;}
+            .contact-bar { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; background: rgba(0,0,0,0.2); padding: 0.6rem; border-radius: 40px; font-size:0.8rem;}
+            .content-grid { display: grid; grid-template-columns: 1fr 2fr; gap:0; }
+            .sidebar { background: #f9fafc; padding: 1rem; border-right: 1px solid #ddd; }
+            .main-content { padding: 1rem 1.5rem; }
+            .section { margin-bottom: 1.5rem; }
+            .section h2 { font-size: 1.2rem; border-left: 4px solid #1e6f5c; padding-left: 0.6rem; margin-bottom: 0.6rem; }
+            .skills-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+            .skill-tag { background: #e2e8f0; padding: 0.2rem 0.7rem; border-radius: 20px; font-size:0.7rem;}
+            ul { padding-left: 1.2rem; margin:0.3rem 0; }
+            li { margin: 0.2rem 0; }
+            .resp-category h3 { font-size:0.9rem; font-weight:700; margin-top:0.6rem; color:#0b4f6c;}
+            .btn-group { display: none; }
+            .footer-note { text-align:center; font-size:0.7rem; background:#f1f5f9; padding:0.5rem;}
+            hr { margin:0.5rem 0; }
+          </style>
+          ${styleContent ? `<style>${styleContent}</style>` : ''}
+        </head>
+        <body>
+          ${cloneContainer.outerHTML}
+        </body>
+        </html>
+      `;
+      
+      // Remove any interactive buttons inside the clone to avoid weird duplication (but they are hidden via btn-group display none anyway)
+      // Use html-docx-js library to convert to blob
+      if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
+        const convertedBlob = htmlDocx.asBlob(docHtml, { orientation: 'portrait' });
+        saveAs(convertedBlob, 'Celestino_Otieno_Portfolio.docx');
+      } else {
+        // fallback using Blob + ms save or alternative
+        console.warn("html-docx-js not fully loaded? fallback");
+        const blob = new Blob([docHtml], { type: 'application/msword' });
+        saveAs(blob, 'Celestino_Otieno_Portfolio.doc');
+      }
+    });
+  })();
+</script>
+<!-- Ensure FileSaver is available globally; html-docx-js is loaded from CDN -->
 </body>
 </html>
