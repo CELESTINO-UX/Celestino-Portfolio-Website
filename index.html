@@ -76,6 +76,9 @@
       margin-top: 1.5rem;
       flex-wrap: wrap;
     }
+    .toolbar-cv.hidden {
+      display: none !important;
+    }
     .btn-cv {
       background: white;
       color: #125f54;
@@ -224,11 +227,8 @@
       font-size: 0.85rem;
       font-weight: bold;
     }
-    /* hide download row when admin locked (hidden until auth) */
-    .toolbar-cv.hide-toolbar, .hide-on-lock {
-      display: none !important;
-    }
-    /* admin unlock button small floating? optional, but we will keep it clean */
+    
+    /* admin unlock button small floating */
     .admin-unlock-btn {
       position: fixed;
       bottom: 20px;
@@ -250,6 +250,10 @@
       opacity: 1;
       background: #125f54;
     }
+    .admin-unlock-btn.hidden {
+      display: none;
+    }
+    
     /* clean typography times new roman */
     .cv-section-title {
       font-size: 1.6rem;
@@ -349,7 +353,7 @@
   </style>
 </head>
 <body>
-<!-- Floating admin unlock button (only appears when locked, but hidden when authenticated) -->
+<!-- Floating admin unlock button (only appears when locked) -->
 <button class="admin-unlock-btn" id="adminUnlockBtn"><i class="fas fa-lock"></i> Admin Access</button>
 
 <div class="cv-master" id="cvMasterContainer">
@@ -364,7 +368,7 @@
       <span><i class="fab fa-linkedin"></i> linkedin.com/in/celestino-otieno</span>
       <span><i class="fab fa-github"></i> github.com/CELESTINO-UX</span>
     </div>
-    <div class="toolbar-cv" id="downloadToolbar">
+    <div class="toolbar-cv hidden" id="downloadToolbar">
       <button class="btn-cv" id="downloadPdfCv"><i class="fas fa-file-pdf"></i> Download PDF (Global CV)</button>
       <button class="btn-cv" id="downloadDocxCv"><i class="fas fa-file-word"></i> Download DOCX (Universal)</button>
     </div>
@@ -561,29 +565,27 @@
 
 <script>
   // ======================= ADMIN PANEL WITH PASSWORD 19971997 =======================
-  // This code ensures that download buttons and admin-sensitive controls are hidden until correct password is entered.
-  // Password is '19971997' (exact numeric string). After authentication, toolbar & full access is revealed.
-  
   let isAdminAuthenticated = false;
   
-  // Helper to update UI based on auth state: show/hide download toolbar and nav or any sensitive controls.
+  // Get elements
+  const toolbar = document.getElementById('downloadToolbar');
+  const unlockBtn = document.getElementById('adminUnlockBtn');
+  
+  // Helper to update UI based on auth state
   function applyAdminVisibility() {
-    const toolbar = document.getElementById('downloadToolbar');
-    const unlockBtn = document.getElementById('adminUnlockBtn');
     if (isAdminAuthenticated) {
-      if (toolbar) toolbar.classList.remove('hide-toolbar');
-      if (unlockBtn) unlockBtn.style.display = 'none';   // hide unlock button after login
+      if (toolbar) toolbar.classList.remove('hidden');
+      if (unlockBtn) unlockBtn.classList.add('hidden');
     } else {
-      if (toolbar) toolbar.classList.add('hide-toolbar');
-      if (unlockBtn) unlockBtn.style.display = 'flex';
+      if (toolbar) toolbar.classList.add('hidden');
+      if (unlockBtn) unlockBtn.classList.remove('hidden');
     }
   }
   
   // Function to show password prompt overlay
   function showAdminModal() {
-    // if already authenticated, just return (do nothing)
     if (isAdminAuthenticated) return;
-    // remove existing overlay if any
+    
     const existingOverlay = document.querySelector('.admin-overlay');
     if (existingOverlay) existingOverlay.remove();
     
@@ -593,7 +595,7 @@
       <div class="admin-modal">
         <h3><i class="fas fa-shield-alt"></i> Admin Panel</h3>
         <p>Enter password to access download functions & admin controls.</p>
-        <input type="password" id="adminPasswordInput" placeholder="Password" autocomplete="off">
+        <input type="password" id="adminPasswordInput" placeholder="Enter Password" autocomplete="off">
         <button class="admin-btn" id="adminSubmitBtn"><i class="fas fa-key"></i> Verify Access</button>
         <div id="adminErrorMsg" class="error-msg"></div>
       </div>
@@ -610,9 +612,10 @@
         isAdminAuthenticated = true;
         applyAdminVisibility();
         overlay.remove();
-        // optional success feedback
+        
+        // Show success message
         const msgDiv = document.createElement('div');
-        msgDiv.textContent = '✅ Admin access granted. Downloads and all features are now enabled.';
+        msgDiv.textContent = '✅ Admin access granted. Downloads are now enabled.';
         msgDiv.style.position = 'fixed';
         msgDiv.style.bottom = '80px';
         msgDiv.style.right = '20px';
@@ -620,9 +623,10 @@
         msgDiv.style.color = 'white';
         msgDiv.style.padding = '10px 18px';
         msgDiv.style.borderRadius = '40px';
-        msgDiv.style.fontSize = '0.8rem';
+        msgDiv.style.fontSize = '0.85rem';
         msgDiv.style.zIndex = '1001';
         msgDiv.style.fontFamily = 'monospace';
+        msgDiv.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
         document.body.appendChild(msgDiv);
         setTimeout(() => msgDiv.remove(), 3000);
       } else {
@@ -632,6 +636,7 @@
         inputField.focus();
       }
     }
+    
     submitBtn.addEventListener('click', verifyAndClose);
     inputField.addEventListener('keypress', (e) => {
       if(e.key === 'Enter') verifyAndClose();
@@ -640,27 +645,14 @@
   }
   
   // Attach event to floating unlock button
-  const unlockBtn = document.getElementById('adminUnlockBtn');
   if(unlockBtn) {
     unlockBtn.addEventListener('click', showAdminModal);
   }
   
-  // Initially, ensure download toolbar is hidden (since not authenticated)
-  // Also ensure any other attempts to export before auth won't work by disabling button handlers?
-  // We will guard actual download actions with authentication check as well for extra security.
-  // However the UI hides them, but also we add a secondary guard inside download handlers.
-  function isAllowed() {
-    if(!isAdminAuthenticated) {
-      alert("🔒 Admin access required. Please click 'Admin Access' button and enter password (19971997) to enable downloads.");
-      showAdminModal(); // show modal for convenience
-      return false;
-    }
-    return true;
-  }
-  
-  // Tab navigation (unchanged but works fully)
+  // Tab navigation
   const navButtons = document.querySelectorAll('.nav-cv-item');
   const cvPages = document.querySelectorAll('.cv-page');
+  
   function switchCVPage(pageId) {
     cvPages.forEach(page => page.classList.remove('active-cv-page'));
     const targetPage = document.getElementById(pageId);
@@ -671,6 +663,7 @@
       else btn.classList.remove('active');
     });
   }
+  
   navButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const pageId = btn.getAttribute('data-cvpage');
@@ -679,7 +672,7 @@
     });
   });
   
-  // Helper: Get full CV HTML for export (global format, removes navigation/toolbar for clean export)
+  // Helper: Get full CV HTML for export
   function getFullCVHTML() {
     const cloneMaster = document.getElementById('cvMasterContainer').cloneNode(true);
     const navClone = cloneMaster.querySelector('.cv-nav');
@@ -697,8 +690,14 @@
   // PDF Export with admin guard
   const pdfBtn = document.getElementById('downloadPdfCv');
   if(pdfBtn) {
-    pdfBtn.addEventListener('click', () => {
-      if(!isAllowed()) return;
+    pdfBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if(!isAdminAuthenticated) {
+        alert("🔒 Admin access required. Please click 'Admin Access' button and enter password (19971997) to enable downloads.");
+        showAdminModal();
+        return;
+      }
+      
       const fullHtml = getFullCVHTML();
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = fullHtml;
@@ -706,6 +705,7 @@
       tempDiv.style.padding = '20px';
       tempDiv.style.fontFamily = "'Times New Roman', Times, serif";
       document.body.appendChild(tempDiv);
+      
       const opt = {
         margin: [0.5, 0.5, 0.5, 0.5],
         filename: 'Celestino_Otieno_Global_CV.pdf',
@@ -713,10 +713,13 @@
         html2canvas: { scale: 2, letterRendering: true },
         jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
       };
+      
       html2pdf().set(opt).from(tempDiv).save().then(() => {
         if(document.body.contains(tempDiv)) document.body.removeChild(tempDiv);
-      }).catch(() => {
+      }).catch((error) => {
+        console.error('PDF Error:', error);
         if(document.body.contains(tempDiv)) document.body.removeChild(tempDiv);
+        alert('Error generating PDF. Please try again.');
       });
     });
   }
@@ -724,11 +727,18 @@
   // DOCX Export with admin guard
   const docxBtn = document.getElementById('downloadDocxCv');
   if(docxBtn) {
-    docxBtn.addEventListener('click', () => {
-      if(!isAllowed()) return;
+    docxBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if(!isAdminAuthenticated) {
+        alert("🔒 Admin access required. Please click 'Admin Access' button and enter password (19971997) to enable downloads.");
+        showAdminModal();
+        return;
+      }
+      
       const fullHtmlContent = getFullCVHTML();
       const styleElem = document.querySelector('style');
       const styles = styleElem ? styleElem.innerHTML : '';
+      
       const fullDoc = `<!DOCTYPE html>
       <html>
       <head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title>
@@ -742,18 +752,35 @@
       </head>
       <body>${fullHtmlContent}</body>
       </html>`;
-      if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
-        const docxBlob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait' });
-        saveAs(docxBlob, 'Celestino_Otieno_Global_CV.docx');
-      } else {
-        const fallback = new Blob([fullDoc], { type: 'application/msword' });
-        saveAs(fallback, 'Celestino_Otieno_CV.doc');
+      
+      try {
+        if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
+          const docxBlob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait' });
+          saveAs(docxBlob, 'Celestino_Otieno_Global_CV.docx');
+        } else {
+          const fallback = new Blob([fullDoc], { type: 'application/msword' });
+          saveAs(fallback, 'Celestino_Otieno_CV.doc');
+        }
+      } catch(error) {
+        console.error('DOCX Error:', error);
+        alert('Error generating DOCX. Please try again.');
       }
     });
   }
   
-  // initially apply hidden toolbar state (locked by default)
+  // Initially apply hidden state (locked by default)
   applyAdminVisibility();
+  
+  // Check if libraries loaded properly
+  window.addEventListener('load', function() {
+    console.log('CV page loaded. Admin password: 19971997');
+    if (typeof html2pdf === 'undefined') {
+      console.warn('html2pdf library not loaded properly');
+    }
+    if (typeof htmlDocx === 'undefined') {
+      console.warn('html-docx-js library not loaded properly');
+    }
+  });
 </script>
 </body>
 </html>
