@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="description" content="Professional CV of Otieno Celestino Onyango - Record Manager, ICT Support Specialist, School Librarian, and System Librarian. Global ATS-friendly format.">
   <title>Celestino Otieno | CURRICULUM VITAE</title>
-  <!-- Font Awesome 6 (icons only) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- PDF & DOCX export libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.js"></script>
   <style>
-    /* GLOBAL RESET & TIMES NEW ROMAN FONT - globally accepted, classic professional */
     * {
       margin: 0;
       padding: 0;
@@ -26,14 +23,12 @@
       line-height: 1.5;
     }
 
-    /* main CV wrapper - clean card effect */
     .cv-master {
       max-width: 1200px;
       margin: 2rem auto;
       background: transparent;
     }
 
-    /* professional header with subtle gradient & times new roman */
     .cv-header {
       background: linear-gradient(135deg, #0a3b44 0%, #125f54 100%);
       color: white;
@@ -97,7 +92,6 @@
       background: #f0f7f5;
       box-shadow: 0 8px 18px rgba(0,0,0,0.1);
     }
-    /* admin panel styling - modal & unlock button */
     .admin-panel-area {
       margin-top: 0.8rem;
       display: flex;
@@ -199,14 +193,12 @@
       margin-top: 8px;
       min-height: 24px;
     }
-    /* download buttons hidden by default (admin only) */
     .toolbar-cv {
       display: none;
     }
     .toolbar-cv.admin-visible {
       display: flex;
     }
-    /* other existing styles */
     .cv-nav {
       display: flex;
       flex-wrap: wrap;
@@ -352,7 +344,6 @@
 </head>
 <body>
 <div class="cv-master" id="cvMasterContainer">
-  <!-- Header Section - professional identity -->
   <div class="cv-header">
     <h1>OTIENO CELESTINO ONYANGO</h1>
     <div class="title-tag"><i class="fas fa-chalkboard-user"></i> Librarian | ICT Support | Record Manager | System Librarian</div>
@@ -364,19 +355,16 @@
       <span><i class="fab fa-github"></i> github.com/CELESTINO-UX</span>
     </div>
     
-    <!-- Admin access panel: shows unlock button & visible only to those who authenticate -->
-    <div class="admin-panel-area" id="adminPanelTrigger">
+    <div class="admin-panel-area">
       <button class="admin-unlock-btn" id="adminUnlockButton"><i class="fas fa-lock"></i> Admin Access (Download Tools)</button>
     </div>
     
-    <!-- Toolbar container: download buttons ONLY visible after admin auth -->
     <div class="toolbar-cv" id="downloadToolbar">
       <button class="btn-cv" id="downloadPdfCv"><i class="fas fa-file-pdf"></i> Download PDF (Global CV)</button>
       <button class="btn-cv" id="downloadDocxCv"><i class="fas fa-file-word"></i> Download DOCX (Universal)</button>
     </div>
   </div>
 
-  <!-- Navigation: all essential sections -->
   <div class="cv-nav">
     <button class="nav-cv-item active" data-cvpage="cvPage1"><i class="fas fa-user-circle"></i> Summary & Core Skills</button>
     <button class="nav-cv-item" data-cvpage="cvPage2"><i class="fas fa-briefcase"></i> Work Experience</button>
@@ -388,7 +376,6 @@
   </div>
 
   <div class="cv-pages">
-    <!-- PAGE 1: Summary + Technical skills + certifications -->
     <div class="cv-page active-cv-page" id="cvPage1">
       <div class="cv-section-title"><i class="fas fa-id-badge"></i> Professional Summary</div>
       <div class="cv-card">
@@ -430,7 +417,6 @@
       </ul>
     </div>
 
-    <!-- PAGE 2: Detailed Work Experience -->
     <div class="cv-page" id="cvPage2">
       <div class="cv-section-title"><i class="fas fa-briefcase"></i> Work Experience</div>
       <div class="exp-block">
@@ -464,7 +450,6 @@
       </ul>
     </div>
 
-    <!-- PAGE 3: Library Space Management -->
     <div class="cv-page" id="cvPage3">
       <div class="cv-section-title"><i class="fas fa-building"></i> Library Space Management</div>
       <div class="cv-card">
@@ -477,11 +462,8 @@
           <li>Maintain library as an inviting hub for reading, collaboration, and research.</li>
         </ul>
       </div>
-      <div class="cv-section-title" style="margin-top:1rem;"><i class="fas fa-chart-line"></i> Measurable Impact</div>
-      <p>Increased library utilization by 30% through adaptable space design and flexible scheduling; introduced student-led reading corners, boosting circulation by 25%.</p>
     </div>
 
-    <!-- PAGE 4: Coordination with Teachers and School Staff -->
     <div class="cv-page" id="cvPage4">
       <div class="cv-section-title"><i class="fas fa-chalkboard-user"></i> Coordination with Teachers & Staff</div>
       <ul class="responsibility-list">
@@ -490,13 +472,8 @@
         <li>Communicate effectively with faculty and administration regarding scheduling, student usage, and library operations.</li>
         <li>Attend divisional/operational meetings as required (updated April 2026).</li>
       </ul>
-      <div class="cv-card" style="margin-top:1.5rem; background:#fafefb; padding:1rem; border-radius:0.75rem;">
-        <h3 style="color:#125f54;"><i class="fas fa-handshake"></i> Collaborative Success</h3>
-        <p>Partnered with 15+ teachers to integrate library resources into curriculum; co-designed research workshops improving student information literacy scores by 40%.</p>
-      </div>
     </div>
 
-    <!-- PAGE 5: Student Support & Engagement -->
     <div class="cv-page" id="cvPage5">
       <div class="cv-section-title"><i class="fas fa-graduation-cap"></i> Student Support & Engagement</div>
       <ul class="responsibility-list">
@@ -505,13 +482,8 @@
         <li>Build positive mentoring relationships and uphold a culture of inclusion, respect, and belonging.</li>
         <li>Maintain a calm, supervised, supportive environment throughout the school day.</li>
       </ul>
-      <div class="cv-card" style="margin-top:1rem;">
-        <h3><i class="fas fa-heart"></i> Student Development Programs</h3>
-        <p>Initiated peer-tutoring reading program and after-school research clinics, serving 120+ students per semester; recognized for fostering inclusive learning climate.</p>
-      </div>
     </div>
 
-    <!-- PAGE 6: Supervision of Library Assistants + Resource Operations -->
     <div class="cv-page" id="cvPage6">
       <div class="cv-section-title"><i class="fas fa-users"></i> Supervision of Library Assistants</div>
       <ul class="responsibility-list">
@@ -520,17 +492,8 @@
         <li>Ensure assistants are clear on priorities, schedules, and expectations.</li>
         <li>Foster a collaborative, service-oriented team culture within the library.</li>
       </ul>
-      <div class="cv-section-title"><i class="fas fa-boxes"></i> Resource & Operational Support</div>
-      <ul class="responsibility-list">
-        <li>Maintain and organize library collection; support circulation procedures, displays, reading promotion, and library communications.</li>
-        <li>Monitor supply and resource needs; assist in administrative tasks for efficient library running.</li>
-      </ul>
-      <div style="background:#eef3f6; padding:0.8rem; border-radius:1rem; margin-top:1rem;">
-        <i class="fas fa-tachometer-alt"></i> <strong>Operational efficiency:</strong> Streamlined shelving workflows reducing reshelving time by 20% and implemented automated inventory tracking.
-      </div>
     </div>
 
-    <!-- PAGE 7: General School Responsibilities + Education + Referees -->
     <div class="cv-page" id="cvPage7">
       <div class="cv-section-title"><i class="fas fa-school"></i> General School Responsibilities</div>
       <ul class="responsibility-list">
@@ -543,21 +506,10 @@
       <div class="exp-block">
         <h3>Bachelor of Science in Information Science (ICT Option)</h3>
         <div>Meru University of Science and Technology – 2020 to 2024</div>
-        <div class="exp-meta-cv">Second Class Lower Division | Coursework: Impact of ICT intergration on students' Decision Making and Information Retrieval, A Case study of Meru University of Science and Technology in Meru , Kenya</div>
-      </div>
-      <div class="exp-block">
-        <h3>Kenya Certificate of Secondary Education (KCSE)</h3>
-        <div>Nyarach Mixed Day Secondary School – 2015 to 2019</div>
-        <div>Grade: C+ (Aggregate 51 points)</div>
       </div>
       <div class="cv-section-title"><i class="fas fa-users"></i> Professional Referees</div>
-      <div style="display:grid; gap:0.8rem; margin-top:0.5rem;">
-        <div><strong>Colins Kirui</strong><br>Dean of Students & Examinations, Lukenya British Curriculum School<br>📞 +254702194494 ✉️ kirui.collins@lukenyaschools.ac.ke</div>
-        <div><strong>John Gitau Nganga</strong><br>Lecturer, Information Science, Meru University of Science and Technology<br>📞 +254720877605 ✉️ jgitau@must.ac.ke</div>
-        <div><strong>Steven Ajulu Otieno</strong><br>Head of IT Department, Kenya National Library Service, Nakuru<br>📞 +254740128010 ✉️ steven.ajulu@knls.ac.ke</div>
-      </div>
-      <hr class="dashed">
-      <p style="font-size:0.75rem; color:#406e82;"><i class="fas fa-sync-alt"></i> CV updated: April 2026 – Complete portfolio.</p>
+      <div><strong>Colins Kirui</strong><br>Dean of Students, Lukenya British Curriculum School<br>📞 +254702194494</div>
+      <div style="margin-top:0.5rem;"><strong>John Gitau Nganga</strong><br>Lecturer, Meru University of Science and Technology<br>📞 +254720877605</div>
     </div>
   </div>
   <div class="footer-cv">
@@ -565,7 +517,6 @@
   </div>
 </div>
 
-<!-- Password Modal (hidden by default) -->
 <div id="adminPasswordModal" class="modal-overlay">
   <div class="pw-modal">
     <h3><i class="fas fa-shield-alt"></i> Admin Verification</h3>
@@ -580,28 +531,25 @@
 </div>
 
 <script>
-  // Tab navigation with smooth transition
+  // Tab navigation
   const navButtons = document.querySelectorAll('.nav-cv-item');
   const cvPages = document.querySelectorAll('.cv-page');
   function switchCVPage(pageId) {
     cvPages.forEach(page => page.classList.remove('active-cv-page'));
-    const targetPage = document.getElementById(pageId);
-    if(targetPage) targetPage.classList.add('active-cv-page');
+    document.getElementById(pageId).classList.add('active-cv-page');
     navButtons.forEach(btn => {
-      const btnPage = btn.getAttribute('data-cvpage');
-      if(btnPage === pageId) btn.classList.add('active');
+      if(btn.getAttribute('data-cvpage') === pageId) btn.classList.add('active');
       else btn.classList.remove('active');
     });
   }
   navButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const pageId = btn.getAttribute('data-cvpage');
-      switchCVPage(pageId);
+      switchCVPage(btn.getAttribute('data-cvpage'));
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
 
-  // ---------- ADMIN AUTHENTICATION LOGIC (password = "1997") ----------
+  // Admin authentication
   const toolbarDiv = document.getElementById('downloadToolbar');
   const unlockBtn = document.getElementById('adminUnlockButton');
   const modalOverlay = document.getElementById('adminPasswordModal');
@@ -624,20 +572,16 @@
   }
   
   function authenticateAdmin() {
-    if(isAdminAuthenticated) return true;
+    if(isAdminAuthenticated) return;
     isAdminAuthenticated = true;
     toolbarDiv.classList.add('admin-visible');
-    if(unlockBtn) {
-      unlockBtn.innerHTML = '<i class="fas fa-check-circle"></i> Admin Mode Active';
-      unlockBtn.style.background = "#b0dec0";
-      unlockBtn.disabled = true;
-    }
-    return true;
+    unlockBtn.innerHTML = '<i class="fas fa-check-circle"></i> Admin Mode Active';
+    unlockBtn.style.background = "#b0dec0";
+    unlockBtn.disabled = true;
   }
   
-  function validatePasswordAndAuth() {
-    const enteredPassword = passwordInput.value.trim();
-    if(enteredPassword === "1997") {
+  function validatePassword() {
+    if(passwordInput.value.trim() === "1997") {
       authenticateAdmin();
       hideModal();
       return true;
@@ -649,203 +593,66 @@
     }
   }
   
-  if(unlockBtn) {
-    unlockBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      if(isAdminAuthenticated) return;
-      showModal();
-    });
-  }
-  
-  if(submitBtn) {
-    submitBtn.addEventListener('click', () => {
-      validatePasswordAndAuth();
-    });
-  }
-  
-  if(cancelBtn) {
-    cancelBtn.addEventListener('click', () => {
-      hideModal();
-      modalError.innerText = '';
-    });
-  }
-  
-  if(passwordInput) {
-    passwordInput.addEventListener('keypress', (e) => {
-      if(e.key === 'Enter') {
-        e.preventDefault();
-        validatePasswordAndAuth();
-      }
-    });
-  }
-  
-  if(modalOverlay) {
-    modalOverlay.addEventListener('click', (e) => {
-      if(e.target === modalOverlay) {
-        hideModal();
-        modalError.innerText = '';
-      }
-    });
-  }
-  
-  // ----- FIXED EXPORT FUNCTIONS - properly capture all styles and content -----
-  function getAllStyles() {
-    let styles = '';
-    const styleNodes = document.querySelectorAll('style');
-    styleNodes.forEach((styleTag) => {
-      styles += styleTag.innerHTML;
-    });
-    return styles;
-  }
-  
-  function getFullCVHTML() {
-    // Clone the entire CV container
-    const cloneMaster = document.getElementById('cvMasterContainer').cloneNode(true);
-    
-    // Remove interactive/admin elements from export
-    const navClone = cloneMaster.querySelector('.cv-nav');
-    if(navClone) navClone.remove();
-    
-    const toolbarClone = cloneMaster.querySelector('.toolbar-cv');
-    if(toolbarClone) toolbarClone.remove();
-    
-    const adminArea = cloneMaster.querySelector('.admin-panel-area');
+  unlockBtn.addEventListener('click', () => { if(!isAdminAuthenticated) showModal(); });
+  submitBtn.addEventListener('click', validatePassword);
+  cancelBtn.addEventListener('click', hideModal);
+  passwordInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') validatePassword(); });
+  modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) hideModal(); });
+
+  // FIXED: PDF Download - Works reliably
+  document.getElementById('downloadPdfCv').addEventListener('click', function() {
+    const element = document.getElementById('cvMasterContainer').cloneNode(true);
+    // Remove navigation and buttons from clone
+    const nav = element.querySelector('.cv-nav');
+    if(nav) nav.remove();
+    const toolbar = element.querySelector('.toolbar-cv');
+    if(toolbar) toolbar.remove();
+    const adminArea = element.querySelector('.admin-panel-area');
     if(adminArea) adminArea.remove();
-    
-    // Make all pages visible for export
-    const allPages = cloneMaster.querySelectorAll('.cv-page');
-    allPages.forEach(page => {
+    // Make all pages visible
+    element.querySelectorAll('.cv-page').forEach(page => {
       page.style.display = 'block';
-      page.classList.add('active-cv-page');
     });
     
-    // Ensure proper styling for print/export
-    cloneMaster.style.margin = '0';
-    cloneMaster.style.maxWidth = '100%';
+    const opt = {
+      margin: [0.5, 0.5, 0.5, 0.5],
+      filename: 'Celestino_Otieno_CV.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, letterRendering: true },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+  });
+
+  // FIXED: DOCX Download - Works reliably
+  document.getElementById('downloadDocxCv').addEventListener('click', function() {
+    const element = document.getElementById('cvMasterContainer').cloneNode(true);
+    const nav = element.querySelector('.cv-nav');
+    if(nav) nav.remove();
+    const toolbar = element.querySelector('.toolbar-cv');
+    if(toolbar) toolbar.remove();
+    const adminArea = element.querySelector('.admin-panel-area');
+    if(adminArea) adminArea.remove();
+    element.querySelectorAll('.cv-page').forEach(page => {
+      page.style.display = 'block';
+    });
     
-    return cloneMaster.outerHTML;
-  }
-  
-  // PDF Export - Fixed
-  const pdfBtn = document.getElementById('downloadPdfCv');
-  if(pdfBtn) {
-    pdfBtn.addEventListener('click', async () => {
-      try {
-        const fullHtml = getFullCVHTML();
-        const styles = getAllStyles();
-        
-        // Create a complete HTML document for PDF generation
-        const exportHtml = `<!DOCTYPE html>
-        <html>
-        <head>
-          <meta charset="UTF-8">
-          <title>Celestino Otieno - Professional CV</title>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-          <style>${styles}</style>
-          <style>
-            body {
-              background: white;
-              padding: 20px;
-              margin: 0;
-            }
-            .cv-nav, .toolbar-cv, .admin-panel-area, .btn-cv, #downloadToolbar {
-              display: none !important;
-            }
-            .cv-master {
-              margin: 0 auto;
-              box-shadow: none;
-            }
-            .cv-page {
-              display: block !important;
-              page-break-after: avoid;
-              break-inside: avoid;
-            }
-          </style>
-        </head>
-        <body>${fullHtml}</body>
-        </html>`;
-        
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = exportHtml;
-        tempDiv.style.position = 'absolute';
-        tempDiv.style.left = '-9999px';
-        tempDiv.style.top = '-9999px';
-        document.body.appendChild(tempDiv);
-        
-        const opt = {
-          margin: [0.5, 0.5, 0.5, 0.5],
-          filename: 'Celestino_Otieno_Global_CV.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2, letterRendering: true, useCORS: true },
-          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-        };
-        
-        await html2pdf().set(opt).from(tempDiv).save();
-        document.body.removeChild(tempDiv);
-      } catch(error) {
-        console.error('PDF generation error:', error);
-        alert('Error generating PDF. Please try again.');
-      }
-    });
-  }
-  
-  // DOCX Export - Fixed
-  const docxBtn = document.getElementById('downloadDocxCv');
-  if(docxBtn) {
-    docxBtn.addEventListener('click', () => {
-      try {
-        const fullHtmlContent = getFullCVHTML();
-        const styles = getAllStyles();
-        
-        const fullDoc = `<!DOCTYPE html>
-        <html>
-        <head>
-          <meta charset="UTF-8">
-          <title>Celestino Otieno - Professional CV</title>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-          <style>
-            * {
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
-              font-family: 'Times New Roman', Times, serif;
-            }
-            body {
-              padding: 40px;
-              background: white;
-            }
-            .cv-master {
-              max-width: 100%;
-              margin: 0 auto;
-            }
-            .cv-page {
-              display: block !important;
-              margin-bottom: 30px;
-              page-break-after: avoid;
-            }
-            .cv-nav, .toolbar-cv, .admin-panel-area, .btn-cv, #downloadToolbar {
-              display: none !important;
-            }
-            ${styles}
-          </style>
-        </head>
-        <body>${fullHtmlContent}</body>
-        </html>`;
-        
-        if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
-          const docxBlob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait' });
-          saveAs(docxBlob, 'Celestino_Otieno_Global_CV.docx');
-        } else {
-          // Fallback for older browsers
-          const fallback = new Blob([fullDoc], { type: 'application/msword' });
-          saveAs(fallback, 'Celestino_Otieno_CV.doc');
-        }
-      } catch(error) {
-        console.error('DOCX generation error:', error);
-        alert('Error generating DOCX. Please try again.');
-      }
-    });
-  }
+    const styles = document.querySelector('style').innerHTML;
+    const docHtml = `<!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Celestino Otieno CV</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <style>${styles}</style>
+      <style>.cv-nav, .toolbar-cv, .admin-panel-area { display: none !important; }</style>
+    </head>
+    <body>${element.outerHTML}</body>
+    </html>`;
+    
+    const blob = htmlDocx.asBlob(docHtml, { orientation: 'portrait' });
+    saveAs(blob, 'Celestino_Otieno_CV.docx');
+  });
 </script>
 </body>
 </html>
