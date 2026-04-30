@@ -97,8 +97,111 @@
       background: #f0f7f5;
       box-shadow: 0 8px 18px rgba(0,0,0,0.1);
     }
-
-    /* navigation tabs - clean serif style */
+    /* admin panel styling - modal & unlock button */
+    .admin-panel-area {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .admin-unlock-btn {
+      background: rgba(255,215,120,0.9);
+      color: #2c5a2e;
+      border: none;
+      border-radius: 40px;
+      padding: 0.4rem 1.2rem;
+      font-weight: bold;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: 'Times New Roman', Times, serif;
+    }
+    .admin-unlock-btn:hover {
+      background: #ffcd6b;
+      transform: scale(0.98);
+    }
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.2s;
+    }
+    .modal-overlay.active-modal {
+      visibility: visible;
+      opacity: 1;
+    }
+    .pw-modal {
+      background: white;
+      border-radius: 28px;
+      max-width: 380px;
+      width: 90%;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+      font-family: 'Times New Roman', Times, serif;
+    }
+    .pw-modal h3 {
+      font-size: 1.6rem;
+      color: #125f54;
+      margin-bottom: 0.5rem;
+    }
+    .pw-modal p {
+      margin-bottom: 1.2rem;
+      color: #2c5f6e;
+    }
+    .pw-modal input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid #bdd3de;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+      outline: none;
+      font-family: monospace;
+      text-align: center;
+    }
+    .pw-modal button {
+      background: #125f54;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 40px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .pw-modal button.cancel-btn {
+      background: #9aaeb9;
+    }
+    .error-msg {
+      color: #c7254e;
+      font-size: 0.75rem;
+      margin-top: 8px;
+      min-height: 24px;
+    }
+    /* download buttons hidden by default (admin only) */
+    .toolbar-cv {
+      display: none; /* hidden until admin authenticated */
+    }
+    .toolbar-cv.admin-visible {
+      display: flex;
+    }
+    /* other existing styles */
     .cv-nav {
       display: flex;
       flex-wrap: wrap;
@@ -131,8 +234,6 @@
     .nav-cv-item:hover:not(.active) {
       background: #e9f0f5;
     }
-
-    /* pages container */
     .cv-pages {
       background: white;
       border-radius: 0 0 0.8rem 0.8rem;
@@ -151,8 +252,6 @@
       from { opacity: 0; transform: translateY(5px);}
       to { opacity: 1; transform: translateY(0);}
     }
-
-    /* clean typography times new roman */
     .cv-section-title {
       font-size: 1.6rem;
       font-weight: 700;
@@ -229,14 +328,13 @@
       .nav-cv-item { padding: 0.5rem 0.9rem; font-size: 0.7rem; }
       .cv-header h1 { font-size: 1.8rem; }
     }
-    /* print & export friendly */
     @media print {
       body {
         background: white;
         padding: 0;
         margin: 0;
       }
-      .toolbar-cv, .cv-nav {
+      .toolbar-cv, .cv-nav, .admin-panel-area {
         display: none;
       }
       .cv-page {
@@ -255,7 +353,7 @@
   <!-- Header Section - professional identity -->
   <div class="cv-header">
     <h1>OTIENO CELESTINO ONYANGO</h1>
-    <div class="title-tag"><i class="fas fa-chalkboard-user"></i> Librarian | ICT Support |Record Manager  | System Librarian</div>
+    <div class="title-tag"><i class="fas fa-chalkboard-user"></i> Librarian | ICT Support | Record Manager | System Librarian</div>
     <div class="contact-bar-cv">
       <span><i class="fas fa-phone-alt"></i> +254714019736</span>
       <span><i class="fas fa-envelope"></i> onyangocelestino@gmail.com</span>
@@ -263,13 +361,20 @@
       <span><i class="fab fa-linkedin"></i> linkedin.com/in/celestino-otieno</span>
       <span><i class="fab fa-github"></i> github.com/CELESTINO-UX</span>
     </div>
-    <div class="toolbar-cv">
+    
+    <!-- Admin access panel: shows unlock button & visible only to those who authenticate -->
+    <div class="admin-panel-area" id="adminPanelTrigger">
+      <button class="admin-unlock-btn" id="adminUnlockButton"><i class="fas fa-lock"></i> Admin Access (Download Tools)</button>
+    </div>
+    
+    <!-- Toolbar container: download buttons ONLY visible after admin auth -->
+    <div class="toolbar-cv" id="downloadToolbar">
       <button class="btn-cv" id="downloadPdfCv"><i class="fas fa-file-pdf"></i> Download PDF (Global CV)</button>
       <button class="btn-cv" id="downloadDocxCv"><i class="fas fa-file-word"></i> Download DOCX (Universal)</button>
     </div>
   </div>
 
-  <!-- Navigation: all essential sections, neat organisation -->
+  <!-- Navigation: all essential sections -->
   <div class="cv-nav">
     <button class="nav-cv-item active" data-cvpage="cvPage1"><i class="fas fa-user-circle"></i> Summary & Core Skills</button>
     <button class="nav-cv-item" data-cvpage="cvPage2"><i class="fas fa-briefcase"></i> Work Experience</button>
@@ -458,6 +563,20 @@
   </div>
 </div>
 
+<!-- Password Modal (hidden by default) -->
+<div id="adminPasswordModal" class="modal-overlay">
+  <div class="pw-modal">
+    <h3><i class="fas fa-shield-alt"></i> Admin Verification</h3>
+    <p>Enter password to enable download tools (PDF/DOCX).</p>
+    <input type="password" id="adminPasswordInput" placeholder="Password" autocomplete="off">
+    <div class="error-msg" id="modalErrorMsg"></div>
+    <div>
+      <button id="modalSubmitBtn">Confirm</button>
+      <button id="modalCancelBtn" class="cancel-btn">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <script>
   // Tab navigation with smooth transition
   const navButtons = document.querySelectorAll('.nav-cv-item');
@@ -480,13 +599,110 @@
     });
   });
 
-  // Helper: Get full CV HTML for export (global format, retains Times New Roman, no navigation/toolbar)
+  // ---------- ADMIN AUTHENTICATION LOGIC (password = "1997") ----------
+  const toolbarDiv = document.getElementById('downloadToolbar');
+  const unlockBtn = document.getElementById('adminUnlockButton');
+  const modalOverlay = document.getElementById('adminPasswordModal');
+  const passwordInput = document.getElementById('adminPasswordInput');
+  const modalError = document.getElementById('modalErrorMsg');
+  const submitBtn = document.getElementById('modalSubmitBtn');
+  const cancelBtn = document.getElementById('modalCancelBtn');
+  
+  let isAdminAuthenticated = false;
+  
+  // Function to show modal
+  function showModal() {
+    modalOverlay.classList.add('active-modal');
+    passwordInput.value = '';
+    modalError.innerText = '';
+    passwordInput.focus();
+  }
+  
+  function hideModal() {
+    modalOverlay.classList.remove('active-modal');
+  }
+  
+  // Admin authentication success: display download buttons and store state optionally (session)
+  function authenticateAdmin() {
+    if(isAdminAuthenticated) return true;
+    isAdminAuthenticated = true;
+    toolbarDiv.classList.add('admin-visible');
+    // Optionally update unlock button text/icon
+    if(unlockBtn) {
+      unlockBtn.innerHTML = '<i class="fas fa-check-circle"></i> Admin Mode Active';
+      unlockBtn.style.background = "#b0dec0";
+      unlockBtn.style.cursor = "default";
+      unlockBtn.disabled = true;
+    }
+    return true;
+  }
+  
+  // Validate password
+  function validatePasswordAndAuth() {
+    const enteredPassword = passwordInput.value.trim();
+    if(enteredPassword === "1997") {
+      authenticateAdmin();
+      hideModal();
+      return true;
+    } else {
+      modalError.innerText = "Incorrect password. Access denied.";
+      passwordInput.value = "";
+      passwordInput.focus();
+      return false;
+    }
+  }
+  
+  // Event listeners for admin panel
+  if(unlockBtn) {
+    unlockBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if(isAdminAuthenticated) return;
+      showModal();
+    });
+  }
+  
+  if(submitBtn) {
+    submitBtn.addEventListener('click', () => {
+      validatePasswordAndAuth();
+    });
+  }
+  
+  if(cancelBtn) {
+    cancelBtn.addEventListener('click', () => {
+      hideModal();
+      modalError.innerText = '';
+    });
+  }
+  
+  // Enter key inside modal
+  if(passwordInput) {
+    passwordInput.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') {
+        e.preventDefault();
+        validatePasswordAndAuth();
+      }
+    });
+  }
+  
+  // Close modal if clicking outside content (on overlay)
+  if(modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+      if(e.target === modalOverlay) {
+        hideModal();
+        modalError.innerText = '';
+      }
+    });
+  }
+  
+  // ----- Export functions (unchanged but now dynamically only available after auth) -----
   function getFullCVHTML() {
     const cloneMaster = document.getElementById('cvMasterContainer').cloneNode(true);
     const navClone = cloneMaster.querySelector('.cv-nav');
     if(navClone) navClone.remove();
     const toolbarClone = cloneMaster.querySelector('.toolbar-cv');
     if(toolbarClone) toolbarClone.remove();
+    const adminArea = cloneMaster.querySelector('.admin-panel-area');
+    if(adminArea) adminArea.remove();
     const allPages = cloneMaster.querySelectorAll('.cv-page');
     allPages.forEach(page => {
       page.style.display = 'block';
@@ -494,7 +710,7 @@
     });
     return cloneMaster.outerHTML;
   }
-
+  
   // PDF Export
   const pdfBtn = document.getElementById('downloadPdfCv');
   if(pdfBtn) {
@@ -520,8 +736,8 @@
       });
     });
   }
-
-  // DOCX Export using html-docx-js
+  
+  // DOCX Export
   const docxBtn = document.getElementById('downloadDocxCv');
   if(docxBtn) {
     docxBtn.addEventListener('click', () => {
@@ -534,7 +750,7 @@
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Times New Roman', Times, serif; }
         body { padding: 30px; background: white; }
         .cv-page { display: block !important; margin-bottom: 30px; page-break-after: avoid; }
-        .cv-nav, .toolbar-cv { display: none; }
+        .cv-nav, .toolbar-cv, .admin-panel-area { display: none; }
         ${styles}
       </style>
       </head>
