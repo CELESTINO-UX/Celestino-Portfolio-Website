@@ -326,11 +326,27 @@
       height: 1px;
       background: linear-gradient(90deg, #cce0e8, transparent);
     }
+    
+    /* Styles for clean export - removes extra elements */
+    .export-only .cv-nav,
+    .export-only .toolbar-cv,
+    .export-only .admin-unlock-btn,
+    .export-only .btn-cv {
+      display: none !important;
+    }
+    
+    .export-only .cv-page {
+      display: block !important;
+      page-break-after: avoid;
+      break-inside: avoid;
+    }
+    
     @media (max-width: 750px) {
       .cv-page { padding: 1.3rem; }
       .nav-cv-item { padding: 0.5rem 0.9rem; font-size: 0.7rem; }
       .cv-header h1 { font-size: 1.8rem; }
     }
+    
     /* print & export friendly */
     @media print {
       body {
@@ -672,22 +688,41 @@
     });
   });
   
-  // Helper: Get full CV HTML for export
-  function getFullCVHTML() {
+  // Helper: Get full CV HTML for export with CLEAN area (removes navigation, toolbar, admin elements)
+  function getCleanCVHTML() {
+    // Clone the main container
     const cloneMaster = document.getElementById('cvMasterContainer').cloneNode(true);
+    
+    // Remove navigation tabs
     const navClone = cloneMaster.querySelector('.cv-nav');
     if(navClone) navClone.remove();
+    
+    // Remove toolbar (download buttons)
     const toolbarClone = cloneMaster.querySelector('.toolbar-cv');
     if(toolbarClone) toolbarClone.remove();
+    
+    // Remove any admin unlock buttons or overlays that might have been cloned
+    const adminBtnClone = cloneMaster.querySelector('.admin-unlock-btn');
+    if(adminBtnClone) adminBtnClone.remove();
+    
+    // Make all pages visible for the export
     const allPages = cloneMaster.querySelectorAll('.cv-page');
     allPages.forEach(page => {
       page.style.display = 'block';
       page.classList.add('active-cv-page');
     });
+    
+    // Remove any background gradients or extra spacing for cleaner print
+    const headerClone = cloneMaster.querySelector('.cv-header');
+    if(headerClone) {
+      // Keep header styling but ensure it prints well
+      headerClone.style.background = '#0a3b44';
+    }
+    
     return cloneMaster.outerHTML;
   }
   
-  // PDF Export with admin guard
+  // PDF Export with admin guard and clean area
   const pdfBtn = document.getElementById('downloadPdfCv');
   if(pdfBtn) {
     pdfBtn.addEventListener('click', function(e) {
@@ -698,11 +733,30 @@
         return;
       }
       
-      const fullHtml = getFullCVHTML();
+      // Show loading indicator
+      const loadingMsg = document.createElement('div');
+      loadingMsg.textContent = '📄 Generating PDF, please wait...';
+      loadingMsg.style.position = 'fixed';
+      loadingMsg.style.top = '50%';
+      loadingMsg.style.left = '50%';
+      loadingMsg.style.transform = 'translate(-50%, -50%)';
+      loadingMsg.style.backgroundColor = '#125f54';
+      loadingMsg.style.color = 'white';
+      loadingMsg.style.padding = '15px 25px';
+      loadingMsg.style.borderRadius = '50px';
+      loadingMsg.style.zIndex = '9999';
+      loadingMsg.style.fontFamily = 'monospace';
+      loadingMsg.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+      document.body.appendChild(loadingMsg);
+      
+      // Get clean HTML without navigation, toolbar, etc.
+      const cleanHtml = getCleanCVHTML();
       const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = fullHtml;
+      tempDiv.innerHTML = cleanHtml;
       tempDiv.style.background = 'white';
       tempDiv.style.padding = '20px';
+      tempDiv.style.maxWidth = '1200px';
+      tempDiv.style.margin = '0 auto';
       tempDiv.style.fontFamily = "'Times New Roman', Times, serif";
       document.body.appendChild(tempDiv);
       
@@ -710,21 +764,23 @@
         margin: [0.5, 0.5, 0.5, 0.5],
         filename: 'Celestino_Otieno_Global_CV.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, letterRendering: true },
+        html2canvas: { scale: 2, letterRendering: true, useCORS: true },
         jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
       };
       
       html2pdf().set(opt).from(tempDiv).save().then(() => {
         if(document.body.contains(tempDiv)) document.body.removeChild(tempDiv);
+        if(document.body.contains(loadingMsg)) document.body.removeChild(loadingMsg);
       }).catch((error) => {
         console.error('PDF Error:', error);
         if(document.body.contains(tempDiv)) document.body.removeChild(tempDiv);
+        if(document.body.contains(loadingMsg)) document.body.removeChild(loadingMsg);
         alert('Error generating PDF. Please try again.');
       });
     });
   }
   
-  // DOCX Export with admin guard
+  // DOCX Export with admin guard and clean area
   const docxBtn = document.getElementById('downloadDocxCv');
   if(docxBtn) {
     docxBtn.addEventListener('click', function(e) {
@@ -735,7 +791,24 @@
         return;
       }
       
-      const fullHtmlContent = getFullCVHTML();
+      // Show loading indicator
+      const loadingMsg = document.createElement('div');
+      loadingMsg.textContent = '📝 Generating DOCX, please wait...';
+      loadingMsg.style.position = 'fixed';
+      loadingMsg.style.top = '50%';
+      loadingMsg.style.left = '50%';
+      loadingMsg.style.transform = 'translate(-50%, -50%)';
+      loadingMsg.style.backgroundColor = '#125f54';
+      loadingMsg.style.color = 'white';
+      loadingMsg.style.padding = '15px 25px';
+      loadingMsg.style.borderRadius = '50px';
+      loadingMsg.style.zIndex = '9999';
+      loadingMsg.style.fontFamily = 'monospace';
+      loadingMsg.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+      document.body.appendChild(loadingMsg);
+      
+      // Get clean HTML without navigation, toolbar, etc.
+      const cleanHtmlContent = getCleanCVHTML();
       const styleElem = document.querySelector('style');
       const styles = styleElem ? styleElem.innerHTML : '';
       
@@ -744,13 +817,14 @@
       <head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title>
       <style>
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Times New Roman', Times, serif; }
-        body { padding: 30px; background: white; }
+        body { padding: 30px; background: white; max-width: 1200px; margin: 0 auto; }
         .cv-page { display: block !important; margin-bottom: 30px; page-break-after: avoid; }
-        .cv-nav, .toolbar-cv { display: none; }
+        .cv-nav, .toolbar-cv, .admin-unlock-btn { display: none; }
+        .cv-header { background: #0a3b44; }
         ${styles}
       </style>
       </head>
-      <body>${fullHtmlContent}</body>
+      <body>${cleanHtmlContent}</body>
       </html>`;
       
       try {
@@ -761,8 +835,10 @@
           const fallback = new Blob([fullDoc], { type: 'application/msword' });
           saveAs(fallback, 'Celestino_Otieno_CV.doc');
         }
+        if(document.body.contains(loadingMsg)) document.body.removeChild(loadingMsg);
       } catch(error) {
         console.error('DOCX Error:', error);
+        if(document.body.contains(loadingMsg)) document.body.removeChild(loadingMsg);
         alert('Error generating DOCX. Please try again.');
       }
     });
