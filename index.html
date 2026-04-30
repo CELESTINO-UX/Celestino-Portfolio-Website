@@ -125,6 +125,11 @@
       background: #ffcd6b;
       transform: scale(0.98);
     }
+    .admin-unlock-btn:disabled {
+      opacity: 0.7;
+      cursor: default;
+      transform: none;
+    }
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -196,7 +201,7 @@
     }
     /* download buttons hidden by default (admin only) */
     .toolbar-cv {
-      display: none; /* hidden until admin authenticated */
+      display: none;
     }
     .toolbar-cv.admin-visible {
       display: flex;
@@ -341,9 +346,6 @@
         display: block !important;
         page-break-after: avoid;
         break-inside: avoid;
-      }
-      .btn-cv, .toolbar-cv {
-        display: none;
       }
     }
   </style>
@@ -610,7 +612,6 @@
   
   let isAdminAuthenticated = false;
   
-  // Function to show modal
   function showModal() {
     modalOverlay.classList.add('active-modal');
     passwordInput.value = '';
@@ -622,22 +623,18 @@
     modalOverlay.classList.remove('active-modal');
   }
   
-  // Admin authentication success: display download buttons and store state optionally (session)
   function authenticateAdmin() {
     if(isAdminAuthenticated) return true;
     isAdminAuthenticated = true;
     toolbarDiv.classList.add('admin-visible');
-    // Optionally update unlock button text/icon
     if(unlockBtn) {
       unlockBtn.innerHTML = '<i class="fas fa-check-circle"></i> Admin Mode Active';
       unlockBtn.style.background = "#b0dec0";
-      unlockBtn.style.cursor = "default";
       unlockBtn.disabled = true;
     }
     return true;
   }
   
-  // Validate password
   function validatePasswordAndAuth() {
     const enteredPassword = passwordInput.value.trim();
     if(enteredPassword === "1997") {
@@ -652,7 +649,6 @@
     }
   }
   
-  // Event listeners for admin panel
   if(unlockBtn) {
     unlockBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -674,7 +670,6 @@
     });
   }
   
-  // Enter key inside modal
   if(passwordInput) {
     passwordInput.addEventListener('keypress', (e) => {
       if(e.key === 'Enter') {
@@ -684,7 +679,6 @@
     });
   }
   
-  // Close modal if clicking outside content (on overlay)
   if(modalOverlay) {
     modalOverlay.addEventListener('click', (e) => {
       if(e.target === modalOverlay) {
@@ -694,74 +688,161 @@
     });
   }
   
-  // ----- Export functions (unchanged but now dynamically only available after auth) -----
+  // ----- FIXED EXPORT FUNCTIONS - properly capture all styles and content -----
+  function getAllStyles() {
+    let styles = '';
+    const styleNodes = document.querySelectorAll('style');
+    styleNodes.forEach((styleTag) => {
+      styles += styleTag.innerHTML;
+    });
+    return styles;
+  }
+  
   function getFullCVHTML() {
+    // Clone the entire CV container
     const cloneMaster = document.getElementById('cvMasterContainer').cloneNode(true);
+    
+    // Remove interactive/admin elements from export
     const navClone = cloneMaster.querySelector('.cv-nav');
     if(navClone) navClone.remove();
+    
     const toolbarClone = cloneMaster.querySelector('.toolbar-cv');
     if(toolbarClone) toolbarClone.remove();
+    
     const adminArea = cloneMaster.querySelector('.admin-panel-area');
     if(adminArea) adminArea.remove();
+    
+    // Make all pages visible for export
     const allPages = cloneMaster.querySelectorAll('.cv-page');
     allPages.forEach(page => {
       page.style.display = 'block';
       page.classList.add('active-cv-page');
     });
+    
+    // Ensure proper styling for print/export
+    cloneMaster.style.margin = '0';
+    cloneMaster.style.maxWidth = '100%';
+    
     return cloneMaster.outerHTML;
   }
   
-  // PDF Export
+  // PDF Export - Fixed
   const pdfBtn = document.getElementById('downloadPdfCv');
   if(pdfBtn) {
-    pdfBtn.addEventListener('click', () => {
-      const fullHtml = getFullCVHTML();
-      const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = fullHtml;
-      tempDiv.style.background = 'white';
-      tempDiv.style.padding = '20px';
-      tempDiv.style.fontFamily = "'Times New Roman', Times, serif";
-      document.body.appendChild(tempDiv);
-      const opt = {
-        margin: [0.5, 0.5, 0.5, 0.5],
-        filename: 'Celestino_Otieno_Global_CV.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, letterRendering: true },
-        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-      };
-      html2pdf().set(opt).from(tempDiv).save().then(() => {
+    pdfBtn.addEventListener('click', async () => {
+      try {
+        const fullHtml = getFullCVHTML();
+        const styles = getAllStyles();
+        
+        // Create a complete HTML document for PDF generation
+        const exportHtml = `<!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Celestino Otieno - Professional CV</title>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+          <style>${styles}</style>
+          <style>
+            body {
+              background: white;
+              padding: 20px;
+              margin: 0;
+            }
+            .cv-nav, .toolbar-cv, .admin-panel-area, .btn-cv, #downloadToolbar {
+              display: none !important;
+            }
+            .cv-master {
+              margin: 0 auto;
+              box-shadow: none;
+            }
+            .cv-page {
+              display: block !important;
+              page-break-after: avoid;
+              break-inside: avoid;
+            }
+          </style>
+        </head>
+        <body>${fullHtml}</body>
+        </html>`;
+        
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = exportHtml;
+        tempDiv.style.position = 'absolute';
+        tempDiv.style.left = '-9999px';
+        tempDiv.style.top = '-9999px';
+        document.body.appendChild(tempDiv);
+        
+        const opt = {
+          margin: [0.5, 0.5, 0.5, 0.5],
+          filename: 'Celestino_Otieno_Global_CV.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, letterRendering: true, useCORS: true },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+        
+        await html2pdf().set(opt).from(tempDiv).save();
         document.body.removeChild(tempDiv);
-      }).catch(() => {
-        document.body.removeChild(tempDiv);
-      });
+      } catch(error) {
+        console.error('PDF generation error:', error);
+        alert('Error generating PDF. Please try again.');
+      }
     });
   }
   
-  // DOCX Export
+  // DOCX Export - Fixed
   const docxBtn = document.getElementById('downloadDocxCv');
   if(docxBtn) {
     docxBtn.addEventListener('click', () => {
-      const fullHtmlContent = getFullCVHTML();
-      const styles = document.querySelector('style').innerHTML;
-      const fullDoc = `<!DOCTYPE html>
-      <html>
-      <head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title>
-      <style>
-        * { margin:0; padding:0; box-sizing:border-box; font-family: 'Times New Roman', Times, serif; }
-        body { padding: 30px; background: white; }
-        .cv-page { display: block !important; margin-bottom: 30px; page-break-after: avoid; }
-        .cv-nav, .toolbar-cv, .admin-panel-area { display: none; }
-        ${styles}
-      </style>
-      </head>
-      <body>${fullHtmlContent}</body>
-      </html>`;
-      if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
-        const docxBlob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait' });
-        saveAs(docxBlob, 'Celestino_Otieno_Global_CV.docx');
-      } else {
-        const fallback = new Blob([fullDoc], { type: 'application/msword' });
-        saveAs(fallback, 'Celestino_Otieno_CV.doc');
+      try {
+        const fullHtmlContent = getFullCVHTML();
+        const styles = getAllStyles();
+        
+        const fullDoc = `<!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Celestino Otieno - Professional CV</title>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+          <style>
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              font-family: 'Times New Roman', Times, serif;
+            }
+            body {
+              padding: 40px;
+              background: white;
+            }
+            .cv-master {
+              max-width: 100%;
+              margin: 0 auto;
+            }
+            .cv-page {
+              display: block !important;
+              margin-bottom: 30px;
+              page-break-after: avoid;
+            }
+            .cv-nav, .toolbar-cv, .admin-panel-area, .btn-cv, #downloadToolbar {
+              display: none !important;
+            }
+            ${styles}
+          </style>
+        </head>
+        <body>${fullHtmlContent}</body>
+        </html>`;
+        
+        if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
+          const docxBlob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait' });
+          saveAs(docxBlob, 'Celestino_Otieno_Global_CV.docx');
+        } else {
+          // Fallback for older browsers
+          const fallback = new Blob([fullDoc], { type: 'application/msword' });
+          saveAs(fallback, 'Celestino_Otieno_CV.doc');
+        }
+      } catch(error) {
+        console.error('DOCX generation error:', error);
+        alert('Error generating DOCX. Please try again.');
       }
     });
   }
