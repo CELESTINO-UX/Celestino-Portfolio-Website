@@ -26,27 +26,31 @@
       line-height: 1.5;
     }
 
-    /* main CV wrapper - clean card effect */
+    /* main CV wrapper - clean card effect, NO margin-top so headline starts at top */
     .cv-master {
       max-width: 1200px;
-      margin: 2rem auto;
+      margin: 0 auto 2rem auto;
       background: transparent;
     }
 
-    /* professional header with subtle gradient & times new roman */
+    /* professional header with subtle gradient & times new roman - no top padding pushing headline down */
     .cv-header {
       background: linear-gradient(135deg, #0a3b44 0%, #125f54 100%);
       color: white;
-      padding: 1.8rem 2.5rem;
-      border-radius: 0.8rem 0.8rem 0 0;
+      padding: 1.5rem 2.5rem 1.8rem 2.5rem;
+      border-radius: 0 0 0.8rem 0.8rem;
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+      position: relative;
     }
+    /* for larger screens we ensure first element touches top */
     .cv-header h1 {
       font-size: 2.4rem;
       font-weight: 700;
       letter-spacing: 0.5px;
       font-family: 'Times New Roman', Times, serif;
       margin-bottom: 0.25rem;
+      margin-top: 0;
+      padding-top: 0;
     }
     .cv-header .title-tag {
       font-size: 1rem;
@@ -75,6 +79,108 @@
       gap: 1rem;
       margin-top: 1.5rem;
       flex-wrap: wrap;
+      transition: all 0.2s ease;
+    }
+    /* admin badge & passcode panel */
+    .admin-badge-area {
+      position: absolute;
+      bottom: 12px;
+      right: 20px;
+      font-size: 0.7rem;
+      background: rgba(0,0,0,0.3);
+      padding: 4px 10px;
+      border-radius: 40px;
+      cursor: pointer;
+      backdrop-filter: blur(2px);
+      transition: 0.2s;
+      font-family: monospace;
+    }
+    .admin-badge-area:hover {
+      background: rgba(0,0,0,0.6);
+    }
+    .passcode-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      font-family: 'Times New Roman', Times, serif;
+      transition: all 0.2s;
+    }
+    .passcode-card {
+      background: white;
+      border-radius: 28px;
+      max-width: 360px;
+      width: 90%;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+      animation: modalPop 0.2s ease-out;
+    }
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.96);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    .passcode-card i {
+      font-size: 2.8rem;
+      color: #125f54;
+      margin-bottom: 0.8rem;
+    }
+    .passcode-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #0a3b44;
+    }
+    .passcode-card input {
+      width: 100%;
+      padding: 12px 16px;
+      margin: 1.2rem 0;
+      font-size: 1.1rem;
+      border: 1px solid #cbdbe0;
+      border-radius: 60px;
+      text-align: center;
+      letter-spacing: 2px;
+      font-family: monospace;
+      font-weight: bold;
+      outline: none;
+    }
+    .passcode-card input:focus {
+      border-color: #1f8a6b;
+      box-shadow: 0 0 0 2px rgba(31,138,107,0.2);
+    }
+    .passcode-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .passcode-btn {
+      background: #eef2f5;
+      border: none;
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+    .passcode-btn.confirm {
+      background: #125f54;
+      color: white;
+    }
+    .passcode-btn.confirm:hover {
+      background: #0e4a42;
+    }
+    .error-message {
+      color: #c7362b;
+      font-size: 0.8rem;
+      margin-top: -0.5rem;
+      margin-bottom: 0.5rem;
     }
     .btn-cv {
       background: white;
@@ -96,6 +202,10 @@
       transform: translateY(-2px);
       background: #f0f7f5;
       box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+    /* admin-hidden class toggles visibility */
+    .toolbar-hidden .toolbar-cv {
+      display: none !important;
     }
 
     /* navigation tabs - clean serif style */
@@ -224,10 +334,17 @@
       height: 1px;
       background: linear-gradient(90deg, #cce0e8, transparent);
     }
+    /* guaranteed: body has no extra top margin/padding, and first element starts at edge */
+    body {
+      margin: 0;
+      padding: 0;
+    }
     @media (max-width: 750px) {
       .cv-page { padding: 1.3rem; }
       .nav-cv-item { padding: 0.5rem 0.9rem; font-size: 0.7rem; }
       .cv-header h1 { font-size: 1.8rem; }
+      .cv-header { padding: 1.2rem 1.2rem 1.5rem 1.2rem; }
+      .admin-badge-area { font-size: 0.6rem; bottom: 8px; right: 12px; }
     }
     /* print & export friendly */
     @media print {
@@ -236,7 +353,7 @@
         padding: 0;
         margin: 0;
       }
-      .toolbar-cv, .cv-nav {
+      .toolbar-cv, .cv-nav, .admin-badge-area {
         display: none;
       }
       .cv-page {
@@ -247,12 +364,18 @@
       .btn-cv, .toolbar-cv {
         display: none;
       }
+      .cv-master {
+        margin: 0 auto;
+      }
+      .cv-header {
+        border-radius: 0;
+      }
     }
   </style>
 </head>
 <body>
 <div class="cv-master" id="cvMasterContainer">
-  <!-- Header Section - professional identity -->
+  <!-- Header Section - professional identity, now exactly at top of page -->
   <div class="cv-header">
     <h1>OTIENO CELESTINO ONYANGO</h1>
     <div class="title-tag"><i class="fas fa-chalkboard-user"></i> Record Manager | ICT Support | School Librarian | System Librarian</div>
@@ -266,6 +389,10 @@
     <div class="toolbar-cv">
       <button class="btn-cv" id="downloadPdfCv"><i class="fas fa-file-pdf"></i> Download PDF (Global CV)</button>
       <button class="btn-cv" id="downloadDocxCv"><i class="fas fa-file-word"></i> Download DOCX (Universal)</button>
+    </div>
+    <!-- Admin badge for passcode access: controls download buttons visibility -->
+    <div class="admin-badge-area" id="adminLockBadge">
+      <i class="fas fa-lock"></i> <span id="adminStatusLabel">Admin Lock</span>
     </div>
   </div>
 
@@ -459,7 +586,96 @@
 </div>
 
 <script>
-  // Tab navigation with smooth transition
+  // --- ADMIN PANEL FEATURE: HIDE DOWNLOAD BUTTONS WITH PASSCODE 19971997 ---
+  const MASTER_PASSCODE = "19971997";
+  let isAdminUnlocked = false;
+  const masterContainer = document.getElementById('cvMasterContainer');
+  const adminBadge = document.getElementById('adminLockBadge');
+  const adminStatusSpan = document.getElementById('adminStatusLabel');
+
+  function setDownloadButtonsVisibility(visible) {
+    if (visible) {
+      masterContainer.classList.remove('toolbar-hidden');
+      if(adminStatusSpan) adminStatusSpan.innerHTML = '<i class="fas fa-unlock-alt"></i> Admin Mode';
+      adminBadge.style.background = "rgba(31,138,107,0.7)";
+    } else {
+      masterContainer.classList.add('toolbar-hidden');
+      if(adminStatusSpan) adminStatusSpan.innerHTML = '<i class="fas fa-lock"></i> Admin Lock';
+      adminBadge.style.background = "rgba(0,0,0,0.3)";
+    }
+  }
+
+  // Initially, download buttons are hidden (admin locked) until passcode provided.
+  isAdminUnlocked = false;
+  setDownloadButtonsVisibility(false);
+
+  function showPasscodeModal() {
+    const existingModal = document.querySelector('.passcode-modal');
+    if(existingModal) existingModal.remove();
+
+    const modalDiv = document.createElement('div');
+    modalDiv.className = 'passcode-modal';
+    modalDiv.innerHTML = `
+      <div class="passcode-card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Admin Verification</h3>
+        <p style="margin-bottom:6px; color:#2c5a6e;">Enter passcode to manage download buttons</p>
+        <input type="password" id="adminPasscodeInput" placeholder="****" maxlength="20" autocomplete="off">
+        <div id="passcodeError" class="error-message"></div>
+        <div class="passcode-buttons">
+          <button class="passcode-btn" id="modalCancelBtn">Cancel</button>
+          <button class="passcode-btn confirm" id="modalConfirmBtn">Unlock</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modalDiv);
+    const inputField = document.getElementById('adminPasscodeInput');
+    inputField.focus();
+
+    const confirmBtn = document.getElementById('modalConfirmBtn');
+    const cancelBtn = document.getElementById('modalCancelBtn');
+    const errorSpan = document.getElementById('passcodeError');
+
+    function closeModal() {
+      if(modalDiv && modalDiv.parentNode) modalDiv.remove();
+    }
+
+    function attemptUnlock() {
+      const enteredCode = inputField.value.trim();
+      if(enteredCode === MASTER_PASSCODE) {
+        isAdminUnlocked = true;
+        setDownloadButtonsVisibility(true);
+        closeModal();
+      } else {
+        errorSpan.innerText = '❌ Invalid passcode. Access denied.';
+        inputField.value = '';
+        inputField.focus();
+        const card = modalDiv.querySelector('.passcode-card');
+        card.style.transform = 'translateX(4px)';
+        setTimeout(() => { if(card) card.style.transform = ''; }, 150);
+      }
+    }
+
+    confirmBtn.onclick = () => attemptUnlock();
+    cancelBtn.onclick = () => closeModal();
+    inputField.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') attemptUnlock();
+    });
+  }
+
+  adminBadge.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if(isAdminUnlocked) {
+      if(confirm('Admin mode active. Click OK to lock download buttons again (hide them).')) {
+        isAdminUnlocked = false;
+        setDownloadButtonsVisibility(false);
+      }
+    } else {
+      showPasscodeModal();
+    }
+  });
+
+  // Tabs navigation
   const navButtons = document.querySelectorAll('.nav-cv-item');
   const cvPages = document.querySelectorAll('.cv-page');
   function switchCVPage(pageId) {
@@ -480,13 +696,15 @@
     });
   });
 
-  // Helper: Get full CV HTML for export (global format, retains Times New Roman, no navigation/toolbar)
+  // Export functions (unchanged)
   function getFullCVHTML() {
     const cloneMaster = document.getElementById('cvMasterContainer').cloneNode(true);
     const navClone = cloneMaster.querySelector('.cv-nav');
     if(navClone) navClone.remove();
     const toolbarClone = cloneMaster.querySelector('.toolbar-cv');
     if(toolbarClone) toolbarClone.remove();
+    const adminBadgeClone = cloneMaster.querySelector('.admin-badge-area');
+    if(adminBadgeClone) adminBadgeClone.remove();
     const allPages = cloneMaster.querySelectorAll('.cv-page');
     allPages.forEach(page => {
       page.style.display = 'block';
@@ -495,7 +713,6 @@
     return cloneMaster.outerHTML;
   }
 
-  // PDF Export
   const pdfBtn = document.getElementById('downloadPdfCv');
   if(pdfBtn) {
     pdfBtn.addEventListener('click', () => {
@@ -521,7 +738,6 @@
     });
   }
 
-  // DOCX Export using html-docx-js
   const docxBtn = document.getElementById('downloadDocxCv');
   if(docxBtn) {
     docxBtn.addEventListener('click', () => {
@@ -534,7 +750,7 @@
         * { margin:0; padding:0; box-sizing:border-box; font-family: 'Times New Roman', Times, serif; }
         body { padding: 30px; background: white; }
         .cv-page { display: block !important; margin-bottom: 30px; page-break-after: avoid; }
-        .cv-nav, .toolbar-cv { display: none; }
+        .cv-nav, .toolbar-cv, .admin-badge-area { display: none; }
         ${styles}
       </style>
       </head>
