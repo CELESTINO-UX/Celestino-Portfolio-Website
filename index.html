@@ -12,11 +12,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.js"></script>
   <style>
-    /* GLOBAL RESET & TIMES NEW ROMAN FONT */
+    /* GLOBAL RESET & TIMES NEW ROMAN FONT - NO BLUR EFFECTS ANYWHERE */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
 
     body {
@@ -33,7 +36,7 @@
       background: transparent;
     }
 
-    /* professional header - COMPACT for continuous flow */
+    /* professional header - COMPACT for continuous flow - crisp text */
     .cv-header {
       background: linear-gradient(135deg, #0a3b44 0%, #125f54 100%);
       color: white;
@@ -91,9 +94,9 @@
       padding: 3px 8px;
       border-radius: 40px;
       cursor: pointer;
-      backdrop-filter: blur(2px);
       transition: 0.2s;
       font-family: monospace;
+      backdrop-filter: none;
     }
     .admin-badge-area:hover {
       background: rgba(0,0,0,0.6);
@@ -105,7 +108,7 @@
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
+      backdrop-filter: none;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -261,7 +264,7 @@
       to { opacity: 1; transform: translateY(0);}
     }
 
-    /* compact typography */
+    /* compact typography - no blur, crisp edges */
     .cv-section-title {
       font-size: 1.2rem;
       font-weight: 700;
@@ -380,6 +383,25 @@
       color: #0f5c4e;
     }
     
+    /* Referees card styling */
+    .referee-card {
+      background: #fafefb;
+      padding: 0.8rem;
+      border-radius: 0.8rem;
+      border-left: 3px solid #1f8a6b;
+      margin-bottom: 0.8rem;
+    }
+    .referee-card strong {
+      font-size: 1rem;
+      color: #0a4a5a;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .referee-card span {
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+    
     @media (max-width: 750px) {
       .cv-page { padding: 0.6rem 0.8rem; }
       .nav-cv-item { padding: 0.4rem 0.7rem; font-size: 0.65rem; }
@@ -389,7 +411,7 @@
       .project-card h3 { font-size: 0.9rem; }
     }
 
-    /* CRITICAL: Print and export styles for continuous flow from header */
+    /* PRINT & EXPORT: crisp text, 2 pages exactly */
     @media print {
       @page {
         margin: 0.3cm;
@@ -427,7 +449,6 @@
         margin: 0 !important;
       }
       
-      /* Header flows directly into content */
       .cv-header {
         border-radius: 0 !important;
         padding: 0.3cm 0.5cm 0.2cm 0.5cm !important;
@@ -457,7 +478,6 @@
         margin-top: 0.3rem !important;
       }
       
-      /* Professional Summary starts immediately after header */
       .cv-section-title {
         font-size: 1rem !important;
         margin-bottom: 0.2rem !important;
@@ -532,6 +552,17 @@
         padding: 0.2rem 0.5rem !important;
       }
       
+      .referee-card {
+        padding: 0.4rem 0.6rem !important;
+        margin-bottom: 0.4rem !important;
+      }
+      .referee-card strong {
+        font-size: 0.85rem !important;
+      }
+      .referee-card span {
+        font-size: 0.68rem !important;
+      }
+      
       .btn-cv {
         display: none !important;
       }
@@ -540,13 +571,11 @@
         margin: 0.3rem 0 !important;
       }
       
-      /* Continuous flow: no gaps between header and content */
       #cvPage1 {
         padding-top: 0.2cm !important;
         margin-top: 0 !important;
       }
       
-      /* Ensure page 2 starts immediately after page 1 content */
       #cvPage2 {
         page-break-before: always;
         page-break-after: avoid;
@@ -578,10 +607,10 @@
     </div>
   </div>
 
-  <!-- Navigation tabs -->
+  <!-- Navigation tabs (Referees tab removed, now referees on page 2) -->
   <div class="cv-nav">
     <button class="nav-cv-item active" data-cvpage="cvPage1"><i class="fas fa-user-circle"></i> Summary & Skills</button>
-    <button class="nav-cv-item" data-cvpage="cvPage2"><i class="fas fa-briefcase"></i> Experience</button>
+    <button class="nav-cv-item" data-cvpage="cvPage2"><i class="fas fa-briefcase"></i> Experience & Referees</button>
     <button class="nav-cv-item" data-cvpage="cvPage3"><i class="fas fa-building"></i> Library Mgt</button>
     <button class="nav-cv-item" data-cvpage="cvPage4"><i class="fas fa-chalkboard"></i> Coordination</button>
     <button class="nav-cv-item" data-cvpage="cvPage5"><i class="fas fa-graduation-cap"></i> Student Support</button>
@@ -591,7 +620,7 @@
   </div>
 
   <div class="cv-pages">
-    <!-- PAGE 1: Summary + Skills + Certifications + Work Experience - CONTINUOUS FLOW -->
+    <!-- PAGE 1: Summary + Skills + Certifications + Work Experience (partial) -->
     <div class="cv-page active-cv-page" id="cvPage1">
       <div class="cv-section-title" style="margin-top:0;"><i class="fas fa-id-badge"></i> Professional Summary</div>
       <div class="cv-card">
@@ -656,16 +685,9 @@
           <li><strong>Achievements:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</li>
         </ul>
       </div>
-      <div class="cv-section-title"><i class="fas fa-folder-open"></i> Key Projects & Innovations</div>
-      <ul class="responsibility-list">
-        <li><strong>Lukenya Voting System:</strong> Secure web-based voting platform using HTML/CSS/JS/PHP; achieved 100% uptime across two academic years.</li>
-        <li><strong>Digital Records Archiving Initiative:</strong> Led digitisation project with metadata tagging and role-based access, reducing retrieval time by 40%.</li>
-        <li><strong>Koha ILS Migration & Optimization:</strong> Full data migration and staff training, improving cataloguing accuracy by 35%.</li>
-        <li><strong>ICT Club Student Web Project:</strong> Mentored students to build a responsive school events portal, enhancing practical coding skills.</li>
-      </ul>
     </div>
 
-    <!-- PAGE 2: Projects + Library Management + Education + Referees -->
+    <!-- PAGE 2: Projects + Library Management + Education + PROFESSIONAL REFEREES (included here) -->
     <div class="cv-page" id="cvPage2">
       <div class="cv-section-title" style="margin-top:0;"><i class="fas fa-laptop-code"></i> Featured Project</div>
       <div class="project-card">
@@ -714,15 +736,31 @@
         <div class="exp-meta-cv">Nyarach Mixed Day Secondary School – 2015 to 2019 | Grade: C+ (Aggregate 51 points)</div>
       </div>
 
+      <!-- PROFESSIONAL REFEREES SECTION (added on page 2 as requested) -->
       <div class="cv-section-title"><i class="fas fa-users"></i> Professional Referees</div>
-      <div style="display:grid; gap:0.5rem; margin-top:0.2rem; font-size:0.78rem;">
-        <div><strong>Colins Kirui</strong> – Dean of Students & Examinations, Lukenya British Curriculum School<br>📞 +254702194494 ✉️ kirui.collins@lukenyaschools.ac.ke</div>
-        <div><strong>John Gitau Nganga</strong> – Lecturer, Information Science, Meru University of Science and Technology<br>📞 +254720877605 ✉️ jgitau@must.ac.ke</div>
-        <div><strong>Irene Charles Mwende</strong> – Head of Language Department, Lukenya British Curriculum School<br>📞 +254706508343 ✉️ irene.mwende@lukenyaschools.ac.ke</div>
+      <div>
+        <div class="referee-card">
+          <strong>Colins Kirui</strong>
+          <span>Dean of Students & Examinations, Lukenya British Curriculum School<br>
+          <i class="fas fa-phone-alt" style="width:1rem;"></i> +254702194494 &nbsp;|&nbsp; <i class="fas fa-envelope"></i> kirui.collins@lukenyaschools.ac.ke</span>
+        </div>
+        <div class="referee-card">
+          <strong>John Gitau Nganga</strong>
+          <span>Lecturer, Information Science, Meru University of Science and Technology<br>
+          <i class="fas fa-phone-alt"></i> +254720877605 &nbsp;|&nbsp; <i class="fas fa-envelope"></i> jgitau@must.ac.ke</span>
+        </div>
+        <div class="referee-card">
+          <strong>Irene Charles Mwende</strong>
+          <span>Head of Language Department, Lukenya British Curriculum School<br>
+          <i class="fas fa-phone-alt"></i> +254706508343 &nbsp;|&nbsp; <i class="fas fa-envelope"></i> irene.mwende@lukenyaschools.ac.ke</span>
+        </div>
+      </div>
+      <div style="margin-top:0.6rem; padding:0.5rem; background:#eef5f2; border-radius:0.6rem; text-align:center; font-size:0.65rem;">
+        <i class="fas fa-check-circle"></i> Professional references available upon request with prior consent.
       </div>
     </div>
 
-    <!-- Original detailed pages kept for tab navigation -->
+    <!-- Additional detail pages preserved (Library Mgt, Coordination, etc.) -->
     <div class="cv-page" id="cvPage3">
       <div class="cv-section-title" style="margin-top:0;"><i class="fas fa-building"></i> Library Space Management</div>
       <div class="cv-card"><ul class="responsibility-list"><li>Direct daily operations of the MS/HS library as an organized, welcoming learning environment.</li><li>Coordinate scheduling and usage of library space for classes, groups, and events.</li><li>Maintain clear procedures for respectful facility use; monitor student behavior.</li><li>Ensure appealing presentation of library spaces and materials.</li></ul></div>
@@ -754,8 +792,6 @@
       <div class="cv-section-title"><i class="fas fa-graduation-cap"></i> Education</div>
       <div class="exp-block"><h3>BSc Information Science (ICT Option)</h3><div>Meru University of Science and Technology – 2020 to 2024</div><div class="exp-meta-cv">Second Class Lower Division</div></div>
       <div class="exp-block"><h3>KCSE</h3><div>Nyarach Mixed Day Secondary School – 2015 to 2019</div><div>Grade: C+ (51 points)</div></div>
-      <div class="cv-section-title"><i class="fas fa-users"></i> Professional Referees</div>
-      <div style="display:grid; gap:0.6rem;"><div><strong>Colins Kirui</strong><br>Dean of Students, Lukenya British Curriculum School<br>📞 +254702194494 ✉️ kirui.collins@lukenyaschools.ac.ke</div><div><strong>John Gitau Nganga</strong><br>Lecturer, Information Science, MUST<br>📞 +254720877605 ✉️ jgitau@must.ac.ke</div><div><strong>Steven Ajulu Otieno</strong><br>Head of IT, KNLS Nakuru<br>📞 +254740128010 ✉️ steven.ajulu@knls.ac.ke</div></div>
     </div>
 
     <div class="cv-page" id="cvPage8">
@@ -774,10 +810,6 @@
         <ul class="responsibility-list"><li>✅ 100% uptime across two election cycles with 300+ voters and zero technical failures.</li><li>✅ Built voter authentication and real-time results dashboard reducing manual counting errors.</li><li>✅ Improved voting process efficiency by 70% compared to paper ballots.</li></ul>
         <div class="metric-highlight"><i class="fas fa-chart-simple"></i> <strong>Impact:</strong> 100% uptime | 28% participation increase | Trusted by administration</div>
       </div>
-      <div class="cv-section-title" style="margin-top:0.8rem;"><i class="fas fa-folder-tree"></i> Other Key Contributions</div>
-      <div class="exp-block"><h3>Digital Records Archiving Initiative</h3><ul class="responsibility-list"><li>Led full lifecycle digitization of 8+ years of records; reduced retrieval time by 40%.</li></ul></div>
-      <div class="exp-block"><h3>Koha ILS Migration</h3><ul class="responsibility-list"><li>Full migration boosting search accuracy by 35%; trained 12 staff members.</li></ul></div>
-      <div class="exp-block"><h3>ICT Club Leadership</h3><ul class="responsibility-list"><li>Led 45+ members; organized 8 tech workshops and a school-wide coding competition.</li></ul></div>
     </div>
   </div>
   
@@ -787,7 +819,7 @@
 </div>
 
 <script>
-  // --- ADMIN PANEL FEATURE ---
+  // ADMIN PANEL FEATURE (unchanged)
   const MASTER_PASSCODE = "19971997";
   let isAdminUnlocked = false;
   const masterContainer = document.getElementById('cvMasterContainer');
@@ -812,151 +844,46 @@
   function showPasscodeModal() {
     const existingModal = document.querySelector('.passcode-modal');
     if(existingModal) existingModal.remove();
-
     const modalDiv = document.createElement('div');
     modalDiv.className = 'passcode-modal';
-    modalDiv.innerHTML = `
-      <div class="passcode-card">
-        <i class="fas fa-shield-alt"></i>
-        <h3>Admin Verification</h3>
-        <p style="margin-bottom:6px; color:#2c5a6e;">Enter passcode to manage download buttons</p>
-        <input type="password" id="adminPasscodeInput" placeholder="****" maxlength="20" autocomplete="off">
-        <div id="passcodeError" class="error-message"></div>
-        <div class="passcode-buttons">
-          <button class="passcode-btn" id="modalCancelBtn">Cancel</button>
-          <button class="passcode-btn confirm" id="modalConfirmBtn">Unlock</button>
-        </div>
-      </div>
-    `;
+    modalDiv.innerHTML = `<div class="passcode-card"><i class="fas fa-shield-alt"></i><h3>Admin Verification</h3><p style="margin-bottom:6px; color:#2c5a6e;">Enter passcode to manage download buttons</p><input type="password" id="adminPasscodeInput" placeholder="****" maxlength="20" autocomplete="off"><div id="passcodeError" class="error-message"></div><div class="passcode-buttons"><button class="passcode-btn" id="modalCancelBtn">Cancel</button><button class="passcode-btn confirm" id="modalConfirmBtn">Unlock</button></div></div>`;
     document.body.appendChild(modalDiv);
     const inputField = document.getElementById('adminPasscodeInput');
     inputField.focus();
-
     const confirmBtn = document.getElementById('modalConfirmBtn');
     const cancelBtn = document.getElementById('modalCancelBtn');
     const errorSpan = document.getElementById('passcodeError');
-
-    function closeModal() {
-      if(modalDiv && modalDiv.parentNode) modalDiv.remove();
-    }
-
+    function closeModal() { if(modalDiv && modalDiv.parentNode) modalDiv.remove(); }
     function attemptUnlock() {
       const enteredCode = inputField.value.trim();
-      if(enteredCode === MASTER_PASSCODE) {
-        isAdminUnlocked = true;
-        setDownloadButtonsVisibility(true);
-        closeModal();
-      } else {
-        errorSpan.innerText = '❌ Invalid passcode. Access denied.';
-        inputField.value = '';
-        inputField.focus();
-        const card = modalDiv.querySelector('.passcode-card');
-        card.style.transform = 'translateX(4px)';
-        setTimeout(() => { if(card) card.style.transform = ''; }, 150);
-      }
+      if(enteredCode === MASTER_PASSCODE) { isAdminUnlocked = true; setDownloadButtonsVisibility(true); closeModal(); } 
+      else { errorSpan.innerText = '❌ Invalid passcode. Access denied.'; inputField.value = ''; inputField.focus(); }
     }
-
     confirmBtn.onclick = () => attemptUnlock();
     cancelBtn.onclick = () => closeModal();
-    inputField.addEventListener('keypress', (e) => {
-      if(e.key === 'Enter') attemptUnlock();
-    });
+    inputField.addEventListener('keypress', (e) => { if(e.key === 'Enter') attemptUnlock(); });
   }
-
-  adminBadge.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if(isAdminUnlocked) {
-      if(confirm('Admin mode active. Click OK to lock download buttons again (hide them).')) {
-        isAdminUnlocked = false;
-        setDownloadButtonsVisibility(false);
-      }
-    } else {
-      showPasscodeModal();
-    }
-  });
+  adminBadge.addEventListener('click', (e) => { e.stopPropagation(); if(isAdminUnlocked) { if(confirm('Admin mode active. Click OK to lock download buttons.')) { isAdminUnlocked = false; setDownloadButtonsVisibility(false); } } else { showPasscodeModal(); } });
 
   // Tabs navigation
   const navButtons = document.querySelectorAll('.nav-cv-item');
   const cvPages = document.querySelectorAll('.cv-page');
-  function switchCVPage(pageId) {
-    cvPages.forEach(page => page.classList.remove('active-cv-page'));
-    const targetPage = document.getElementById(pageId);
-    if(targetPage) targetPage.classList.add('active-cv-page');
-    navButtons.forEach(btn => {
-      const btnPage = btn.getAttribute('data-cvpage');
-      if(btnPage === pageId) btn.classList.add('active');
-      else btn.classList.remove('active');
-    });
-  }
-  navButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const pageId = btn.getAttribute('data-cvpage');
-      switchCVPage(pageId);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
+  function switchCVPage(pageId) { cvPages.forEach(page => page.classList.remove('active-cv-page')); const targetPage = document.getElementById(pageId); if(targetPage) targetPage.classList.add('active-cv-page'); navButtons.forEach(btn => { const btnPage = btn.getAttribute('data-cvpage'); if(btnPage === pageId) btn.classList.add('active'); else btn.classList.remove('active'); }); }
+  navButtons.forEach(btn => { btn.addEventListener('click', () => { const pageId = btn.getAttribute('data-cvpage'); switchCVPage(pageId); window.scrollTo({ top: 0, behavior: 'smooth' }); }); });
 
-  // Export functions - Creates clean 2-page PDF with continuous flow from header
+  // EXPORT: 2 pages only (cvPage1 and cvPage2)
   function get2PageCVHTML() {
     const cloneMaster = document.getElementById('cvMasterContainer').cloneNode(true);
-    
-    // Remove navigation, toolbar, admin badge, and footer
     const elementsToRemove = ['.cv-nav', '.toolbar-cv', '.admin-badge-area', '.footer-cv'];
-    elementsToRemove.forEach(selector => {
-      const element = cloneMaster.querySelector(selector);
-      if(element) element.remove();
-    });
-    
-    // Get only pages 1 and 2
+    elementsToRemove.forEach(selector => { const element = cloneMaster.querySelector(selector); if(element) element.remove(); });
     const allPages = cloneMaster.querySelectorAll('.cv-page');
     const page1 = cloneMaster.querySelector('#cvPage1');
     const page2 = cloneMaster.querySelector('#cvPage2');
-    
-    // Hide all pages first
-    allPages.forEach(page => {
-      page.style.display = 'none';
-      page.classList.remove('active-cv-page');
-    });
-    
-    // Style page 1 to flow continuously from header
-    if (page1) {
-      page1.style.display = 'block';
-      page1.classList.add('active-cv-page');
-      page1.style.margin = '0';
-      page1.style.padding = '0.15cm 0.5cm 0.2cm 0.5cm';
-      page1.style.pageBreakAfter = 'avoid';
-      page1.style.pageBreakBefore = 'avoid';
-      // Ensure first section title has no top margin
-      const firstTitle = page1.querySelector('.cv-section-title');
-      if (firstTitle) {
-        firstTitle.style.marginTop = '0.1cm';
-      }
-    }
-    
-    // Style page 2 to start immediately after page 1
-    if (page2) {
-      page2.style.display = 'block';
-      page2.classList.add('active-cv-page');
-      page2.style.margin = '0';
-      page2.style.padding = '0.15cm 0.5cm 0.2cm 0.5cm';
-      page2.style.pageBreakBefore = 'always';
-      page2.style.pageBreakAfter = 'avoid';
-      // Ensure first section title on page 2 has minimal top margin
-      const firstTitleP2 = page2.querySelector('.cv-section-title');
-      if (firstTitleP2) {
-        firstTitleP2.style.marginTop = '0';
-      }
-    }
-    
-    // Style the header to be compact and flow into content
+    allPages.forEach(page => { page.style.display = 'none'; page.classList.remove('active-cv-page'); });
+    if (page1) { page1.style.display = 'block'; page1.classList.add('active-cv-page'); page1.style.padding = '0.15cm 0.5cm 0.2cm 0.5cm'; page1.style.margin = '0'; }
+    if (page2) { page2.style.display = 'block'; page2.classList.add('active-cv-page'); page2.style.padding = '0.15cm 0.5cm 0.2cm 0.5cm'; page2.style.pageBreakBefore = 'always'; page2.style.margin = '0'; }
     const header = cloneMaster.querySelector('.cv-header');
-    if (header) {
-      header.style.margin = '0';
-      header.style.padding = '0.15cm 0.5cm 0.1cm 0.5cm';
-      header.style.borderRadius = '0';
-      header.style.marginBottom = '0';
-    }
-    
+    if (header) { header.style.margin = '0'; header.style.padding = '0.15cm 0.5cm 0.1cm 0.5cm'; }
     return cloneMaster.outerHTML;
   }
 
@@ -966,48 +893,10 @@
       const fullHtml = get2PageCVHTML();
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = fullHtml;
-      
-      // Critical styles for continuous flow from top of page
-      tempDiv.style.cssText = `
-        margin: 0 !important;
-        padding: 0 !important;
-        background: white !important;
-        font-family: 'Times New Roman', Times, serif !important;
-        width: 210mm !important;
-        max-width: 210mm !important;
-      `;
-      
+      tempDiv.style.cssText = `margin:0; padding:0; background:white; font-family:'Times New Roman', Times, serif; width:210mm; max-width:210mm;`;
       document.body.appendChild(tempDiv);
-      
-      const opt = {
-        margin: [0, 0, 0, 0], // Zero margins to prevent blank page
-        filename: 'Celestino_Otieno_CV_2Pages.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-          scale: 2, 
-          letterRendering: true,
-          logging: false,
-          useCORS: true
-        },
-        jsPDF: { 
-          unit: 'mm', 
-          format: 'a4', 
-          orientation: 'portrait' 
-        },
-        pagebreak: { 
-          mode: ['avoid-all', 'css', 'legacy'],
-          before: '.page-break-before',
-          after: '.page-break-after',
-          avoid: '.page-break-avoid'
-        }
-      };
-      
-      html2pdf().set(opt).from(tempDiv).save().then(() => {
-        document.body.removeChild(tempDiv);
-      }).catch((err) => {
-        console.error('PDF generation error:', err);
-        document.body.removeChild(tempDiv);
-      });
+      const opt = { margin: [0,0,0,0], filename: 'Celestino_Otieno_CV_2Pages.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, letterRendering: true, logging: false }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } };
+      html2pdf().set(opt).from(tempDiv).save().then(() => { document.body.removeChild(tempDiv); }).catch(() => { document.body.removeChild(tempDiv); });
     });
   }
 
@@ -1016,77 +905,9 @@
     docxBtn.addEventListener('click', () => {
       const fullHtmlContent = get2PageCVHTML();
       const styles = document.querySelector('style').innerHTML;
-      const fullDoc = `<!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="UTF-8">
-        <title>Celestino Otieno - Professional CV (2 Pages)</title>
-        <style>
-          @page {
-            margin: 0.3cm;
-            size: A4 portrait;
-          }
-          * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: 'Times New Roman', Times, serif; 
-          }
-          html, body { 
-            margin: 0 !important; 
-            padding: 0 !important; 
-            background: white; 
-            width: 100%;
-          }
-          .cv-master {
-            margin: 0 !important;
-            padding: 0 !important;
-          }
-          .cv-header {
-            margin-top: 0 !important;
-            padding-top: 0.15cm !important;
-            margin-bottom: 0 !important;
-          }
-          .cv-page { 
-            display: block !important; 
-            padding: 0.15cm 0.5cm !important;
-            margin: 0 !important;
-          }
-          .cv-section-title:first-child {
-            margin-top: 0.1cm !important;
-          }
-          .cv-nav, .toolbar-cv, .admin-badge-area, .footer-cv { 
-            display: none !important; 
-          }
-          #cvPage2 { 
-            page-break-before: always;
-            padding-top: 0.15cm !important;
-          }
-          ${styles}
-          @media print {
-            @page { margin: 0.3cm; }
-            html, body { margin: 0; padding: 0; }
-            .cv-master { margin: 0; }
-            .cv-header { margin-bottom: 0; }
-            #cvPage2 { page-break-before: always; }
-          }
-        </style>
-      </head>
-      <body style="margin:0; padding:0;">
-        ${fullHtmlContent}
-      </body>
-      </html>`;
-      
-      if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
-        const docxBlob = htmlDocx.asBlob(fullDoc, { 
-          orientation: 'portrait',
-          margins: { top: 180, right: 360, bottom: 180, left: 360 }
-        });
-        saveAs(docxBlob, 'Celestino_Otieno_CV_2Pages.docx');
-      } else {
-        const fallback = new Blob([fullDoc], { type: 'application/msword' });
-        saveAs(fallback, 'Celestino_Otieno_CV_2Pages.doc');
-      }
+      const fullDoc = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV (2 Pages)</title><style>@page { margin: 0.3cm; size: A4 portrait; } * { margin:0; padding:0; box-sizing:border-box; font-family:'Times New Roman', Times, serif; } html,body { margin:0; padding:0; background:white; } .cv-master { margin:0; padding:0; } .cv-header { margin-top:0; padding-top:0.15cm; margin-bottom:0; } .cv-page { display:block; padding:0.15cm 0.5cm; margin:0; } .cv-section-title:first-child { margin-top:0.1cm; } .cv-nav, .toolbar-cv, .admin-badge-area, .footer-cv { display:none; } #cvPage2 { page-break-before: always; } ${styles}</style></head><body style="margin:0; padding:0;">${fullHtmlContent}</body></html>`;
+      if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) { const docxBlob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 360, bottom: 180, left: 360 } }); saveAs(docxBlob, 'Celestino_Otieno_CV_2Pages.docx'); } 
+      else { const fallback = new Blob([fullDoc], { type: 'application/msword' }); saveAs(fallback, 'Celestino_Otieno_CV_2Pages.doc'); }
     });
   }
 </script>
