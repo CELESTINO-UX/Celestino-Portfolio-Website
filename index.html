@@ -5,589 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="description" content="Professional CV of Otieno Celestino Onyango - Record Manager, ICT Support Specialist, School Librarian, and System Librarian. Global ATS-friendly format.">
   <title>Celestino Otieno | Universal Professional CV</title>
-  <!-- Font Awesome 6 (icons only) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- PDF & DOCX export libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.js"></script>
   <style>
-    /* GLOBAL RESET & TIMES NEW ROMAN FONT - NO BLUR EFFECTS ANYWHERE */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-    }
-
-    body {
-      background: #e9eef3;
-      font-family: 'Times New Roman', Times, serif;
-      color: #1a2c3b;
-      line-height: 1.35;
-    }
-
-    /* main CV wrapper */
-    .cv-master {
-      max-width: 1200px;
-      margin: 0 auto 2rem auto;
-      background: transparent;
-    }
-
-    /* professional header - COMPACT for continuous flow - crisp text */
-    .cv-header {
-      background: linear-gradient(135deg, #0a3b44 0%, #125f54 100%);
-      color: white;
-      padding: 0.8rem 1.8rem 0.6rem 1.8rem;
-      border-radius: 0.8rem 0.8rem 0 0;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-      position: relative;
-      margin-bottom: 0;
-    }
-    .cv-header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      font-family: 'Times New Roman', Times, serif;
-      margin-bottom: 0.1rem;
-      margin-top: 0;
-      padding-top: 0;
-      line-height: 1.2;
-    }
-    .cv-header .title-tag {
-      font-size: 0.8rem;
-      font-weight: 500;
-      background: rgba(255,255,255,0.18);
-      display: inline-block;
-      padding: 0.2rem 0.8rem;
-      border-radius: 40px;
-      margin-top: 0.2rem;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .contact-bar-cv {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 0.5rem;
-      background: rgba(0,0,0,0.2);
-      padding: 0.4rem 0.8rem;
-      border-radius: 50px;
-      font-size: 0.75rem;
-      font-family: 'Times New Roman', Times, serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+    body { background: #e9eef3; font-family: 'Times New Roman', Times, serif; color: #1a2c3b; line-height: 1.35; }
+    .cv-master { max-width: 1200px; margin: 0 auto 2rem auto; background: transparent; }
+    .cv-header { background: linear-gradient(135deg, #0a3b44 0%, #125f54 100%); color: white; padding: 0.8rem 1.8rem 0.6rem 1.8rem; border-radius: 0.8rem 0.8rem 0 0; box-shadow: 0 6px 12px rgba(0,0,0,0.05); position: relative; margin-bottom: 0; }
+    .cv-header h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: 0.5px; font-family: 'Times New Roman', Times, serif; margin-bottom: 0.1rem; margin-top: 0; padding-top: 0; line-height: 1.2; }
+    .cv-header .title-tag { font-size: 0.8rem; font-weight: 500; background: rgba(255,255,255,0.18); display: inline-block; padding: 0.2rem 0.8rem; border-radius: 40px; margin-top: 0.2rem; font-family: 'Times New Roman', Times, serif; }
+    .contact-bar-cv { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem; background: rgba(0,0,0,0.2); padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.75rem; font-family: 'Times New Roman', Times, serif; }
     .contact-bar-cv i { width: 1.2rem; opacity: 0.9; }
-    .toolbar-cv {
-      display: flex;
-      gap: 0.8rem;
-      margin-top: 0.8rem;
-      flex-wrap: wrap;
-      transition: all 0.2s ease;
-    }
-    .admin-badge-area {
-      position: absolute;
-      bottom: 8px;
-      right: 20px;
-      font-size: 0.65rem;
-      background: rgba(0,0,0,0.3);
-      padding: 3px 8px;
-      border-radius: 40px;
-      cursor: pointer;
-      transition: 0.2s;
-      font-family: monospace;
-      backdrop-filter: none;
-    }
-    .admin-badge-area:hover {
-      background: rgba(0,0,0,0.6);
-    }
-    .passcode-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      font-family: 'Times New Roman', Times, serif;
-      transition: all 0.2s;
-    }
-    .passcode-card {
-      background: white;
-      border-radius: 28px;
-      max-width: 360px;
-      width: 90%;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
-      animation: modalPop 0.2s ease-out;
-    }
-    @keyframes modalPop {
-      from { opacity: 0; transform: scale(0.96);}
-      to { opacity: 1; transform: scale(1);}
-    }
-    .passcode-card i {
-      font-size: 2.8rem;
-      color: #125f54;
-      margin-bottom: 0.8rem;
-    }
-    .passcode-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #0a3b44;
-    }
-    .passcode-card input {
-      width: 100%;
-      padding: 12px 16px;
-      margin: 1.2rem 0;
-      font-size: 1.1rem;
-      border: 1px solid #cbdbe0;
-      border-radius: 60px;
-      text-align: center;
-      letter-spacing: 2px;
-      font-family: monospace;
-      font-weight: bold;
-      outline: none;
-    }
-    .passcode-card input:focus {
-      border-color: #1f8a6b;
-      box-shadow: 0 0 0 2px rgba(31,138,107,0.2);
-    }
-    .passcode-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-    }
-    .passcode-btn {
-      background: #eef2f5;
-      border: none;
-      padding: 8px 22px;
-      border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-      font-family: inherit;
-    }
-    .passcode-btn.confirm {
-      background: #125f54;
-      color: white;
-    }
-    .passcode-btn.confirm:hover {
-      background: #0e4a42;
-    }
-    .error-message {
-      color: #c7362b;
-      font-size: 0.8rem;
-      margin-top: -0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .btn-cv {
-      background: white;
-      color: #125f54;
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .btn-cv:hover {
-      transform: translateY(-2px);
-      background: #f0f7f5;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
-    }
-    .toolbar-hidden .toolbar-cv {
-      display: none !important;
-    }
-
-    /* navigation tabs */
-    .cv-nav {
-      display: flex;
-      flex-wrap: wrap;
-      background: white;
-      padding: 0.2rem 0.8rem 0 0.8rem;
-      gap: 0.1rem;
-      border-bottom: 1px solid #d4dee4;
-    }
-    .nav-cv-item {
-      padding: 0.5rem 1rem;
-      font-weight: 600;
-      font-size: 0.8rem;
-      background: #f5f9fc;
-      border: none;
-      border-radius: 0.5rem 0.5rem 0 0;
-      cursor: pointer;
-      transition: 0.2s;
-      color: #1e5a6e;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .nav-cv-item.active {
-      background: white;
-      color: #0f6b58;
-      border-bottom: 3px solid #1f8a6b;
-      font-weight: 800;
-    }
-    .nav-cv-item:hover:not(.active) {
-      background: #e9f0f5;
-    }
-
-    /* pages container */
-    .cv-pages {
-      background: white;
-      border-radius: 0 0 0.8rem 0.8rem;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.06);
-      overflow: hidden;
-    }
-    .cv-page {
-      display: none;
-      padding: 0.8rem 1.5rem;
-      animation: fadeSlide 0.22s ease;
-    }
-    .cv-page.active-cv-page {
-      display: block;
-    }
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(5px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-
-    /* compact typography - no blur, crisp edges */
-    .cv-section-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #0a4a5a;
-      border-left: 4px solid #1f8a6b;
-      padding-left: 0.8rem;
-      margin-bottom: 0.4rem;
-      margin-top: 0.3rem;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .cv-section-title:first-child {
-      margin-top: 0;
-    }
-    .cv-card {
-      background: #fefefe;
-      border-radius: 0.5rem;
-      margin-bottom: 0.6rem;
-    }
-    .exp-block {
-      margin-bottom: 0.5rem;
-      border-bottom: 1px solid #e2ecf2;
-      padding-bottom: 0.4rem;
-    }
-    .exp-block h3 {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: #135f6b;
-      margin-bottom: 0.1rem;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .exp-meta-cv {
-      font-size: 0.72rem;
-      color: #5a7e8f;
-      margin-bottom: 0.3rem;
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .skill-badge-cv {
-      background: #e8f0f5;
-      padding: 0.18rem 0.6rem;
-      border-radius: 30px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      color: #1c5d6e;
-      display: inline-block;
-      margin: 0.12rem;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .responsibility-list {
-      padding-left: 1.2rem;
-      margin: 0.3rem 0;
-    }
-    .responsibility-list li {
-      margin: 0.2rem 0;
-      font-size: 0.8rem;
-      font-family: 'Times New Roman', Times, serif;
-      line-height: 1.3;
-    }
-    .footer-cv {
-      text-align: center;
-      font-size: 0.65rem;
-      padding: 0.5rem;
-      background: #fafefe;
-      border-top: 1px solid #e2edf2;
-      color: #537d93;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    hr.dashed {
-      margin: 0.4rem 0;
-      border: 0;
-      height: 1px;
-      background: linear-gradient(90deg, #cce0e8, transparent);
-    }
-    .project-card {
-      background: #f9fefd;
-      border-left: 4px solid #1f8a6b;
-      border-radius: 0.6rem;
-      padding: 0.6rem 0.8rem;
-      margin: 0.6rem 0;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.03);
-    }
-    .project-card h3 {
-      font-size: 1rem;
-      color: #0a4a5a;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 0.3rem;
-    }
-    .project-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin: 0.3rem 0;
-    }
-    .tech-badge {
-      background: #e3f0ec;
-      color: #125f54;
-      font-size: 0.62rem;
-      font-weight: bold;
-      padding: 0.12rem 0.6rem;
-      border-radius: 30px;
-      letter-spacing: 0.3px;
-    }
-    .metric-highlight {
-      background: #eef5f2;
-      border-radius: 0.5rem;
-      padding: 0.3rem 0.6rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-weight: 600;
-      font-size: 0.68rem;
-      color: #0f5c4e;
-    }
-    
-    /* Referees card styling */
-    .referee-card {
-      background: #fafefb;
-      padding: 0.8rem;
-      border-radius: 0.8rem;
-      border-left: 3px solid #1f8a6b;
-      margin-bottom: 0.8rem;
-    }
-    .referee-card strong {
-      font-size: 1rem;
-      color: #0a4a5a;
-      display: block;
-      margin-bottom: 0.2rem;
-    }
-    .referee-card span {
-      font-size: 0.78rem;
-      line-height: 1.4;
-    }
-    
-    @media (max-width: 750px) {
-      .cv-page { padding: 0.6rem 0.8rem; }
-      .nav-cv-item { padding: 0.4rem 0.7rem; font-size: 0.65rem; }
-      .cv-header h1 { font-size: 1.6rem; }
-      .cv-header { padding: 0.7rem 1rem 0.5rem 1rem; }
-      .admin-badge-area { font-size: 0.55rem; bottom: 6px; right: 10px; }
-      .project-card h3 { font-size: 0.9rem; }
-    }
-
-    /* PRINT & EXPORT: crisp text, 2 pages exactly */
-    @media print {
-      @page {
-        margin: 0.3cm;
-        size: A4 portrait;
-      }
-      
-      html, body {
-        margin: 0 !important;
-        padding: 0 !important;
-        background: white !important;
-        width: 100% !important;
-        height: auto !important;
-      }
-      
-      .cv-master {
-        margin: 0 !important;
-        padding: 0 !important;
-        max-width: 100% !important;
-        width: 100% !important;
-      }
-      
-      .toolbar-cv, .cv-nav, .admin-badge-area, .footer-cv {
-        display: none !important;
-      }
-      
-      .cv-pages {
-        border-radius: 0 !important;
-        box-shadow: none !important;
-      }
-      
-      .cv-page {
-        display: block !important;
-        padding: 0.3cm 0.5cm !important;
-        page-break-inside: avoid;
-        margin: 0 !important;
-      }
-      
-      .cv-header {
-        border-radius: 0 !important;
-        padding: 0.3cm 0.5cm 0.2cm 0.5cm !important;
-        margin: 0 !important;
-        box-shadow: none !important;
-        margin-bottom: 0 !important;
-      }
-      
-      .cv-header h1 {
-        font-size: 1.4rem !important;
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        margin-bottom: 0.05rem !important;
-        line-height: 1.1 !important;
-      }
-      
-      .cv-header .title-tag {
-        font-size: 0.7rem !important;
-        padding: 0.15rem 0.6rem !important;
-        margin-top: 0.1rem !important;
-      }
-      
-      .contact-bar-cv {
-        font-size: 0.65rem !important;
-        gap: 0.6rem !important;
-        padding: 0.2rem 0.6rem !important;
-        margin-top: 0.3rem !important;
-      }
-      
-      .cv-section-title {
-        font-size: 1rem !important;
-        margin-bottom: 0.2rem !important;
-        margin-top: 0.2rem !important;
-        padding-left: 0.5rem !important;
-        border-left-width: 3px !important;
-      }
-      
-      .cv-section-title:first-child {
-        margin-top: 0.1rem !important;
-      }
-      
-      .cv-card {
-        margin-bottom: 0.3rem !important;
-      }
-      
-      .cv-card p {
-        margin-bottom: 0.3rem !important;
-        font-size: 0.7rem !important;
-      }
-      
-      .exp-block {
-        margin-bottom: 0.3rem !important;
-        padding-bottom: 0.2rem !important;
-      }
-      
-      .exp-block h3 {
-        font-size: 0.82rem !important;
-        margin-bottom: 0.05rem !important;
-      }
-      
-      .exp-meta-cv {
-        font-size: 0.65rem !important;
-        margin-bottom: 0.2rem !important;
-      }
-      
-      .responsibility-list {
-        padding-left: 0.8rem !important;
-        margin: 0.15rem 0 !important;
-      }
-      
-      .responsibility-list li {
-        font-size: 0.68rem !important;
-        margin: 0.08rem 0 !important;
-        line-height: 1.25 !important;
-      }
-      
-      .skill-badge-cv {
-        font-size: 0.6rem !important;
-        padding: 0.1rem 0.4rem !important;
-        margin: 0.08rem !important;
-      }
-      
-      .project-card {
-        padding: 0.3rem 0.6rem !important;
-        margin: 0.3rem 0 !important;
-        border-left-width: 3px !important;
-      }
-      
-      .project-card h3 {
-        font-size: 0.85rem !important;
-        margin-bottom: 0.2rem !important;
-      }
-      
-      .tech-badge {
-        font-size: 0.55rem !important;
-        padding: 0.08rem 0.4rem !important;
-      }
-      
-      .metric-highlight {
-        font-size: 0.6rem !important;
-        padding: 0.2rem 0.5rem !important;
-      }
-      
-      .referee-card {
-        padding: 0.4rem 0.6rem !important;
-        margin-bottom: 0.4rem !important;
-      }
-      .referee-card strong {
-        font-size: 0.85rem !important;
-      }
-      .referee-card span {
-        font-size: 0.68rem !important;
-      }
-      
-      .btn-cv {
-        display: none !important;
-      }
-      
-      hr.dashed {
-        margin: 0.3rem 0 !important;
-      }
-      
-      #cvPage1 {
-        padding-top: 0.2cm !important;
-        margin-top: 0 !important;
-      }
-      
-      #cvPage2 {
-        page-break-before: always;
-        page-break-after: avoid;
-        padding-top: 0.3cm !important;
-        margin-top: 0 !important;
-      }
-    }
+    .toolbar-cv { display: flex; gap: 0.8rem; margin-top: 0.8rem; flex-wrap: wrap; transition: all 0.2s ease; }
+    .admin-badge-area { position: absolute; bottom: 8px; right: 20px; font-size: 0.65rem; background: rgba(0,0,0,0.3); padding: 3px 8px; border-radius: 40px; cursor: pointer; transition: 0.2s; font-family: monospace; }
+    .admin-badge-area:hover { background: rgba(0,0,0,0.6); }
+    .passcode-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); display: flex; align-items: center; justify-content: center; z-index: 2000; font-family: 'Times New Roman', Times, serif; }
+    .passcode-card { background: white; border-radius: 28px; max-width: 360px; width: 90%; padding: 2rem 1.5rem; text-align: center; box-shadow: 0 25px 45px rgba(0,0,0,0.3); animation: modalPop 0.2s ease-out; }
+    @keyframes modalPop { from { opacity: 0; transform: scale(0.96);} to { opacity: 1; transform: scale(1);} }
+    .passcode-card i { font-size: 2.8rem; color: #125f54; margin-bottom: 0.8rem; }
+    .passcode-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #0a3b44; }
+    .passcode-card input { width: 100%; padding: 12px 16px; margin: 1.2rem 0; font-size: 1.1rem; border: 1px solid #cbdbe0; border-radius: 60px; text-align: center; letter-spacing: 2px; font-family: monospace; font-weight: bold; outline: none; }
+    .passcode-card input:focus { border-color: #1f8a6b; box-shadow: 0 0 0 2px rgba(31,138,107,0.2); }
+    .passcode-buttons { display: flex; gap: 12px; justify-content: center; }
+    .passcode-btn { background: #eef2f5; border: none; padding: 8px 22px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.2s; font-family: inherit; }
+    .passcode-btn.confirm { background: #125f54; color: white; }
+    .passcode-btn.confirm:hover { background: #0e4a42; }
+    .error-message { color: #c7362b; font-size: 0.8rem; margin-top: -0.5rem; margin-bottom: 0.5rem; }
+    .btn-cv { background: white; color: #125f54; border: none; padding: 0.5rem 1.2rem; border-radius: 40px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); font-family: 'Times New Roman', Times, serif; }
+    .btn-cv:hover { transform: translateY(-2px); background: #f0f7f5; box-shadow: 0 8px 18px rgba(0,0,0,0.1); }
+    .toolbar-hidden .toolbar-cv { display: none !important; }
+    .cv-nav { display: flex; flex-wrap: wrap; background: white; padding: 0.2rem 0.8rem 0 0.8rem; gap: 0.1rem; border-bottom: 1px solid #d4dee4; }
+    .nav-cv-item { padding: 0.5rem 1rem; font-weight: 600; font-size: 0.8rem; background: #f5f9fc; border: none; border-radius: 0.5rem 0.5rem 0 0; cursor: pointer; transition: 0.2s; color: #1e5a6e; display: inline-flex; align-items: center; gap: 6px; font-family: 'Times New Roman', Times, serif; }
+    .nav-cv-item.active { background: white; color: #0f6b58; border-bottom: 3px solid #1f8a6b; font-weight: 800; }
+    .nav-cv-item:hover:not(.active) { background: #e9f0f5; }
+    .cv-pages { background: white; border-radius: 0 0 0.8rem 0.8rem; box-shadow: 0 12px 28px rgba(0,0,0,0.06); overflow: hidden; }
+    .cv-page { display: none; padding: 0.8rem 1.5rem; animation: fadeSlide 0.22s ease; }
+    .cv-page.active-cv-page { display: block; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(5px);} to { opacity: 1; transform: translateY(0);} }
+    .cv-section-title { font-size: 1.2rem; font-weight: 700; color: #0a4a5a; border-left: 4px solid #1f8a6b; padding-left: 0.8rem; margin-bottom: 0.4rem; margin-top: 0.3rem; font-family: 'Times New Roman', Times, serif; }
+    .cv-section-title:first-child { margin-top: 0; }
+    .cv-card { background: #fefefe; border-radius: 0.5rem; margin-bottom: 0.6rem; }
+    .exp-block { margin-bottom: 0.5rem; border-bottom: 1px solid #e2ecf2; padding-bottom: 0.4rem; }
+    .exp-block h3 { font-size: 0.95rem; font-weight: 800; color: #135f6b; margin-bottom: 0.1rem; font-family: 'Times New Roman', Times, serif; }
+    .exp-meta-cv { font-size: 0.72rem; color: #5a7e8f; margin-bottom: 0.3rem; display: flex; gap: 0.8rem; flex-wrap: wrap; font-family: 'Times New Roman', Times, serif; }
+    .skill-badge-cv { background: #e8f0f5; padding: 0.18rem 0.6rem; border-radius: 30px; font-size: 0.68rem; font-weight: 600; color: #1c5d6e; display: inline-block; margin: 0.12rem; font-family: 'Times New Roman', Times, serif; }
+    .responsibility-list { padding-left: 1.2rem; margin: 0.3rem 0; }
+    .responsibility-list li { margin: 0.2rem 0; font-size: 0.8rem; font-family: 'Times New Roman', Times, serif; line-height: 1.3; }
+    .footer-cv { text-align: center; font-size: 0.65rem; padding: 0.5rem; background: #fafefe; border-top: 1px solid #e2edf2; color: #537d93; font-family: 'Times New Roman', Times, serif; }
+    hr.dashed { margin: 0.4rem 0; border: 0; height: 1px; background: linear-gradient(90deg, #cce0e8, transparent); }
+    .project-card { background: #f9fefd; border-left: 4px solid #1f8a6b; border-radius: 0.6rem; padding: 0.6rem 0.8rem; margin: 0.6rem 0; box-shadow: 0 3px 8px rgba(0,0,0,0.03); }
+    .project-card h3 { font-size: 1rem; color: #0a4a5a; display: flex; align-items: center; gap: 8px; margin-bottom: 0.3rem; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0.3rem 0; }
+    .tech-badge { background: #e3f0ec; color: #125f54; font-size: 0.62rem; font-weight: bold; padding: 0.12rem 0.6rem; border-radius: 30px; letter-spacing: 0.3px; }
+    .metric-highlight { background: #eef5f2; border-radius: 0.5rem; padding: 0.3rem 0.6rem; display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; font-size: 0.68rem; color: #0f5c4e; }
+    .referee-card { background: #fafefb; padding: 0.8rem; border-radius: 0.8rem; border-left: 3px solid #1f8a6b; margin-bottom: 0.8rem; }
+    .referee-card strong { font-size: 1rem; color: #0a4a5a; display: block; margin-bottom: 0.2rem; }
+    .referee-card span { font-size: 0.78rem; line-height: 1.4; }
+    @media (max-width: 750px) { .cv-page { padding: 0.6rem 0.8rem; } .nav-cv-item { padding: 0.4rem 0.7rem; font-size: 0.65rem; } .cv-header h1 { font-size: 1.6rem; } .cv-header { padding: 0.7rem 1rem 0.5rem 1rem; } .admin-badge-area { font-size: 0.55rem; bottom: 6px; right: 10px; } .project-card h3 { font-size: 0.9rem; } }
+    @media print { @page { margin: 0.3cm; size: A4 portrait; } html, body { margin: 0 !important; padding: 0 !important; background: white !important; width: 100% !important; height: auto !important; } .cv-master { margin: 0 !important; padding: 0 !important; max-width: 100% !important; width: 100% !important; } .toolbar-cv, .cv-nav, .admin-badge-area, .footer-cv { display: none !important; } .cv-pages { border-radius: 0 !important; box-shadow: none !important; } .cv-page { display: block !important; padding: 0.3cm 0.5cm !important; page-break-inside: avoid; margin: 0 !important; } .cv-header { border-radius: 0 !important; padding: 0.3cm 0.5cm 0.2cm 0.5cm !important; margin: 0 !important; box-shadow: none !important; margin-bottom: 0 !important; } .cv-header h1 { font-size: 1.4rem !important; margin-top: 0 !important; padding-top: 0 !important; margin-bottom: 0.05rem !important; line-height: 1.1 !important; } .cv-header .title-tag { font-size: 0.7rem !important; padding: 0.15rem 0.6rem !important; margin-top: 0.1rem !important; } .contact-bar-cv { font-size: 0.65rem !important; gap: 0.6rem !important; padding: 0.2rem 0.6rem !important; margin-top: 0.3rem !important; } .cv-section-title { font-size: 1rem !important; margin-bottom: 0.2rem !important; margin-top: 0.2rem !important; padding-left: 0.5rem !important; border-left-width: 3px !important; } .cv-section-title:first-child { margin-top: 0.1rem !important; } .cv-card { margin-bottom: 0.3rem !important; } .cv-card p { margin-bottom: 0.3rem !important; font-size: 0.7rem !important; } .exp-block { margin-bottom: 0.3rem !important; padding-bottom: 0.2rem !important; } .exp-block h3 { font-size: 0.82rem !important; margin-bottom: 0.05rem !important; } .exp-meta-cv { font-size: 0.65rem !important; margin-bottom: 0.2rem !important; } .responsibility-list { padding-left: 0.8rem !important; margin: 0.15rem 0 !important; } .responsibility-list li { font-size: 0.68rem !important; margin: 0.08rem 0 !important; line-height: 1.25 !important; } .skill-badge-cv { font-size: 0.6rem !important; padding: 0.1rem 0.4rem !important; margin: 0.08rem !important; } .project-card { padding: 0.3rem 0.6rem !important; margin: 0.3rem 0 !important; border-left-width: 3px !important; } .project-card h3 { font-size: 0.85rem !important; margin-bottom: 0.2rem !important; } .tech-badge { font-size: 0.55rem !important; padding: 0.08rem 0.4rem !important; } .metric-highlight { font-size: 0.6rem !important; padding: 0.2rem 0.5rem !important; } .referee-card { padding: 0.4rem 0.6rem !important; margin-bottom: 0.4rem !important; } .referee-card strong { font-size: 0.85rem !important; } .referee-card span { font-size: 0.68rem !important; } .btn-cv { display: none !important; } hr.dashed { margin: 0.3rem 0 !important; } #cvPage1 { padding-top: 0.2cm !important; margin-top: 0 !important; } #cvPage2 { page-break-before: always; page-break-after: avoid; padding-top: 0.3cm !important; margin-top: 0 !important; } }
   </style>
 </head>
 <body>
 <div class="cv-master" id="cvMasterContainer">
-  <!-- Header Section - COMPACT DESIGN -->
   <div class="cv-header">
     <h1>OTIENO CELESTINO ONYANGO</h1>
     <div class="title-tag"><i class="fas fa-chalkboard-user"></i> Record Manager | ICT Support | School Librarian | System Librarian | ICT Educator</div>
@@ -607,7 +88,6 @@
     </div>
   </div>
 
-  <!-- Navigation tabs (Referees tab removed, now referees on page 2) -->
   <div class="cv-nav">
     <button class="nav-cv-item active" data-cvpage="cvPage1"><i class="fas fa-user-circle"></i> Summary & Skills</button>
     <button class="nav-cv-item" data-cvpage="cvPage2"><i class="fas fa-briefcase"></i> Experience & Referees</button>
@@ -620,7 +100,7 @@
   </div>
 
   <div class="cv-pages">
-    <!-- PAGE 1: Summary + Skills + Certifications + Work Experience (partial) -->
+    <!-- PAGE 1 -->
     <div class="cv-page active-cv-page" id="cvPage1">
       <div class="cv-section-title" style="margin-top:0;"><i class="fas fa-id-badge"></i> Professional Summary</div>
       <div class="cv-card">
@@ -687,7 +167,7 @@
       </div>
     </div>
 
-    <!-- PAGE 2: Projects + Library Management + Education + PROFESSIONAL REFEREES (included here) -->
+    <!-- PAGE 2: Projects + Library Management + Education + REFEREES -->
     <div class="cv-page" id="cvPage2">
       <div class="cv-section-title" style="margin-top:0;"><i class="fas fa-laptop-code"></i> Featured Project</div>
       <div class="project-card">
@@ -736,7 +216,7 @@
         <div class="exp-meta-cv">Nyarach Mixed Day Secondary School – 2015 to 2019 | Grade: C+ (Aggregate 51 points)</div>
       </div>
 
-      <!-- PROFESSIONAL REFEREES SECTION (added on page 2 as requested) -->
+      <!-- PROFESSIONAL REFEREES -->
       <div class="cv-section-title"><i class="fas fa-users"></i> Professional Referees</div>
       <div>
         <div class="referee-card">
@@ -760,7 +240,7 @@
       </div>
     </div>
 
-    <!-- Additional detail pages preserved (Library Mgt, Coordination, etc.) -->
+    <!-- Additional detail pages -->
     <div class="cv-page" id="cvPage3">
       <div class="cv-section-title" style="margin-top:0;"><i class="fas fa-building"></i> Library Space Management</div>
       <div class="cv-card"><ul class="responsibility-list"><li>Direct daily operations of the MS/HS library as an organized, welcoming learning environment.</li><li>Coordinate scheduling and usage of library space for classes, groups, and events.</li><li>Maintain clear procedures for respectful facility use; monitor student behavior.</li><li>Ensure appealing presentation of library spaces and materials.</li></ul></div>
@@ -819,7 +299,6 @@
 </div>
 
 <script>
-  // ADMIN PANEL FEATURE (unchanged)
   const MASTER_PASSCODE = "19971997";
   let isAdminUnlocked = false;
   const masterContainer = document.getElementById('cvMasterContainer');
@@ -865,13 +344,11 @@
   }
   adminBadge.addEventListener('click', (e) => { e.stopPropagation(); if(isAdminUnlocked) { if(confirm('Admin mode active. Click OK to lock download buttons.')) { isAdminUnlocked = false; setDownloadButtonsVisibility(false); } } else { showPasscodeModal(); } });
 
-  // Tabs navigation
   const navButtons = document.querySelectorAll('.nav-cv-item');
   const cvPages = document.querySelectorAll('.cv-page');
   function switchCVPage(pageId) { cvPages.forEach(page => page.classList.remove('active-cv-page')); const targetPage = document.getElementById(pageId); if(targetPage) targetPage.classList.add('active-cv-page'); navButtons.forEach(btn => { const btnPage = btn.getAttribute('data-cvpage'); if(btnPage === pageId) btn.classList.add('active'); else btn.classList.remove('active'); }); }
   navButtons.forEach(btn => { btn.addEventListener('click', () => { const pageId = btn.getAttribute('data-cvpage'); switchCVPage(pageId); window.scrollTo({ top: 0, behavior: 'smooth' }); }); });
 
-  // EXPORT: 2 pages only (cvPage1 and cvPage2)
   function get2PageCVHTML() {
     const cloneMaster = document.getElementById('cvMasterContainer').cloneNode(true);
     const elementsToRemove = ['.cv-nav', '.toolbar-cv', '.admin-badge-area', '.footer-cv'];
