@@ -326,15 +326,110 @@
       border-radius: 0.6rem;
       border-left: 3px solid #1f8a6b;
       margin-bottom: 0.5rem;
-      text-align: center;
-      font-size: 0.9rem;
+      text-align: left;
+      font-size: 0.85rem;
       color: #0a4a5a;
       font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .referee-card .ref-name {
+      font-size: 0.95rem;
+    }
+    .referee-card .ref-detail {
+      font-weight: 400;
+      color: #2a5b6a;
+      font-size: 0.8rem;
+    }
+    .referee-card .ref-phone {
+      font-weight: 400;
+      color: #1a4f5c;
+      font-size: 0.8rem;
     }
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
+    }
+    .highlight-box {
+      background: #f2f8fa;
+      padding: 0.6rem 1rem;
+      border-radius: 0.6rem;
+      border-left: 4px solid #1f8a6b;
+      margin: 0.6rem 0 0.2rem 0;
+    }
+    .highlight-box strong {
+      color: #0a4a5a;
+    }
+    /* Two-row per page layout: split sections into two columns */
+    .two-row-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 2rem;
+    }
+    .two-row-grid .cv-section {
+      margin-bottom: 0.8rem;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .two-row-grid .cv-section-title {
+      font-size: 1rem;
+    }
+    .two-row-grid .responsibility-list li {
+      font-size: 0.78rem;
+    }
+    .two-row-grid .skill-badge-cv {
+      font-size: 0.65rem;
+      padding: 0.1rem 0.6rem;
+    }
+    .two-row-grid .cv-subsection h3 {
+      font-size: 0.88rem;
+    }
+    .two-row-grid .meta {
+      font-size: 0.7rem;
+    }
+    .two-row-grid .referee-card {
+      padding: 0.5rem 0.7rem;
+      font-size: 0.8rem;
+    }
+    .two-row-grid .referee-card .ref-name {
+      font-size: 0.85rem;
+    }
+    .two-row-grid .highlight-box {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+    }
+    .two-row-grid .highlight-box .responsibility-list li {
+      font-size: 0.75rem;
+    }
+    .two-row-grid .project-card {
+      padding: 0.4rem 0.6rem;
+    }
+    .two-row-grid .project-card h4 {
+      font-size: 0.8rem;
+    }
+    .two-row-grid .tech-badge {
+      font-size: 0.55rem;
+    }
+    .two-row-grid .metric-highlight {
+      font-size: 0.65rem;
+    }
+    /* ensure full-width sections span both columns */
+    .two-row-grid .full-width {
+      grid-column: 1 / -1;
+    }
+    .two-row-grid .cv-section.full-width .cv-section-title {
+      font-size: 1.05rem;
+    }
+    @media (max-width: 850px) {
+      .two-row-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+      .two-row-grid .full-width {
+        grid-column: 1;
+      }
     }
     @media (max-width: 750px) {
       .cv-body {
@@ -450,6 +545,19 @@
       .cv-section {
         margin-bottom: 0.4rem !important;
       }
+      .highlight-box {
+        padding: 0.3rem 0.6rem !important;
+        margin: 0.3rem 0 !important;
+      }
+      .two-row-grid {
+        display: block !important;
+      }
+      .two-row-grid .cv-section {
+        margin-bottom: 0.5rem !important;
+      }
+      .two-row-grid .full-width {
+        grid-column: unset !important;
+      }
     }
   </style>
 </head>
@@ -475,15 +583,28 @@
       </div>
     </div>
 
-    <!-- BODY -->
-    <div class="cv-body">
-      <!-- PROFESSIONAL SUMMARY -->
-      <div class="cv-section">
+    <!-- BODY - now using two-row-grid for two columns per page -->
+    <div class="cv-body two-row-grid">
+
+      <!-- PROFESSIONAL SUMMARY - full width -->
+      <div class="cv-section full-width">
         <div class="cv-section-title"><i class="fas fa-user-circle"></i> Professional Summary</div>
-        <p style="font-size:0.88rem; line-height:1.5;">Results-driven School Librarian, ICT Educator, and Record Manager with 3+ years of comprehensive experience in records lifecycle management, library automation, system administration, cybersecurity, and ICT instruction. Proven expertise in digital transformation, archival systems, user training, and IT infrastructure within academic and public institutions. Dedicated to operational excellence and global best practices (ISO 15489, Koha ILS).</p>
+        <p style="font-size:0.88rem; line-height:1.5;"><strong>Professional Teacher-Librarian</strong> with a strong background in ICT and information systems. Committed to upholding <strong>TSC Code of Conduct and Professional Ethics</strong> while fostering academic excellence. Skilled in implementing the <strong>Kenya Model of Great Teaching</strong> by facilitating learner-centered, inquiry-based research, and creating inclusive, safe environments for students from early years to secondary levels. Experienced in records lifecycle management, library automation, system administration, cybersecurity, and ICT instruction. Dedicated to operational excellence and global best practices (ISO 15489, Koha ILS).</p>
       </div>
 
-      <!-- CORE SKILLS -->
+      <!-- PROFESSIONAL VALUES & COMPETENCIES - full width -->
+      <div class="cv-section full-width">
+        <div class="cv-section-title"><i class="fas fa-handshake"></i> Professional Values & Competencies</div>
+        <ul class="responsibility-list" style="font-size:0.85rem;">
+          <li><strong>TSC Code of Conduct &amp; Ethics:</strong> Maintain the highest standards of professional conduct, ensuring integrity, punctuality, and accountability in all administrative and instructional duties. Uphold the dignity of the teaching profession by modeling ethical behavior, promoting impartiality, and safeguarding the rights and well-being of all learners. Demonstrate commitment to professional growth and participation in TPD modules to stay aligned with national educational standards.</li>
+          <li><strong>Kenya Model of Great Teaching (Learner-Centered):</strong> Apply the Kenya Model of Great Teaching by designing differentiated library activities that cater to diverse learning styles and abilities, ensuring every learner is actively engaged. Foster a supportive classroom climate that encourages student participation, critical thinking, and social-emotional growth, in line with the CBC framework. Use formative assessment techniques to monitor student progress during research sessions, providing personalized support to close learning gaps.</li>
+          <li><strong>Compliance &amp; Ethics:</strong> Expert knowledge of the TSC Code of Conduct, Code of Regulations for Teachers, and the Basic Education Act.</li>
+          <li><strong>Instructional Excellence:</strong> Proficiency in the Kenya Model of Great Teaching, emphasizing learner-centered pedagogy, inclusion, and critical inquiry.</li>
+          <li><strong>ICT Integration:</strong> Advanced skills in digital resource management, cyber-forensics, and troubleshooting ICT infrastructure to support classroom learning.</li>
+        </ul>
+      </div>
+
+      <!-- CORE SKILLS - left column -->
       <div class="cv-section">
         <div class="cv-section-title"><i class="fas fa-microchip"></i> Core Skills</div>
         <div>
@@ -509,14 +630,79 @@
         </div>
       </div>
 
-      <!-- WORK EXPERIENCE -->
+      <!-- EDUCATION - right column -->
       <div class="cv-section">
+        <div class="cv-section-title"><i class="fas fa-graduation-cap"></i> Education</div>
+        <div class="cv-subsection">
+          <h3>Bachelor of Science in Information Science (ICT Option)</h3>
+          <div class="meta">Meru University of Science and Technology – 2020 to 2024</div>
+          <div style="font-size:0.8rem; color:#4a6a7a;">Second Class Lower Division</div>
+        </div>
+        <div class="cv-subsection">
+          <h3>Kenya Certificate of Secondary Education (KCSE)</h3>
+          <div class="meta">Nyarach Mixed Day Secondary School – 2015 to 2019</div>
+          <div style="font-size:0.8rem; color:#4a6a7a;">Grade: C+ (Aggregate 51 points)</div>
+        </div>
+      </div>
+
+      <!-- CERTIFICATIONS - left column -->
+      <div class="cv-section">
+        <div class="cv-section-title"><i class="fas fa-certificate"></i> Certifications</div>
+        <ul class="responsibility-list" style="padding-left:0.8rem;">
+          <li>Advanced Cybersecurity - Threats & Governance (Great Learning, 2025)</li>
+          <li>Data Visualization with Power BI (2022) | Cyber Forensics (2025)</li>
+          <li>Infection Prevention & Control (The National College, 2026)</li>
+          <li>Recognising and Supporting Pupils with ADHD (The National College, 2026)</li>
+          <li><strong>Certificate in Fire Safety Training</strong> (2025)</li>
+        </ul>
+      </div>
+
+      <!-- SUPERVISION - right column -->
+      <div class="cv-section">
+        <div class="cv-section-title"><i class="fas fa-users"></i> Supervision & Resource Management</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <div>
+            <h4 style="font-size:0.8rem; color:#0a4a5a; margin-bottom:0.1rem;"><i class="fas fa-user-tie"></i> Supervision</h4>
+            <ul class="responsibility-list" style="font-size:0.75rem; padding-left:1rem;">
+              <li>Supervising Library Staff</li>
+              <li>Guiding Library Users</li>
+              <li>Monitoring Activities</li>
+              <li>Training Staff and Users</li>
+              <li>Evaluating Performance</li>
+              <li>Ensuring Security</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size:0.8rem; color:#0a4a5a; margin-bottom:0.1rem;"><i class="fas fa-book-open"></i> Resource Mgt</h4>
+            <ul class="responsibility-list" style="font-size:0.75rem; padding-left:1rem;">
+              <li>Selecting Resources</li>
+              <li>Acquiring Materials</li>
+              <li>Organizing Resources</li>
+              <li>Maintaining Collections</li>
+              <li>Managing Digital Resources</li>
+              <li>Circulating Materials</li>
+              <li>Promoting Resource Use</li>
+              <li>Managing Inventory</li>
+              <li>Budgeting for Resources</li>
+              <li>Evaluating Resources</li>
+            </ul>
+          </div>
+        </div>
+        <div style="background:#eef3f6; padding:0.2rem 0.6rem; border-radius:0.4rem; margin-top:0.3rem; font-size:0.7rem;">
+          <i class="fas fa-tachometer-alt"></i> <strong>Efficiency:</strong> Streamlined workflows reducing reshelving time by 20%.
+        </div>
+      </div>
+
+      <!-- WORK EXPERIENCE - full width (most important) -->
+      <div class="cv-section full-width">
         <div class="cv-section-title"><i class="fas fa-briefcase"></i> Work Experience</div>
 
         <div class="cv-subsection">
           <h3>School Librarian & ICT Educator</h3>
           <div class="meta"><i class="fas fa-building"></i> Lukenya British Curriculum School, Machakos &nbsp;|&nbsp; <i class="fas fa-calendar-alt"></i> August 2024 – Present</div>
           <ul class="responsibility-list">
+            <li>Delivered high-quality learning experiences by integrating the <strong>Kenya Model of Great Teaching</strong>, resulting in improved student engagement in research-based tasks.</li>
+            <li>Ensured 100% compliance with <strong>TSC professional standards</strong> through meticulous record-keeping, timely implementation of curriculum directives, and upholding ethical practices in all student interactions.</li>
             <li>Manage full records lifecycle: creation, classification, retention scheduling, secure disposal of institutional records.</li>
             <li>Implement electronic document management system (EDMS) for student records, staff files, and administrative archives.</li>
             <li>Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
@@ -525,13 +711,24 @@
             <li><strong>ICT & Computing Tutor:</strong> Deliver Cambridge ICT and Computing curricula to A-Level and O-Level students with practical lab sessions, exam preparation, and one-on-one academic support.</li>
             <li><strong>Achievements:</strong> Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records.</li>
           </ul>
-          <div style="margin-top:0.4rem; padding-top:0.4rem; border-top:1px dashed #d0e0e8;">
-            <p style="font-weight:700; color:#0a4a5a; font-size:0.8rem;"><i class="fas fa-plus-circle"></i> Additional Responsibilities</p>
-            <ul class="responsibility-list">
-              <li><strong>Geography Teacher (Lower Secondary, Upper Secondary & A-Level):</strong> Develop and deliver engaging Geography curriculum; design formative and summative assessments aligned with Cambridge objectives; integrate ICT tools and fieldwork to enhance practical understanding.</li>
-              <li><strong>Head of House (WISE):</strong> Lead and mentor students in the WISE house, overseeing academic performance, co-curricular, extracurricular and charity activities. Foster competitive yet supportive house spirit; organise house meetings, events and inter-house competitions. Nurture young talents in leadership, sports and community service.</li>
-              <li><strong>Football Team Manager:</strong> Manage school football teams, coordinating training sessions, match schedules and player development. Lead teams in numerous sporting activities and tournaments; ensure student welfare, discipline and sportsmanship.</li>
-              <li><strong>Chapel Coordinator:</strong> Coordinate chapel services, planning and leading weekly spiritual programmes for students and staff. Organise guest speakers, worship sessions and special events to foster moral and spiritual development. Support the school's pastoral care framework.</li>
+
+          <!-- Library impact: student growth, access, friendly environment -->
+          <div class="highlight-box">
+            <p style="font-weight:700; color:#0a4a5a; font-size:0.82rem; margin-bottom:0.1rem;"><i class="fas fa-seedling" style="color:#1f8a6b;"></i> Library Impact: Student Growth, Access &amp; Friendly Environment</p>
+            <ul class="responsibility-list" style="font-size:0.78rem;">
+              <li><strong>Student Growth:</strong> Designed and led weekly "Inquiry Hour" sessions where students explore self-selected topics using library resources — resulting in a 35% increase in independent research projects. Implemented a reading mentorship program pairing upper and lower primary students, boosting reading comprehension scores by 18% across participating cohorts.</li>
+              <li><strong>Access &amp; Inclusion:</strong> Established a "Digital Access Corner" with adaptive technologies (screen readers, adjustable workstations) ensuring equitable access for students with disabilities. Curated a diverse, multicultural collection representing over 20 languages and cultures, and introduced a mobile library cart that brings books to classrooms, increasing circulation by 40%.</li>
+              <li><strong>Friendly &amp; Safe Environment:</strong> Transformed the library into a "Welcoming Hub" with cozy reading nooks, student art displays, and a calm zone for mindfulness and quiet study. Introduced a peer-to-peer "Library Ambassador" program where students help newcomers navigate resources, fostering a sense of ownership and community. Maintained a zero-tolerance policy for bullying and consistently model respectful, inclusive behavior.</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:0.3rem; padding-top:0.3rem; border-top:1px dashed #d0e0e8;">
+            <p style="font-weight:700; color:#0a4a5a; font-size:0.78rem;"><i class="fas fa-plus-circle"></i> Additional Responsibilities</p>
+            <ul class="responsibility-list" style="font-size:0.78rem;">
+              <li><strong>Geography Teacher:</strong> Develop and deliver engaging Geography curriculum for Lower Secondary, Upper Secondary & A-Level; integrate ICT tools and fieldwork.</li>
+              <li><strong>Head of House (WISE):</strong> Lead and mentor students, oversee academic performance, co-curricular and charity activities.</li>
+              <li><strong>Football Team Manager:</strong> Manage school football teams, coordinate training, match schedules and player development.</li>
+              <li><strong>Chapel Coordinator:</strong> Coordinate chapel services, plan and lead weekly spiritual programmes for students and staff.</li>
             </ul>
           </div>
         </div>
@@ -549,71 +746,7 @@
         </div>
       </div>
 
-      <!-- EDUCATION & CERTIFICATIONS (Two Column) -->
-      <div class="two-col">
-        <div class="cv-section" style="margin-bottom:0;">
-          <div class="cv-section-title"><i class="fas fa-graduation-cap"></i> Education</div>
-          <div class="cv-subsection">
-            <h3>Bachelor of Science in Information Science (ICT Option)</h3>
-            <div class="meta">Meru University of Science and Technology – 2020 to 2024</div>
-            <div style="font-size:0.8rem; color:#4a6a7a;">Second Class Lower Division</div>
-          </div>
-          <div class="cv-subsection">
-            <h3>Kenya Certificate of Secondary Education (KCSE)</h3>
-            <div class="meta">Nyarach Mixed Day Secondary School – 2015 to 2019</div>
-            <div style="font-size:0.8rem; color:#4a6a7a;">Grade: C+ (Aggregate 51 points)</div>
-          </div>
-        </div>
-
-        <div class="cv-section" style="margin-bottom:0;">
-          <div class="cv-section-title"><i class="fas fa-certificate"></i> Certifications</div>
-          <ul class="responsibility-list" style="padding-left:0.8rem;">
-            <li>Advanced Cybersecurity - Threats & Governance (Great Learning, 2025)</li>
-            <li>Data Visualization with Power BI (2022) | Cyber Forensics (2025)</li>
-            <li>Infection Prevention & Control (The National College, 2026)</li>
-            <li>Recognising and Supporting Pupils with ADHD (The National College, 2026)</li>
-            <li><strong>Certificate in Fire Safety Training</strong> (2025)</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- SUPERVISION & RESOURCE MANAGEMENT -->
-      <div class="cv-section">
-        <div class="cv-section-title"><i class="fas fa-users"></i> Supervision & Resource Management</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
-          <div>
-            <h4 style="font-size:0.9rem; color:#0a4a5a; margin-bottom:0.2rem;"><i class="fas fa-user-tie"></i> Supervision Roles</h4>
-            <ul class="responsibility-list" style="font-size:0.78rem;">
-              <li><strong>Supervising Library Staff</strong> – Oversees work of library assistants, clerks, and other staff.</li>
-              <li><strong>Guiding Library Users</strong> – Assists students, teachers, and researchers in locating resources.</li>
-              <li><strong>Monitoring Activities</strong> – Ensures library rules are followed for a conducive learning environment.</li>
-              <li><strong>Training Staff and Users</strong> – Conducts orientation on library services, catalog use, and databases.</li>
-              <li><strong>Evaluating Performance</strong> – Monitors staff performance and recommends improvements.</li>
-              <li><strong>Ensuring Security</strong> – Supervises safety of materials, equipment, and facilities.</li>
-            </ul>
-          </div>
-          <div>
-            <h4 style="font-size:0.9rem; color:#0a4a5a; margin-bottom:0.2rem;"><i class="fas fa-book-open"></i> Resource Management</h4>
-            <ul class="responsibility-list" style="font-size:0.78rem;">
-              <li><strong>Selecting Resources</strong> – Chooses books, journals, e-books, and materials to meet user needs.</li>
-              <li><strong>Acquiring Materials</strong> – Orders new resources through purchase, donations, or subscriptions.</li>
-              <li><strong>Organizing Resources</strong> – Catalogs, classifies, and shelves materials for easy retrieval.</li>
-              <li><strong>Maintaining Collections</strong> – Repairs damaged items, weeds outdated materials, preserves valuables.</li>
-              <li><strong>Managing Digital Resources</strong> – Provides access to online databases, e-books, and repositories.</li>
-              <li><strong>Circulating Materials</strong> – Issues, renews, and receives returned library materials.</li>
-              <li><strong>Promoting Resource Use</strong> – Encourages use through displays, reading programs, and user education.</li>
-              <li><strong>Managing Inventory</strong> – Conducts regular stock-taking to account for all materials.</li>
-              <li><strong>Budgeting for Resources</strong> – Plans and manages library budget for purchasing and maintaining resources.</li>
-              <li><strong>Evaluating Resources</strong> – Assesses relevance, quality, and usage of library materials.</li>
-            </ul>
-          </div>
-        </div>
-        <div style="background:#eef3f6; padding:0.4rem 0.8rem; border-radius:0.5rem; margin-top:0.4rem;">
-          <i class="fas fa-tachometer-alt"></i> <strong>Efficiency:</strong> Streamlined workflows reducing reshelving time by 20%.
-        </div>
-      </div>
-
-      <!-- PROJECTS -->
+      <!-- PROJECTS - left column -->
       <div class="cv-section">
         <div class="cv-section-title"><i class="fas fa-laptop-code"></i> Projects</div>
         <div class="project-card">
@@ -626,24 +759,36 @@
             <span class="tech-badge">PHP</span>
             <span class="tech-badge">MySQL</span>
           </div>
-          <ul class="responsibility-list" style="font-size:0.78rem;">
-            <li>✅ Achieved <strong>100% uptime</strong> and accurate tallying during student elections — zero technical failures across hundreds of votes.</li>
-            <li>✅ Built voter authentication and real-time result dashboard; reduced manual counting errors.</li>
-            <li>✅ Implemented session management and secure audit logs, preventing double voting.</li>
+          <ul class="responsibility-list" style="font-size:0.75rem;">
+            <li>✅ Achieved <strong>100% uptime</strong> and accurate tallying during student elections.</li>
+            <li>✅ Built voter authentication and real-time result dashboard.</li>
+            <li>✅ Implemented session management and secure audit logs.</li>
           </ul>
-          <div class="metric-highlight"><i class="fas fa-chart-simple"></i> <strong>Impact:</strong> 100% uptime | 300+ voters | 28% participation increase YoY</div>
+          <div class="metric-highlight"><i class="fas fa-chart-simple"></i> 100% uptime | 300+ voters | 28% participation increase YoY</div>
         </div>
       </div>
 
-      <!-- REFEREES - AVAILABLE UPON REQUEST -->
+      <!-- REFEREES - right column -->
       <div class="cv-section">
         <div class="cv-section-title"><i class="fas fa-address-card"></i> Referees</div>
         <div class="referee-card">
-          <i class="fas fa-user-check" style="color:#1f8a6b; margin-right:8px;"></i>
-          References available upon request.
+          <span class="ref-name"><i class="fas fa-user-check" style="color:#1f8a6b; margin-right:6px;"></i> Silas Otieno</span>
+          <span class="ref-detail">Head of Department, Humanities – Consolata School Nairobi</span>
+          <span class="ref-phone"><i class="fas fa-phone-alt"></i> +254707445341</span>
+        </div>
+        <div class="referee-card">
+          <span class="ref-name"><i class="fas fa-user-check" style="color:#1f8a6b; margin-right:6px;"></i> Collins Kirui</span>
+          <span class="ref-detail">Dean of Students & Head of Exams – Lukenya British School</span>
+          <span class="ref-phone"><i class="fas fa-phone-alt"></i> +254702194494</span>
+        </div>
+        <div class="referee-card">
+          <span class="ref-name"><i class="fas fa-user-check" style="color:#1f8a6b; margin-right:6px;"></i> George Okoth</span>
+          <span class="ref-detail">Priest & US Army Officer</span>
+          <span class="ref-phone"><i class="fas fa-phone-alt"></i> +1 210 7535656</span>
         </div>
       </div>
-    </div>
+
+    </div><!-- end cv-body two-row-grid -->
 
     <div class="footer-cv">
       <i class="fas fa-database"></i> Celestino Otieno – Professional CV | Digital Transformation, ICT Education & Library Innovation
@@ -739,7 +884,7 @@
       content.querySelectorAll('.toolbar-cv, .admin-badge-area, .footer-cv').forEach(el => el.remove());
       const styles = document.querySelector('style').innerHTML;
       const fullDoc =
-        `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title><style>@page { margin: 0.5cm; } * { margin:0; padding:0; box-sizing:border-box; font-family:'Times New Roman', Times, serif; } body { background:white; padding:10px; } .cv-header { background:#0a3b44; color:white; padding:10px 15px; } .cv-header h1 { font-size:20px; } .cv-body { padding:10px 15px; } .cv-section-title { font-size:14px; font-weight:bold; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:5px; } .cv-subsection { margin-bottom:8px; } .cv-subsection h3 { font-size:13px; font-weight:bold; color:#135f6b; } .meta { font-size:11px; color:#5a7e8f; } .responsibility-list { padding-left:18px; } .responsibility-list li { font-size:11px; margin:2px 0; } .skill-badge-cv { background:#e8f0f5; padding:2px 8px; border-radius:20px; font-size:9px; font-weight:bold; color:#1c5d6e; display:inline-block; margin:2px; } .project-card { background:#f9fefd; border-left:3px solid #1f8a6b; padding:5px 8px; margin:4px 0; } .tech-badge { background:#e3f0ec; color:#125f54; font-size:8px; font-weight:bold; padding:1px 6px; border-radius:20px; } .referee-card { background:#fafefb; padding:8px; border-left:3px solid #1f8a6b; margin-bottom:5px; text-align:center; font-size:12px; font-weight:bold; color:#0a4a5a; } .two-col { display:flex; gap:20px; } .two-col > div { flex:1; } .btn-cv { display:none; } .admin-badge-area { display:none; } .toolbar-cv { display:none; } .footer-cv { display:none; } .metric-highlight { background:#eef5f2; padding:2px 6px; display:inline-block; font-size:9px; font-weight:bold; color:#0f5c4e; }</style></head><body>${content.innerHTML}</body></html>`;
+        `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title><style>@page { margin: 0.5cm; } * { margin:0; padding:0; box-sizing:border-box; font-family:'Times New Roman', Times, serif; } body { background:white; padding:10px; } .cv-header { background:#0a3b44; color:white; padding:10px 15px; } .cv-header h1 { font-size:20px; } .cv-body { padding:10px 15px; } .cv-section-title { font-size:14px; font-weight:bold; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:5px; } .cv-subsection { margin-bottom:8px; } .cv-subsection h3 { font-size:13px; font-weight:bold; color:#135f6b; } .meta { font-size:11px; color:#5a7e8f; } .responsibility-list { padding-left:18px; } .responsibility-list li { font-size:11px; margin:2px 0; } .skill-badge-cv { background:#e8f0f5; padding:2px 8px; border-radius:20px; font-size:9px; font-weight:bold; color:#1c5d6e; display:inline-block; margin:2px; } .project-card { background:#f9fefd; border-left:3px solid #1f8a6b; padding:5px 8px; margin:4px 0; } .tech-badge { background:#e3f0ec; color:#125f54; font-size:8px; font-weight:bold; padding:1px 6px; border-radius:20px; } .referee-card { background:#fafefb; padding:8px; border-left:3px solid #1f8a6b; margin-bottom:5px; text-align:left; font-size:12px; font-weight:bold; color:#0a4a5a; } .two-col { display:flex; gap:20px; } .two-col > div { flex:1; } .btn-cv { display:none; } .admin-badge-area { display:none; } .toolbar-cv { display:none; } .footer-cv { display:none; } .metric-highlight { background:#eef5f2; padding:2px 6px; display:inline-block; font-size:9px; font-weight:bold; color:#0f5c4e; } .highlight-box { background:#f2f8fa; padding:0.5rem 0.8rem; border-left:4px solid #1f8a6b; margin:0.4rem 0; } .two-row-grid { display:block; } .two-row-grid .full-width { grid-column:unset; }</style></head><body>${content.innerHTML}</body></html>`;
       if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
         const blob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 180, bottom: 180,
             left: 180 } });
