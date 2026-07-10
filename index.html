@@ -886,9 +886,42 @@
     document.getElementById('downloadDocxCv').addEventListener('click', function() {
       const content = document.getElementById('cvMasterContainer').cloneNode(true);
       content.querySelectorAll('.toolbar-cv, .admin-badge-area, .footer-cv').forEach(el => el.remove());
-      const styles = document.querySelector('style').innerHTML;
+      
+      // Add inline styles for DOCX export with left margin alignment
+      const docxStyles = `
+        <style>
+          .cv-master { font-size: 12pt; }
+          .two-row-grid .cv-section.margin-left { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
+          .two-row-grid .cv-section.margin-left .cv-section-title { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
+          .two-row-grid .cv-section.margin-left .cv-subsection { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
+          .two-row-grid .cv-section.margin-left .cv-subsection h3 { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
+          .two-row-grid .cv-section.margin-left .responsibility-list { padding-left: 1rem !important; margin-left: 0 !important; text-align: left !important; }
+          .two-row-grid .cv-section.margin-left .meta { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
+          .cv-section-title { font-size: 14px; font-weight: bold; color: #0a4a5a; border-bottom: 2px solid #1f8a6b; padding-bottom: 3px; margin-bottom: 5px; }
+          .responsibility-list li { font-size: 11px; margin: 2px 0; }
+          .skill-badge-cv { background: #e8f0f5; padding: 2px 8px; border-radius: 20px; font-size: 9px; font-weight: bold; color: #1c5d6e; display: inline-block; margin: 2px; }
+          .referee-card { background: #fafefb; padding: 8px; border-left: 3px solid #1f8a6b; margin-bottom: 5px; text-align: left; font-size: 12px; font-weight: bold; color: #0a4a5a; }
+          .highlight-box { background: #f2f8fa; padding: 0.5rem 0.8rem; border-left: 4px solid #1f8a6b; margin: 0.4rem 0; }
+          .two-row-grid { display: block; }
+          .two-row-grid .full-width { grid-column: unset; }
+          .cert-detail { font-size: 0.6rem; color: #2a5b6a; font-style: italic; }
+          .project-card { background: #f9fefd; border-left: 3px solid #1f8a6b; padding: 5px 8px; margin: 4px 0; }
+          .tech-badge { background: #e3f0ec; color: #125f54; font-size: 8px; font-weight: bold; padding: 1px 6px; border-radius: 20px; }
+          .metric-highlight { background: #eef5f2; padding: 2px 6px; display: inline-block; font-size: 9px; font-weight: bold; color: #0f5c4e; }
+          .cv-header { background: #0a3b44; color: white; padding: 10px 15px; }
+          .cv-header h1 { font-size: 20px; }
+          .cv-body { padding: 10px 15px; }
+          .cv-subsection { margin-bottom: 8px; }
+          .cv-subsection h3 { font-size: 13px; font-weight: bold; color: #135f6b; }
+          .meta { font-size: 11px; color: #5a7e8f; }
+          .responsibility-list { padding-left: 18px; }
+          .contact-bar-cv { display: flex; flex-wrap: wrap; gap: 0.8rem; background: rgba(0,0,0,0.1); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.7rem; }
+          * { font-family: 'Times New Roman', Times, serif; }
+        </style>
+      `;
+      
       const fullDoc =
-        `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title><style>@page { margin: 0.5cm; } * { margin:0; padding:0; box-sizing:border-box; font-family:'Times New Roman', Times, serif; } body { background:white; padding:10px; } .cv-header { background:#0a3b44; color:white; padding:10px 15px; } .cv-header h1 { font-size:20px; } .cv-body { padding:10px 15px; } .cv-section-title { font-size:14px; font-weight:bold; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:5px; } .cv-subsection { margin-bottom:8px; } .cv-subsection h3 { font-size:13px; font-weight:bold; color:#135f6b; } .meta { font-size:11px; color:#5a7e8f; } .responsibility-list { padding-left:18px; } .responsibility-list li { font-size:11px; margin:2px 0; } .skill-badge-cv { background:#e8f0f5; padding:2px 8px; border-radius:20px; font-size:9px; font-weight:bold; color:#1c5d6e; display:inline-block; margin:2px; } .project-card { background:#f9fefd; border-left:3px solid #1f8a6b; padding:5px 8px; margin:4px 0; } .tech-badge { background:#e3f0ec; color:#125f54; font-size:8px; font-weight:bold; padding:1px 6px; border-radius:20px; } .referee-card { background:#fafefb; padding:8px; border-left:3px solid #1f8a6b; margin-bottom:5px; text-align:left; font-size:12px; font-weight:bold; color:#0a4a5a; } .metric-highlight { background:#eef5f2; padding:2px 6px; display:inline-block; font-size:9px; font-weight:bold; color:#0f5c4e; } .highlight-box { background:#f2f8fa; padding:0.5rem 0.8rem; border-left:4px solid #1f8a6b; margin:0.4rem 0; } .two-row-grid { display:block; } .two-row-grid .full-width { grid-column:unset; } .cert-detail { font-size:0.6rem; color:#2a5b6a; font-style:italic; } .two-row-grid .cv-section.margin-left { padding-left:0; margin-left:0; }</style></head><body>${content.innerHTML}</body></html>`;
+        `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title>${docxStyles}</head><body>${content.innerHTML}</body></html>`;
       if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
         const blob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 180, bottom: 180,
             left: 180 } });
@@ -919,7 +952,7 @@
       const coverContent = document.getElementById('coverLetterHidden').cloneNode(true);
       coverContent.classList.remove('cover-letter-hidden');
       
-      const fullDoc = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Cover Letter</title><style>@page { margin: 1cm; } body { font-family: 'Times New Roman', Times, serif; padding: 20px; }</style></head><body>${coverContent.innerHTML}</body></html>`;
+      const fullDoc = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Cover Letter</title><style>@page { margin: 1cm; } body { font-family: 'Times New Roman', Times, serif; padding: 20px; font-size: 12pt; }</style></head><body>${coverContent.innerHTML}</body></html>`;
       
       if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
         const blob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 180, bottom: 180,
