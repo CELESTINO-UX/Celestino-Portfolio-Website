@@ -34,6 +34,7 @@
       background: white;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
       border-radius: 0.8rem;
+      font-size: 12pt;
     }
 
     /* --- HEADER --- */
@@ -392,28 +393,48 @@
 
     /* --- LEFT MARGIN ALIGNMENT FOR EDUCATION & SUPERVISION --- */
     .two-row-grid .cv-section.margin-left {
-      padding-left: 0;
-      margin-left: 0;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+      text-align: left !important;
     }
     .two-row-grid .cv-section.margin-left .cv-section-title {
-      padding-left: 0;
-      margin-left: 0;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+      text-align: left !important;
     }
     .two-row-grid .cv-section.margin-left .cv-subsection {
-      padding-left: 0;
-      margin-left: 0;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+      text-align: left !important;
     }
     .two-row-grid .cv-section.margin-left .cv-subsection h3 {
-      padding-left: 0;
-      margin-left: 0;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+      text-align: left !important;
     }
     .two-row-grid .cv-section.margin-left .responsibility-list {
-      padding-left: 1rem;
-      margin-left: 0;
+      padding-left: 1rem !important;
+      margin-left: 0 !important;
+      text-align: left !important;
     }
     .two-row-grid .cv-section.margin-left .meta {
-      padding-left: 0;
-      margin-left: 0;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+      text-align: left !important;
+    }
+    .two-row-grid .cv-section.margin-left .cv-section-title i {
+      margin-left: 0 !important;
+    }
+    .two-row-grid .cv-section.margin-left h4 {
+      text-align: left !important;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+    }
+    .two-row-grid .cv-section.margin-left div {
+      text-align: left !important;
+    }
+    .two-row-grid .cv-section.margin-left .skill-badge-cv {
+      text-align: left !important;
     }
 
     /* --- COVER LETTER (hidden, only used for download) --- */
@@ -438,7 +459,7 @@
     @media print {
       @page { margin: 0.3cm; size: A4 portrait; }
       html, body { margin: 0 !important; padding: 0 !important; background: white !important; width: 100% !important; height: auto !important; }
-      .cv-master { margin: 0 !important; padding: 0 !important; max-width: 100% !important; width: 100% !important; box-shadow: none !important; border-radius: 0 !important; }
+      .cv-master { margin: 0 !important; padding: 0 !important; max-width: 100% !important; width: 100% !important; box-shadow: none !important; border-radius: 0 !important; font-size: 12pt !important; }
       .cv-header { border-radius: 0 !important; padding: 0.2cm 0.4cm !important; margin: 0 !important; }
       .cv-body { padding: 0.15cm 0.4cm !important; }
       .toolbar-cv, .admin-badge-area, .footer-cv { display: none !important; }
@@ -465,6 +486,22 @@
       .two-row-grid .cv-section.margin-left {
         padding-left: 0 !important;
         margin-left: 0 !important;
+        text-align: left !important;
+      }
+      .two-row-grid .cv-section.margin-left .cv-section-title {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        text-align: left !important;
+      }
+      .two-row-grid .cv-section.margin-left .cv-subsection {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        text-align: left !important;
+      }
+      .two-row-grid .cv-section.margin-left .responsibility-list {
+        padding-left: 1rem !important;
+        margin-left: 0 !important;
+        text-align: left !important;
       }
     }
   </style>
