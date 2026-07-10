@@ -383,36 +383,9 @@
     }
     .two-row-grid .cv-section.full-width .cv-section-title { font-size: 1.05rem; }
 
-    /* --- COVER LETTER --- */
-    .cover-letter-container {
-      background: #f8fbfc;
-      border: 1px solid #dce8ed;
-      border-radius: 0.8rem;
-      padding: 1.5rem 2rem;
-      margin: 0.5rem 0 1rem 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-    }
-    .cover-letter-container h2 {
-      color: #0a4a5a;
-      font-size: 1.1rem;
-      border-bottom: 2px solid #1f8a6b;
-      padding-bottom: 0.3rem;
-      margin-bottom: 0.8rem;
-      font-family: 'Times New Roman', Times, serif;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .cover-letter-container .cover-letter-content {
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: #1a2c3b;
-    }
-    .cover-letter-container .cover-letter-content p {
-      margin-bottom: 0.6rem;
-    }
-    .cover-letter-container .cover-letter-content .sign-off {
-      margin-top: 0.8rem;
-      font-weight: 600;
+    /* --- COVER LETTER (hidden from view, only used for download) --- */
+    .cover-letter-hidden {
+      display: none;
     }
 
     /* --- RESPONSIVE --- */
@@ -452,10 +425,6 @@
       .two-row-grid { display: block !important; }
       .two-row-grid .cv-section { margin-bottom: 0.5rem !important; }
       .two-row-grid .full-width { grid-column: unset !important; }
-      .cover-letter-container { padding: 0.5rem !important; margin: 0.3rem 0 !important; }
-      .cover-letter-container h2 { font-size: 0.9rem !important; }
-      .cover-letter-content { font-size: 0.75rem !important; }
-      .btn-cover { display: none !important; }
     }
   </style>
 </head>
@@ -496,41 +465,6 @@
           <br><br>
           Recognized for driving measurable impact: <strong>60% reduction in misfiling</strong>, <strong>45% growth in ICT club membership</strong>, and <strong>25% improvement in research retrieval times</strong>. Passionate about leveraging technology to bridge information gaps and empower diverse communities globally.
         </p>
-      </div>
-
-      <!-- === COVER LETTER (full width) === -->
-      <div class="cv-section full-width">
-        <div class="cover-letter-container" id="coverLetterContainer">
-          <h2><i class="fas fa-envelope-open-text"></i> Cover Letter</h2>
-          <div class="cover-letter-content">
-            <p><strong>Otieno Celestino Onyango</strong><br>
-            +254714019736 | onyangocelestino@gmail.com<br>
-            Nairobi, Kenya</p>
-
-            <p><strong>[Date]</strong></p>
-
-            <p><strong>Hiring Manager</strong><br>
-            [Organization Name]<br>
-            [Organization Address]</p>
-
-            <p><strong>RE: Application for [Position Title]</strong></p>
-
-            <p>Dear Hiring Manager,</p>
-
-            <p>I am writing to express my strong interest in the [Position Title] at [Organization Name]. With a Bachelor of Science in Information Science (ICT Option) from Meru University of Science and Technology and over three years of hands-on experience across academic, legal, and public library settings, I am confident in my ability to contribute effectively to your team and support your organizational goals.</p>
-
-            <p>Throughout my career, I have demonstrated a consistent commitment to excellence in library and information services. At Lukenya British Curriculum School, I have successfully managed library operations using Koha ILS, implemented a digital records management system that reduced misfiling by 60%, and led the ICT Club to a 45% membership growth. My experience at Kenya National Library Service and Meru Law Courts has further strengthened my skills in records management, digital cataloguing, and user-centered service delivery.</p>
-
-            <p>I am particularly passionate about creating inclusive, accessible information environments that empower diverse communities. Whether designing adaptive technologies for students with disabilities, implementing mobile library services that increased circulation by 40%, or training staff and patrons in digital literacy, I consistently prioritize user needs and equitable access to knowledge.</p>
-
-            <p>My technical proficiency includes Koha ILS, MARC21, DDC, Python, SQL, Power BI, and network administration. I am also deeply committed to professional ethics, data security, and continuous learning — evidenced by certifications in Cybersecurity, Cyber Forensics, and Fire Safety Training.</p>
-
-            <p>I am eager to bring my skills in library automation, records management, and ICT education to [Organization Name], and I look forward to the opportunity to discuss how my experience aligns with your needs. Thank you for considering my application.</p>
-
-            <p class="sign-off">Yours sincerely,<br>
-            <strong>Otieno Celestino Onyango</strong></p>
-          </div>
-        </div>
       </div>
 
       <!-- === WORK EXPERIENCE (full width, reverse chronological) === -->
@@ -761,6 +695,43 @@
     </div>
   </div>
 
+  <!-- ========== COVER LETTER (hidden, used only for download) ========== -->
+  <div id="coverLetterHidden" class="cover-letter-hidden">
+    <div style="padding: 1.5cm; font-family: 'Times New Roman', Times, serif; color: #1a2c3b; max-width: 800px; margin: 0 auto;">
+      <div style="background: white; border: none; padding: 0; margin: 0;">
+        <h2 style="color: #0a4a5a; font-size: 1.2rem; border-bottom: 2px solid #1f8a6b; padding-bottom: 0.3rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;"><i class="fas fa-envelope-open-text"></i> Cover Letter</h2>
+        <div style="font-size: 0.9rem; line-height: 1.7; color: #1a2c3b;">
+          <p><strong>Otieno Celestino Onyango</strong><br>
+          +254714019736 | onyangocelestino@gmail.com<br>
+          Nairobi, Kenya</p>
+
+          <p><strong>[Date]</strong></p>
+
+          <p><strong>Hiring Manager</strong><br>
+          [Organization Name]<br>
+          [Organization Address]</p>
+
+          <p><strong>RE: Application for [Position Title]</strong></p>
+
+          <p>Dear Hiring Manager,</p>
+
+          <p>I am writing to express my strong interest in the [Position Title] at [Organization Name]. With a Bachelor of Science in Information Science (ICT Option) from Meru University of Science and Technology and over three years of hands-on experience across academic, legal, and public library settings, I am confident in my ability to contribute effectively to your team and support your organizational goals.</p>
+
+          <p>Throughout my career, I have demonstrated a consistent commitment to excellence in library and information services. At Lukenya British Curriculum School, I have successfully managed library operations using Koha ILS, implemented a digital records management system that reduced misfiling by 60%, and led the ICT Club to a 45% membership growth. My experience at Kenya National Library Service and Meru Law Courts has further strengthened my skills in records management, digital cataloguing, and user-centered service delivery.</p>
+
+          <p>I am particularly passionate about creating inclusive, accessible information environments that empower diverse communities. Whether designing adaptive technologies for students with disabilities, implementing mobile library services that increased circulation by 40%, or training staff and patrons in digital literacy, I consistently prioritize user needs and equitable access to knowledge.</p>
+
+          <p>My technical proficiency includes Koha ILS, MARC21, DDC, Python, SQL, Power BI, and network administration. I am also deeply committed to professional ethics, data security, and continuous learning — evidenced by certifications in Cybersecurity, Cyber Forensics, and Fire Safety Training.</p>
+
+          <p>I am eager to bring my skills in library automation, records management, and ICT education to [Organization Name], and I look forward to the opportunity to discuss how my experience aligns with your needs. Thank you for considering my application.</p>
+
+          <p style="margin-top: 1rem; font-weight: 600;">Yours sincerely,<br>
+          <strong>Otieno Celestino Onyango</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ========== SCRIPTS ========== -->
   <script>
     const MASTER_PASSCODE = "19971997";
@@ -851,7 +822,7 @@
       content.querySelectorAll('.toolbar-cv, .admin-badge-area, .footer-cv').forEach(el => el.remove());
       const styles = document.querySelector('style').innerHTML;
       const fullDoc =
-        `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title><style>@page { margin: 0.5cm; } * { margin:0; padding:0; box-sizing:border-box; font-family:'Times New Roman', Times, serif; } body { background:white; padding:10px; } .cv-header { background:#0a3b44; color:white; padding:10px 15px; } .cv-header h1 { font-size:20px; } .cv-body { padding:10px 15px; } .cv-section-title { font-size:14px; font-weight:bold; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:5px; } .cv-subsection { margin-bottom:8px; } .cv-subsection h3 { font-size:13px; font-weight:bold; color:#135f6b; } .meta { font-size:11px; color:#5a7e8f; } .responsibility-list { padding-left:18px; } .responsibility-list li { font-size:11px; margin:2px 0; } .skill-badge-cv { background:#e8f0f5; padding:2px 8px; border-radius:20px; font-size:9px; font-weight:bold; color:#1c5d6e; display:inline-block; margin:2px; } .project-card { background:#f9fefd; border-left:3px solid #1f8a6b; padding:5px 8px; margin:4px 0; } .tech-badge { background:#e3f0ec; color:#125f54; font-size:8px; font-weight:bold; padding:1px 6px; border-radius:20px; } .referee-card { background:#fafefb; padding:8px; border-left:3px solid #1f8a6b; margin-bottom:5px; text-align:left; font-size:12px; font-weight:bold; color:#0a4a5a; } .metric-highlight { background:#eef5f2; padding:2px 6px; display:inline-block; font-size:9px; font-weight:bold; color:#0f5c4e; } .highlight-box { background:#f2f8fa; padding:0.5rem 0.8rem; border-left:4px solid #1f8a6b; margin:0.4rem 0; } .two-row-grid { display:block; } .two-row-grid .full-width { grid-column:unset; } .cover-letter-container { background:#f8fbfc; border:1px solid #dce8ed; border-radius:0.8rem; padding:1rem 1.5rem; margin:0.5rem 0; } .cover-letter-container h2 { color:#0a4a5a; font-size:1rem; border-bottom:2px solid #1f8a6b; padding-bottom:0.2rem; margin-bottom:0.5rem; } .cover-letter-content { font-size:0.8rem; line-height:1.5; } .cover-letter-content p { margin-bottom:0.4rem; } .btn-cover { display:none; }</style></head><body>${content.innerHTML}</body></html>`;
+        `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title><style>@page { margin: 0.5cm; } * { margin:0; padding:0; box-sizing:border-box; font-family:'Times New Roman', Times, serif; } body { background:white; padding:10px; } .cv-header { background:#0a3b44; color:white; padding:10px 15px; } .cv-header h1 { font-size:20px; } .cv-body { padding:10px 15px; } .cv-section-title { font-size:14px; font-weight:bold; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:5px; } .cv-subsection { margin-bottom:8px; } .cv-subsection h3 { font-size:13px; font-weight:bold; color:#135f6b; } .meta { font-size:11px; color:#5a7e8f; } .responsibility-list { padding-left:18px; } .responsibility-list li { font-size:11px; margin:2px 0; } .skill-badge-cv { background:#e8f0f5; padding:2px 8px; border-radius:20px; font-size:9px; font-weight:bold; color:#1c5d6e; display:inline-block; margin:2px; } .project-card { background:#f9fefd; border-left:3px solid #1f8a6b; padding:5px 8px; margin:4px 0; } .tech-badge { background:#e3f0ec; color:#125f54; font-size:8px; font-weight:bold; padding:1px 6px; border-radius:20px; } .referee-card { background:#fafefb; padding:8px; border-left:3px solid #1f8a6b; margin-bottom:5px; text-align:left; font-size:12px; font-weight:bold; color:#0a4a5a; } .metric-highlight { background:#eef5f2; padding:2px 6px; display:inline-block; font-size:9px; font-weight:bold; color:#0f5c4e; } .highlight-box { background:#f2f8fa; padding:0.5rem 0.8rem; border-left:4px solid #1f8a6b; margin:0.4rem 0; } .two-row-grid { display:block; } .two-row-grid .full-width { grid-column:unset; }</style></head><body>${content.innerHTML}</body></html>`;
       if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
         const blob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 180, bottom: 180,
             left: 180 } });
@@ -864,20 +835,9 @@
 
     // --- COVER LETTER PDF ---
     document.getElementById('downloadCoverLetterPdf').addEventListener('click', function() {
-      const coverContent = document.getElementById('coverLetterContainer').cloneNode(true);
-      coverContent.querySelectorAll('.btn-cover').forEach(el => el.remove());
-      const wrapper = document.createElement('div');
-      wrapper.style.cssText = 'padding: 1.5cm; font-family: "Times New Roman", Times, serif; color: #1a2c3b; max-width: 800px; margin: 0 auto;';
-      wrapper.appendChild(coverContent);
-      const style = document.createElement('style');
-      style.textContent = `
-        .cover-letter-container { background: white; border: none; padding: 0; margin: 0; }
-        .cover-letter-container h2 { color: #0a4a5a; font-size: 1.2rem; border-bottom: 2px solid #1f8a6b; padding-bottom: 0.3rem; margin-bottom: 0.8rem; }
-        .cover-letter-content { font-size: 0.9rem; line-height: 1.7; }
-        .cover-letter-content p { margin-bottom: 0.7rem; }
-        .cover-letter-content .sign-off { margin-top: 1rem; font-weight: 600; }
-      `;
-      wrapper.appendChild(style);
+      const coverContent = document.getElementById('coverLetterHidden').cloneNode(true);
+      coverContent.classList.remove('cover-letter-hidden');
+      
       const opt = {
         margin: [0.5, 0.5, 0.5, 0.5],
         filename: 'Celestino_Otieno_Cover_Letter.pdf',
@@ -885,26 +845,16 @@
         html2canvas: { scale: 2, letterRendering: true, logging: false },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
-      html2pdf().set(opt).from(wrapper).save();
+      html2pdf().set(opt).from(coverContent).save();
     });
 
     // --- COVER LETTER DOCX ---
     document.getElementById('downloadCoverLetterDocx').addEventListener('click', function() {
-      const coverContent = document.getElementById('coverLetterContainer').cloneNode(true);
-      coverContent.querySelectorAll('.btn-cover').forEach(el => el.remove());
-      const wrapper = document.createElement('div');
-      wrapper.style.cssText = 'padding: 1.5cm; font-family: "Times New Roman", Times, serif; color: #1a2c3b; max-width: 800px; margin: 0 auto;';
-      wrapper.appendChild(coverContent);
-      const style = document.createElement('style');
-      style.textContent = `
-        .cover-letter-container { background: white; border: none; padding: 0; margin: 0; }
-        .cover-letter-container h2 { color: #0a4a5a; font-size: 1.2rem; border-bottom: 2px solid #1f8a6b; padding-bottom: 0.3rem; margin-bottom: 0.8rem; }
-        .cover-letter-content { font-size: 0.9rem; line-height: 1.7; }
-        .cover-letter-content p { margin-bottom: 0.7rem; }
-        .cover-letter-content .sign-off { margin-top: 1rem; font-weight: 600; }
-      `;
-      wrapper.appendChild(style);
-      const fullDoc = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Cover Letter</title><style>@page { margin: 1cm; } body { font-family: 'Times New Roman', Times, serif; padding: 20px; }</style></head><body>${wrapper.innerHTML}</body></html>`;
+      const coverContent = document.getElementById('coverLetterHidden').cloneNode(true);
+      coverContent.classList.remove('cover-letter-hidden');
+      
+      const fullDoc = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Cover Letter</title><style>@page { margin: 1cm; } body { font-family: 'Times New Roman', Times, serif; padding: 20px; }</style></head><body>${coverContent.innerHTML}</body></html>`;
+      
       if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
         const blob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 180, bottom: 180,
             left: 180 } });
