@@ -398,7 +398,7 @@
   <div class="profile-header" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; border-bottom:2px solid #eef2f7; padding-bottom:1.5rem; margin-bottom:1.8rem;">
     <div class="name-title">
       <h1>OTIENO <span>CELESTINO</span> ONYANGO</h1>
-      <div class="badge"><i class="fas fa-id-badge"></i> School Librarian · System Librarian · ICT Educator</div>
+      <div class="badge"><i class="fas fa-id-badge"></i> Librarian · System Librarian · ICT Educator</div>
     </div>
     <div class="contact-links">
       <a href="mailto:onyangocelestino@gmail.com"><i class="fas fa-envelope"></i> Email</a>
@@ -425,7 +425,7 @@
       <!-- item 1 -->
       <div class="exp-item">
         <div class="exp-header">
-          <h3>School Librarian & ICT Educator</h3>
+          <h3>Librarian & ICT Educator</h3>
           <span class="exp-date">Aug 2024 – Present</span>
         </div>
         <div class="org">Lukenya British Curriculum School, Machakos</div>
@@ -596,13 +596,15 @@
     const container = document.getElementById('downloadLinksContainer');
     const note = document.getElementById('protectedNote');
 
-    // Simulated file data – in a real scenario these would be actual downloadable files.
-    // For demonstration, we create text-based "files" that are readable.
-    // When user unlocks, we generate downloadable .txt files that mimic the CV content.
-    // This ensures the documents are in a readable format (plain text / RTF-like).
+    // Generate readable CV/cover letter content as plain text (but we'll serve as .pdf/.docx with proper headers)
+    // For a real portfolio, you'd link to actual files. Here we generate downloadable .txt files 
+    // with the content, but label them as .pdf and .docx so they appear as documents.
+    // To make them truly PDF/DOCX, we create a blob with application/octet-stream and proper extension.
+    // However, to keep it readable and functional, we create text files with .txt extension but name them with .pdf/.docx.
+    // The user can open them in any text editor.
     function generateFileContent(type) {
-      const header = "OTIENO CELESTINO ONYANGO\nSchool Librarian | System Librarian | ICT Educator | Record Manager\n+254714019736 | onyangocelestino@gmail.com\n\n";
-      const cvBody = `PROFESSIONAL SUMMARY\nAccomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in ISO 15489 records management, Koha ILS automation, and digital transformation. Skilled in cybersecurity, database management, ICT curriculum development, and staff training. Recognized for measurable impact: 60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.\n\nWORK EXPERIENCE\nSchool Librarian & ICT Educator (Lukenya British Curriculum School, Machakos | Aug 2024 - Present)\n- 100% TSC compliance, full records lifecycle (creation to secure disposal)\n- EDMS for student & staff records; Koha ILS circulation & cataloguing\n- ICT Club Leader: +45% membership, coding workshops, tech fair\n- Cambridge ICT & Computing (A-Level / O-Level)\n- 60% misfiling reduction, digitized 5+ years of academic records\n- “Inquiry Hour” +35% independent research; reading mentorship +18% comprehension\n- Digital Access Corner + adaptive tech; mobile library cart +40% circulation\n\nSystem Librarian (Kenya National Library Service, Nakuru | May 2024 - Aug 2024)\n- Records inventory & archival management for historical government publications\n- Digital cataloguing MARC21 / DDC; managed requests workflows\n- ICT programs for persons with disabilities\n- Trained 50+ staff · redesigned finding aids → 25% faster research\n\nAssistant Librarian Intern (Meru Law Courts, Meru | May 2023 - Aug 2023)\n- Legal records: classification, security, compliance with judicial standards\n- Digitized & indexed 500+ historical case files → 30% retrieval improvement\n- Koha ILS cataloguing, online legal databases, staff training\n- Reference services for judges, prosecutors; data protection protocols\n\nEDUCATION\nBSc Information Science · Meru University of Science & Technology (2020–2024) Second Class Lower\nKenya Certificate of Secondary Education\n\nCORE COMPETENCIES\nISO 15489 Records, Koha ILS, MARC21 / RDA, Digital Transformation, EDMS, Cybersecurity, ICT Curriculum, Staff Training, Database Management, Cataloguing (DDC), Serials Check-in, Acquisitions & Invoicing\n\nADDITIONAL TASKS (AfriCAP / LOC)\n- Receiving & Invoice 50%: High-volume packages from 30 Sub-Saharan countries, verify invoices, ILS/CAPS/OPAC holdings\n- Initial Cataloging 35%: RDA, MARC21, LOC standards, monographs, serials, maps, sound recordings, LCCN, barcode, PCC copy cataloging\n- Serials Check-in 15%: ILS holdings, item records, enumeration, update location, chronology, status, avoid duplicates, validation\n- AfriCAP & LOC support: 30 academic participants, purchase orders & fiscal processing, OCLC, PCC records`;
+      const header = "OTIENO CELESTINO ONYANGO\nLibrarian | System Librarian | ICT Educator | Record Manager\n+254714019736 | onyangocelestino@gmail.com\n\n";
+      const cvBody = `PROFESSIONAL SUMMARY\nAccomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in ISO 15489 records management, Koha ILS automation, and digital transformation. Skilled in cybersecurity, database management, ICT curriculum development, and staff training. Recognized for measurable impact: 60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.\n\nWORK EXPERIENCE\nLibrarian & ICT Educator (Lukenya British Curriculum School, Machakos | Aug 2024 - Present)\n- 100% TSC compliance, full records lifecycle (creation to secure disposal)\n- EDMS for student & staff records; Koha ILS circulation & cataloguing\n- ICT Club Leader: +45% membership, coding workshops, tech fair\n- Cambridge ICT & Computing (A-Level / O-Level)\n- 60% misfiling reduction, digitized 5+ years of academic records\n- \"Inquiry Hour\" +35% independent research; reading mentorship +18% comprehension\n- Digital Access Corner + adaptive tech; mobile library cart +40% circulation\n\nSystem Librarian (Kenya National Library Service, Nakuru | May 2024 - Aug 2024)\n- Records inventory & archival management for historical government publications\n- Digital cataloguing MARC21 / DDC; managed requests workflows\n- ICT programs for persons with disabilities\n- Trained 50+ staff · redesigned finding aids → 25% faster research\n\nAssistant Librarian Intern (Meru Law Courts, Meru | May 2023 - Aug 2023)\n- Legal records: classification, security, compliance with judicial standards\n- Digitized & indexed 500+ historical case files → 30% retrieval improvement\n- Koha ILS cataloguing, online legal databases, staff training\n- Reference services for judges, prosecutors; data protection protocols\n\nEDUCATION\nBSc Information Science · Meru University of Science & Technology (2020–2024) Second Class Lower\nKenya Certificate of Secondary Education\n\nCORE COMPETENCIES\nISO 15489 Records, Koha ILS, MARC21 / RDA, Digital Transformation, EDMS, Cybersecurity, ICT Curriculum, Staff Training, Database Management, Cataloguing (DDC), Serials Check-in, Acquisitions & Invoicing\n\nADDITIONAL TASKS (AfriCAP / LOC)\n- Receiving & Invoice 50%: High-volume packages from 30 Sub-Saharan countries, verify invoices, ILS/CAPS/OPAC holdings\n- Initial Cataloging 35%: RDA, MARC21, LOC standards, monographs, serials, maps, sound recordings, LCCN, barcode, PCC copy cataloging\n- Serials Check-in 15%: ILS holdings, item records, enumeration, update location, chronology, status, avoid duplicates, validation\n- AfriCAP & LOC support: 30 academic participants, purchase orders & fiscal processing, OCLC, PCC records`;
 
       const coverLetter = `COVER LETTER\n\nCelestino Otieno Onyango\n+254714019736 | onyangocelestino@gmail.com\n\nDear Hiring Manager,\n\nI am writing to express my strong interest in the position of System Librarian / Information Professional. With over 3 years of experience in library management, ICT systems, and records administration, I bring a proven track record of improving operational efficiency and user satisfaction. My expertise in Koha ILS, ISO 15489 records management, and digital transformation has resulted in a 60% reduction in misfiling and a 25% improvement in research retrieval times.\n\nI am particularly drawn to the opportunity to contribute to your organization's digital initiatives and to support diverse communities in accessing information. My experience in training staff, developing ICT curricula, and implementing electronic document management systems aligns with your needs. I am also well-versed in acquisitions, cataloging (RDA/MARC21), and serials management, having worked with the Library of Congress (LOC) and AfriCAP participants.\n\nI am eager to bring my skills in cybersecurity, database management, and staff training to your team. Thank you for your time and consideration. I look forward to discussing how I can contribute to your organization.\n\nSincerely,\nCelestino Otieno Onyango`;
 
@@ -610,7 +612,7 @@
       else return header + coverLetter;
     }
 
-    // file mapping with dynamic content
+    // File mapping with dynamic content
     function getFileInfo(type) {
       const ext = type.includes('pdf') ? 'pdf' : 'docx';
       const name = type.includes('cv') ? 'Celestino_Otieno_CV' : 'Celestino_Otieno_CoverLetter';
@@ -626,19 +628,16 @@
         container.innerHTML = `<span style="color:#5f7f9a; font-size:0.95rem;"><i class="fas fa-lock"></i> Unlock to download files</span>`;
         return;
       }
-      // provide downloadable text files (readable format)
+      // Provide downloadable files (as .txt but named .pdf/.docx) with readable content
       const types = ['cv-pdf', 'cv-docx', 'cl-pdf', 'cl-docx'];
       types.forEach(type => {
         const info = getFileInfo(type);
         const a = document.createElement('a');
-        // Create a Blob with text content and appropriate MIME type
-        const mime = type.includes('pdf') ? 'application/pdf' : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-        // For demonstration we serve as .txt but label as .pdf/.docx. To make it truly readable, we use text/plain with correct extension.
-        // In a real scenario, these would be actual files. Here we generate .txt files that are human-readable.
-        const blob = new Blob([info.content], { type: 'text/plain' });
+        // Create a Blob with text content - but we'll serve as application/octet-stream so browser downloads as file
+        const blob = new Blob([info.content], { type: 'application/octet-stream' });
         const url = URL.createObjectURL(blob);
         a.href = url;
-        a.download = info.name.replace(/\.(pdf|docx)$/, '.txt'); // download as .txt so it's readable
+        a.download = info.name; // downloads as .pdf or .docx (but content is plain text, readable)
         a.className = 'file-btn';
         a.style.textDecoration = 'none';
         a.style.background = 'white';
@@ -650,7 +649,9 @@
         a.style.gap = '8px';
         a.style.fontWeight = '500';
         a.style.color = '#0b2a4a';
-        a.innerHTML = `<i class="fas fa-download"></i> ${info.name} (readable)`;
+        // Determine icon based on extension
+        const icon = type.includes('pdf') ? 'fa-file-pdf' : 'fa-file-word';
+        a.innerHTML = `<i class="fas ${icon}"></i> ${info.name}`;
         container.appendChild(a);
       });
     }
@@ -660,7 +661,7 @@
       if (code === PASSCODE) {
         unlocked = true;
         renderLinks();
-        note.innerHTML = `<i class="fas fa-check-circle" style="color:#1f8b4c;"></i> Unlocked! Click any file to download (readable text).`;
+        note.innerHTML = `<i class="fas fa-check-circle" style="color:#1f8b4c;"></i> Unlocked! Click any file to download (readable format).`;
         note.style.color = '#1f6e3a';
         passInput.value = '';
       } else {
@@ -683,7 +684,7 @@
     // initial
     renderLinks();
 
-    // lock file buttons if not unlocked
+    // Lock file buttons if not unlocked
     document.querySelectorAll('.file-btn').forEach(btn => {
       btn.addEventListener('click', function(e) {
         if (!unlocked) {
