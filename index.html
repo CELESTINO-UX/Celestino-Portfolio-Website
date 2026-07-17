@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Celestino Otieno · ATS Portfolio</title>
-  <!-- Font Awesome for icons (decorative, but ATS-friendly text remains) -->
+  <!-- Font Awesome (decorative) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
-    /* ATS-Friendly: Times New Roman base, clean structure, minimal styling */
+    /* ATS-Friendly: Times New Roman, clean, minimal */
     * {
       margin: 0;
       padding: 0;
@@ -15,7 +15,7 @@
     }
 
     body {
-      background: #f2f5f9;
+      background: #f0f4fa;
       padding: 2rem 1rem;
       display: flex;
       justify-content: center;
@@ -26,22 +26,21 @@
       max-width: 1200px;
       width: 100%;
       background: white;
-      border-radius: 8px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
       padding: 2.2rem 2.8rem;
       border: 1px solid #dce3ec;
     }
 
-    /* Typography: Times New Roman, clear hierarchy */
     h1, h2, h3, h4, .name-title, .section-title, .exp-header, .badge, .file-btn, .passcode-box label {
       font-family: 'Times New Roman', Times, serif;
     }
 
     .name-title h1 {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       font-weight: 700;
       color: #0b2a4a;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
 
     .name-title h1 span {
@@ -57,7 +56,6 @@
       font-size: 0.95rem;
       display: inline-block;
       margin-top: 4px;
-      letter-spacing: 0.3px;
     }
 
     .contact-links {
@@ -66,7 +64,7 @@
       gap: 1.5rem;
       align-items: center;
       background: #f0f5fc;
-      padding: 0.5rem 1.8rem;
+      padding: 0.4rem 1.8rem;
       border-radius: 40px;
     }
 
@@ -78,7 +76,6 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .contact-links a i {
@@ -95,14 +92,12 @@
       font-size: 1.05rem;
       line-height: 1.6;
       color: #0b2a4a;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .summary strong {
       color: #003366;
     }
 
-    /* grid */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -125,7 +120,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .section-title i {
@@ -149,7 +143,6 @@
       font-size: 1.15rem;
       font-weight: 700;
       color: #0b2a4a;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .org {
@@ -165,7 +158,6 @@
       font-size: 0.8rem;
       font-weight: 600;
       color: #1e3a5a;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .exp-desc {
@@ -181,7 +173,6 @@
       font-size: 1rem;
       line-height: 1.5;
       color: #1e3a5a;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .exp-desc li i {
@@ -200,7 +191,6 @@
       color: #004070;
       display: inline-block;
       margin-top: 0.2rem;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .skill-tags {
@@ -217,7 +207,6 @@
       font-size: 0.85rem;
       font-weight: 500;
       color: #1a3d5a;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .edu-item {
@@ -226,7 +215,6 @@
       border-radius: 12px;
       margin-bottom: 0.6rem;
       border: 1px solid #e2ebf3;
-      font-family: 'Times New Roman', Times, serif;
       font-size: 1rem;
     }
 
@@ -242,7 +230,6 @@
       font-size: 1.3rem;
       font-weight: 700;
       color: #0b2a4a;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .download-grid {
@@ -271,9 +258,9 @@
       align-items: center;
       gap: 8px;
       cursor: pointer;
-      font-family: 'Times New Roman', Times, serif;
       transition: 0.1s;
       text-decoration: none;
+      font-family: 'Times New Roman', Times, serif;
     }
 
     .file-btn i {
@@ -301,7 +288,6 @@
       font-weight: 600;
       color: #1a3d5a;
       font-size: 0.95rem;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .passcode-box input {
@@ -339,7 +325,6 @@
       font-size: 0.9rem;
       color: #3d5f7a;
       margin-top: 0.6rem;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .tasks-section {
@@ -374,7 +359,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .task-card ul {
@@ -382,7 +366,6 @@
       margin-top: 4px;
       font-size: 0.95rem;
       color: #1e3a5a;
-      font-family: 'Times New Roman', Times, serif;
     }
 
     .task-card ul li {
@@ -405,11 +388,7 @@
       border-top: 1px solid #dce5ef;
       padding-top: 1.2rem;
       text-align: center;
-      font-family: 'Times New Roman', Times, serif;
     }
-
-    .hidden-download { display: none; }
-    .inline-flex { display: inline-flex; align-items: center; gap: 6px; }
   </style>
 </head>
 <body>
@@ -429,7 +408,7 @@
     </div>
   </div>
 
-  <!-- SUMMARY (ATS friendly) -->
+  <!-- SUMMARY -->
   <div class="summary">
     <i class="fas fa-quote-left" style="color:#2a7faa; opacity:0.5; margin-right:6px;"></i>
     Accomplished Information Professional with <strong>3+ years</strong> in library management, ICT systems, and records administration. 
@@ -552,11 +531,11 @@
         <div id="downloadLinksContainer" style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:10px;"></div>
       </div>
 
-      <!-- Additional tasks & skills (from description) -->
+      <!-- Additional tasks & skills -->
       <div class="tasks-section">
         <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.8rem;">
           <i class="fas fa-tasks" style="color:#2a7faa; font-size:1.3rem;"></i>
-          <h4 style="color:#0b2a4a; font-size:1.1rem; font-weight:700; font-family:'Times New Roman', Times, serif;">Acquisitions & cataloguing (AfriCAP / LOC)</h4>
+          <h4 style="color:#0b2a4a; font-size:1.1rem; font-weight:700;">Acquisitions & cataloguing (AfriCAP / LOC)</h4>
         </div>
         <div class="tasks-grid">
           <div class="task-card">
@@ -617,13 +596,27 @@
     const container = document.getElementById('downloadLinksContainer');
     const note = document.getElementById('protectedNote');
 
-    // file mapping (simulated)
-    const fileMap = {
-      'cv-pdf': { name: 'Celestino_Otieno_CV.pdf', url: '#' },
-      'cv-docx': { name: 'Celestino_Otieno_CV.docx', url: '#' },
-      'cl-pdf': { name: 'Celestino_Otieno_CoverLetter.pdf', url: '#' },
-      'cl-docx': { name: 'Celestino_Otieno_CoverLetter.docx', url: '#' }
-    };
+    // Simulated file data – in a real scenario these would be actual downloadable files.
+    // For demonstration, we create text-based "files" that are readable.
+    // When user unlocks, we generate downloadable .txt files that mimic the CV content.
+    // This ensures the documents are in a readable format (plain text / RTF-like).
+    function generateFileContent(type) {
+      const header = "OTIENO CELESTINO ONYANGO\nSchool Librarian | System Librarian | ICT Educator | Record Manager\n+254714019736 | onyangocelestino@gmail.com\n\n";
+      const cvBody = `PROFESSIONAL SUMMARY\nAccomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in ISO 15489 records management, Koha ILS automation, and digital transformation. Skilled in cybersecurity, database management, ICT curriculum development, and staff training. Recognized for measurable impact: 60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.\n\nWORK EXPERIENCE\nSchool Librarian & ICT Educator (Lukenya British Curriculum School, Machakos | Aug 2024 - Present)\n- 100% TSC compliance, full records lifecycle (creation to secure disposal)\n- EDMS for student & staff records; Koha ILS circulation & cataloguing\n- ICT Club Leader: +45% membership, coding workshops, tech fair\n- Cambridge ICT & Computing (A-Level / O-Level)\n- 60% misfiling reduction, digitized 5+ years of academic records\n- “Inquiry Hour” +35% independent research; reading mentorship +18% comprehension\n- Digital Access Corner + adaptive tech; mobile library cart +40% circulation\n\nSystem Librarian (Kenya National Library Service, Nakuru | May 2024 - Aug 2024)\n- Records inventory & archival management for historical government publications\n- Digital cataloguing MARC21 / DDC; managed requests workflows\n- ICT programs for persons with disabilities\n- Trained 50+ staff · redesigned finding aids → 25% faster research\n\nAssistant Librarian Intern (Meru Law Courts, Meru | May 2023 - Aug 2023)\n- Legal records: classification, security, compliance with judicial standards\n- Digitized & indexed 500+ historical case files → 30% retrieval improvement\n- Koha ILS cataloguing, online legal databases, staff training\n- Reference services for judges, prosecutors; data protection protocols\n\nEDUCATION\nBSc Information Science · Meru University of Science & Technology (2020–2024) Second Class Lower\nKenya Certificate of Secondary Education\n\nCORE COMPETENCIES\nISO 15489 Records, Koha ILS, MARC21 / RDA, Digital Transformation, EDMS, Cybersecurity, ICT Curriculum, Staff Training, Database Management, Cataloguing (DDC), Serials Check-in, Acquisitions & Invoicing\n\nADDITIONAL TASKS (AfriCAP / LOC)\n- Receiving & Invoice 50%: High-volume packages from 30 Sub-Saharan countries, verify invoices, ILS/CAPS/OPAC holdings\n- Initial Cataloging 35%: RDA, MARC21, LOC standards, monographs, serials, maps, sound recordings, LCCN, barcode, PCC copy cataloging\n- Serials Check-in 15%: ILS holdings, item records, enumeration, update location, chronology, status, avoid duplicates, validation\n- AfriCAP & LOC support: 30 academic participants, purchase orders & fiscal processing, OCLC, PCC records`;
+
+      const coverLetter = `COVER LETTER\n\nCelestino Otieno Onyango\n+254714019736 | onyangocelestino@gmail.com\n\nDear Hiring Manager,\n\nI am writing to express my strong interest in the position of System Librarian / Information Professional. With over 3 years of experience in library management, ICT systems, and records administration, I bring a proven track record of improving operational efficiency and user satisfaction. My expertise in Koha ILS, ISO 15489 records management, and digital transformation has resulted in a 60% reduction in misfiling and a 25% improvement in research retrieval times.\n\nI am particularly drawn to the opportunity to contribute to your organization's digital initiatives and to support diverse communities in accessing information. My experience in training staff, developing ICT curricula, and implementing electronic document management systems aligns with your needs. I am also well-versed in acquisitions, cataloging (RDA/MARC21), and serials management, having worked with the Library of Congress (LOC) and AfriCAP participants.\n\nI am eager to bring my skills in cybersecurity, database management, and staff training to your team. Thank you for your time and consideration. I look forward to discussing how I can contribute to your organization.\n\nSincerely,\nCelestino Otieno Onyango`;
+
+      if (type === 'cv-pdf' || type === 'cv-docx') return header + cvBody;
+      else return header + coverLetter;
+    }
+
+    // file mapping with dynamic content
+    function getFileInfo(type) {
+      const ext = type.includes('pdf') ? 'pdf' : 'docx';
+      const name = type.includes('cv') ? 'Celestino_Otieno_CV' : 'Celestino_Otieno_CoverLetter';
+      const content = generateFileContent(type);
+      return { name: `${name}.${ext}`, content };
+    }
 
     let unlocked = false;
 
@@ -633,11 +626,19 @@
         container.innerHTML = `<span style="color:#5f7f9a; font-size:0.95rem;"><i class="fas fa-lock"></i> Unlock to download files</span>`;
         return;
       }
-      Object.keys(fileMap).forEach(key => {
-        const info = fileMap[key];
+      // provide downloadable text files (readable format)
+      const types = ['cv-pdf', 'cv-docx', 'cl-pdf', 'cl-docx'];
+      types.forEach(type => {
+        const info = getFileInfo(type);
         const a = document.createElement('a');
-        a.href = info.url;
-        a.download = info.name;
+        // Create a Blob with text content and appropriate MIME type
+        const mime = type.includes('pdf') ? 'application/pdf' : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+        // For demonstration we serve as .txt but label as .pdf/.docx. To make it truly readable, we use text/plain with correct extension.
+        // In a real scenario, these would be actual files. Here we generate .txt files that are human-readable.
+        const blob = new Blob([info.content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        a.href = url;
+        a.download = info.name.replace(/\.(pdf|docx)$/, '.txt'); // download as .txt so it's readable
         a.className = 'file-btn';
         a.style.textDecoration = 'none';
         a.style.background = 'white';
@@ -649,8 +650,7 @@
         a.style.gap = '8px';
         a.style.fontWeight = '500';
         a.style.color = '#0b2a4a';
-        a.style.fontFamily = "'Times New Roman', Times, serif";
-        a.innerHTML = `<i class="fas fa-download"></i> ${info.name}`;
+        a.innerHTML = `<i class="fas fa-download"></i> ${info.name} (readable)`;
         container.appendChild(a);
       });
     }
@@ -660,7 +660,7 @@
       if (code === PASSCODE) {
         unlocked = true;
         renderLinks();
-        note.innerHTML = `<i class="fas fa-check-circle" style="color:#1f8b4c;"></i> Unlocked! Click any file to download.`;
+        note.innerHTML = `<i class="fas fa-check-circle" style="color:#1f8b4c;"></i> Unlocked! Click any file to download (readable text).`;
         note.style.color = '#1f6e3a';
         passInput.value = '';
       } else {
