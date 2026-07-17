@@ -1,706 +1,738 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Celestino Otieno · ATS Portfolio</title>
-  <!-- Font Awesome (decorative) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <style>
-    /* ATS-Friendly: Times New Roman, clean, minimal */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Celestino Otieno · Portfolio</title>
+    <!-- Font Awesome (decorative) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ATS-Friendly: Times New Roman, clean, minimal */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background: #f0f4fa;
-      padding: 2rem 1rem;
-      display: flex;
-      justify-content: center;
-      font-family: 'Times New Roman', Times, serif;
-    }
+        body {
+            background: #f0f4fa;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
 
-    .portfolio {
-      max-width: 1200px;
-      width: 100%;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      padding: 2.2rem 2.8rem;
-      border: 1px solid #dce3ec;
-    }
+        .portfolio {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            padding: 2.2rem 2.8rem;
+            border: 1px solid #dce3ec;
+        }
 
-    h1, h2, h3, h4, .name-title, .section-title, .exp-header, .badge, .file-btn, .passcode-box label {
-      font-family: 'Times New Roman', Times, serif;
-    }
+        h1, h2, h3, h4, .name-title, .section-title, .exp-header, .badge, .file-btn {
+            font-family: 'Times New Roman', Times, serif;
+        }
 
-    .name-title h1 {
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: #0b2a4a;
-      letter-spacing: 0.3px;
-    }
+        .name-title h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #0b2a4a;
+            letter-spacing: 0.3px;
+        }
 
-    .name-title h1 span {
-      color: #1a4b6d;
-    }
+        .name-title h1 span {
+            color: #1a4b6d;
+        }
 
-    .badge {
-      background: #e6edf5;
-      color: #1a3d5a;
-      font-weight: 600;
-      padding: 0.2rem 1.2rem;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      display: inline-block;
-      margin-top: 4px;
-    }
+        .badge {
+            background: #e6edf5;
+            color: #1a3d5a;
+            font-weight: 600;
+            padding: 0.2rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            display: inline-block;
+            margin-top: 4px;
+        }
 
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      align-items: center;
-      background: #f0f5fc;
-      padding: 0.4rem 1.8rem;
-      border-radius: 40px;
-    }
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            align-items: center;
+            background: #f0f5fc;
+            padding: 0.4rem 1.8rem;
+            border-radius: 40px;
+        }
 
-    .contact-links a {
-      color: #1c3d5e;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
+        .contact-links a {
+            color: #1c3d5e;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
 
-    .contact-links a i {
-      color: #2a5f7a;
-      width: 1.1rem;
-    }
+        .contact-links a i {
+            color: #2a5f7a;
+            width: 1.1rem;
+        }
 
-    .summary {
-      background: #ecf3fa;
-      padding: 1.2rem 1.8rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      border-left: 6px solid #2a7faa;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: #0b2a4a;
-    }
+        .summary {
+            background: #ecf3fa;
+            padding: 1.2rem 1.8rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 6px solid #2a7faa;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #0b2a4a;
+        }
 
-    .summary strong {
-      color: #003366;
-    }
+        .summary strong {
+            color: #003366;
+        }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 2.5rem;
-      margin-bottom: 2rem;
-    }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
 
-    @media (max-width: 800px) {
-      .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
-      .portfolio { padding: 1.5rem; }
-    }
+        @media (max-width: 800px) {
+            .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+            .portfolio { padding: 1.5rem; }
+        }
 
-    .section-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #0b2a4a;
-      border-bottom: 2px solid #d0ddea;
-      padding-bottom: 0.4rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0b2a4a;
+            border-bottom: 2px solid #d0ddea;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .section-title i {
-      color: #2a7faa;
-      font-size: 1.2rem;
-    }
+        .section-title i {
+            color: #2a7faa;
+            font-size: 1.2rem;
+        }
 
-    .exp-item {
-      margin-bottom: 1.8rem;
-    }
+        .exp-item {
+            margin-bottom: 1.8rem;
+        }
 
-    .exp-header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.2rem;
-    }
+        .exp-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.2rem;
+        }
 
-    .exp-header h3 {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #0b2a4a;
-    }
+        .exp-header h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0b2a4a;
+        }
 
-    .org {
-      font-weight: 600;
-      color: #1f4a6e;
-      font-size: 0.95rem;
-    }
+        .org {
+            font-weight: 600;
+            color: #1f4a6e;
+            font-size: 0.95rem;
+        }
 
-    .exp-date {
-      background: #dce5ef;
-      padding: 0.1rem 0.9rem;
-      border-radius: 30px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #1e3a5a;
-    }
+        .exp-date {
+            background: #dce5ef;
+            padding: 0.1rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1e3a5a;
+        }
 
-    .exp-desc {
-      padding-left: 0.3rem;
-      list-style: none;
-      margin-top: 0.3rem;
-    }
+        .exp-desc {
+            padding-left: 0.3rem;
+            list-style: none;
+            margin-top: 0.3rem;
+        }
 
-    .exp-desc li {
-      margin-bottom: 0.25rem;
-      display: flex;
-      gap: 10px;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #1e3a5a;
-    }
+        .exp-desc li {
+            margin-bottom: 0.25rem;
+            display: flex;
+            gap: 10px;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #1e3a5a;
+        }
 
-    .exp-desc li i {
-      color: #2a7faa;
-      width: 18px;
-      margin-top: 2px;
-      font-size: 0.8rem;
-    }
+        .exp-desc li i {
+            color: #2a7faa;
+            width: 18px;
+            margin-top: 2px;
+            font-size: 0.8rem;
+        }
 
-    .achievement-badge {
-      background: #d7e6f0;
-      border-radius: 30px;
-      padding: 0.1rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #004070;
-      display: inline-block;
-      margin-top: 0.2rem;
-    }
+        .achievement-badge {
+            background: #d7e6f0;
+            border-radius: 30px;
+            padding: 0.1rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #004070;
+            display: inline-block;
+            margin-top: 0.2rem;
+        }
 
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 0.3rem;
-    }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0.3rem;
+        }
 
-    .skill-tag {
-      background: #e7eef6;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #1a3d5a;
-    }
+        .skill-tag {
+            background: #e7eef6;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #1a3d5a;
+        }
 
-    .edu-item {
-      background: #f6faff;
-      padding: 0.6rem 1.2rem;
-      border-radius: 12px;
-      margin-bottom: 0.6rem;
-      border: 1px solid #e2ebf3;
-      font-size: 1rem;
-    }
+        .edu-item {
+            background: #f6faff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 0.6rem;
+            border: 1px solid #e2ebf3;
+            font-size: 1rem;
+        }
 
-    .download-card {
-      background: #f0f5fd;
-      border-radius: 20px;
-      padding: 1.8rem 1.8rem 2rem;
-      margin-top: 1.8rem;
-      border: 1px solid #d4e0ed;
-    }
+        .download-card {
+            background: #f0f5fd;
+            border-radius: 20px;
+            padding: 1.8rem 1.8rem 2rem;
+            margin-top: 1.8rem;
+            border: 1px solid #d4e0ed;
+        }
 
-    .download-card h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #0b2a4a;
-    }
+        .download-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0b2a4a;
+        }
 
-    .download-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-      margin-top: 0.8rem;
-    }
+        .download-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 0.8rem;
+        }
 
-    .file-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-    }
+        .file-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
 
-    .file-btn {
-      background: white;
-      border: 1px solid #bacee0;
-      padding: 0.4rem 1.2rem;
-      border-radius: 60px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: #0b2a4a;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      transition: 0.1s;
-      text-decoration: none;
-      font-family: 'Times New Roman', Times, serif;
-    }
+        .file-btn {
+            background: white;
+            border: 1px solid #bacee0;
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #0b2a4a;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: 0.1s;
+            text-decoration: none;
+        }
 
-    .file-btn i {
-      color: #2a7faa;
-    }
+        .file-btn i {
+            color: #2a7faa;
+        }
 
-    .file-btn:hover {
-      background: #dce8f5;
-      border-color: #2a7faa;
-    }
+        .file-btn:hover {
+            background: #dce8f5;
+            border-color: #2a7faa;
+        }
 
-    .passcode-box {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      background: white;
-      padding: 0.2rem 1rem 0.2rem 1.5rem;
-      border-radius: 60px;
-      border: 1px solid #c8d8e8;
-      margin-top: 0.8rem;
-    }
+        .passcode-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            background: white;
+            padding: 0.2rem 1rem 0.2rem 1.5rem;
+            border-radius: 60px;
+            border: 1px solid #c8d8e8;
+            margin-top: 0.8rem;
+        }
 
-    .passcode-box label {
-      font-weight: 600;
-      color: #1a3d5a;
-      font-size: 0.95rem;
-    }
+        .passcode-box label {
+            font-weight: 600;
+            color: #1a3d5a;
+            font-size: 0.95rem;
+            font-family: 'Times New Roman', Times, serif;
+        }
 
-    .passcode-box input {
-      border: 1px solid #d0dcec;
-      border-radius: 40px;
-      padding: 0.3rem 1rem;
-      width: 110px;
-      font-size: 0.95rem;
-      background: #f9fcff;
-      font-family: 'Times New Roman', Times, serif;
-    }
+        .passcode-box input {
+            border: 1px solid #d0dcec;
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            width: 110px;
+            font-size: 0.95rem;
+            background: #f9fcff;
+            font-family: 'Times New Roman', Times, serif;
+        }
 
-    .passcode-box input:focus {
-      outline: 2px solid #2a7faa;
-      border-color: transparent;
-    }
+        .passcode-box input:focus {
+            outline: 2px solid #2a7faa;
+            border-color: transparent;
+        }
 
-    .unlock-btn {
-      background: #1c4b6e;
-      border: none;
-      color: white;
-      font-weight: 600;
-      padding: 0.35rem 1.4rem;
-      border-radius: 60px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      font-family: 'Times New Roman', Times, serif;
-    }
+        .unlock-btn {
+            background: #1c4b6e;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.35rem 1.4rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-family: 'Times New Roman', Times, serif;
+        }
 
-    .unlock-btn:hover {
-      background: #0f3857;
-    }
+        .unlock-btn:hover {
+            background: #0f3857;
+        }
 
-    .protected-note {
-      font-size: 0.9rem;
-      color: #3d5f7a;
-      margin-top: 0.6rem;
-    }
+        .protected-note {
+            font-size: 0.9rem;
+            color: #3d5f7a;
+            margin-top: 0.6rem;
+        }
 
-    .tasks-section {
-      margin-top: 2rem;
-      background: #f8faff;
-      padding: 1.5rem 1.8rem;
-      border-radius: 20px;
-      border: 1px solid #e3eefa;
-    }
+        .tasks-section {
+            margin-top: 2rem;
+            background: #f8faff;
+            padding: 1.5rem 1.8rem;
+            border-radius: 20px;
+            border: 1px solid #e3eefa;
+        }
 
-    .tasks-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
 
-    @media (max-width: 600px) {
-      .tasks-grid { grid-template-columns: 1fr; }
-    }
+        @media (max-width: 600px) {
+            .tasks-grid { grid-template-columns: 1fr; }
+        }
 
-    .task-card {
-      background: white;
-      padding: 1rem 1.2rem;
-      border-radius: 16px;
-      border-left: 4px solid #2a7faa;
-    }
+        .task-card {
+            background: white;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            border-left: 4px solid #2a7faa;
+        }
 
-    .task-card h4 {
-      color: #0b2a4a;
-      font-weight: 700;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .task-card h4 {
+            color: #0b2a4a;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .task-card ul {
-      list-style: none;
-      margin-top: 4px;
-      font-size: 0.95rem;
-      color: #1e3a5a;
-    }
+        .task-card ul {
+            list-style: none;
+            margin-top: 4px;
+            font-size: 0.95rem;
+            color: #1e3a5a;
+        }
 
-    .task-card ul li {
-      padding: 0.1rem 0;
-      display: flex;
-      gap: 8px;
-    }
+        .task-card ul li {
+            padding: 0.1rem 0;
+            display: flex;
+            gap: 8px;
+        }
 
-    .task-card ul li i {
-      color: #2a7faa;
-      width: 16px;
-      font-size: 0.7rem;
-      margin-top: 3px;
-    }
+        .task-card ul li i {
+            color: #2a7faa;
+            width: 16px;
+            font-size: 0.7rem;
+            margin-top: 3px;
+        }
 
-    .footer-note {
-      margin-top: 2.2rem;
-      font-size: 0.9rem;
-      color: #456f8f;
-      border-top: 1px solid #dce5ef;
-      padding-top: 1.2rem;
-      text-align: center;
-    }
-  </style>
+        .footer-note {
+            margin-top: 2.2rem;
+            font-size: 0.9rem;
+            color: #456f8f;
+            border-top: 1px solid #dce5ef;
+            padding-top: 1.2rem;
+            text-align: center;
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a3d5a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1rem;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        /* Hide passcode display */
+        .passcode-hint {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div class="portfolio">
 
-  <!-- HEADER -->
-  <div class="profile-header" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; border-bottom:2px solid #eef2f7; padding-bottom:1.5rem; margin-bottom:1.8rem;">
-    <div class="name-title">
-      <h1>OTIENO <span>CELESTINO</span> ONYANGO</h1>
-      <div class="badge"><i class="fas fa-id-badge"></i> Librarian · System Librarian · ICT Educator</div>
-    </div>
-    <div class="contact-links">
-      <a href="mailto:onyangocelestino@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-      <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-      <a href="#"><i class="fab fa-github"></i> GitHub</a>
-      <a href="#"><i class="fas fa-phone-alt"></i> +254714019736</a>
-    </div>
-  </div>
-
-  <!-- SUMMARY -->
-  <div class="summary">
-    <i class="fas fa-quote-left" style="color:#2a7faa; opacity:0.5; margin-right:6px;"></i>
-    Accomplished Information Professional with <strong>3+ years</strong> in library management, ICT systems, and records administration. 
-    Proven expertise in ISO 15489, Koha ILS, digital transformation. <strong>60%</strong> reduction in misfiling, <strong>45%</strong> ICT club growth, 
-    <strong>25%</strong> faster research retrieval. Passionate about bridging information gaps.
-  </div>
-
-  <!-- TWO COLUMN -->
-  <div class="two-col">
-    <!-- LEFT: experience -->
-    <div>
-      <div class="section-title"><i class="fas fa-briefcase"></i> Experience</div>
-
-      <!-- item 1 -->
-      <div class="exp-item">
-        <div class="exp-header">
-          <h3>Librarian & ICT Educator</h3>
-          <span class="exp-date">Aug 2024 – Present</span>
+    <!-- HEADER -->
+    <div class="profile-header" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; border-bottom:2px solid #eef2f7; padding-bottom:1.5rem; margin-bottom:1.8rem;">
+        <div class="name-title">
+            <h1>OTIENO <span>CELESTINO</span> ONYANGO</h1>
+            <div class="badge"><i class="fas fa-id-badge"></i> Librarian · System Librarian · ICT Educator</div>
         </div>
-        <div class="org">Lukenya British Curriculum School, Machakos</div>
-        <ul class="exp-desc">
-          <li><i class="fas fa-check-circle"></i> 100% TSC compliance, full records lifecycle (creation to secure disposal).</li>
-          <li><i class="fas fa-check-circle"></i> EDMS for student & staff records; Koha ILS circulation & cataloguing.</li>
-          <li><i class="fas fa-check-circle"></i> ICT Club Leader: +45% membership, coding workshops, tech fair.</li>
-          <li><i class="fas fa-check-circle"></i> Cambridge ICT & Computing (A-Level / O-Level).</li>
-          <li><i class="fas fa-check-circle"></i> <span class="achievement-badge">60% misfiling reduction</span> digitized 5+ years of academic records.</li>
-          <li><i class="fas fa-check-circle"></i> “Inquiry Hour” +35% independent research; reading mentorship +18% comprehension.</li>
-          <li><i class="fas fa-check-circle"></i> Digital Access Corner + adaptive tech; mobile library cart +40% circulation.</li>
-        </ul>
-        <div style="margin-top:0.3rem; display:flex; flex-wrap:wrap; gap:6px;">
-          <span class="skill-tag">Koha ILS</span>
-          <span class="skill-tag">EDMS</span>
-          <span class="skill-tag">TSC standards</span>
+        <div class="contact-links">
+            <a href="mailto:onyangocelestino@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+            <a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            <a href="#"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#"><i class="fas fa-phone-alt"></i> +254714019736</a>
         </div>
-        <div style="margin-top:0.4rem; font-size:0.95rem; background:#ecf3fa; padding:0.1rem 0.9rem; border-radius:20px; display:inline-block;">
-          <i class="fas fa-flag"></i> Additional: Geography Teacher, Head of House (WISE), Football Manager, Chapel Coordinator
-        </div>
-      </div>
-
-      <!-- item 2 -->
-      <div class="exp-item">
-        <div class="exp-header">
-          <h3>System Librarian</h3>
-          <span class="exp-date">May 2024 – Aug 2024</span>
-        </div>
-        <div class="org">Kenya National Library Service, Nakuru</div>
-        <ul class="exp-desc">
-          <li><i class="fas fa-check-circle"></i> Records inventory & archival management for historical government publications.</li>
-          <li><i class="fas fa-check-circle"></i> Digital cataloguing MARC21 / DDC; managed requests workflows.</li>
-          <li><i class="fas fa-check-circle"></i> ICT programs for persons with disabilities.</li>
-          <li><i class="fas fa-check-circle"></i> <span class="achievement-badge">Trained 50+ staff</span> · redesigned finding aids → 25% faster research.</li>
-        </ul>
-      </div>
-
-      <!-- item 3 -->
-      <div class="exp-item">
-        <div class="exp-header">
-          <h3>Assistant Librarian Intern</h3>
-          <span class="exp-date">May 2023 – Aug 2023</span>
-        </div>
-        <div class="org">Meru Law Courts, Meru</div>
-        <ul class="exp-desc">
-          <li><i class="fas fa-check-circle"></i> Legal records: classification, security, compliance with judicial standards.</li>
-          <li><i class="fas fa-check-circle"></i> Digitized & indexed 500+ historical case files → 30% retrieval improvement.</li>
-          <li><i class="fas fa-check-circle"></i> Koha ILS cataloguing, online legal databases, staff training.</li>
-          <li><i class="fas fa-check-circle"></i> Reference services for judges, prosecutors; data protection protocols.</li>
-        </ul>
-        <div><span class="achievement-badge"><i class="fas fa-archive"></i> 500+ case files digitized</span></div>
-      </div>
-
-      <!-- Education -->
-      <div style="margin-top:1.8rem;">
-        <div class="section-title"><i class="fas fa-graduation-cap"></i> Education</div>
-        <div class="edu-item"><strong>BSc Information Science</strong> · Meru University of Science & Technology (2020–2024) <span style="float:right; background:#dce5ef; padding:0 1rem; border-radius:30px; font-size:0.85rem;">Second Class Lower</span></div>
-        <div class="edu-item"><strong>Kenya Certificate of Secondary Education</strong></div>
-      </div>
     </div>
 
-    <!-- RIGHT: skills + download -->
-    <div>
-      <div class="section-title"><i class="fas fa-cogs"></i> Core Competencies</div>
-      <div class="skill-tags" style="margin-bottom:1.8rem;">
-        <span class="skill-tag">ISO 15489 Records</span>
-        <span class="skill-tag">Koha ILS</span>
-        <span class="skill-tag">MARC21 / RDA</span>
-        <span class="skill-tag">Digital Transformation</span>
-        <span class="skill-tag">EDMS</span>
-        <span class="skill-tag">Cybersecurity</span>
-        <span class="skill-tag">ICT Curriculum</span>
-        <span class="skill-tag">Staff Training</span>
-        <span class="skill-tag">Database Management</span>
-        <span class="skill-tag">Cataloguing (DDC)</span>
-        <span class="skill-tag">Serials Check-in</span>
-        <span class="skill-tag">Acquisitions & Invoicing</span>
-      </div>
-
-      <!-- Download section with passcode -->
-      <div class="download-card" id="download-section">
-        <h3><i class="fas fa-download"></i> Secure download</h3>
-        <p style="color:#1e3a5a; font-size:0.95rem; margin-bottom:0.4rem;">CV & Cover Letter · DOCX & PDF · protected</p>
-
-        <div class="download-grid">
-          <div class="file-group">
-            <button class="file-btn" data-file="cv-pdf"><i class="fas fa-file-pdf"></i> CV.pdf</button>
-            <button class="file-btn" data-file="cv-docx"><i class="fas fa-file-word"></i> CV.docx</button>
-            <button class="file-btn" data-file="cl-pdf"><i class="fas fa-file-pdf"></i> CoverLetter.pdf</button>
-            <button class="file-btn" data-file="cl-docx"><i class="fas fa-file-word"></i> CoverLetter.docx</button>
-          </div>
-        </div>
-
-        <div class="passcode-box">
-          <label><i class="fas fa-lock" style="margin-right:4px;"></i> Passcode</label>
-          <input type="password" id="passcodeInput" placeholder="••••" maxlength="10" />
-          <button class="unlock-btn" id="unlockBtn"><i class="fas fa-unlock-alt"></i> Unlock</button>
-          <span style="font-size:0.8rem; color:#426f8f;">(default: 2020)</span>
-        </div>
-        <div class="protected-note" id="protectedNote">
-          <i class="fas fa-shield-alt"></i> Files are protected. Enter passcode to enable download.
-        </div>
-        <div id="downloadLinksContainer" style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:10px;"></div>
-      </div>
-
-      <!-- Additional tasks & skills -->
-      <div class="tasks-section">
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.8rem;">
-          <i class="fas fa-tasks" style="color:#2a7faa; font-size:1.3rem;"></i>
-          <h4 style="color:#0b2a4a; font-size:1.1rem; font-weight:700;">Acquisitions & cataloguing (AfriCAP / LOC)</h4>
-        </div>
-        <div class="tasks-grid">
-          <div class="task-card">
-            <h4><i class="fas fa-receipt"></i> Receiving & Invoice 50%</h4>
-            <ul>
-              <li><i class="fas fa-angle-right"></i> High-volume packages from 30 Sub-Saharan countries</li>
-              <li><i class="fas fa-angle-right"></i> Verify invoices, packing lists, shipping</li>
-              <li><i class="fas fa-angle-right"></i> ILS, CAPS, OPAC holdings verification</li>
-            </ul>
-          </div>
-          <div class="task-card">
-            <h4><i class="fas fa-tag"></i> Initial Cataloging 35%</h4>
-            <ul>
-              <li><i class="fas fa-angle-right"></i> RDA, MARC21, LOC standards</li>
-              <li><i class="fas fa-angle-right"></i> Monographs, serials, maps, sound recordings</li>
-              <li><i class="fas fa-angle-right"></i> LCCN, barcode, PCC copy cataloging</li>
-            </ul>
-          </div>
-          <div class="task-card">
-            <h4><i class="fas fa-calendar-check"></i> Serials Check-in 15%</h4>
-            <ul>
-              <li><i class="fas fa-angle-right"></i> ILS holdings, item records, enumeration</li>
-              <li><i class="fas fa-angle-right"></i> Update location, chronology, status</li>
-              <li><i class="fas fa-angle-right"></i> Avoid duplicates, validation techniques</li>
-            </ul>
-          </div>
-          <div class="task-card">
-            <h4><i class="fas fa-globe-africa"></i> AfriCAP & LOC support</h4>
-            <ul>
-              <li><i class="fas fa-angle-right"></i> 30 academic participants</li>
-              <li><i class="fas fa-angle-right"></i> Purchase orders & fiscal processing</li>
-              <li><i class="fas fa-angle-right"></i> OCLC, PCC records</li>
-            </ul>
-          </div>
-        </div>
-        <div style="margin-top:0.8rem; display:flex; flex-wrap:wrap; gap:8px;">
-          <span class="skill-tag">RDA cataloging</span>
-          <span class="skill-tag">MARC21</span>
-          <span class="skill-tag">OCLC</span>
-          <span class="skill-tag">AfriCAP</span>
-          <span class="skill-tag">ILS (LOC)</span>
-          <span class="skill-tag">Serials management</span>
-        </div>
-      </div>
+    <!-- SUMMARY -->
+    <div class="summary">
+        <i class="fas fa-quote-left" style="color:#2a7faa; opacity:0.5; margin-right:6px;"></i>
+        Accomplished Information Professional with <strong>3+ years</strong> of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in ISO 15489 records management, Koha ILS automation, and digital transformation. Skilled in cybersecurity, database management, ICT curriculum development, and staff training. Recognized for measurable impact: <strong>60%</strong> reduction in misfiling, <strong>45%</strong> growth in ICT club membership, and <strong>25%</strong> improvement in research retrieval times. Passionate about leveraging technology to bridge information gaps and empower diverse communities.
     </div>
-  </div>
 
-  <div class="footer-note">
-    <i class="fas fa-code"></i> Portfolio · Celestino Otieno · ATS-ready · Times New Roman
-  </div>
+    <!-- TWO COLUMN -->
+    <div class="two-col">
+        <!-- LEFT: experience -->
+        <div>
+            <div class="section-title"><i class="fas fa-briefcase"></i> Experience</div>
+
+            <!-- item 1 -->
+            <div class="exp-item">
+                <div class="exp-header">
+                    <h3>Librarian & ICT Educator</h3>
+                    <span class="exp-date">Aug 2024 – Present</span>
+                </div>
+                <div class="org">Lukenya British Curriculum School, Machakos, Kenya</div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> 100% TSC compliance, full records lifecycle (creation to secure disposal).</li>
+                    <li><i class="fas fa-check-circle"></i> EDMS for student & staff records; Koha ILS circulation & cataloguing.</li>
+                    <li><i class="fas fa-check-circle"></i> ICT Club Leader: +45% membership, coding workshops, tech fair.</li>
+                    <li><i class="fas fa-check-circle"></i> Cambridge ICT & Computing (A-Level / O-Level).</li>
+                    <li><i class="fas fa-check-circle"></i> <span class="achievement-badge">60% misfiling reduction</span> digitized 5+ years of academic records.</li>
+                    <li><i class="fas fa-check-circle"></i> "Inquiry Hour" +35% independent research; reading mentorship +18% comprehension.</li>
+                    <li><i class="fas fa-check-circle"></i> Digital Access Corner + adaptive tech; mobile library cart +40% circulation.</li>
+                </ul>
+                <div style="margin-top:0.3rem; display:flex; flex-wrap:wrap; gap:6px;">
+                    <span class="skill-tag">Koha ILS</span>
+                    <span class="skill-tag">EDMS</span>
+                    <span class="skill-tag">TSC standards</span>
+                </div>
+                <div style="margin-top:0.4rem; font-size:0.95rem; background:#ecf3fa; padding:0.1rem 0.9rem; border-radius:20px; display:inline-block;">
+                    <i class="fas fa-flag"></i> Additional: Geography Teacher, Head of House (WISE), Football Manager, Chapel Coordinator
+                </div>
+            </div>
+
+            <!-- item 2 -->
+            <div class="exp-item">
+                <div class="exp-header">
+                    <h3>System Librarian</h3>
+                    <span class="exp-date">May 2024 – Aug 2024</span>
+                </div>
+                <div class="org">Kenya National Library Service, Nakuru, Kenya</div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> Records inventory & archival management for historical government publications.</li>
+                    <li><i class="fas fa-check-circle"></i> Digital cataloguing MARC21 / DDC; managed requests workflows.</li>
+                    <li><i class="fas fa-check-circle"></i> ICT programs for persons with disabilities.</li>
+                    <li><i class="fas fa-check-circle"></i> <span class="achievement-badge">Trained 50+ staff</span> · redesigned finding aids → 25% faster research.</li>
+                </ul>
+            </div>
+
+            <!-- item 3 -->
+            <div class="exp-item">
+                <div class="exp-header">
+                    <h3>Assistant Librarian Intern</h3>
+                    <span class="exp-date">May 2023 – Aug 2023</span>
+                </div>
+                <div class="org">Meru Law Courts, Meru, Kenya</div>
+                <ul class="exp-desc">
+                    <li><i class="fas fa-check-circle"></i> Legal records: classification, security, compliance with judicial standards.</li>
+                    <li><i class="fas fa-check-circle"></i> Digitized & indexed 500+ historical case files → 30% retrieval improvement.</li>
+                    <li><i class="fas fa-check-circle"></i> Koha ILS cataloguing, online legal databases, staff training.</li>
+                    <li><i class="fas fa-check-circle"></i> Reference services for judges, prosecutors; data protection protocols.</li>
+                </ul>
+                <div><span class="achievement-badge"><i class="fas fa-archive"></i> 500+ case files digitized</span></div>
+            </div>
+
+            <!-- Education -->
+            <div style="margin-top:1.8rem;">
+                <div class="section-title"><i class="fas fa-graduation-cap"></i> Education</div>
+                <div class="edu-item"><strong>BSc Information Science</strong> · Meru University of Science & Technology, Kenya (2020–2024) <span style="float:right; background:#dce5ef; padding:0 1rem; border-radius:30px; font-size:0.85rem;">Second Class Lower</span></div>
+                <div class="edu-item"><strong>Kenya Certificate of Secondary Education</strong></div>
+            </div>
+        </div>
+
+        <!-- RIGHT: skills + download -->
+        <div>
+            <div class="section-title"><i class="fas fa-cogs"></i> Core Competencies</div>
+            <div class="skill-tags" style="margin-bottom:1.8rem;">
+                <span class="skill-tag">ISO 15489 Records</span>
+                <span class="skill-tag">Koha ILS</span>
+                <span class="skill-tag">MARC21 / RDA</span>
+                <span class="skill-tag">Digital Transformation</span>
+                <span class="skill-tag">EDMS</span>
+                <span class="skill-tag">Cybersecurity</span>
+                <span class="skill-tag">ICT Curriculum</span>
+                <span class="skill-tag">Staff Training</span>
+                <span class="skill-tag">Database Management</span>
+                <span class="skill-tag">Cataloguing (DDC)</span>
+                <span class="skill-tag">Serials Check-in</span>
+                <span class="skill-tag">Acquisitions & Invoicing</span>
+            </div>
+
+            <!-- Download section with passcode -->
+            <div class="download-card" id="download-section">
+                <h3><i class="fas fa-download"></i> Secure Download</h3>
+                <p style="color:#1e3a5a; font-size:0.95rem; margin-bottom:0.4rem;">CV & Cover Letter · DOCX & PDF · Protected</p>
+
+                <div class="download-grid">
+                    <div class="file-group">
+                        <button class="file-btn" data-file="cv-pdf"><i class="fas fa-file-pdf"></i> CV.pdf</button>
+                        <button class="file-btn" data-file="cv-docx"><i class="fas fa-file-word"></i> CV.docx</button>
+                        <button class="file-btn" data-file="cl-pdf"><i class="fas fa-file-pdf"></i> CoverLetter.pdf</button>
+                        <button class="file-btn" data-file="cl-docx"><i class="fas fa-file-word"></i> CoverLetter.docx</button>
+                    </div>
+                </div>
+
+                <div class="passcode-box">
+                    <label><i class="fas fa-lock" style="margin-right:4px;"></i> Passcode</label>
+                    <input type="password" id="passcodeInput" placeholder="••••" maxlength="10" />
+                    <button class="unlock-btn" id="unlockBtn"><i class="fas fa-unlock-alt"></i> Unlock</button>
+                    <!-- Hidden hint - passcode not displayed -->
+                    <span style="display:none;">(default: 2020)</span>
+                </div>
+                <div class="protected-note" id="protectedNote">
+                    <i class="fas fa-shield-alt"></i> Files are protected. Enter passcode to enable download.
+                </div>
+                <div id="downloadLinksContainer" style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:10px;"></div>
+            </div>
+
+            <!-- Additional tasks & skills -->
+            <div class="tasks-section">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.8rem;">
+                    <i class="fas fa-tasks" style="color:#2a7faa; font-size:1.3rem;"></i>
+                    <h4 style="color:#0b2a4a; font-size:1.1rem; font-weight:700;">Acquisitions & Cataloguing (AfriCAP / LOC)</h4>
+                </div>
+                <div class="tasks-grid">
+                    <div class="task-card">
+                        <h4><i class="fas fa-receipt"></i> Receiving & Invoice 50%</h4>
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i> High-volume packages from 30 Sub-Saharan countries</li>
+                            <li><i class="fas fa-angle-right"></i> Verify invoices, packing lists, shipping</li>
+                            <li><i class="fas fa-angle-right"></i> ILS, CAPS, OPAC holdings verification</li>
+                        </ul>
+                    </div>
+                    <div class="task-card">
+                        <h4><i class="fas fa-tag"></i> Initial Cataloging 35%</h4>
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i> RDA, MARC21, LOC standards</li>
+                            <li><i class="fas fa-angle-right"></i> Monographs, serials, maps, sound recordings</li>
+                            <li><i class="fas fa-angle-right"></i> LCCN, barcode, PCC copy cataloging</li>
+                        </ul>
+                    </div>
+                    <div class="task-card">
+                        <h4><i class="fas fa-calendar-check"></i> Serials Check-in 15%</h4>
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i> ILS holdings, item records, enumeration</li>
+                            <li><i class="fas fa-angle-right"></i> Update location, chronology, status</li>
+                            <li><i class="fas fa-angle-right"></i> Avoid duplicates, validation techniques</li>
+                        </ul>
+                    </div>
+                    <div class="task-card">
+                        <h4><i class="fas fa-globe-africa"></i> AfriCAP & LOC Support</h4>
+                        <ul>
+                            <li><i class="fas fa-angle-right"></i> 30 academic participants</li>
+                            <li><i class="fas fa-angle-right"></i> Purchase orders & fiscal processing</li>
+                            <li><i class="fas fa-angle-right"></i> OCLC, PCC records</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top:0.8rem; display:flex; flex-wrap:wrap; gap:8px;">
+                    <span class="skill-tag">RDA cataloging</span>
+                    <span class="skill-tag">MARC21</span>
+                    <span class="skill-tag">OCLC</span>
+                    <span class="skill-tag">AfriCAP</span>
+                    <span class="skill-tag">ILS (LOC)</span>
+                    <span class="skill-tag">Serials management</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <i class="fas fa-code"></i> Portfolio · Celestino Otieno · ATS-ready · Times New Roman
+    </div>
 </div>
 
+<!-- Toast notification -->
+<div id="toast" class="toast"></div>
+
 <script>
-  (function() {
-    const PASSCODE = '2020';
-    const unlockBtn = document.getElementById('unlockBtn');
-    const passInput = document.getElementById('passcodeInput');
-    const container = document.getElementById('downloadLinksContainer');
-    const note = document.getElementById('protectedNote');
+    (function() {
+        const PASSCODE = '2020';
+        const unlockBtn = document.getElementById('unlockBtn');
+        const passInput = document.getElementById('passcodeInput');
+        const container = document.getElementById('downloadLinksContainer');
+        const note = document.getElementById('protectedNote');
+        const toast = document.getElementById('toast');
 
-    // Generate readable CV/cover letter content as plain text (but we'll serve as .pdf/.docx with proper headers)
-    // For a real portfolio, you'd link to actual files. Here we generate downloadable .txt files 
-    // with the content, but label them as .pdf and .docx so they appear as documents.
-    // To make them truly PDF/DOCX, we create a blob with application/octet-stream and proper extension.
-    // However, to keep it readable and functional, we create text files with .txt extension but name them with .pdf/.docx.
-    // The user can open them in any text editor.
-    function generateFileContent(type) {
-      const header = "OTIENO CELESTINO ONYANGO\nLibrarian | System Librarian | ICT Educator | Record Manager\n+254714019736 | onyangocelestino@gmail.com\n\n";
-      const cvBody = `PROFESSIONAL SUMMARY\nAccomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in ISO 15489 records management, Koha ILS automation, and digital transformation. Skilled in cybersecurity, database management, ICT curriculum development, and staff training. Recognized for measurable impact: 60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.\n\nWORK EXPERIENCE\nLibrarian & ICT Educator (Lukenya British Curriculum School, Machakos | Aug 2024 - Present)\n- 100% TSC compliance, full records lifecycle (creation to secure disposal)\n- EDMS for student & staff records; Koha ILS circulation & cataloguing\n- ICT Club Leader: +45% membership, coding workshops, tech fair\n- Cambridge ICT & Computing (A-Level / O-Level)\n- 60% misfiling reduction, digitized 5+ years of academic records\n- \"Inquiry Hour\" +35% independent research; reading mentorship +18% comprehension\n- Digital Access Corner + adaptive tech; mobile library cart +40% circulation\n\nSystem Librarian (Kenya National Library Service, Nakuru | May 2024 - Aug 2024)\n- Records inventory & archival management for historical government publications\n- Digital cataloguing MARC21 / DDC; managed requests workflows\n- ICT programs for persons with disabilities\n- Trained 50+ staff · redesigned finding aids → 25% faster research\n\nAssistant Librarian Intern (Meru Law Courts, Meru | May 2023 - Aug 2023)\n- Legal records: classification, security, compliance with judicial standards\n- Digitized & indexed 500+ historical case files → 30% retrieval improvement\n- Koha ILS cataloguing, online legal databases, staff training\n- Reference services for judges, prosecutors; data protection protocols\n\nEDUCATION\nBSc Information Science · Meru University of Science & Technology (2020–2024) Second Class Lower\nKenya Certificate of Secondary Education\n\nCORE COMPETENCIES\nISO 15489 Records, Koha ILS, MARC21 / RDA, Digital Transformation, EDMS, Cybersecurity, ICT Curriculum, Staff Training, Database Management, Cataloguing (DDC), Serials Check-in, Acquisitions & Invoicing\n\nADDITIONAL TASKS (AfriCAP / LOC)\n- Receiving & Invoice 50%: High-volume packages from 30 Sub-Saharan countries, verify invoices, ILS/CAPS/OPAC holdings\n- Initial Cataloging 35%: RDA, MARC21, LOC standards, monographs, serials, maps, sound recordings, LCCN, barcode, PCC copy cataloging\n- Serials Check-in 15%: ILS holdings, item records, enumeration, update location, chronology, status, avoid duplicates, validation\n- AfriCAP & LOC support: 30 academic participants, purchase orders & fiscal processing, OCLC, PCC records`;
-
-      const coverLetter = `COVER LETTER\n\nCelestino Otieno Onyango\n+254714019736 | onyangocelestino@gmail.com\n\nDear Hiring Manager,\n\nI am writing to express my strong interest in the position of System Librarian / Information Professional. With over 3 years of experience in library management, ICT systems, and records administration, I bring a proven track record of improving operational efficiency and user satisfaction. My expertise in Koha ILS, ISO 15489 records management, and digital transformation has resulted in a 60% reduction in misfiling and a 25% improvement in research retrieval times.\n\nI am particularly drawn to the opportunity to contribute to your organization's digital initiatives and to support diverse communities in accessing information. My experience in training staff, developing ICT curricula, and implementing electronic document management systems aligns with your needs. I am also well-versed in acquisitions, cataloging (RDA/MARC21), and serials management, having worked with the Library of Congress (LOC) and AfriCAP participants.\n\nI am eager to bring my skills in cybersecurity, database management, and staff training to your team. Thank you for your time and consideration. I look forward to discussing how I can contribute to your organization.\n\nSincerely,\nCelestino Otieno Onyango`;
-
-      if (type === 'cv-pdf' || type === 'cv-docx') return header + cvBody;
-      else return header + coverLetter;
-    }
-
-    // File mapping with dynamic content
-    function getFileInfo(type) {
-      const ext = type.includes('pdf') ? 'pdf' : 'docx';
-      const name = type.includes('cv') ? 'Celestino_Otieno_CV' : 'Celestino_Otieno_CoverLetter';
-      const content = generateFileContent(type);
-      return { name: `${name}.${ext}`, content };
-    }
-
-    let unlocked = false;
-
-    function renderLinks() {
-      container.innerHTML = '';
-      if (!unlocked) {
-        container.innerHTML = `<span style="color:#5f7f9a; font-size:0.95rem;"><i class="fas fa-lock"></i> Unlock to download files</span>`;
-        return;
-      }
-      // Provide downloadable files (as .txt but named .pdf/.docx) with readable content
-      const types = ['cv-pdf', 'cv-docx', 'cl-pdf', 'cl-docx'];
-      types.forEach(type => {
-        const info = getFileInfo(type);
-        const a = document.createElement('a');
-        // Create a Blob with text content - but we'll serve as application/octet-stream so browser downloads as file
-        const blob = new Blob([info.content], { type: 'application/octet-stream' });
-        const url = URL.createObjectURL(blob);
-        a.href = url;
-        a.download = info.name; // downloads as .pdf or .docx (but content is plain text, readable)
-        a.className = 'file-btn';
-        a.style.textDecoration = 'none';
-        a.style.background = 'white';
-        a.style.padding = '0.4rem 1.2rem';
-        a.style.borderRadius = '60px';
-        a.style.border = '1px solid #bacee0';
-        a.style.display = 'inline-flex';
-        a.style.alignItems = 'center';
-        a.style.gap = '8px';
-        a.style.fontWeight = '500';
-        a.style.color = '#0b2a4a';
-        // Determine icon based on extension
-        const icon = type.includes('pdf') ? 'fa-file-pdf' : 'fa-file-word';
-        a.innerHTML = `<i class="fas ${icon}"></i> ${info.name}`;
-        container.appendChild(a);
-      });
-    }
-
-    function unlockAttempt() {
-      const code = passInput.value.trim();
-      if (code === PASSCODE) {
-        unlocked = true;
-        renderLinks();
-        note.innerHTML = `<i class="fas fa-check-circle" style="color:#1f8b4c;"></i> Unlocked! Click any file to download (readable format).`;
-        note.style.color = '#1f6e3a';
-        passInput.value = '';
-      } else {
-        unlocked = false;
-        renderLinks();
-        note.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#b33;"></i> Incorrect passcode. Try again.`;
-        note.style.color = '#b33';
-        setTimeout(() => {
-          if (!unlocked) {
-            note.innerHTML = `<i class="fas fa-shield-alt"></i> Files are protected. Enter passcode to enable download.`;
-            note.style.color = '#3d5f7a';
-          }
-        }, 2000);
-      }
-    }
-
-    unlockBtn.addEventListener('click', unlockAttempt);
-    passInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') unlockAttempt(); });
-
-    // initial
-    renderLinks();
-
-    // Lock file buttons if not unlocked
-    document.querySelectorAll('.file-btn').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        if (!unlocked) {
-          e.preventDefault();
-          note.innerHTML = `<i class="fas fa-lock" style="color:#b33;"></i> Please unlock with passcode first.`;
-          note.style.color = '#b33';
-          setTimeout(() => {
-            if (!unlocked) {
-              note.innerHTML = `<i class="fas fa-shield-alt"></i> Files are protected. Enter passcode to enable download.`;
-              note.style.color = '#3d5f7a';
-            }
-          }, 1800);
+        function showToast(msg, isError = false) {
+            toast.textContent = msg;
+            toast.style.background = isError ? '#a33' : '#1a3d5a';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
-      });
-    });
-  })();
+
+        // Generate CV/cover letter content
+        function generateFileContent(type) {
+            const header = "OTIENO CELESTINO ONYANGO\nLibrarian | System Librarian | ICT Educator | Record Manager\n+254714019736 | onyangocelestino@gmail.com\n\n";
+            const cvBody = `PROFESSIONAL SUMMARY\nAccomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in ISO 15489 records management, Koha ILS automation, and digital transformation. Skilled in cybersecurity, database management, ICT curriculum development, and staff training. Recognized for measurable impact: 60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.\n\nWORK EXPERIENCE\nLibrarian & ICT Educator (Lukenya British Curriculum School, Machakos, Kenya | Aug 2024 - Present)\n- 100% TSC compliance, full records lifecycle (creation to secure disposal)\n- EDMS for student & staff records; Koha ILS circulation & cataloguing\n- ICT Club Leader: +45% membership, coding workshops, tech fair\n- Cambridge ICT & Computing (A-Level / O-Level)\n- 60% misfiling reduction, digitized 5+ years of academic records\n- "Inquiry Hour" +35% independent research; reading mentorship +18% comprehension\n- Digital Access Corner + adaptive tech; mobile library cart +40% circulation\n\nSystem Librarian (Kenya National Library Service, Nakuru, Kenya | May 2024 - Aug 2024)\n- Records inventory & archival management for historical government publications\n- Digital cataloguing MARC21 / DDC; managed requests workflows\n- ICT programs for persons with disabilities\n- Trained 50+ staff · redesigned finding aids → 25% faster research\n\nAssistant Librarian Intern (Meru Law Courts, Meru, Kenya | May 2023 - Aug 2023)\n- Legal records: classification, security, compliance with judicial standards\n- Digitized & indexed 500+ historical case files → 30% retrieval improvement\n- Koha ILS cataloguing, online legal databases, staff training\n- Reference services for judges, prosecutors; data protection protocols\n\nEDUCATION\nBSc Information Science · Meru University of Science & Technology, Kenya (2020–2024) Second Class Lower\nKenya Certificate of Secondary Education\n\nCORE COMPETENCIES\nISO 15489 Records, Koha ILS, MARC21 / RDA, Digital Transformation, EDMS, Cybersecurity, ICT Curriculum, Staff Training, Database Management, Cataloguing (DDC), Serials Check-in, Acquisitions & Invoicing\n\nADDITIONAL TASKS (AfriCAP / LOC)\n- Receiving & Invoice 50%: High-volume packages from 30 Sub-Saharan countries, verify invoices, ILS/CAPS/OPAC holdings\n- Initial Cataloging 35%: RDA, MARC21, LOC standards, monographs, serials, maps, sound recordings, LCCN, barcode, PCC copy cataloging\n- Serials Check-in 15%: ILS holdings, item records, enumeration, update location, chronology, status, avoid duplicates, validation\n- AfriCAP & LOC support: 30 academic participants, purchase orders & fiscal processing, OCLC, PCC records`;
+
+            const coverLetter = `COVER LETTER\n\nCelestino Otieno Onyango\n+254714019736 | onyangocelestino@gmail.com\n\nDear Hiring Manager,\n\nI am writing to express my strong interest in the position of System Librarian / Information Professional. With over 3 years of experience in library management, ICT systems, and records administration, I bring a proven track record of improving operational efficiency and user satisfaction. My expertise in Koha ILS, ISO 15489 records management, and digital transformation has resulted in a 60% reduction in misfiling and a 25% improvement in research retrieval times.\n\nI am particularly drawn to the opportunity to contribute to your organization's digital initiatives and to support diverse communities in accessing information. My experience in training staff, developing ICT curricula, and implementing electronic document management systems aligns with your needs. I am also well-versed in acquisitions, cataloging (RDA/MARC21), and serials management, having worked with the Library of Congress (LOC) and AfriCAP participants.\n\nI am eager to bring my skills in cybersecurity, database management, and staff training to your team. Thank you for your time and consideration. I look forward to discussing how I can contribute to your organization.\n\nSincerely,\nCelestino Otieno Onyango`;
+
+            if (type === 'cv-pdf' || type === 'cv-docx') return header + cvBody;
+            else return header + coverLetter;
+        }
+
+        function getFileInfo(type) {
+            const ext = type.includes('pdf') ? 'pdf' : 'docx';
+            const name = type.includes('cv') ? 'Celestino_Otieno_CV' : 'Celestino_Otieno_CoverLetter';
+            const content = generateFileContent(type);
+            return { name: `${name}.${ext}`, content };
+        }
+
+        let unlocked = false;
+
+        function renderLinks() {
+            container.innerHTML = '';
+            if (!unlocked) {
+                container.innerHTML = `<span style="color:#5f7f9a; font-size:0.95rem;"><i class="fas fa-lock"></i> Unlock to download files</span>`;
+                return;
+            }
+            const types = ['cv-pdf', 'cv-docx', 'cl-pdf', 'cl-docx'];
+            types.forEach(type => {
+                const info = getFileInfo(type);
+                const a = document.createElement('a');
+                const blob = new Blob([info.content], { type: 'application/octet-stream' });
+                const url = URL.createObjectURL(blob);
+                a.href = url;
+                a.download = info.name;
+                a.className = 'file-btn';
+                a.style.textDecoration = 'none';
+                a.style.background = 'white';
+                a.style.padding = '0.4rem 1.2rem';
+                a.style.borderRadius = '60px';
+                a.style.border = '1px solid #bacee0';
+                a.style.display = 'inline-flex';
+                a.style.alignItems = 'center';
+                a.style.gap = '8px';
+                a.style.fontWeight = '500';
+                a.style.color = '#0b2a4a';
+                const icon = type.includes('pdf') ? 'fa-file-pdf' : 'fa-file-word';
+                a.innerHTML = `<i class="fas ${icon}"></i> ${info.name}`;
+                container.appendChild(a);
+            });
+        }
+
+        function unlockAttempt() {
+            const code = passInput.value.trim();
+            if (code === PASSCODE) {
+                unlocked = true;
+                renderLinks();
+                note.innerHTML = `<i class="fas fa-check-circle" style="color:#1f8b4c;"></i> Unlocked! Click any file to download.`;
+                note.style.color = '#1f6e3a';
+                passInput.value = '';
+                showToast('✅ Unlocked! Files are ready to download.', false);
+            } else {
+                unlocked = false;
+                renderLinks();
+                note.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#b33;"></i> Incorrect passcode. Try again.`;
+                note.style.color = '#b33';
+                showToast('❌ Incorrect passcode. Try again.', true);
+                setTimeout(() => {
+                    if (!unlocked) {
+                        note.innerHTML = `<i class="fas fa-shield-alt"></i> Files are protected. Enter passcode to enable download.`;
+                        note.style.color = '#3d5f7a';
+                    }
+                }, 2000);
+            }
+        }
+
+        unlockBtn.addEventListener('click', unlockAttempt);
+        passInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') unlockAttempt(); });
+
+        // initial
+        renderLinks();
+
+        // Lock file buttons if not unlocked
+        document.querySelectorAll('.file-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (!unlocked) {
+                    e.preventDefault();
+                    note.innerHTML = `<i class="fas fa-lock" style="color:#b33;"></i> Please unlock with passcode first.`;
+                    note.style.color = '#b33';
+                    showToast('🔒 Please unlock with passcode first.', true);
+                    setTimeout(() => {
+                        if (!unlocked) {
+                            note.innerHTML = `<i class="fas fa-shield-alt"></i> Files are protected. Enter passcode to enable download.`;
+                            note.style.color = '#3d5f7a';
+                        }
+                    }, 2000);
+                }
+            });
+        });
+    })();
 </script>
 </body>
 </html>
