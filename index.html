@@ -7,6 +7,12 @@
   <title>Celestino Otieno | Professional Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.js">
+  </script>
   <style>
     /* ==================== RESET & BASE ==================== */
     * {
@@ -305,6 +311,91 @@
       50% { transform: scale(1.2); opacity: 0.7; }
     }
 
+    /* ==================== DOWNLOAD SECTION ==================== */
+    .download-section {
+      background: var(--white);
+      padding: 40px 0;
+      border-top: 1px solid #eef2f5;
+      border-bottom: 1px solid #eef2f5;
+    }
+    .download-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .download-card {
+      background: var(--light-gray);
+      padding: 32px 36px;
+      border-radius: var(--radius);
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    .download-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+    .download-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .download-card p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+    .download-card .icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .download-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-download-file {
+      background: var(--white);
+      color: var(--primary);
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: 1px solid #d0dce4;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-download-file:hover {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(31, 138, 107, 0.25);
+    }
+    .btn-download-file.pdf {
+      border-color: #e74c3c;
+      color: #e74c3c;
+    }
+    .btn-download-file.pdf:hover {
+      background: #e74c3c;
+      color: var(--white);
+    }
+    .btn-download-file.docx {
+      border-color: #2b5797;
+      color: #2b5797;
+    }
+    .btn-download-file.docx:hover {
+      background: #2b5797;
+      color: var(--white);
+    }
+
     /* ==================== ABOUT ==================== */
     .about {
       background: var(--white);
@@ -411,7 +502,6 @@
       font-size: 0.8rem;
       color: var(--gray);
       font-weight: 400;
-      width: 100%;
       background: var(--white);
       padding: 4px 12px;
       border-radius: 20px;
@@ -562,41 +652,60 @@
       margin-top: 4px;
     }
 
-    /* ==================== CERTIFICATIONS ==================== */
-    .certifications {
+    /* ==================== SUPERVISION & RESOURCE ==================== */
+    .supervision {
       background: var(--white);
     }
-    .cert-grid {
+    .sup-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
     }
-    .cert-card {
+    .sup-card {
       background: var(--light-gray);
-      padding: 20px 24px;
+      padding: 28px 32px;
       border-radius: var(--radius);
-      transition: var(--transition);
-      border: 1px solid transparent;
+      border-left: 4px solid var(--accent);
     }
-    .cert-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow);
-    }
-    .cert-card h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
+    .sup-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
       color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .cert-card .issuer {
-      font-size: 0.8rem;
-      color: var(--gray);
+    .sup-card h4 i {
+      color: var(--accent);
     }
-    .cert-card .desc {
+    .sup-card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sup-card ul li {
+      font-size: 0.9rem;
+      color: var(--dark);
+      padding: 4px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .sup-card ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .efficiency-badge {
+      background: var(--accent-light);
+      padding: 8px 20px;
+      border-radius: 40px;
+      display: inline-block;
       font-size: 0.85rem;
-      color: var(--gray);
-      margin-top: 6px;
-      font-style: italic;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 16px;
     }
 
     /* ==================== PROJECTS ==================== */
@@ -670,65 +779,9 @@
       margin-top: 8px;
     }
 
-    /* ==================== SUPERVISION & RESOURCE ==================== */
-    .supervision {
-      background: var(--white);
-    }
-    .sup-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-    .sup-card {
-      background: var(--light-gray);
-      padding: 28px 32px;
-      border-radius: var(--radius);
-      border-left: 4px solid var(--accent);
-    }
-    .sup-card h4 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .sup-card h4 i {
-      color: var(--accent);
-    }
-    .sup-card ul {
-      list-style: none;
-      padding: 0;
-    }
-    .sup-card ul li {
-      font-size: 0.9rem;
-      color: var(--dark);
-      padding: 4px 0;
-      padding-left: 20px;
-      position: relative;
-    }
-    .sup-card ul li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .efficiency-badge {
-      background: var(--accent-light);
-      padding: 8px 20px;
-      border-radius: 40px;
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-top: 16px;
-    }
-
     /* ==================== REFEREES ==================== */
     .referees {
-      background: var(--light-gray);
+      background: var(--white);
     }
     .ref-grid {
       display: grid;
@@ -736,15 +789,15 @@
       gap: 24px;
     }
     .ref-card {
-      background: var(--white);
+      background: var(--light-gray);
       padding: 24px 28px;
       border-radius: var(--radius);
       border-left: 4px solid var(--accent);
-      box-shadow: var(--shadow);
       transition: var(--transition);
     }
     .ref-card:hover {
       transform: translateY(-3px);
+      box-shadow: var(--shadow);
     }
     .ref-card .name {
       font-size: 1.05rem;
@@ -794,6 +847,86 @@
       margin-top: 8px;
     }
 
+    /* ==================== COVER LETTER MODAL ==================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px 48px;
+      position: relative;
+      animation: modalSlide 0.3s ease-out;
+    }
+    @keyframes modalSlide {
+      from { opacity: 0; transform: translateY(30px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--gray);
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 0 8px;
+    }
+    .modal-close:hover {
+      color: var(--dark);
+      transform: rotate(90deg);
+    }
+    .modal-content .cover-letter-content {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12pt;
+      line-height: 1.7;
+      color: #1a2c3b;
+    }
+    .modal-content .cover-letter-content h2 {
+      color: #0a4a5a;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #1f8a6b;
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: left;
+    }
+    .modal-content .cover-letter-content .letter-body {
+      text-align: left;
+    }
+    .modal-content .cover-letter-content .letter-body p {
+      margin-bottom: 12px;
+    }
+    .modal-content .modal-download-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #eef2f5;
+      flex-wrap: wrap;
+    }
+
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
       .hero-content {
@@ -824,6 +957,9 @@
         grid-template-columns: 1fr;
       }
       .sup-grid {
+        grid-template-columns: 1fr;
+      }
+      .download-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -871,9 +1007,6 @@
       .project-grid {
         grid-template-columns: 1fr;
       }
-      .cert-grid {
-        grid-template-columns: 1fr;
-      }
       .ref-grid {
         grid-template-columns: 1fr;
       }
@@ -882,6 +1015,9 @@
       }
       .timeline-item .exp-header h3 {
         font-size: 1rem;
+      }
+      .modal-content {
+        padding: 24px 20px;
       }
     }
     @media (max-width: 480px) {
@@ -911,6 +1047,14 @@
         width: 12px;
         height: 12px;
       }
+      .download-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .btn-download-file {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -929,7 +1073,7 @@
       <li><a href="#education">Education</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#referees">Referees</a></li>
-      <li><a href="#download" class="btn-download"><i class="fas fa-file-pdf"></i> Download CV</a></li>
+      <li><a href="#download" class="btn-download"><i class="fas fa-file-pdf"></i> Downloads</a></li>
     </ul>
   </nav>
 
@@ -948,7 +1092,7 @@
           </p>
           <div class="hero-buttons">
             <a href="#experience" class="btn-primary"><i class="fas fa-briefcase"></i> View Experience</a>
-            <a href="#download" class="btn-outline"><i class="fas fa-file-pdf"></i> Download CV</a>
+            <a href="#download" class="btn-outline"><i class="fas fa-download"></i> Downloads</a>
           </div>
           <div class="hero-stats">
             <div class="stat">
@@ -974,6 +1118,96 @@
       </div>
     </div>
   </section>
+
+  <!-- ==================== DOWNLOAD SECTION ==================== -->
+  <section class="download-section" id="download">
+    <div class="container">
+      <h2 class="section-title" style="text-align:center;">Download Documents</h2>
+      <div class="section-divider" style="margin: 0 auto 24px;"></div>
+      <p class="section-subtitle" style="text-align:center;">Download my CV and Cover Letter in your preferred format</p>
+
+      <div class="download-grid">
+        <!-- CV Downloads -->
+        <div class="download-card">
+          <div class="icon"><i class="fas fa-file-alt"></i></div>
+          <h3>Curriculum Vitae</h3>
+          <p>ATS-friendly format with all professional experience, skills, and qualifications</p>
+          <div class="download-buttons">
+            <button class="btn-download-file pdf" onclick="downloadCV('pdf')">
+              <i class="fas fa-file-pdf"></i> Download PDF
+            </button>
+            <button class="btn-download-file docx" onclick="downloadCV('docx')">
+              <i class="fas fa-file-word"></i> Download DOCX
+            </button>
+          </div>
+        </div>
+
+        <!-- Cover Letter Downloads -->
+        <div class="download-card">
+          <div class="icon"><i class="fas fa-envelope-open-text"></i></div>
+          <h3>Cover Letter</h3>
+          <p>Professional cover letter tailored for library and information science positions</p>
+          <div class="download-buttons">
+            <button class="btn-download-file pdf" onclick="openCoverLetterModal('pdf')">
+              <i class="fas fa-file-pdf"></i> View & Download PDF
+            </button>
+            <button class="btn-download-file docx" onclick="openCoverLetterModal('docx')">
+              <i class="fas fa-file-word"></i> View & Download DOCX
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COVER LETTER MODAL ==================== -->
+  <div class="modal-overlay" id="coverLetterModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeCoverLetterModal()">&times;</button>
+      <div id="coverLetterContent" class="cover-letter-content">
+        <h2><i class="fas fa-envelope-open-text"></i> Cover Letter</h2>
+        <div class="letter-body">
+          <p><strong>Otieno Celestino Onyango</strong><br>
+          +254714019736 | onyangocelestino@gmail.com<br>
+          Nairobi, Kenya</p>
+
+          <p><strong>[Date]</strong></p>
+
+          <p><strong>Hiring Manager</strong><br>
+          [Organization Name]<br>
+          [Organization Address]</p>
+
+          <p><strong>RE: Application for [Position Title]</strong></p>
+
+          <p>Dear Hiring Manager,</p>
+
+          <p>I am writing to express my strong interest in the [Position Title] at [Organization Name]. With a Bachelor of Science in Information Science (ICT Option) from Meru University of Science and Technology and over three years of hands-on experience across academic, legal, and public library settings, I am confident in my ability to contribute effectively to your team and support your organizational goals.</p>
+
+          <p>Throughout my career, I have demonstrated a consistent commitment to excellence in library and information services. At Lukenya British Curriculum School, I have successfully managed library operations using Koha ILS, implemented a digital records management system that reduced misfiling by 60%, and led the ICT Club to a 45% membership growth. My experience at Kenya National Library Service and Meru Law Courts has further strengthened my skills in records management, digital cataloguing, and user-centered service delivery.</p>
+
+          <p>I am particularly passionate about creating inclusive, accessible information environments that empower diverse communities. Whether designing adaptive technologies for students with disabilities, implementing mobile library services that increased circulation by 40%, or training staff and patrons in digital literacy, I consistently prioritize user needs and equitable access to knowledge.</p>
+
+          <p>My technical proficiency includes Koha ILS, MARC21, DDC, Python, SQL, Power BI, and network administration. I am also deeply committed to professional ethics, data security, and continuous learning — evidenced by certifications in Cybersecurity, Cyber Forensics, and Fire Safety Training.</p>
+
+          <p>I am eager to bring my skills in library automation, records management, and ICT education to [Organization Name], and I look forward to the opportunity to discuss how my experience aligns with your needs. Thank you for considering my application.</p>
+
+          <p style="margin-top: 1rem; font-weight: 600;">Yours sincerely,<br>
+          <strong>Otieno Celestino Onyango</strong></p>
+        </div>
+      </div>
+      <div class="modal-download-buttons">
+        <button class="btn-download-file pdf" onclick="downloadCoverLetter('pdf')">
+          <i class="fas fa-file-pdf"></i> Download PDF
+        </button>
+        <button class="btn-download-file docx" onclick="downloadCoverLetter('docx')">
+          <i class="fas fa-file-word"></i> Download DOCX
+        </button>
+        <button class="btn-download-file" onclick="closeCoverLetterModal()" style="border-color:#999;color:#666;">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ==================== ABOUT ==================== -->
   <section class="about" id="about">
@@ -1332,7 +1566,7 @@
   </section>
 
   <!-- ==================== FOOTER ==================== -->
-  <footer class="footer" id="download">
+  <footer class="footer">
     <div class="container">
       <div class="social-links">
         <a href="mailto:onyangocelestino@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
@@ -1356,7 +1590,7 @@
 
   <!-- ==================== SCRIPTS ==================== -->
   <script>
-    // Hamburger menu toggle
+    // ==================== NAVIGATION ====================
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
 
@@ -1365,7 +1599,6 @@
       navLinks.classList.toggle('open');
     });
 
-    // Close menu on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
@@ -1373,7 +1606,6 @@
       });
     });
 
-    // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const target = document.querySelector(this.getAttribute('href'));
@@ -1389,10 +1621,281 @@
       });
     });
 
-    // CV Download (simulated - would connect to actual PDF generation)
-    document.querySelector('.btn-download')?.addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('PDF download functionality can be connected to your CV generation system.');
+    // ==================== CV GENERATION ====================
+    function getCVHTML() {
+      return `
+        <div style="max-width:1100px; margin:0 auto; background:white; font-family:'Times New Roman', Times, serif; font-size:12pt; color:#1a2c3b; padding:20px;">
+          <div style="background:linear-gradient(135deg, #0a3b44 0%, #125f54 100%); color:white; padding:15px 30px; border-radius:8px 8px 0 0;">
+            <h1 style="font-size:24px; font-weight:700; margin:0;">OTIENO CELESTINO ONYANGO</h1>
+            <div style="font-size:11px; font-weight:500; background:rgba(255,255,255,0.15); display:inline-block; padding:2px 14px; border-radius:40px; margin-top:4px;">School Librarian | System Librarian | ICT Educator | Record Manager</div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:6px; background:rgba(0,0,0,0.2); padding:4px 14px; border-radius:50px; font-size:10px;">
+              <span><i class="fas fa-phone-alt"></i> +254714019736</span>
+              <span><i class="fas fa-envelope"></i> onyangocelestino@gmail.com</span>
+              <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
+            </div>
+          </div>
+          <div style="padding:15px 30px;">
+            <div style="margin-bottom:10px;">
+              <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase; letter-spacing:0.5px;"><i class="fas fa-user-circle"></i> Professional Summary</h2>
+              <p style="font-size:11px; line-height:1.5; margin:0; text-align:left;"><strong>Accomplished Information Professional</strong> with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in <strong>ISO 15489</strong> records management, <strong>Koha ILS</strong> automation, and digital transformation. Skilled in <strong>cybersecurity, database management, ICT curriculum development, and staff training</strong>.</p>
+            </div>
+
+            <div style="margin-bottom:10px;">
+              <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase; letter-spacing:0.5px;"><i class="fas fa-briefcase"></i> Work Experience</h2>
+
+              <div style="margin-bottom:8px;">
+                <h3 style="font-size:12px; font-weight:800; color:#135f6b; margin:0; text-align:left;">School Librarian & ICT Educator</h3>
+                <div style="font-size:10px; color:#5a7e8f; margin-bottom:2px; text-align:left;"><i class="fas fa-building"></i> Lukenya British Curriculum School, Machakos | <i class="fas fa-calendar-alt"></i> Aug 2024 – Present</div>
+                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Acquisitions & Receiving:</strong> Receives and verifies incoming packages of publications against invoices, receipts, and shipping lists.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Invoice Verification:</strong> Searches and verifies financial documentation. Maintains records and initiates payment processes.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Cataloging & Metadata:</strong> Creates IBC records using Koha ILS according to RDA standards. Assigns DDC classification and barcodes.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Serials Management:</strong> Checks serials issues into ILS, updates holdings records, location data, enumeration and chronology.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;">Delivered high-quality learning experiences integrating the Kenya Model of Great Teaching.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;">Manage full records lifecycle: creation, classification, retention scheduling, secure disposal.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;">Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>ICT Club Leader:</strong> Grew membership by 45% within one academic year.</li>
+                </ul>
+                <div style="background:#f2f8fa; padding:6px 10px; border-left:3px solid #1f8a6b; margin:4px 0; text-align:left; font-size:10px;">
+                  <strong>Key Impact:</strong> Reduced misfiling by 60%; digitized 5+ years of records. "Inquiry Hour" sessions — 35% increase in research projects. Mobile library cart increased circulation by 40%.
+                </div>
+              </div>
+
+              <div style="margin-bottom:8px;">
+                <h3 style="font-size:12px; font-weight:800; color:#135f6b; margin:0; text-align:left;">System Librarian</h3>
+                <div style="font-size:10px; color:#5a7e8f; margin-bottom:2px; text-align:left;"><i class="fas fa-building"></i> Kenya National Library Service, Nakuru | <i class="fas fa-calendar-alt"></i> May 2024 – Aug 2024</div>
+                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Acquisitions & Receiving:</strong> Received and verified incoming packages including government documents against invoices and receipts.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Invoice Verification:</strong> Searched and verified financial documentation. Assisted with Purchase Order creation.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Cataloging:</strong> Supported digital cataloguing using MARC21 and DDC.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Serials Management:</strong> Managed records request workflows and updated holdings records.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;">Provided end-user support and IT orientation; delivered hands-on training in MS Office suite.</li>
+                </ul>
+                <div style="background:#f2f8fa; padding:6px 10px; border-left:3px solid #1f8a6b; margin:4px 0; text-align:left; font-size:10px;">
+                  <strong>Achievement:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.
+                </div>
+              </div>
+
+              <div style="margin-bottom:8px;">
+                <h3 style="font-size:12px; font-weight:800; color:#135f6b; margin:0; text-align:left;">Assistant Librarian Intern</h3>
+                <div style="font-size:10px; color:#5a7e8f; margin-bottom:2px; text-align:left;"><i class="fas fa-gavel"></i> Meru Law Courts, Meru | <i class="fas fa-calendar-alt"></i> May 2023 – Aug 2023</div>
+                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Legal Records Management:</strong> Organized and secured court case files and legal documents in compliance with judicial standards.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Acquisitions & Receiving:</strong> Received and verified incoming legal publications against invoices.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Cataloging:</strong> Catalogued new legal publications using Koha ILS; assigned classification numbers.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Serials Management:</strong> Managed legal journal subscriptions and updated holdings records.</li>
+                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Digital Indexing:</strong> Developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
+                </ul>
+                <div style="background:#f2f8fa; padding:6px 10px; border-left:3px solid #1f8a6b; margin:4px 0; text-align:left; font-size:10px;">
+                  <strong>Achievement:</strong> Digitized and catalogued over 500 historical court case files, reducing retrieval time.
+                </div>
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+              <div>
+                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Education</h2>
+                <h3 style="font-size:11px; font-weight:700; color:#135f6b; margin:0; text-align:left;">BSc Information Science (ICT Option)</h3>
+                <div style="font-size:9px; color:#5a7e8f; text-align:left;">Meru University of Science & Technology – 2020 to 2024</div>
+                <div style="font-size:9px; color:#4a6a7a; text-align:left;">Second Class Lower Division</div>
+                <h3 style="font-size:11px; font-weight:700; color:#135f6b; margin:8px 0 0 0; text-align:left;">Kenya Certificate of Secondary Education</h3>
+                <div style="font-size:9px; color:#5a7e8f; text-align:left;">Nyarach Mixed Day Secondary School – 2015 to 2019</div>
+                <div style="font-size:9px; color:#4a6a7a; text-align:left;">Grade: C+ (Aggregate 51 points)</div>
+              </div>
+              <div>
+                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Skills</h2>
+                <div style="display:flex; flex-wrap:wrap; gap:3px;">
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Acquisitions</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Invoice Verification</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">RDA Cataloging</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">MARC21</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">DDC</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Koha ILS</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Serials Management</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">ISO 15489</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Cybersecurity</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Power BI</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">ICT Curriculum</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Staff Supervision</span>
+                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Resource Management</span>
+                </div>
+                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin:10px 0 5px 0; text-align:left; text-transform:uppercase;">Certifications</h2>
+                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
+                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Advanced Cybersecurity</strong> - Great Learning, 2025</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Data Visualization with Power BI</strong> - 2022</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Cyber Forensics</strong> - 2025</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Infection Prevention & Control</strong> - The National College, 2026</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Fire Safety Training</strong> - 2025</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+              <div>
+                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Supervision</h2>
+                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
+                  <li style="font-size:9px; margin:2px 0; text-align:left;">Supervising Library Staff</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;">Guiding Library Users</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;">Training Staff and Users</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;">Evaluating Performance</li>
+                </ul>
+              </div>
+              <div>
+                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Resource Management</h2>
+                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
+                  <li style="font-size:9px; margin:2px 0; text-align:left;">Selecting Resources</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;">Acquiring Materials</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;">Maintaining Collections</li>
+                  <li style="font-size:9px; margin:2px 0; text-align:left;">Budgeting for Resources</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style="margin-top:10px;">
+              <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Referees</h2>
+              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
+                <div style="background:#fafefb; padding:6px 10px; border-left:3px solid #1f8a6b; text-align:left; font-size:10px;">
+                  <strong>Silas Otieno</strong><br>Head of Department, Humanities<br><span style="font-size:8px; color:#1a4f5c;">+254707445341</span>
+                </div>
+                <div style="background:#fafefb; padding:6px 10px; border-left:3px solid #1f8a6b; text-align:left; font-size:10px;">
+                  <strong>Collins Kirui</strong><br>Dean of Students & Head of Exams<br><span style="font-size:8px; color:#1a4f5c;">+254702194494</span>
+                </div>
+                <div style="background:#fafefb; padding:6px 10px; border-left:3px solid #1f8a6b; text-align:left; font-size:10px;">
+                  <strong>George Okoth</strong><br>Priest & US Army Officer<br><span style="font-size:8px; color:#1a4f5c;">+1 210 7535656</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align:center; font-size:8px; padding:4px; background:#fafefe; border-top:1px solid #e2edf2; color:#537d93; border-radius:0 0 8px 8px;">
+            Celestino Otieno – Professional CV | Digital Transformation, ICT Education & Library Innovation
+          </div>
+        </div>
+      `;
+    }
+
+    function getCoverLetterHTML() {
+      return `
+        <div style="padding:40px; font-family:'Times New Roman', Times, serif; color:#1a2c3b; max-width:800px; margin:0 auto; background:white;">
+          <h2 style="color:#0a4a5a; font-size:18px; border-bottom:2px solid #1f8a6b; padding-bottom:6px; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px; text-align:left;">Cover Letter</h2>
+          <div style="font-size:12pt; line-height:1.7; color:#1a2c3b; text-align:left;">
+            <p><strong>Otieno Celestino Onyango</strong><br>
+            +254714019736 | onyangocelestino@gmail.com<br>
+            Nairobi, Kenya</p>
+
+            <p><strong>[Date]</strong></p>
+
+            <p><strong>Hiring Manager</strong><br>
+            [Organization Name]<br>
+            [Organization Address]</p>
+
+            <p><strong>RE: Application for [Position Title]</strong></p>
+
+            <p>Dear Hiring Manager,</p>
+
+            <p>I am writing to express my strong interest in the [Position Title] at [Organization Name]. With a Bachelor of Science in Information Science (ICT Option) from Meru University of Science and Technology and over three years of hands-on experience across academic, legal, and public library settings, I am confident in my ability to contribute effectively to your team and support your organizational goals.</p>
+
+            <p>Throughout my career, I have demonstrated a consistent commitment to excellence in library and information services. At Lukenya British Curriculum School, I have successfully managed library operations using Koha ILS, implemented a digital records management system that reduced misfiling by 60%, and led the ICT Club to a 45% membership growth. My experience at Kenya National Library Service and Meru Law Courts has further strengthened my skills in records management, digital cataloguing, and user-centered service delivery.</p>
+
+            <p>I am particularly passionate about creating inclusive, accessible information environments that empower diverse communities. Whether designing adaptive technologies for students with disabilities, implementing mobile library services that increased circulation by 40%, or training staff and patrons in digital literacy, I consistently prioritize user needs and equitable access to knowledge.</p>
+
+            <p>My technical proficiency includes Koha ILS, MARC21, DDC, Python, SQL, Power BI, and network administration. I am also deeply committed to professional ethics, data security, and continuous learning — evidenced by certifications in Cybersecurity, Cyber Forensics, and Fire Safety Training.</p>
+
+            <p>I am eager to bring my skills in library automation, records management, and ICT education to [Organization Name], and I look forward to the opportunity to discuss how my experience aligns with your needs. Thank you for considering my application.</p>
+
+            <p style="margin-top:16px; font-weight:600; text-align:left;">Yours sincerely,<br>
+            <strong>Otieno Celestino Onyango</strong></p>
+          </div>
+        </div>
+      `;
+    }
+
+    // ==================== CV DOWNLOAD FUNCTIONS ====================
+    function downloadCV(format) {
+      const content = getCVHTML();
+      
+      if (format === 'pdf') {
+        const opt = {
+          margin: [0, 0, 0, 0],
+          filename: 'Celestino_Otieno_CV.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, letterRendering: true, logging: false },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = content;
+        document.body.appendChild(wrapper);
+        html2pdf().set(opt).from(wrapper).save().then(() => {
+          document.body.removeChild(wrapper);
+        });
+      } else if (format === 'docx') {
+        const fullDoc = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - CV</title><style>body { font-family:'Times New Roman', Times, serif; font-size:12pt; } * { text-align:left; }</style></head><body>${content}</body></html>`;
+        if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
+          const blob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 180, bottom: 180, left: 180 } });
+          saveAs(blob, 'Celestino_Otieno_CV.docx');
+        } else {
+          const fallback = new Blob([fullDoc], { type: 'application/msword' });
+          saveAs(fallback, 'Celestino_Otieno_CV.doc');
+        }
+      }
+    }
+
+    // ==================== COVER LETTER FUNCTIONS ====================
+    let coverLetterFormat = 'pdf';
+
+    function openCoverLetterModal(format) {
+      coverLetterFormat = format;
+      const modal = document.getElementById('coverLetterModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCoverLetterModal() {
+      const modal = document.getElementById('coverLetterModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function downloadCoverLetter(format) {
+      const content = getCoverLetterHTML();
+      
+      if (format === 'pdf') {
+        const opt = {
+          margin: [0.5, 0.5, 0.5, 0.5],
+          filename: 'Celestino_Otieno_Cover_Letter.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, letterRendering: true, logging: false },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = content;
+        document.body.appendChild(wrapper);
+        html2pdf().set(opt).from(wrapper).save().then(() => {
+          document.body.removeChild(wrapper);
+        });
+      } else if (format === 'docx') {
+        const fullDoc = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Cover Letter</title><style>body { font-family:'Times New Roman', Times, serif; font-size:12pt; } * { text-align:left; }</style></head><body>${content}</body></html>`;
+        if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
+          const blob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 180, bottom: 180, left: 180 } });
+          saveAs(blob, 'Celestino_Otieno_Cover_Letter.docx');
+        } else {
+          const fallback = new Blob([fullDoc], { type: 'application/msword' });
+          saveAs(fallback, 'Celestino_Otieno_Cover_Letter.doc');
+        }
+      }
+    }
+
+    // Close modal on overlay click
+    document.getElementById('coverLetterModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeCoverLetterModal();
+      }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeCoverLetterModal();
+      }
     });
   </script>
 </body>
