@@ -271,62 +271,6 @@
             border-color: #2a7faa;
         }
 
-        .passcode-box {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            background: white;
-            padding: 0.2rem 1rem 0.2rem 1.5rem;
-            border-radius: 60px;
-            border: 1px solid #c8d8e8;
-            margin-top: 0.8rem;
-        }
-
-        .passcode-box label {
-            font-weight: 600;
-            color: #1a3d5a;
-            font-size: 0.95rem;
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        .passcode-box input {
-            border: 1px solid #d0dcec;
-            border-radius: 40px;
-            padding: 0.3rem 1rem;
-            width: 110px;
-            font-size: 0.95rem;
-            background: #f9fcff;
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        .passcode-box input:focus {
-            outline: 2px solid #2a7faa;
-            border-color: transparent;
-        }
-
-        .unlock-btn {
-            background: #1c4b6e;
-            border: none;
-            color: white;
-            font-weight: 600;
-            padding: 0.35rem 1.4rem;
-            border-radius: 60px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            font-family: 'Times New Roman', Times, serif;
-        }
-
-        .unlock-btn:hover {
-            background: #0f3857;
-        }
-
-        .protected-note {
-            font-size: 0.9rem;
-            color: #3d5f7a;
-            margin-top: 0.6rem;
-        }
-
         .tasks-section {
             margin-top: 2rem;
             background: #f8faff;
@@ -412,11 +356,6 @@
         .toast.show {
             opacity: 1;
         }
-
-        /* Hide passcode display */
-        .passcode-hint {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -426,7 +365,7 @@
     <div class="profile-header" style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; border-bottom:2px solid #eef2f7; padding-bottom:1.5rem; margin-bottom:1.8rem;">
         <div class="name-title">
             <h1>OTIENO <span>CELESTINO</span> ONYANGO</h1>
-            <div class="badge"><i class="fas fa-id-badge"></i> School Librarian · System Librarian · ICT Educator · Record Manager</div>
+            <div class="badge"><i class="fas fa-id-badge"></i> Librarian · System Librarian · ICT Educator · Record Manager</div>
         </div>
         <div class="contact-links">
             <a href="mailto:onyangocelestino@gmail.com"><i class="fas fa-envelope"></i> Email</a>
@@ -451,7 +390,7 @@
             <!-- item 1 -->
             <div class="exp-item">
                 <div class="exp-header">
-                    <h3>School Librarian & ICT Educator</h3>
+                    <h3>Librarian & ICT Educator</h3>
                     <span class="exp-date">Aug 2024 – Present</span>
                 </div>
                 <div class="org">Lukenya British Curriculum School, Machakos</div>
@@ -541,29 +480,23 @@
                 <span class="skill-tag">Acquisitions & Invoicing</span>
             </div>
 
-            <!-- Download section with passcode -->
+            <!-- Download section - NO PROTECTION, opens in browser/word -->
             <div class="download-card" id="download-section">
-                <h3><i class="fas fa-download"></i> Secure Download</h3>
-                <p style="color:#1e3a5a; font-size:0.95rem; margin-bottom:0.4rem;">CV & Cover Letter · DOCX & PDF · Protected</p>
+                <h3><i class="fas fa-download"></i> Download Documents</h3>
+                <p style="color:#1e3a5a; font-size:0.95rem; margin-bottom:0.8rem;">CV & Cover Letter · PDF & DOCX · Opens in browser or Word</p>
 
                 <div class="download-grid">
                     <div class="file-group">
-                        <button class="file-btn" data-file="cv-pdf"><i class="fas fa-file-pdf"></i> Download PDF</button>
-                        <button class="file-btn" data-file="cv-docx"><i class="fas fa-file-word"></i> Download DOCX</button>
-                        <button class="file-btn" data-file="cl-pdf"><i class="fas fa-file-pdf"></i> Cover Letter PDF</button>
-                        <button class="file-btn" data-file="cl-docx"><i class="fas fa-file-word"></i> Cover Letter DOCX</button>
+                        <a href="#" class="file-btn" data-file="cv-pdf"><i class="fas fa-file-pdf"></i> CV PDF</a>
+                        <a href="#" class="file-btn" data-file="cv-docx"><i class="fas fa-file-word"></i> CV DOCX</a>
+                        <a href="#" class="file-btn" data-file="cl-pdf"><i class="fas fa-file-pdf"></i> Cover Letter PDF</a>
+                        <a href="#" class="file-btn" data-file="cl-docx"><i class="fas fa-file-word"></i> Cover Letter DOCX</a>
                     </div>
                 </div>
-
-                <div class="passcode-box">
-                    <label><i class="fas fa-lock" style="margin-right:4px;"></i> Passcode</label>
-                    <input type="password" id="passcodeInput" placeholder="••••" maxlength="10" />
-                    <button class="unlock-btn" id="unlockBtn"><i class="fas fa-unlock-alt"></i> Unlock</button>
+                <div style="margin-top:0.8rem; font-size:0.85rem; color:#3d5f7a;">
+                    <i class="fas fa-info-circle"></i> Files open directly in browser (PDF) or Microsoft Word (DOCX)
                 </div>
-                <div class="protected-note" id="protectedNote">
-                    <i class="fas fa-shield-alt"></i> Files are protected. Enter passcode to enable download.
-                </div>
-                <div id="downloadLinksContainer" style="margin-top:1rem; display:flex; flex-wrap:wrap; gap:10px;"></div>
+                <div id="downloadLinksContainer" style="margin-top:0.5rem; display:flex; flex-wrap:wrap; gap:10px;"></div>
             </div>
 
             <!-- Additional tasks & skills -->
@@ -628,11 +561,7 @@
 
 <script>
     (function() {
-        const PASSCODE = '2020';
-        const unlockBtn = document.getElementById('unlockBtn');
-        const passInput = document.getElementById('passcodeInput');
         const container = document.getElementById('downloadLinksContainer');
-        const note = document.getElementById('protectedNote');
         const toast = document.getElementById('toast');
 
         function showToast(msg, isError = false) {
@@ -644,9 +573,9 @@
 
         // Generate CV/cover letter content matching the provided CV
         function generateFileContent(type) {
-            const header = "OTIENO CELESTINO ONYANGO\nSchool Librarian | System Librarian | ICT Educator | Record Manager\n+254714019736 | onyangocelestino@gmail.com | linkedin.com/in/celestino-otieno | github.com/CELESTINO-UX | Nairobi, Kenya\n\n";
+            const header = "OTIENO CELESTINO ONYANGO\nLibrarian | System Librarian | ICT Educator | Record Manager\n+254714019736 | onyangocelestino@gmail.com | linkedin.com/in/celestino-otieno | github.com/CELESTINO-UX | Nairobi, Kenya\n\n";
             
-            const cvBody = `PROFESSIONAL SUMMARY\nAccomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in ISO 15489 records management, Koha ILS automation, and digital transformation. Skilled in cybersecurity, database management, ICT curriculum development, and staff training. Recognized for measurable impact: 60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times. Passionate about leveraging technology to bridge information gaps and empower diverse communities globally.\n\nWORK EXPERIENCE\nSchool Librarian & ICT Educator\nLukenya British Curriculum School, Machakos | Aug 2024 - Present\nDelivered high-quality learning experiences integrating the Kenya Model of Great Teaching, improving student engagement in research-based tasks. Ensured 100% compliance with TSC professional standards through meticulous record-keeping and ethical practices. Manage full records lifecycle: creation, classification, retention scheduling, secure disposal of institutional records. Implement electronic document management system (EDMS) for student records, staff files, and administrative archives. Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems. Oversee library operations using Koha ILS for circulation, cataloguing, and reporting; maintain hybrid collections. ICT Club Leader: Coordinate all club activities, mentor students in technology projects, organize coding workshops and annual tech fair. Grew membership by 45% within one academic year. ICT & Computing Tutor: Deliver Cambridge ICT and Computing curricula to A-Level and O-Level students with practical lab sessions. Achievements: Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records.\n\nKey Impact\nStudent Growth: Designed "Inquiry Hour" sessions - 35% increase in independent research projects. Reading mentorship program boosted comprehension scores by 18% Access & Inclusion: Established "Digital Access Corner" with adaptive technologies; mobile library cart increased circulation by 40% Safe Environment: Transformed library into a welcoming hub with peer "Library Ambassador" program; zero-tolerance policy for bullying.\n\nAdditional Roles\nGeography Teacher: Deliver Geography curriculum for Lower Secondary, Upper Secondary & A-Level. Head of House (WISE): Lead and mentor students, oversee academic performance and co-curricular activities. Football Team Manager: Manage school football teams, coordinate training and match schedules. Chapel Coordinator: Coordinate chapel services and weekly spiritual programmes.\n\nSystem Librarian\nKenya National Library Service, Nakuru | May 2024 - Aug 2024\nAssisted in records inventory and archival management for historical government publications. Supported digital cataloguing and metadata creation using MARC21 and DDC; managed records request workflows. Provided end-user support and IT orientation; delivered hands-on training in MS Office suite and digital literacy. Designed and delivered accessible ICT programs for persons with disabilities, empowering diverse learners. Achievements: Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%\n\nAssistant Librarian Intern\nMeru Law Courts, Meru | May 2023 - Aug 2023\nLegal Records Management: Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards. Digital Indexing & Retrieval: Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30% Library User Support: Provided reference services to judges, magistrates, prosecutors, and legal researchers. Collection Maintenance: Catalogued new legal publications using Koha ILS; ensured accurate shelving and accessibility. Digital Resource Management: Managed access to online legal databases and e-resources; trained staff on effective search strategies. Records Security & Confidentiality: Ensured strict adherence to data protection protocols for sensitive legal information. Inventory & Preservation: Conducted regular inventory checks and assisted in preservation of fragile historical legal documents. Administrative Support: Prepared circulation reports, assisted with inter-library loan requests, and supported general library administration.\n\nKey Achievement\nDigitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access for legal professionals.\n\nEDUCATION\nBSc Information Science\nMeru University of Science & Technology - 2020 to 2024 Second Class Lower Division\nKenya Certificate of Secondary Education`;
+            const cvBody = `PROFESSIONAL SUMMARY\nAccomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in ISO 15489 records management, Koha ILS automation, and digital transformation. Skilled in cybersecurity, database management, ICT curriculum development, and staff training. Recognized for measurable impact: 60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times. Passionate about leveraging technology to bridge information gaps and empower diverse communities globally.\n\nWORK EXPERIENCE\nLibrarian & ICT Educator\nLukenya British Curriculum School, Machakos | Aug 2024 - Present\nDelivered high-quality learning experiences integrating the Kenya Model of Great Teaching, improving student engagement in research-based tasks. Ensured 100% compliance with TSC professional standards through meticulous record-keeping and ethical practices. Manage full records lifecycle: creation, classification, retention scheduling, secure disposal of institutional records. Implement electronic document management system (EDMS) for student records, staff files, and administrative archives. Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems. Oversee library operations using Koha ILS for circulation, cataloguing, and reporting; maintain hybrid collections. ICT Club Leader: Coordinate all club activities, mentor students in technology projects, organize coding workshops and annual tech fair. Grew membership by 45% within one academic year. ICT & Computing Tutor: Deliver Cambridge ICT and Computing curricula to A-Level and O-Level students with practical lab sessions. Achievements: Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records.\n\nKey Impact\nStudent Growth: Designed "Inquiry Hour" sessions - 35% increase in independent research projects. Reading mentorship program boosted comprehension scores by 18% Access & Inclusion: Established "Digital Access Corner" with adaptive technologies; mobile library cart increased circulation by 40% Safe Environment: Transformed library into a welcoming hub with peer "Library Ambassador" program; zero-tolerance policy for bullying.\n\nAdditional Roles\nGeography Teacher: Deliver Geography curriculum for Lower Secondary, Upper Secondary & A-Level. Head of House (WISE): Lead and mentor students, oversee academic performance and co-curricular activities. Football Team Manager: Manage school football teams, coordinate training and match schedules. Chapel Coordinator: Coordinate chapel services and weekly spiritual programmes.\n\nSystem Librarian\nKenya National Library Service, Nakuru | May 2024 - Aug 2024\nAssisted in records inventory and archival management for historical government publications. Supported digital cataloguing and metadata creation using MARC21 and DDC; managed records request workflows. Provided end-user support and IT orientation; delivered hands-on training in MS Office suite and digital literacy. Designed and delivered accessible ICT programs for persons with disabilities, empowering diverse learners. Achievements: Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%\n\nAssistant Librarian Intern\nMeru Law Courts, Meru | May 2023 - Aug 2023\nLegal Records Management: Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards. Digital Indexing & Retrieval: Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30% Library User Support: Provided reference services to judges, magistrates, prosecutors, and legal researchers. Collection Maintenance: Catalogued new legal publications using Koha ILS; ensured accurate shelving and accessibility. Digital Resource Management: Managed access to online legal databases and e-resources; trained staff on effective search strategies. Records Security & Confidentiality: Ensured strict adherence to data protection protocols for sensitive legal information. Inventory & Preservation: Conducted regular inventory checks and assisted in preservation of fragile historical legal documents. Administrative Support: Prepared circulation reports, assisted with inter-library loan requests, and supported general library administration.\n\nKey Achievement\nDigitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access for legal professionals.\n\nEDUCATION\nBSc Information Science\nMeru University of Science & Technology - 2020 to 2024 Second Class Lower Division\nKenya Certificate of Secondary Education`;
 
             const coverLetter = `COVER LETTER\n\nCelestino Otieno Onyango\n+254714019736 | onyangocelestino@gmail.com\n\nDear Hiring Manager,\n\nI am writing to express my strong interest in the position of System Librarian / Information Professional. With over 3 years of experience in library management, ICT systems, and records administration, I bring a proven track record of improving operational efficiency and user satisfaction. My expertise in Koha ILS, ISO 15489 records management, and digital transformation has resulted in a 60% reduction in misfiling and a 25% improvement in research retrieval times.\n\nI am particularly drawn to the opportunity to contribute to your organization's digital initiatives and to support diverse communities in accessing information. My experience in training staff, developing ICT curricula, and implementing electronic document management systems aligns with your needs. I am also well-versed in acquisitions, cataloging (RDA/MARC21), and serials management, having worked with the Library of Congress (LOC) and AfriCAP participants.\n\nI am eager to bring my skills in cybersecurity, database management, and staff training to your team. Thank you for your time and consideration. I look forward to discussing how I can contribute to your organization.\n\nSincerely,\nCelestino Otieno Onyango`;
 
@@ -661,19 +590,16 @@
             return { name: `${name}.${ext}`, content };
         }
 
-        let unlocked = false;
-
+        // Create download links - no protection, opens in browser/word
         function renderLinks() {
             container.innerHTML = '';
-            if (!unlocked) {
-                container.innerHTML = `<span style="color:#5f7f9a; font-size:0.95rem;"><i class="fas fa-lock"></i> Unlock to download files</span>`;
-                return;
-            }
             const types = ['cv-pdf', 'cv-docx', 'cl-pdf', 'cl-docx'];
             types.forEach(type => {
                 const info = getFileInfo(type);
                 const a = document.createElement('a');
-                const blob = new Blob([info.content], { type: 'application/octet-stream' });
+                const blob = new Blob([info.content], { 
+                    type: type.includes('pdf') ? 'application/pdf' : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                });
                 const url = URL.createObjectURL(blob);
                 a.href = url;
                 a.download = info.name;
@@ -692,55 +618,38 @@
                 const label = type.includes('cv') ? 'CV' : 'Cover Letter';
                 const ext = type.includes('pdf') ? 'PDF' : 'DOCX';
                 a.innerHTML = `<i class="fas ${icon}"></i> ${label} ${ext}`;
+                // Set target to open in new tab for PDFs (browser will display)
+                if (type.includes('pdf')) {
+                    a.target = '_blank';
+                }
                 container.appendChild(a);
             });
         }
 
-        function unlockAttempt() {
-            const code = passInput.value.trim();
-            if (code === PASSCODE) {
-                unlocked = true;
-                renderLinks();
-                note.innerHTML = `<i class="fas fa-check-circle" style="color:#1f8b4c;"></i> Unlocked! Click any file to download.`;
-                note.style.color = '#1f6e3a';
-                passInput.value = '';
-                showToast('✅ Unlocked! Files are ready to download.', false);
-            } else {
-                unlocked = false;
-                renderLinks();
-                note.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#b33;"></i> Incorrect passcode. Try again.`;
-                note.style.color = '#b33';
-                showToast('❌ Incorrect passcode. Try again.', true);
-                setTimeout(() => {
-                    if (!unlocked) {
-                        note.innerHTML = `<i class="fas fa-shield-alt"></i> Files are protected. Enter passcode to enable download.`;
-                        note.style.color = '#3d5f7a';
-                    }
-                }, 2000);
-            }
-        }
-
-        unlockBtn.addEventListener('click', unlockAttempt);
-        passInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') unlockAttempt(); });
-
-        // initial
+        // Initial render
         renderLinks();
 
-        // Lock file buttons if not unlocked
-        document.querySelectorAll('.file-btn').forEach(btn => {
+        // Handle file button clicks for the static buttons as well
+        document.querySelectorAll('.file-btn[data-file]').forEach(btn => {
             btn.addEventListener('click', function(e) {
-                if (!unlocked) {
-                    e.preventDefault();
-                    note.innerHTML = `<i class="fas fa-lock" style="color:#b33;"></i> Please unlock with passcode first.`;
-                    note.style.color = '#b33';
-                    showToast('🔒 Please unlock with passcode first.', true);
-                    setTimeout(() => {
-                        if (!unlocked) {
-                            note.innerHTML = `<i class="fas fa-shield-alt"></i> Files are protected. Enter passcode to enable download.`;
-                            note.style.color = '#3d5f7a';
-                        }
-                    }, 2000);
+                e.preventDefault();
+                const fileType = this.dataset.file;
+                const info = getFileInfo(fileType);
+                const blob = new Blob([info.content], { 
+                    type: fileType.includes('pdf') ? 'application/pdf' : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = info.name;
+                if (fileType.includes('pdf')) {
+                    link.target = '_blank';
                 }
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+                showToast(`📄 Opening ${info.name}`, false);
             });
         });
     })();
