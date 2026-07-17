@@ -2,1001 +2,1397 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="description" content="Professional CV of Otieno Celestino Onyango - Record Manager, ICT Support Specialist, School Librarian, and System Librarian. Global ATS-friendly format.">
-  <title>Celestino Otieno | Curriculum Vitae</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/html-docx-js/dist/html-docx.js">
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Celestino Otieno - Professional Portfolio | Information Scientist, School Librarian, ICT Educator & Record Manager">
+  <title>Celestino Otieno | Professional Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* --- RESET & BASE --- */
+    /* ==================== RESET & BASE ==================== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
+    }
+    :root {
+      --primary: #0a3b44;
+      --primary-light: #125f54;
+      --accent: #1f8a6b;
+      --accent-light: #e3f0ec;
+      --dark: #1a2c3b;
+      --gray: #5a7e8f;
+      --light-gray: #f0f6f8;
+      --white: #ffffff;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+    html {
+      scroll-behavior: smooth;
     }
     body {
-      background: #e9eef3;
-      font-family: 'Times New Roman', Times, serif;
-      color: #1a2c3b;
-      line-height: 1.2;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f8fafc;
+      color: var(--dark);
+      line-height: 1.6;
+      font-size: 16px;
     }
-    .cv-master {
-      max-width: 1100px;
-      margin: 0 auto 2rem auto;
-      background: white;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      border-radius: 0.8rem;
-      font-size: 12pt;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section {
+      padding: 60px 0;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
+    .section-divider {
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 4px;
+      margin-bottom: 24px;
     }
 
-    /* --- HEADER --- */
-    .cv-header {
-      background: linear-gradient(135deg, #0a3b44 0%, #125f54 100%);
-      color: white;
-      padding: 0.8rem 2.2rem 0.6rem 2.2rem;
-      border-radius: 0.8rem 0.8rem 0 0;
-      position: relative;
-    }
-    .cv-header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      font-family: 'Times New Roman', Times, serif;
-      margin-bottom: 0.1rem;
-      line-height: 1.1;
-    }
-    .cv-header .title-tag {
-      font-size: 0.8rem;
-      font-weight: 500;
-      background: rgba(255, 255, 255, 0.15);
-      display: inline-block;
-      padding: 0.15rem 1rem;
-      border-radius: 40px;
-      margin-top: 0.05rem;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .contact-bar-cv {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-top: 0.4rem;
-      background: rgba(0, 0, 0, 0.2);
-      padding: 0.3rem 1rem;
-      border-radius: 50px;
-      font-size: 0.7rem;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .contact-bar-cv i {
-      width: 1.1rem;
-      opacity: 0.9;
-    }
-    .toolbar-cv {
-      display: flex;
-      gap: 0.6rem;
-      margin-top: 0.5rem;
-      flex-wrap: wrap;
-      transition: all 0.2s ease;
-    }
-    .admin-badge-area {
-      position: absolute;
-      bottom: 6px;
-      right: 18px;
-      font-size: 0.5rem;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 2px 8px;
-      border-radius: 40px;
-      cursor: pointer;
-      transition: 0.2s;
-      font-family: monospace;
-    }
-    .admin-badge-area:hover {
-      background: rgba(0, 0, 0, 0.5);
-    }
-    .btn-cv {
-      background: white;
-      color: #125f54;
-      border: none;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.65rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .btn-cv:hover {
-      transform: translateY(-2px);
-      background: #f0f7f5;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
-    }
-    .btn-cover {
-      background: #1f8a6b;
-      color: white;
-      border: none;
-      padding: 0.3rem 1rem;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.65rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .btn-cover:hover {
-      transform: translateY(-2px);
-      background: #0f6b52;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
-    }
-    .toolbar-hidden .toolbar-cv {
-      display: none !important;
-    }
-
-    /* --- PASSCODE MODAL --- */
-    .passcode-modal {
+    /* ==================== HEADER / NAVIGATION ==================== */
+    .navbar {
+      background: var(--white);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
       position: fixed;
       top: 0;
       left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar .logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+    .navbar .logo span {
+      color: var(--accent);
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--dark);
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+    }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    .nav-links a:hover::after {
       width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.75);
+    }
+    .nav-links .btn-download {
+      background: var(--accent);
+      color: var(--white);
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    .nav-links .btn-download:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(31, 138, 107, 0.3);
+    }
+    .nav-links .btn-download::after {
+      display: none;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px;
+    }
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      padding-top: 120px;
+      padding-bottom: 60px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-text h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+    .hero-text h1 span {
+      color: #7fc9b5;
+    }
+    .hero-text .tagline {
+      font-size: 1.2rem;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+    .hero-text .location {
+      font-size: 0.95rem;
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+    .hero-text p {
+      font-size: 1.05rem;
+      opacity: 0.85;
+      max-width: 500px;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-primary:hover {
+      background: #167a5e;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(31, 138, 107, 0.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--white);
+      transform: translateY(-3px);
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .hero-stats .stat h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #7fc9b5;
+    }
+    .hero-stats .stat p {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin: 0;
+    }
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-image .avatar-circle {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 4px solid rgba(255, 255, 255, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 2000;
-      font-family: 'Times New Roman', Times, serif;
+      font-size: 8rem;
+      color: rgba(255, 255, 255, 0.6);
+      position: relative;
     }
-    .passcode-card {
-      background: white;
-      border-radius: 28px;
-      max-width: 360px;
-      width: 90%;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
-      animation: modalPop 0.2s ease-out;
+    .hero-image .avatar-circle .status-dot {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 24px;
+      height: 24px;
+      background: #4ade80;
+      border-radius: 50%;
+      border: 4px solid var(--primary);
+      animation: pulse-dot 2s infinite;
     }
-    @keyframes modalPop {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .passcode-card i { font-size: 2.8rem; color: #125f54; margin-bottom: 0.8rem; }
-    .passcode-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #0a3b44; }
-    .passcode-card input {
-      width: 100%;
-      padding: 12px 16px;
-      margin: 1.2rem 0;
-      font-size: 1.1rem;
-      border: 1px solid #cbdbe0;
-      border-radius: 60px;
-      text-align: center;
-      letter-spacing: 2px;
-      font-family: monospace;
-      font-weight: bold;
-      outline: none;
-    }
-    .passcode-card input:focus {
-      border-color: #1f8a6b;
-      box-shadow: 0 0 0 2px rgba(31, 138, 107, 0.2);
-    }
-    .passcode-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-    }
-    .passcode-btn {
-      background: #eef2f5;
-      border: none;
-      padding: 8px 22px;
-      border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-      font-family: inherit;
-    }
-    .passcode-btn.confirm {
-      background: #125f54;
-      color: white;
-    }
-    .passcode-btn.confirm:hover { background: #0e4a42; }
-    .error-message {
-      color: #c7362b;
-      font-size: 0.8rem;
-      margin-top: -0.5rem;
-      margin-bottom: 0.5rem;
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
     }
 
-    /* --- BODY --- */
-    .cv-body {
-      padding: 0.8rem 2.2rem 1rem 2.2rem;
+    /* ==================== ABOUT ==================== */
+    .about {
+      background: var(--white);
     }
-    .cv-section {
-      margin-bottom: 0.6rem;
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
     }
-    .cv-section-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #0a4a5a;
-      border-bottom: 2px solid #1f8a6b;
-      padding-bottom: 0.1rem;
-      margin-bottom: 0.3rem;
-      font-family: 'Times New Roman', Times, serif;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .about-text p {
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 16px;
+      line-height: 1.8;
     }
-    .cv-section-title i {
-      margin-right: 5px;
-      color: #1f8a6b;
-    }
-    .cv-subsection {
-      margin-bottom: 0.3rem;
-    }
-    .cv-subsection h3 {
-      font-size: 0.85rem;
-      font-weight: 800;
-      color: #135f6b;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .cv-subsection .meta {
-      font-size: 0.65rem;
-      color: #5a7e8f;
-      margin-bottom: 0.1rem;
-      font-family: 'Times New Roman', Times, serif;
-    }
-    .cv-subsection .meta i {
-      width: 1rem;
-    }
-    .responsibility-list {
-      padding-left: 1rem;
-      margin: 0.05rem 0;
-    }
-    .responsibility-list li {
-      margin: 0.08rem 0;
-      font-size: 0.72rem;
-      font-family: 'Times New Roman', Times, serif;
-      line-height: 1.2;
-    }
-    .skill-badge-cv {
-      background: #e8f0f5;
-      padding: 0.1rem 0.5rem;
-      border-radius: 30px;
-      font-size: 0.6rem;
+    .about-text .highlight {
+      color: var(--accent);
       font-weight: 600;
-      color: #1c5d6e;
-      display: inline-block;
-      margin: 0.08rem;
-      font-family: 'Times New Roman', Times, serif;
     }
-    .footer-cv {
+    .about-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .about-stat-card {
+      background: var(--light-gray);
+      padding: 24px;
+      border-radius: var(--radius);
       text-align: center;
-      font-size: 0.55rem;
-      padding: 0.3rem;
-      background: #fafefe;
-      border-top: 1px solid #e2edf2;
-      color: #537d93;
-      font-family: 'Times New Roman', Times, serif;
-      border-radius: 0 0 0.8rem 0.8rem;
+      transition: var(--transition);
     }
-    .project-card {
-      background: #f9fefd;
-      border-left: 3px solid #1f8a6b;
-      border-radius: 0.4rem;
-      padding: 0.3rem 0.6rem;
-      margin: 0.2rem 0;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    .about-stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
     }
-    .project-card h4 {
-      font-size: 0.8rem;
-      color: #0a4a5a;
-      margin-bottom: 0.1rem;
+    .about-stat-card .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
     }
-    .project-stack {
+    .about-stat-card .label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ==================== EXPERIENCE ==================== */
+    .experience {
+      background: var(--light-gray);
+    }
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 4px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+      padding-left: 28px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -28px;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 4px solid var(--white);
+      box-shadow: 0 0 0 3px var(--accent);
+    }
+    .timeline-item .exp-header {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.2rem;
-      margin: 0.1rem 0;
+      align-items: baseline;
+      gap: 8px 16px;
+      margin-bottom: 6px;
     }
-    .tech-badge {
-      background: #e3f0ec;
-      color: #125f54;
-      font-size: 0.55rem;
-      font-weight: bold;
-      padding: 0.05rem 0.5rem;
-      border-radius: 30px;
-      letter-spacing: 0.3px;
+    .timeline-item .exp-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
     }
-    .metric-highlight {
-      background: #eef5f2;
-      border-radius: 0.4rem;
-      padding: 0.1rem 0.5rem;
+    .timeline-item .exp-header .org {
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .timeline-item .exp-header .date {
+      font-size: 0.85rem;
+      color: var(--gray);
+      font-weight: 400;
+    }
+    .timeline-item .exp-header .reporting {
+      font-size: 0.8rem;
+      color: var(--gray);
+      font-weight: 400;
+      width: 100%;
+      background: var(--white);
+      padding: 4px 12px;
+      border-radius: 20px;
       display: inline-block;
-      font-weight: 600;
-      font-size: 0.6rem;
-      color: #0f5c4e;
-      margin-top: 0.1rem;
+      width: auto;
     }
-    .referee-card {
-      background: #fafefb;
-      padding: 0.4rem 0.6rem;
-      border-radius: 0.5rem;
-      border-left: 3px solid #1f8a6b;
-      margin-bottom: 0.3rem;
-      text-align: left;
-      font-size: 0.75rem;
-      color: #0a4a5a;
-      font-weight: 600;
+    .timeline-item ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 8px;
+    }
+    .timeline-item ul li {
+      font-size: 0.92rem;
+      color: var(--dark);
+      padding: 4px 0;
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.6;
+    }
+    .timeline-item ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .timeline-item ul li strong {
+      color: var(--primary);
+    }
+    .exp-tags {
       display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
     }
-    .referee-card .ref-name { font-size: 0.8rem; }
-    .referee-card .ref-detail { font-weight: 400; color: #2a5b6a; font-size: 0.7rem; }
-    .referee-card .ref-phone { font-weight: 400; color: #1a4f5c; font-size: 0.7rem; }
-    .highlight-box {
-      background: #f2f8fa;
-      padding: 0.3rem 0.6rem;
-      border-radius: 0.5rem;
-      border-left: 3px solid #1f8a6b;
-      margin: 0.3rem 0 0.1rem 0;
+    .exp-tags .tag {
+      background: var(--white);
+      padding: 3px 14px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      border: 1px solid var(--accent-light);
     }
-    .highlight-box strong { color: #0a4a5a; }
-    .cert-detail {
-      font-size: 0.65rem;
-      color: #2a5b6a;
-      margin-left: 0.3rem;
+    .impact-box {
+      background: var(--white);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
+      margin-top: 12px;
+    }
+    .impact-box p {
+      font-size: 0.9rem;
+      margin: 0;
+      color: var(--dark);
+    }
+    .impact-box p i {
+      color: var(--accent);
+      margin-right: 8px;
+    }
+
+    /* ==================== SKILLS ==================== */
+    .skills {
+      background: var(--white);
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .skill-category h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-category h4 i {
+      color: var(--accent);
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-tags .skill-tag {
+      background: var(--light-gray);
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--dark);
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    .skill-tags .skill-tag:hover {
+      background: var(--accent);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(31, 138, 107, 0.25);
+      border-color: var(--accent);
+    }
+    .skill-tags .skill-tag.highlight {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ==================== EDUCATION ==================== */
+    .education {
+      background: var(--light-gray);
+    }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .edu-card {
+      background: var(--white);
+      padding: 28px 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border-left: 4px solid var(--accent);
+    }
+    .edu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    }
+    .edu-card h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .edu-card .institution {
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .edu-card .year {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    .edu-card .detail {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    /* ==================== CERTIFICATIONS ==================== */
+    .certifications {
+      background: var(--white);
+    }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .cert-card {
+      background: var(--light-gray);
+      padding: 20px 24px;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    .cert-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    .cert-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .cert-card .issuer {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+    .cert-card .desc {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 6px;
       font-style: italic;
     }
 
-    /* --- TWO-COLUMN GRID --- */
-    .two-row-grid {
+    /* ==================== PROJECTS ==================== */
+    .projects {
+      background: var(--light-gray);
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--white);
+      padding: 28px 32px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+    }
+    .project-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .project-card .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    .project-card .tech-stack .tech {
+      background: var(--accent-light);
+      padding: 2px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .project-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0;
+    }
+    .project-card ul li {
+      font-size: 0.88rem;
+      color: var(--dark);
+      padding: 3px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .project-card ul li::before {
+      content: '✅';
+      position: absolute;
+      left: 0;
+      font-size: 0.8rem;
+    }
+    .project-card .metric {
+      display: inline-block;
+      background: var(--light-gray);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 8px;
+    }
+
+    /* ==================== SUPERVISION & RESOURCE ==================== */
+    .supervision {
+      background: var(--white);
+    }
+    .sup-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem 2rem;
+      gap: 32px;
     }
-    .two-row-grid .cv-section {
-      margin-bottom: 0.4rem;
-      break-inside: avoid;
-      page-break-inside: avoid;
+    .sup-card {
+      background: var(--light-gray);
+      padding: 28px 32px;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
     }
-    .two-row-grid .cv-section-title { font-size: 0.85rem; }
-    .two-row-grid .responsibility-list li { font-size: 0.68rem; }
-    .two-row-grid .skill-badge-cv { font-size: 0.55rem; padding: 0.08rem 0.5rem; }
-    .two-row-grid .cv-subsection h3 { font-size: 0.78rem; }
-    .two-row-grid .meta { font-size: 0.6rem; }
-    .two-row-grid .referee-card { padding: 0.3rem 0.5rem; font-size: 0.7rem; }
-    .two-row-grid .referee-card .ref-name { font-size: 0.75rem; }
-    .two-row-grid .highlight-box { padding: 0.25rem 0.5rem; font-size: 0.7rem; }
-    .two-row-grid .highlight-box .responsibility-list li { font-size: 0.65rem; }
-    .two-row-grid .project-card { padding: 0.25rem 0.5rem; }
-    .two-row-grid .project-card h4 { font-size: 0.7rem; }
-    .two-row-grid .tech-badge { font-size: 0.5rem; }
-    .two-row-grid .metric-highlight { font-size: 0.55rem; }
-    .two-row-grid .full-width {
-      grid-column: 1 / -1;
+    .sup-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .two-row-grid .cv-section.full-width .cv-section-title { font-size: 0.9rem; }
-    .two-row-grid .cert-detail { font-size: 0.58rem; }
-
-    /* --- LEFT MARGIN ALIGNMENT FOR EDUCATION & SUPERVISION --- */
-    .two-row-grid .cv-section.margin-left {
-      padding-left: 0 !important;
-      margin-left: 0 !important;
-      text-align: left !important;
+    .sup-card h4 i {
+      color: var(--accent);
     }
-    .two-row-grid .cv-section.margin-left .cv-section-title {
-      padding-left: 0 !important;
-      margin-left: 0 !important;
-      text-align: left !important;
+    .sup-card ul {
+      list-style: none;
+      padding: 0;
     }
-    .two-row-grid .cv-section.margin-left .cv-subsection {
-      padding-left: 0 !important;
-      margin-left: 0 !important;
-      text-align: left !important;
+    .sup-card ul li {
+      font-size: 0.9rem;
+      color: var(--dark);
+      padding: 4px 0;
+      padding-left: 20px;
+      position: relative;
     }
-    .two-row-grid .cv-section.margin-left .cv-subsection h3 {
-      padding-left: 0 !important;
-      margin-left: 0 !important;
-      text-align: left !important;
+    .sup-card ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
     }
-    .two-row-grid .cv-section.margin-left .responsibility-list {
-      padding-left: 1rem !important;
-      margin-left: 0 !important;
-      text-align: left !important;
-    }
-    .two-row-grid .cv-section.margin-left .meta {
-      padding-left: 0 !important;
-      margin-left: 0 !important;
-      text-align: left !important;
-    }
-    .two-row-grid .cv-section.margin-left .cv-section-title i {
-      margin-left: 0 !important;
-    }
-    .two-row-grid .cv-section.margin-left h4 {
-      text-align: left !important;
-      padding-left: 0 !important;
-      margin-left: 0 !important;
-    }
-    .two-row-grid .cv-section.margin-left div {
-      text-align: left !important;
-    }
-    .two-row-grid .cv-section.margin-left .skill-badge-cv {
-      text-align: left !important;
+    .efficiency-badge {
+      background: var(--accent-light);
+      padding: 8px 20px;
+      border-radius: 40px;
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 16px;
     }
 
-    /* --- COVER LETTER (hidden, only used for download) --- */
-    .cover-letter-hidden {
-      display: none;
+    /* ==================== REFEREES ==================== */
+    .referees {
+      background: var(--light-gray);
+    }
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 24px;
+    }
+    .ref-card {
+      background: var(--white);
+      padding: 24px 28px;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .ref-card:hover {
+      transform: translateY(-3px);
+    }
+    .ref-card .name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .ref-card .title {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    .ref-card .phone {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 4px;
     }
 
-    /* --- RESPONSIVE --- */
-    @media (max-width: 850px) {
-      .two-row-grid { grid-template-columns: 1fr; gap: 0.3rem; }
-      .two-row-grid .full-width { grid-column: 1; }
+    /* ==================== FOOTER ==================== */
+    .footer {
+      background: var(--primary);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 40px 0;
+      text-align: center;
     }
-    @media (max-width: 750px) {
-      .cv-body { padding: 0.5rem 1rem; }
-      .cv-header { padding: 0.5rem 1rem; }
-      .cv-header h1 { font-size: 1.3rem; }
-      .contact-bar-cv { font-size: 0.6rem; gap: 0.4rem; padding: 0.2rem 0.6rem; border-radius: 30px; }
-      .admin-badge-area { font-size: 0.4rem; bottom: 4px; right: 8px; padding: 1px 5px; }
+    .footer .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+    .footer .social-links a {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.4rem;
+      transition: var(--transition);
+    }
+    .footer .social-links a:hover {
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+    .footer p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .footer .credit {
+      font-size: 0.8rem;
+      opacity: 0.5;
+      margin-top: 8px;
     }
 
-    /* --- PRINT --- */
-    @media print {
-      @page { margin: 0.3cm; size: A4 portrait; }
-      html, body { margin: 0 !important; padding: 0 !important; background: white !important; width: 100% !important; height: auto !important; }
-      .cv-master { margin: 0 !important; padding: 0 !important; max-width: 100% !important; width: 100% !important; box-shadow: none !important; border-radius: 0 !important; font-size: 12pt !important; }
-      .cv-header { border-radius: 0 !important; padding: 0.2cm 0.4cm !important; margin: 0 !important; }
-      .cv-body { padding: 0.15cm 0.4cm !important; }
-      .toolbar-cv, .admin-badge-area, .footer-cv { display: none !important; }
-      .cv-section-title { font-size: 0.8rem !important; margin-bottom: 0.1rem !important; }
-      .cv-subsection h3 { font-size: 0.75rem !important; }
-      .responsibility-list li { font-size: 0.6rem !important; margin: 0.05rem 0 !important; }
-      .skill-badge-cv { font-size: 0.5rem !important; padding: 0.05rem 0.35rem !important; margin: 0.04rem !important; }
-      .contact-bar-cv { font-size: 0.5rem !important; padding: 0.1rem 0.4rem !important; gap: 0.3rem !important; }
-      .cv-header h1 { font-size: 1.2rem !important; }
-      .cv-header .title-tag { font-size: 0.6rem !important; }
-      .referee-card { padding: 0.2rem 0.4rem !important; margin-bottom: 0.15rem !important; font-size: 0.65rem !important; }
-      .referee-card .ref-name { font-size: 0.7rem !important; }
-      .project-card { padding: 0.2rem 0.4rem !important; margin: 0.15rem 0 !important; }
-      .project-card h4 { font-size: 0.7rem !important; }
-      .tech-badge { font-size: 0.45rem !important; padding: 0.03rem 0.35rem !important; }
-      .metric-highlight { font-size: 0.5rem !important; padding: 0.05rem 0.35rem !important; }
-      .highlight-box { padding: 0.2rem 0.4rem !important; margin: 0.2rem 0 !important; }
-      .two-row-grid { display: block !important; }
-      .two-row-grid .cv-section { margin-bottom: 0.2rem !important; }
-      .two-row-grid .full-width { grid-column: unset !important; }
-      .cv-section { margin-bottom: 0.2rem !important; }
-      .cv-subsection { margin-bottom: 0.15rem !important; }
-      .cert-detail { font-size: 0.5rem !important; }
-      .two-row-grid .cv-section.margin-left {
-        padding-left: 0 !important;
-        margin-left: 0 !important;
-        text-align: left !important;
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
-      .two-row-grid .cv-section.margin-left .cv-section-title {
-        padding-left: 0 !important;
-        margin-left: 0 !important;
-        text-align: left !important;
+      .hero-text p {
+        margin: 0 auto 28px;
       }
-      .two-row-grid .cv-section.margin-left .cv-subsection {
-        padding-left: 0 !important;
-        margin-left: 0 !important;
-        text-align: left !important;
+      .hero-buttons {
+        justify-content: center;
       }
-      .two-row-grid .cv-section.margin-left .responsibility-list {
-        padding-left: 1rem !important;
-        margin-left: 0 !important;
-        text-align: left !important;
+      .hero-stats {
+        justify-items: center;
+      }
+      .hero-image .avatar-circle {
+        width: 240px;
+        height: 240px;
+        font-size: 5rem;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      .edu-grid {
+        grid-template-columns: 1fr;
+      }
+      .sup-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        gap: 16px;
+        align-items: stretch;
+        text-align: center;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      .hero {
+        padding-top: 100px;
+        min-height: auto;
+      }
+      .hero-stats {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 12px;
+      }
+      .hero-stats .stat h3 {
+        font-size: 1.4rem;
+      }
+      section {
+        padding: 40px 0;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+      .ref-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .timeline-item .exp-header h3 {
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .hero-text h1 {
+        font-size: 1.8rem;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .btn-primary, .btn-outline {
+        width: 100%;
+        justify-content: center;
+      }
+      .container {
+        padding: 0 16px;
+      }
+      .timeline-item {
+        padding-left: 16px;
+      }
+      .timeline-item::before {
+        left: -20px;
+        width: 12px;
+        height: 12px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="cv-master" id="cvMasterContainer">
-    <!-- ========== HEADER ========== -->
-    <div class="cv-header">
-      <h1>OTIENO CELESTINO ONYANGO</h1>
-      <div class="title-tag"><i class="fas fa-chalkboard-user"></i> School Librarian | System Librarian | ICT Educator | Record Manager</div>
-      <div class="contact-bar-cv">
-        <span><i class="fas fa-phone-alt"></i> +254714019736</span>
-        <span><i class="fas fa-envelope"></i> onyangocelestino@gmail.com</span>
-        <span><i class="fab fa-linkedin"></i> linkedin.com/in/celestino-otieno</span>
-        <span><i class="fab fa-github"></i> github.com/CELESTINO-UX</span>
-        <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
-      </div>
-      <div class="toolbar-cv">
-        <button class="btn-cv" id="downloadPdfCv"><i class="fas fa-file-pdf"></i> Download PDF</button>
-        <button class="btn-cv" id="downloadDocxCv"><i class="fas fa-file-word"></i> Download DOCX</button>
-        <button class="btn-cover" id="downloadCoverLetterPdf"><i class="fas fa-file-pdf"></i> Cover Letter PDF</button>
-        <button class="btn-cover" id="downloadCoverLetterDocx"><i class="fas fa-file-word"></i> Cover Letter DOCX</button>
-      </div>
-      <div class="admin-badge-area" id="adminLockBadge">
-        <i class="fas fa-lock"></i> <span id="adminStatusLabel">Admin Lock</span>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="navbar">
+    <div class="logo">Celestino<span>.</span></div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#referees">Referees</a></li>
+      <li><a href="#download" class="btn-download"><i class="fas fa-file-pdf"></i> Download CV</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <p class="tagline">👋 Hello, I'm</p>
+          <h1>Otieno <span>Celestino</span> Onyango</h1>
+          <p class="location"><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</p>
+          <p>
+            <strong>School Librarian | System Librarian | ICT Educator | Record Manager</strong><br>
+            Accomplished Information Professional with 3+ years of experience in library management,
+            ICT systems, and records administration across academic, legal, and public service sectors.
+          </p>
+          <div class="hero-buttons">
+            <a href="#experience" class="btn-primary"><i class="fas fa-briefcase"></i> View Experience</a>
+            <a href="#download" class="btn-outline"><i class="fas fa-file-pdf"></i> Download CV</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <h3>3+</h3>
+              <p>Years Experience</p>
+            </div>
+            <div class="stat">
+              <h3>60%</h3>
+              <p>Misfiling Reduction</p>
+            </div>
+            <div class="stat">
+              <h3>45%</h3>
+              <p>ICT Club Growth</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="avatar-circle">
+            <i class="fas fa-user-graduate"></i>
+            <div class="status-dot"></div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- ========== BODY ========== -->
-    <div class="cv-body two-row-grid">
-
-      <!-- === PROFESSIONAL SUMMARY (full width) === -->
-      <div class="cv-section full-width">
-        <div class="cv-section-title"><i class="fas fa-user-circle"></i> Professional Summary</div>
-        <p style="font-size:0.78rem; line-height:1.4; margin-bottom:0.1rem;">
-          <strong>Accomplished Information Professional</strong> with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in <strong>ISO 15489</strong> records management, <strong>Koha ILS</strong> automation, and digital transformation. Skilled in <strong>cybersecurity, database management, ICT curriculum development, and staff training</strong>. Recognized for measurable impact: <strong>60% reduction in misfiling</strong>, <strong>45% growth in ICT club membership</strong>, and <strong>25% improvement in research retrieval times</strong>. Passionate about leveraging technology to bridge information gaps and empower diverse communities globally.
-        </p>
+  <!-- ==================== ABOUT ==================== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-title">About Me</h2>
+          <div class="section-divider"></div>
+          <p>
+            I am a dedicated <span class="highlight">Information Professional</span> passionate about 
+            leveraging technology to bridge information gaps and empower diverse communities globally.
+            With a Bachelor of Science in Information Science (ICT Option) from Meru University of 
+            Science and Technology, I bring a unique blend of library science, ICT, and records 
+            management expertise.
+          </p>
+          <p>
+            My professional journey spans <span class="highlight">academic, legal, and public library</span> 
+            settings, where I have demonstrated measurable impact through <span class="highlight">60% 
+            reduction in misfiling</span>, <span class="highlight">45% growth in ICT club membership</span>, 
+            and <span class="highlight">25% improvement in research retrieval times</span>.
+          </p>
+          <p>
+            I specialize in <span class="highlight">ISO 15489 records management</span>, 
+            <span class="highlight">Koha ILS automation</span>, digital transformation, 
+            cybersecurity, and ICT curriculum development.
+          </p>
+        </div>
+        <div class="about-stats-grid">
+          <div class="about-stat-card">
+            <div class="number">60%</div>
+            <div class="label">Misfiling Reduction</div>
+          </div>
+          <div class="about-stat-card">
+            <div class="number">45%</div>
+            <div class="label">ICT Club Growth</div>
+          </div>
+          <div class="about-stat-card">
+            <div class="number">25%</div>
+            <div class="label">Research Retrieval Improvement</div>
+          </div>
+          <div class="about-stat-card">
+            <div class="number">200+</div>
+            <div class="label">Users Supported</div>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- === WORK EXPERIENCE (full width, reverse chronological) === -->
-      <div class="cv-section full-width">
-        <div class="cv-section-title"><i class="fas fa-briefcase"></i> Work Experience</div>
+  <!-- ==================== EXPERIENCE ==================== -->
+  <section class="experience" id="experience">
+    <div class="container">
+      <h2 class="section-title">Work Experience</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">My professional journey in library and information management</p>
 
-        <!-- 1. CURRENT: School Librarian & ICT Educator -->
-        <div class="cv-subsection">
-          <h3>School Librarian & ICT Educator</h3>
-          <div class="meta"><i class="fas fa-building"></i> Lukenya British Curriculum School, Machakos &nbsp;|&nbsp; <i class="fas fa-calendar-alt"></i> Aug 2024 – Present</div>
-          <ul class="responsibility-list">
-            <li>Delivered high-quality learning experiences integrating the <strong>Kenya Model of Great Teaching</strong>, improving student engagement in research-based tasks.</li>
-            <li>Ensured 100% compliance with <strong>TSC professional standards</strong> through meticulous record-keeping and ethical practices.</li>
-            <li>Manage full records lifecycle: creation, classification, retention scheduling, secure disposal of institutional records.</li>
-            <li>Implement electronic document management system (EDMS) for student records, staff files, and administrative archives.</li>
+      <div class="timeline">
+
+        <!-- Experience 1: Lukenya British Curriculum School -->
+        <div class="timeline-item">
+          <div class="exp-header">
+            <h3>School Librarian & ICT Educator</h3>
+            <span class="org">Lukenya British Curriculum School</span>
+            <span class="date">Aug 2024 – Present</span>
+            <span class="reporting"><i class="fas fa-user-tie"></i> Reporting to: Head of School</span>
+          </div>
+          <ul>
+            <li><strong>Acquisitions & Receiving:</strong> Receives and verifies incoming packages of publications, textbooks, and library materials against invoices, receipts, and shipping lists. Determines source and method of acquisitions.</li>
+            <li><strong>Invoice Verification & Financial Documentation:</strong> Searches and verifies accompanying financial documentation for all information materials. Maintains records of incoming shipments and initiates payment processes.</li>
+            <li><strong>Cataloging & Metadata Creation:</strong> Creates Initial Bibliographic Cataloging (IBC) records using Koha ILS according to RDA cataloging standards. Assigns DDC classification and barcodes.</li>
+            <li><strong>Serials Management:</strong> Checks serials issues into ILS, locates bibliographic records, holdings, and item records. Updates location data, enumeration, chronology and status.</li>
+            <li>Delivered high-quality learning experiences integrating the <strong>Kenya Model of Great Teaching</strong>.</li>
+            <li>Manage full records lifecycle: creation, classification, retention scheduling, secure disposal.</li>
             <li>Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
-            <li>Oversee library operations using Koha ILS for circulation, cataloguing, and reporting; maintain hybrid collections.</li>
-            <li><strong>ICT Club Leader:</strong> Coordinate all club activities, mentor students in technology projects, organize coding workshops and annual tech fair. Grew membership by 45% within one academic year.</li>
-            <li><strong>ICT & Computing Tutor:</strong> Deliver Cambridge ICT and Computing curricula to A-Level and O-Level students with practical lab sessions.</li>
-            <li><strong>Achievements:</strong> Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records.</li>
+            <li><strong>ICT Club Leader:</strong> Grew membership by 45% within one academic year.</li>
           </ul>
-          <div class="highlight-box">
-            <p style="font-weight:700; color:#0a4a5a; font-size:0.7rem; margin-bottom:0.05rem;"><i class="fas fa-seedling" style="color:#1f8a6b;"></i> Key Impact</p>
-            <ul class="responsibility-list" style="font-size:0.65rem;">
-              <li><strong>Student Growth:</strong> Designed "Inquiry Hour" sessions — 35% increase in independent research projects. Reading mentorship program boosted comprehension scores by 18%.</li>
-              <li><strong>Access &amp; Inclusion:</strong> Established "Digital Access Corner" with adaptive technologies; mobile library cart increased circulation by 40%.</li>
-              <li><strong>Safe Environment:</strong> Transformed library into a welcoming hub with peer "Library Ambassador" program; zero-tolerance policy for bullying.</li>
-            </ul>
+          <div class="impact-box">
+            <p><i class="fas fa-seedling"></i> <strong>Key Impact:</strong> Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records. Designed "Inquiry Hour" sessions — 35% increase in independent research projects. Mobile library cart increased circulation by 40%.</p>
           </div>
-          <div style="margin-top:0.1rem; padding-top:0.1rem; border-top:1px dashed #d0e0e8;">
-            <p style="font-weight:700; color:#0a4a5a; font-size:0.65rem;"><i class="fas fa-plus-circle"></i> Additional Roles</p>
-            <ul class="responsibility-list" style="font-size:0.65rem;">
-              <li><strong>Geography Teacher:</strong> Deliver Geography curriculum for Lower Secondary, Upper Secondary & A-Level.</li>
-              <li><strong>Head of House (WISE):</strong> Lead and mentor students, oversee academic performance and co-curricular activities.</li>
-              <li><strong>Football Team Manager:</strong> Manage school football teams, coordinate training and match schedules.</li>
-              <li><strong>Chapel Coordinator:</strong> Coordinate chapel services and weekly spiritual programmes.</li>
-            </ul>
+          <div class="exp-tags">
+            <span class="tag">Acquisitions</span>
+            <span class="tag">Invoice Verification</span>
+            <span class="tag">RDA Cataloging</span>
+            <span class="tag">Serials Management</span>
+            <span class="tag">Koha ILS</span>
           </div>
         </div>
 
-        <!-- 2. System Librarian at KNLS Nakuru -->
-        <div class="cv-subsection">
-          <h3>System Librarian</h3>
-          <div class="meta"><i class="fas fa-building"></i> Kenya National Library Service, Nakuru &nbsp;|&nbsp; <i class="fas fa-calendar-alt"></i> May 2024 – Aug 2024</div>
-          <ul class="responsibility-list">
-            <li>Assisted in records inventory and archival management for historical government publications.</li>
-            <li>Supported digital cataloguing and metadata creation using MARC21 and DDC; managed records request workflows.</li>
+        <!-- Experience 2: KNLS Nakuru -->
+        <div class="timeline-item">
+          <div class="exp-header">
+            <h3>System Librarian</h3>
+            <span class="org">Kenya National Library Service, Nakuru</span>
+            <span class="date">May 2024 – Aug 2024</span>
+            <span class="reporting"><i class="fas fa-user-tie"></i> Reporting to: Head of Library Services</span>
+          </div>
+          <ul>
+            <li><strong>Acquisitions & Receiving:</strong> Received and verified incoming packages of publications including government documents. Verified contents against cover letters, invoices, receipts, and packing lists.</li>
+            <li><strong>Invoice & Financial Verification:</strong> Searched and verified accompanying financial documentation. Maintained records of incoming shipments and assisted with Purchase Order creation.</li>
+            <li><strong>Cataloging & Metadata Creation:</strong> Supported digital cataloguing and metadata creation using MARC21 and DDC.</li>
+            <li><strong>Serials Management:</strong> Managed records request workflows and checked serials into the system, updating holdings records and location data.</li>
             <li>Provided end-user support and IT orientation; delivered hands-on training in MS Office suite and digital literacy.</li>
-            <li>Designed and delivered accessible ICT programs for persons with disabilities, empowering diverse learners.</li>
-            <li><strong>Achievements:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</li>
+            <li>Designed and delivered accessible ICT programs for persons with disabilities.</li>
           </ul>
-        </div>
-
-        <!-- 3. Assistant Librarian Intern at Meru Law Courts -->
-        <div class="cv-subsection">
-          <h3>Assistant Librarian Intern</h3>
-          <div class="meta"><i class="fas fa-gavel"></i> Meru Law Courts, Meru &nbsp;|&nbsp; <i class="fas fa-calendar-alt"></i> May 2023 – Aug 2023</div>
-          <ul class="responsibility-list">
-            <li><strong>Legal Records Management:</strong> Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards.</li>
-            <li><strong>Digital Indexing &amp; Retrieval:</strong> Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
-            <li><strong>Library User Support:</strong> Provided reference services to judges, magistrates, prosecutors, and legal researchers.</li>
-            <li><strong>Collection Maintenance:</strong> Catalogued new legal publications using Koha ILS; ensured accurate shelving and accessibility.</li>
-            <li><strong>Digital Resource Management:</strong> Managed access to online legal databases and e-resources; trained staff on effective search strategies.</li>
-            <li><strong>Records Security &amp; Confidentiality:</strong> Ensured strict adherence to data protection protocols for sensitive legal information.</li>
-            <li><strong>Inventory &amp; Preservation:</strong> Conducted regular inventory checks and assisted in preservation of fragile historical legal documents.</li>
-            <li><strong>Administrative Support:</strong> Prepared circulation reports, assisted with inter-library loan requests, and supported general library administration.</li>
-          </ul>
-          <div class="highlight-box" style="margin-top:0.1rem;">
-            <p style="font-weight:700; color:#0a4a5a; font-size:0.7rem;"><i class="fas fa-check-circle" style="color:#1f8a6b;"></i> Key Achievement</p>
-            <ul class="responsibility-list" style="font-size:0.65rem;">
-              <li>Digitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access for legal professionals.</li>
-            </ul>
+          <div class="impact-box">
+            <p><i class="fas fa-check-circle"></i> <strong>Achievement:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</p>
+          </div>
+          <div class="exp-tags">
+            <span class="tag">MARC21</span>
+            <span class="tag">DDC</span>
+            <span class="tag">Digital Literacy</span>
+            <span class="tag">User Training</span>
           </div>
         </div>
-      </div>
 
-      <!-- === EDUCATION (left column - margin aligned) === -->
-      <div class="cv-section margin-left">
-        <div class="cv-section-title"><i class="fas fa-graduation-cap"></i> Education</div>
-        <div class="cv-subsection">
-          <h3>BSc Information Science </h3>
-          <div class="meta">Meru University of Science & Technology – 2020 to 2024</div>
-          <div style="font-size:0.7rem; color:#4a6a7a;">Second Class Lower Division</div>
+        <!-- Experience 3: Meru Law Courts -->
+        <div class="timeline-item">
+          <div class="exp-header">
+            <h3>Assistant Librarian Intern</h3>
+            <span class="org">Meru Law Courts</span>
+            <span class="date">May 2023 – Aug 2023</span>
+            <span class="reporting"><i class="fas fa-user-tie"></i> Reporting to: Head Librarian</span>
+          </div>
+          <ul>
+            <li><strong>Legal Records Management:</strong> Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards.</li>
+            <li><strong>Acquisitions & Receiving:</strong> Received and verified incoming legal publications against invoices and shipping documents. Maintained records of all acquisitions.</li>
+            <li><strong>Cataloging & Metadata:</strong> Catalogued new legal publications using Koha ILS; assigned classification numbers and created bibliographic records.</li>
+            <li><strong>Serials Management:</strong> Managed legal journal and serial subscriptions, checked in issues, and updated holdings records.</li>
+            <li><strong>Digital Indexing & Retrieval:</strong> Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
+            <li>Provided reference services to judges, magistrates, prosecutors, and legal researchers.</li>
+          </ul>
+          <div class="impact-box">
+            <p><i class="fas fa-check-circle"></i> <strong>Achievement:</strong> Digitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access for legal professionals.</p>
+          </div>
+          <div class="exp-tags">
+            <span class="tag">Legal Records</span>
+            <span class="tag">Koha ILS</span>
+            <span class="tag">Digitization</span>
+            <span class="tag">Reference Services</span>
+          </div>
         </div>
-        <div class="cv-subsection">
-          <h3>Kenya Certificate of Secondary Education</h3>
-          <div class="meta">Nyarach Mixed Day Secondary School – 2015 to 2019</div>
-          <div style="font-size:0.7rem; color:#4a6a7a;">Grade: C+ (Aggregate 51 points)</div>
-        </div>
-      </div>
 
-      <!-- === SKILLS & CERTIFICATIONS (right column) === -->
-      <div class="cv-section">
-        <div class="cv-section-title"><i class="fas fa-microchip"></i> Skills & Certifications</div>
-        <div style="margin-bottom:0.2rem;">
-          <h4 style="font-size:0.75rem; color:#0a4a5a; margin-bottom:0.05rem;">Core Skills</h4>
-          <div>
-            <span class="skill-badge-cv">ISO 15489</span>
-            <span class="skill-badge-cv">Koha ILS</span>
-            <span class="skill-badge-cv">Collection Development</span>
-            <span class="skill-badge-cv">Digital Resource Mgt</span>
-            <span class="skill-badge-cv">EDMS & Digitization</span>
-            <span class="skill-badge-cv">Cybersecurity</span>
-            <span class="skill-badge-cv">Python/SQL/Bash</span>
-            <span class="skill-badge-cv">Network Admin</span>
-            <span class="skill-badge-cv">Power BI</span>
-            <span class="skill-badge-cv">User Training</span>
-            <span class="skill-badge-cv">Cataloging (DDC, LoC)</span>
-            <span class="skill-badge-cv">ICT Curriculum Delivery</span>
-            <span class="skill-badge-cv">Robotics & Coding</span>
-            <span class="skill-badge-cv">Information Literacy</span>
-            <span class="skill-badge-cv">Public Speaking</span>
-            <span class="skill-badge-cv">Program Coordination</span>
-            <span class="skill-badge-cv">Fire Safety</span>
-            <span class="skill-badge-cv">Staff Supervision</span>
-            <span class="skill-badge-cv">Resource Management</span>
-            <span class="skill-badge-cv">AI Literacy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS ==================== -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <h2 class="section-title">Skills & Certifications</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Core competencies and professional certifications</p>
+
+      <div class="skills-grid">
+        <div>
+          <div class="skill-category">
+            <h4><i class="fas fa-book-open"></i> Library & Information Science</h4>
+            <div class="skill-tags">
+              <span class="skill-tag highlight">Acquisitions & Receiving</span>
+              <span class="skill-tag highlight">Invoice Verification</span>
+              <span class="skill-tag highlight">Purchase Orders</span>
+              <span class="skill-tag highlight">Financial Documentation</span>
+              <span class="skill-tag highlight">Cataloging & Metadata</span>
+              <span class="skill-tag highlight">RDA Cataloging</span>
+              <span class="skill-tag highlight">MARC21</span>
+              <span class="skill-tag highlight">DDC Classification</span>
+              <span class="skill-tag highlight">Serials Management</span>
+              <span class="skill-tag highlight">Holdings Management</span>
+              <span class="skill-tag">Koha ILS</span>
+              <span class="skill-tag">ISO 15489</span>
+              <span class="skill-tag">Collection Development</span>
+              <span class="skill-tag">Digital Resource Management</span>
+              <span class="skill-tag">EDMS & Digitization</span>
+            </div>
+          </div>
+          <div class="skill-category" style="margin-top:24px;">
+            <h4><i class="fas fa-laptop-code"></i> ICT & Technical Skills</h4>
+            <div class="skill-tags">
+              <span class="skill-tag">Cybersecurity</span>
+              <span class="skill-tag">Python/SQL/Bash</span>
+              <span class="skill-tag">Network Admin</span>
+              <span class="skill-tag">Power BI</span>
+              <span class="skill-tag">User Training</span>
+              <span class="skill-tag">ICT Curriculum Delivery</span>
+              <span class="skill-tag">Robotics & Coding</span>
+            </div>
           </div>
         </div>
         <div>
-          <h4 style="font-size:0.75rem; color:#0a4a5a; margin-bottom:0.05rem;">Certifications</h4>
-          <ul class="responsibility-list" style="padding-left:0.6rem; font-size:0.7rem;">
-            <li><strong>Advanced Cybersecurity - Threats & Governance</strong> (Great Learning, 2025)
-              <br><span class="cert-detail">→ Enables secure management of digital library systems, protects patron privacy, and safeguards sensitive institutional data against cyber threats.</span></li>
-            <li><strong>Data Visualization with Power BI</strong> (2022) | <strong>Cyber Forensics</strong> (2025)
-              <br><span class="cert-detail">→ Power BI enhances library analytics and reporting; Cyber Forensics equips me to investigate data breaches and maintain digital evidence integrity in library systems.</span></li>
-            <li><strong>Infection Prevention & Control</strong> (The National College, 2026)
-              <br><span class="cert-detail">→ Essential for maintaining hygienic library environments, ensuring the safety of patrons and staff, and managing public health protocols in high-traffic library spaces.</span></li>
-            <li><strong>Recognising and Supporting Pupils with ADHD</strong> (The National College, 2026)
-              <br><span class="cert-detail">→ Enhances ability to create inclusive library programs and learning environments that accommodate neurodivergent learners and support diverse user needs.</span></li>
-            <li><strong>Certificate in Fire Safety Training</strong> (2025)
-              <br><span class="cert-detail">→ Critical for library safety management, ensuring emergency preparedness, and protecting valuable collections and human lives in library facilities.</span></li>
+          <div class="skill-category">
+            <h4><i class="fas fa-users"></i> Professional Skills</h4>
+            <div class="skill-tags">
+              <span class="skill-tag">Information Literacy</span>
+              <span class="skill-tag">Public Speaking</span>
+              <span class="skill-tag">Program Coordination</span>
+              <span class="skill-tag">Fire Safety</span>
+              <span class="skill-tag">Staff Supervision</span>
+              <span class="skill-tag">Resource Management</span>
+              <span class="skill-tag">Records Management</span>
+              <span class="skill-tag">Reference Services</span>
+            </div>
+          </div>
+          <div class="skill-category" style="margin-top:24px;">
+            <h4><i class="fas fa-certificate"></i> Certifications</h4>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
+                <strong style="color:var(--primary);">Advanced Cybersecurity - Threats & Governance</strong>
+                <div style="font-size:0.8rem; color:var(--gray);">Great Learning, 2025</div>
+              </div>
+              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
+                <strong style="color:var(--primary);">Data Visualization with Power BI</strong>
+                <div style="font-size:0.8rem; color:var(--gray);">2022</div>
+              </div>
+              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
+                <strong style="color:var(--primary);">Cyber Forensics</strong>
+                <div style="font-size:0.8rem; color:var(--gray);">2025</div>
+              </div>
+              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
+                <strong style="color:var(--primary);">Infection Prevention & Control</strong>
+                <div style="font-size:0.8rem; color:var(--gray);">The National College, 2026</div>
+              </div>
+              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
+                <strong style="color:var(--primary);">Recognising and Supporting Pupils with ADHD</strong>
+                <div style="font-size:0.8rem; color:var(--gray);">The National College, 2026</div>
+              </div>
+              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
+                <strong style="color:var(--primary);">Certificate in Fire Safety Training</strong>
+                <div style="font-size:0.8rem; color:var(--gray);">2025</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EDUCATION ==================== -->
+  <section class="education" id="education">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Academic qualifications and professional development</p>
+
+      <div class="edu-grid">
+        <div class="edu-card">
+          <h4>BSc Information Science (ICT Option)</h4>
+          <div class="institution">Meru University of Science & Technology</div>
+          <div class="year">2020 – 2024</div>
+          <div class="detail">Second Class Lower Division</div>
+        </div>
+        <div class="edu-card">
+          <h4>Kenya Certificate of Secondary Education</h4>
+          <div class="institution">Nyarach Mixed Day Secondary School</div>
+          <div class="year">2015 – 2019</div>
+          <div class="detail">Grade: C+ (Aggregate 51 points)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SUPERVISION & RESOURCE ==================== -->
+  <section class="supervision" id="supervision">
+    <div class="container">
+      <h2 class="section-title">Supervision & Resource Management</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Leadership and resource management competencies</p>
+
+      <div class="sup-grid">
+        <div class="sup-card">
+          <h4><i class="fas fa-user-tie"></i> Supervision</h4>
+          <ul>
+            <li>Supervising Library Staff</li>
+            <li>Guiding Library Users</li>
+            <li>Monitoring Activities</li>
+            <li>Training Staff and Users</li>
+            <li>Evaluating Performance</li>
+            <li>Ensuring Security</li>
+          </ul>
+        </div>
+        <div class="sup-card">
+          <h4><i class="fas fa-book-open"></i> Resource Management</h4>
+          <ul>
+            <li>Selecting Resources</li>
+            <li>Acquiring Materials</li>
+            <li>Organizing Resources</li>
+            <li>Maintaining Collections</li>
+            <li>Managing Digital Resources</li>
+            <li>Circulating Materials</li>
+            <li>Promoting Resource Use</li>
+            <li>Managing Inventory</li>
+            <li>Budgeting for Resources</li>
+            <li>Evaluating Resources</li>
           </ul>
         </div>
       </div>
-
-      <!-- === SUPERVISION & RESOURCE MANAGEMENT (left column - margin aligned) === -->
-      <div class="cv-section margin-left">
-        <div class="cv-section-title"><i class="fas fa-users"></i> Supervision & Resource Mgt</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.2rem;">
-          <div>
-            <h4 style="font-size:0.7rem; color:#0a4a5a; margin-bottom:0.05rem;"><i class="fas fa-user-tie"></i> Supervision</h4>
-            <ul class="responsibility-list" style="font-size:0.65rem; padding-left:0.8rem;">
-              <li>Supervising Library Staff</li>
-              <li>Guiding Library Users</li>
-              <li>Monitoring Activities</li>
-              <li>Training Staff and Users</li>
-              <li>Evaluating Performance</li>
-              <li>Ensuring Security</li>
-            </ul>
-          </div>
-          <div>
-            <h4 style="font-size:0.7rem; color:#0a4a5a; margin-bottom:0.05rem;"><i class="fas fa-book-open"></i> Resource Mgt</h4>
-            <ul class="responsibility-list" style="font-size:0.65rem; padding-left:0.8rem;">
-              <li>Selecting Resources</li>
-              <li>Acquiring Materials</li>
-              <li>Organizing Resources</li>
-              <li>Maintaining Collections</li>
-              <li>Managing Digital Resources</li>
-              <li>Circulating Materials</li>
-              <li>Promoting Resource Use</li>
-              <li>Managing Inventory</li>
-              <li>Budgeting for Resources</li>
-              <li>Evaluating Resources</li>
-            </ul>
-          </div>
-        </div>
-        <div style="background:#eef3f6; padding:0.1rem 0.4rem; border-radius:0.3rem; margin-top:0.1rem; font-size:0.6rem;">
-          <i class="fas fa-tachometer-alt"></i> <strong>Efficiency:</strong> Streamlined workflows reducing reshelving time by 20%.
-        </div>
+      <div style="text-align:center; margin-top:24px;">
+        <span class="efficiency-badge"><i class="fas fa-tachometer-alt"></i> Efficiency: Streamlined workflows reducing reshelving time by 20%</span>
       </div>
+    </div>
+  </section>
 
-      <!-- === PROJECTS (right column) === -->
-      <div class="cv-section">
-        <div class="cv-section-title"><i class="fas fa-laptop-code"></i> Projects</div>
+  <!-- ==================== PROJECTS ==================== -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Key projects and technical implementations</p>
+
+      <div class="project-grid">
         <div class="project-card">
           <h4><i class="fas fa-vote-yea"></i> Lukenya Voting System</h4>
-          <div class="meta" style="font-size:0.55rem;"><i class="far fa-calendar-check"></i> Feb 2025 & Feb 2026</div>
-          <div class="project-stack">
-            <span class="tech-badge">HTML5</span>
-            <span class="tech-badge">CSS3</span>
-            <span class="tech-badge">JavaScript</span>
-            <span class="tech-badge">PHP</span>
-            <span class="tech-badge">MySQL</span>
+          <div style="font-size:0.8rem; color:var(--gray);">Feb 2025 & Feb 2026</div>
+          <div class="tech-stack">
+            <span class="tech">HTML5</span>
+            <span class="tech">CSS3</span>
+            <span class="tech">JavaScript</span>
+            <span class="tech">PHP</span>
+            <span class="tech">MySQL</span>
           </div>
-          <ul class="responsibility-list" style="font-size:0.65rem; padding-left:0.8rem;">
-            <li>✅ Achieved <strong>100% uptime</strong> and accurate tallying during student elections.</li>
-            <li>✅ Built voter authentication and real-time result dashboard.</li>
-            <li>✅ Implemented session management and secure audit logs.</li>
+          <ul>
+            <li>Achieved <strong>100% uptime</strong> and accurate tallying during student elections</li>
+            <li>Built voter authentication and real-time result dashboard</li>
+            <li>Implemented session management and secure audit logs</li>
           </ul>
-          <div class="metric-highlight"><i class="fas fa-chart-simple"></i> 100% uptime | 300+ voters | 28% participation increase YoY</div>
-        </div>
-      </div>
-
-      <!-- === TRAINING & WORKSHOPS (AI & Information Literacy) - NEW SECTION === -->
-      <div class="cv-section full-width">
-        <div class="cv-section-title"><i class="fas fa-chalkboard-teacher"></i> Training & Workshops (AI & Information Literacy)</div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-          <div style="background: #f4fafc; border-radius: 0.5rem; padding: 0.4rem 0.6rem; border-left: 4px solid #1f8a6b;">
-            <h4 style="font-size:0.75rem; color:#0a4a5a; margin-bottom:0.1rem;"><i class="fas fa-robot"></i> AI Literacy for Students (Lukenya)</h4>
-            <ul class="responsibility-list" style="font-size:0.65rem; padding-left:0.8rem;">
-              <li><strong>Program:</strong> Designed and delivered a 6-week "AI Basics" workshop for 60+ students, covering generative AI, ethical use, and prompt engineering.</li>
-              <li><strong>Outcome:</strong> 85% of participants demonstrated improved ability to critically evaluate AI-generated content; integrated into ICT curriculum.</li>
-              <li><strong>Tools:</strong> ChatGPT, Google Gemini, Microsoft Copilot – used in supervised, project-based learning sessions.</li>
-            </ul>
-          </div>
-          <div style="background: #f4fafc; border-radius: 0.5rem; padding: 0.4rem 0.6rem; border-left: 4px solid #1f8a6b;">
-            <h4 style="font-size:0.75rem; color:#0a4a5a; margin-bottom:0.1rem;"><i class="fas fa-university"></i> Digital & Information Literacy (KNLS Nakuru)</h4>
-            <ul class="responsibility-list" style="font-size:0.65rem; padding-left:0.8rem;">
-              <li><strong>Program:</strong> Conducted monthly information literacy sessions for 40+ community members, focusing on evaluating sources, digital safety, and online research.</li>
-              <li><strong>Outcome:</strong> 75% of attendees reported increased confidence in using library e-resources and identifying misinformation.</li>
-              <li><strong>Materials:</strong> Developed customized guides and interactive modules on media literacy and responsible AI use.</li>
-            </ul>
-          </div>
-          <div style="background: #f4fafc; border-radius: 0.5rem; padding: 0.4rem 0.6rem; border-left: 4px solid #1f8a6b; grid-column: 1 / -1;">
-            <h4 style="font-size:0.75rem; color:#0a4a5a; margin-bottom:0.1rem;"><i class="fas fa-graduation-cap"></i> Staff Training: AI in Library Services</h4>
-            <ul class="responsibility-list" style="font-size:0.65rem; padding-left:0.8rem;">
-              <li><strong>Workshop:</strong> Led a 2-day training for library staff at Lukenya and KNLS on integrating AI tools for cataloguing, reference services, and user analytics.</li>
-              <li><strong>Impact:</strong> Enhanced staff efficiency in metadata generation and user query resolution; adopted AI-assisted search tools in Koha ILS.</li>
-              <li><strong>Focus:</strong> Ethical AI, data privacy, and practical applications in information science.</li>
-            </ul>
-          </div>
-        </div>
-        <div style="background: #e2f0ed; border-radius: 0.4rem; padding: 0.2rem 0.6rem; margin-top: 0.2rem; font-size:0.65rem; display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center;">
-          <i class="fas fa-certificate" style="color: #125f54;"></i> <strong>Certified:</strong> AI Literacy (Microsoft AI for Good), Information Literacy (ALA), Digital Citizenship (Common Sense Media).
-        </div>
-      </div>
-
-      <!-- === REFEREES (full width) === -->
-      <div class="cv-section full-width">
-        <div class="cv-section-title"><i class="fas fa-address-card"></i> Referees</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.5rem;">
-          <div class="referee-card">
-            <span class="ref-name"><i class="fas fa-user-check" style="color:#1f8a6b; margin-right:4px;"></i> Silas Otieno</span>
-            <span class="ref-detail">Head of Department, Humanities – Consolata School Nairobi</span>
-            <span class="ref-phone"><i class="fas fa-phone-alt"></i> +254707445341</span>
-          </div>
-          <div class="referee-card">
-            <span class="ref-name"><i class="fas fa-user-check" style="color:#1f8a6b; margin-right:4px;"></i> Collins Kirui</span>
-            <span class="ref-detail">Dean of Students & Head of Exams – Lukenya British School</span>
-            <span class="ref-phone"><i class="fas fa-phone-alt"></i> +254702194494</span>
-          </div>
-          <div class="referee-card">
-            <span class="ref-name"><i class="fas fa-user-check" style="color:#1f8a6b; margin-right:4px;"></i> George Okoth</span>
-            <span class="ref-detail">Priest & US Army Officer</span>
-            <span class="ref-phone"><i class="fas fa-phone-alt"></i> +1 210 7535656</span>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end cv-body -->
-
-    <div class="footer-cv">
-      <i class="fas fa-database"></i> Celestino Otieno – Professional CV | Digital Transformation, ICT Education & Library Innovation
-    </div>
-  </div>
-
-  <!-- ========== COVER LETTER (hidden, used only for download) ========== -->
-  <div id="coverLetterHidden" class="cover-letter-hidden">
-    <div style="padding: 1.5cm; font-family: 'Times New Roman', Times, serif; color: #1a2c3b; max-width: 800px; margin: 0 auto;">
-      <div style="background: white; border: none; padding: 0; margin: 0;">
-        <h2 style="color: #0a4a5a; font-size: 1.2rem; border-bottom: 2px solid #1f8a6b; padding-bottom: 0.3rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px;"><i class="fas fa-envelope-open-text"></i> Cover Letter</h2>
-        <div style="font-size: 0.9rem; line-height: 1.7; color: #1a2c3b;">
-          <p><strong>Otieno Celestino Onyango</strong><br>
-          +254714019736 | onyangocelestino@gmail.com<br>
-          Nairobi, Kenya</p>
-
-          <p><strong>[Date]</strong></p>
-
-          <p><strong>Hiring Manager</strong><br>
-          [Organization Name]<br>
-          [Organization Address]</p>
-
-          <p><strong>RE: Application for [Position Title]</strong></p>
-
-          <p>Dear Hiring Manager,</p>
-
-          <p>I am writing to express my strong interest in the [Position Title] at [Organization Name]. With a Bachelor of Science in Information Science (ICT Option) from Meru University of Science and Technology and over three years of hands-on experience across academic, legal, and public library settings, I am confident in my ability to contribute effectively to your team and support your organizational goals.</p>
-
-          <p>Throughout my career, I have demonstrated a consistent commitment to excellence in library and information services. At Lukenya British Curriculum School, I have successfully managed library operations using Koha ILS, implemented a digital records management system that reduced misfiling by 60%, and led the ICT Club to a 45% membership growth. My experience at Kenya National Library Service and Meru Law Courts has further strengthened my skills in records management, digital cataloguing, and user-centered service delivery.</p>
-
-          <p>I am particularly passionate about creating inclusive, accessible information environments that empower diverse communities. Whether designing adaptive technologies for students with disabilities, implementing mobile library services that increased circulation by 40%, or training staff and patrons in digital literacy, I consistently prioritize user needs and equitable access to knowledge.</p>
-
-          <p>My technical proficiency includes Koha ILS, MARC21, DDC, Python, SQL, Power BI, and network administration. I am also deeply committed to professional ethics, data security, and continuous learning — evidenced by certifications in Cybersecurity, Cyber Forensics, and Fire Safety Training.</p>
-
-          <p>I am eager to bring my skills in library automation, records management, and ICT education to [Organization Name], and I look forward to the opportunity to discuss how my experience aligns with your needs. Thank you for considering my application.</p>
-
-          <p style="margin-top: 1rem; font-weight: 600;">Yours sincerely,<br>
-          <strong>Otieno Celestino Onyango</strong></p>
+          <div class="metric"><i class="fas fa-chart-simple"></i> 100% uptime | 300+ voters | 28% participation increase YoY</div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ========== SCRIPTS ========== -->
+  <!-- ==================== REFEREES ==================== -->
+  <section class="referees" id="referees">
+    <div class="container">
+      <h2 class="section-title">Referees</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Professional references available on request</p>
+
+      <div class="ref-grid">
+        <div class="ref-card">
+          <div class="name"><i class="fas fa-user-check" style="color:var(--accent);"></i> Silas Otieno</div>
+          <div class="title">Head of Department, Humanities – Consolata School Nairobi</div>
+          <div class="phone"><i class="fas fa-phone-alt"></i> +254707445341</div>
+        </div>
+        <div class="ref-card">
+          <div class="name"><i class="fas fa-user-check" style="color:var(--accent);"></i> Collins Kirui</div>
+          <div class="title">Dean of Students & Head of Exams – Lukenya British School</div>
+          <div class="phone"><i class="fas fa-phone-alt"></i> +254702194494</div>
+        </div>
+        <div class="ref-card">
+          <div class="name"><i class="fas fa-user-check" style="color:var(--accent);"></i> George Okoth</div>
+          <div class="title">Priest & US Army Officer</div>
+          <div class="phone"><i class="fas fa-phone-alt"></i> +1 210 7535656</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="download">
+    <div class="container">
+      <div class="social-links">
+        <a href="mailto:onyangocelestino@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+      <p>
+        <strong>Otieno Celestino Onyango</strong> &nbsp;·&nbsp; 
+        <i class="fas fa-phone-alt"></i> +254714019736 &nbsp;·&nbsp;
+        <i class="fas fa-envelope"></i> onyangocelestino@gmail.com
+      </p>
+      <p class="credit">
+        <i class="fas fa-database"></i> Professional Portfolio | Digital Transformation, ICT Education & Library Innovation
+      </p>
+      <p class="credit" style="margin-top:8px; opacity:0.3; font-size:0.7rem;">
+        © 2024 Celestino Otieno. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
   <script>
-    const MASTER_PASSCODE = "19971997";
-    let isAdminUnlocked = false;
-    const masterContainer = document.getElementById('cvMasterContainer');
-    const adminBadge = document.getElementById('adminLockBadge');
-    const adminStatusSpan = document.getElementById('adminStatusLabel');
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
 
-    function setDownloadButtonsVisibility(visible) {
-      if (visible) {
-        masterContainer.classList.remove('toolbar-hidden');
-        if (adminStatusSpan) adminStatusSpan.innerHTML = '<i class="fas fa-unlock-alt"></i> Admin Mode';
-        adminBadge.style.background = "rgba(31,138,107,0.7)";
-      } else {
-        masterContainer.classList.add('toolbar-hidden');
-        if (adminStatusSpan) adminStatusSpan.innerHTML = '<i class="fas fa-lock"></i> Admin Lock';
-        adminBadge.style.background = "rgba(0,0,0,0.3)";
-      }
-    }
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
 
-    isAdminUnlocked = false;
-    setDownloadButtonsVisibility(false);
-
-    function showPasscodeModal() {
-      const existingModal = document.querySelector('.passcode-modal');
-      if (existingModal) existingModal.remove();
-      const modalDiv = document.createElement('div');
-      modalDiv.className = 'passcode-modal';
-      modalDiv.innerHTML =
-        `<div class="passcode-card"><i class="fas fa-shield-alt"></i><h3>Admin Verification</h3><p style="margin-bottom:6px; color:#2c5a6e;">Enter passcode to manage download buttons</p><input type="password" id="adminPasscodeInput" placeholder="****" maxlength="20" autocomplete="off"><div id="passcodeError" class="error-message"></div><div class="passcode-buttons"><button class="passcode-btn" id="modalCancelBtn">Cancel</button><button class="passcode-btn confirm" id="modalConfirmBtn">Unlock</button></div></div>`;
-      document.body.appendChild(modalDiv);
-      const inputField = document.getElementById('adminPasscodeInput');
-      inputField.focus();
-      const confirmBtn = document.getElementById('modalConfirmBtn');
-      const cancelBtn = document.getElementById('modalCancelBtn');
-      const errorSpan = document.getElementById('passcodeError');
-
-      function closeModal() {
-        if (modalDiv && modalDiv.parentNode) modalDiv.remove();
-      }
-
-      function attemptUnlock() {
-        const enteredCode = inputField.value.trim();
-        if (enteredCode === MASTER_PASSCODE) {
-          isAdminUnlocked = true;
-          setDownloadButtonsVisibility(true);
-          closeModal();
-        } else {
-          errorSpan.innerText = '❌ Invalid passcode. Access denied.';
-          inputField.value = '';
-          inputField.focus();
-        }
-      }
-      confirmBtn.onclick = () => attemptUnlock();
-      cancelBtn.onclick = () => closeModal();
-      inputField.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') attemptUnlock();
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
       });
-    }
-    adminBadge.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (isAdminUnlocked) {
-        if (confirm('Admin mode active. Click OK to lock download buttons.')) {
-          isAdminUnlocked = false;
-          setDownloadButtonsVisibility(false);
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const navHeight = 72;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
         }
-      } else {
-        showPasscodeModal();
-      }
+      });
     });
 
-    // --- PDF Download for CV ---
-    document.getElementById('downloadPdfCv').addEventListener('click', function() {
-      const element = document.getElementById('cvMasterContainer');
-      const opt = {
-        margin: [0, 0, 0, 0],
-        filename: 'Celestino_Otieno_CV.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, letterRendering: true, logging: false },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
-      html2pdf().set(opt).from(element).save();
-    });
-
-    // --- DOCX Download for CV ---
-    document.getElementById('downloadDocxCv').addEventListener('click', function() {
-      const content = document.getElementById('cvMasterContainer').cloneNode(true);
-      content.querySelectorAll('.toolbar-cv, .admin-badge-area, .footer-cv').forEach(el => el.remove());
-      
-      // Add inline styles for DOCX export with left margin alignment
-      const docxStyles = `
-        <style>
-          .cv-master { font-size: 12pt; }
-          .two-row-grid .cv-section.margin-left { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
-          .two-row-grid .cv-section.margin-left .cv-section-title { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
-          .two-row-grid .cv-section.margin-left .cv-subsection { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
-          .two-row-grid .cv-section.margin-left .cv-subsection h3 { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
-          .two-row-grid .cv-section.margin-left .responsibility-list { padding-left: 1rem !important; margin-left: 0 !important; text-align: left !important; }
-          .two-row-grid .cv-section.margin-left .meta { padding-left: 0 !important; margin-left: 0 !important; text-align: left !important; }
-          .cv-section-title { font-size: 14px; font-weight: bold; color: #0a4a5a; border-bottom: 2px solid #1f8a6b; padding-bottom: 3px; margin-bottom: 5px; }
-          .responsibility-list li { font-size: 11px; margin: 2px 0; }
-          .skill-badge-cv { background: #e8f0f5; padding: 2px 8px; border-radius: 20px; font-size: 9px; font-weight: bold; color: #1c5d6e; display: inline-block; margin: 2px; }
-          .referee-card { background: #fafefb; padding: 8px; border-left: 3px solid #1f8a6b; margin-bottom: 5px; text-align: left; font-size: 12px; font-weight: bold; color: #0a4a5a; }
-          .highlight-box { background: #f2f8fa; padding: 0.5rem 0.8rem; border-left: 4px solid #1f8a6b; margin: 0.4rem 0; }
-          .two-row-grid { display: block; }
-          .two-row-grid .full-width { grid-column: unset; }
-          .cert-detail { font-size: 0.6rem; color: #2a5b6a; font-style: italic; }
-          .project-card { background: #f9fefd; border-left: 3px solid #1f8a6b; padding: 5px 8px; margin: 4px 0; }
-          .tech-badge { background: #e3f0ec; color: #125f54; font-size: 8px; font-weight: bold; padding: 1px 6px; border-radius: 20px; }
-          .metric-highlight { background: #eef5f2; padding: 2px 6px; display: inline-block; font-size: 9px; font-weight: bold; color: #0f5c4e; }
-          .cv-header { background: #0a3b44; color: white; padding: 10px 15px; }
-          .cv-header h1 { font-size: 20px; }
-          .cv-body { padding: 10px 15px; }
-          .cv-subsection { margin-bottom: 8px; }
-          .cv-subsection h3 { font-size: 13px; font-weight: bold; color: #135f6b; }
-          .meta { font-size: 11px; color: #5a7e8f; }
-          .responsibility-list { padding-left: 18px; }
-          .contact-bar-cv { display: flex; flex-wrap: wrap; gap: 0.8rem; background: rgba(0,0,0,0.1); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.7rem; }
-          * { font-family: 'Times New Roman', Times, serif; }
-        </style>
-      `;
-      
-      const fullDoc =
-        `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Professional CV</title>${docxStyles}</head><body>${content.innerHTML}</body></html>`;
-      if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
-        const blob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 180, bottom: 180,
-            left: 180 } });
-        saveAs(blob, 'Celestino_Otieno_CV.docx');
-      } else {
-        const fallback = new Blob([fullDoc], { type: 'application/msword' });
-        saveAs(fallback, 'Celestino_Otieno_CV.doc');
-      }
-    });
-
-    // --- COVER LETTER PDF ---
-    document.getElementById('downloadCoverLetterPdf').addEventListener('click', function() {
-      const coverContent = document.getElementById('coverLetterHidden').cloneNode(true);
-      coverContent.classList.remove('cover-letter-hidden');
-      
-      const opt = {
-        margin: [0.5, 0.5, 0.5, 0.5],
-        filename: 'Celestino_Otieno_Cover_Letter.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, letterRendering: true, logging: false },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
-      html2pdf().set(opt).from(coverContent).save();
-    });
-
-    // --- COVER LETTER DOCX ---
-    document.getElementById('downloadCoverLetterDocx').addEventListener('click', function() {
-      const coverContent = document.getElementById('coverLetterHidden').cloneNode(true);
-      coverContent.classList.remove('cover-letter-hidden');
-      
-      const fullDoc = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Celestino Otieno - Cover Letter</title><style>@page { margin: 1cm; } body { font-family: 'Times New Roman', Times, serif; padding: 20px; font-size: 12pt; }</style></head><body>${coverContent.innerHTML}</body></html>`;
-      
-      if (typeof htmlDocx !== 'undefined' && htmlDocx.asBlob) {
-        const blob = htmlDocx.asBlob(fullDoc, { orientation: 'portrait', margins: { top: 180, right: 180, bottom: 180,
-            left: 180 } });
-        saveAs(blob, 'Celestino_Otieno_Cover_Letter.docx');
-      } else {
-        const fallback = new Blob([fullDoc], { type: 'application/msword' });
-        saveAs(fallback, 'Celestino_Otieno_Cover_Letter.doc');
-      }
+    // CV Download (simulated - would connect to actual PDF generation)
+    document.querySelector('.btn-download')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('PDF download functionality can be connected to your CV generation system.');
     });
   </script>
 </body>
