@@ -396,6 +396,86 @@
       color: var(--white);
     }
 
+    /* ==================== COVER LETTER MODAL ==================== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--radius);
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px 48px;
+      position: relative;
+      animation: modalSlide 0.3s ease-out;
+    }
+    @keyframes modalSlide {
+      from { opacity: 0; transform: translateY(30px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--gray);
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 0 8px;
+    }
+    .modal-close:hover {
+      color: var(--dark);
+      transform: rotate(90deg);
+    }
+    .modal-content .cover-letter-content {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12pt;
+      line-height: 1.7;
+      color: #1a2c3b;
+    }
+    .modal-content .cover-letter-content h2 {
+      color: #0a4a5a;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #1f8a6b;
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: left;
+    }
+    .modal-content .cover-letter-content .letter-body {
+      text-align: left;
+    }
+    .modal-content .cover-letter-content .letter-body p {
+      margin-bottom: 12px;
+    }
+    .modal-content .modal-download-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #eef2f5;
+      flex-wrap: wrap;
+    }
+
     /* ==================== ABOUT ==================== */
     .about {
       background: var(--white);
@@ -652,6 +732,37 @@
       margin-top: 4px;
     }
 
+    /* ==================== CERTIFICATIONS ==================== */
+    .certifications {
+      background: var(--white);
+    }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .cert-card {
+      background: var(--light-gray);
+      padding: 20px 24px;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+    .cert-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    .cert-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .cert-card .issuer {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
     /* ==================== SUPERVISION & RESOURCE ==================== */
     .supervision {
       background: var(--white);
@@ -847,86 +958,6 @@
       margin-top: 8px;
     }
 
-    /* ==================== COVER LETTER MODAL ==================== */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal-content {
-      background: var(--white);
-      border-radius: var(--radius);
-      max-width: 800px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 40px 48px;
-      position: relative;
-      animation: modalSlide 0.3s ease-out;
-    }
-    @keyframes modalSlide {
-      from { opacity: 0; transform: translateY(30px) scale(0.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .modal-close {
-      position: sticky;
-      top: 0;
-      float: right;
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      color: var(--gray);
-      cursor: pointer;
-      transition: var(--transition);
-      padding: 0 8px;
-    }
-    .modal-close:hover {
-      color: var(--dark);
-      transform: rotate(90deg);
-    }
-    .modal-content .cover-letter-content {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 12pt;
-      line-height: 1.7;
-      color: #1a2c3b;
-    }
-    .modal-content .cover-letter-content h2 {
-      color: #0a4a5a;
-      font-size: 1.2rem;
-      border-bottom: 2px solid #1f8a6b;
-      padding-bottom: 0.3rem;
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      text-align: left;
-    }
-    .modal-content .cover-letter-content .letter-body {
-      text-align: left;
-    }
-    .modal-content .cover-letter-content .letter-body p {
-      margin-bottom: 12px;
-    }
-    .modal-content .modal-download-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid #eef2f5;
-      flex-wrap: wrap;
-    }
-
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 1024px) {
       .hero-content {
@@ -1007,6 +1038,9 @@
       .project-grid {
         grid-template-columns: 1fr;
       }
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
       .ref-grid {
         grid-template-columns: 1fr;
       }
@@ -1071,7 +1105,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#education">Education</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
       <li><a href="#referees">Referees</a></li>
       <li><a href="#download" class="btn-download"><i class="fas fa-file-pdf"></i> Downloads</a></li>
     </ul>
@@ -1260,7 +1294,7 @@
   <!-- ==================== EXPERIENCE ==================== -->
   <section class="experience" id="experience">
     <div class="container">
-      <h2 class="section-title">Work Experience</h2>
+      <h2 class="section-title">Professional Experience</h2>
       <div class="section-divider"></div>
       <p class="section-subtitle">My professional journey in library and information management</p>
 
@@ -1270,29 +1304,26 @@
         <div class="timeline-item">
           <div class="exp-header">
             <h3>School Librarian & ICT Educator</h3>
-            <span class="org">Lukenya British Curriculum School</span>
+            <span class="org">Lukenya British Curriculum School, Machakos</span>
             <span class="date">Aug 2024 – Present</span>
-            <span class="reporting"><i class="fas fa-user-tie"></i> Reporting to: Head of School</span>
           </div>
           <ul>
-            <li><strong>Acquisitions & Receiving:</strong> Receives and verifies incoming packages of publications, textbooks, and library materials against invoices, receipts, and shipping lists. Determines source and method of acquisitions.</li>
-            <li><strong>Invoice Verification & Financial Documentation:</strong> Searches and verifies accompanying financial documentation for all information materials. Maintains records of incoming shipments and initiates payment processes.</li>
-            <li><strong>Cataloging & Metadata Creation:</strong> Creates Initial Bibliographic Cataloging (IBC) records using Koha ILS according to RDA cataloging standards. Assigns DDC classification and barcodes.</li>
-            <li><strong>Serials Management:</strong> Checks serials issues into ILS, locates bibliographic records, holdings, and item records. Updates location data, enumeration, chronology and status.</li>
-            <li>Delivered high-quality learning experiences integrating the <strong>Kenya Model of Great Teaching</strong>.</li>
-            <li>Manage full records lifecycle: creation, classification, retention scheduling, secure disposal.</li>
-            <li>Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
-            <li><strong>ICT Club Leader:</strong> Grew membership by 45% within one academic year.</li>
+            <li><strong>Managed</strong> full records lifecycle including creation, classification, retention scheduling, and secure disposal of institutional records using Koha ILS.</li>
+            <li><strong>Spearheaded</strong> the implementation of an electronic document management system (EDMS) for student records, staff files, and administrative archives.</li>
+            <li><strong>Delivered</strong> high-quality learning experiences integrating the Kenya Model of Great Teaching, improving student engagement in research-based tasks.</li>
+            <li><strong>Provided</strong> tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
+            <li><strong>Led</strong> ICT Club activities, mentoring students in technology projects and organizing coding workshops — grew membership by 45% within one academic year.</li>
+            <li><strong>Reduced</strong> misfiling by 60% through structured classification and digitized 5+ years of student academic records.</li>
           </ul>
           <div class="impact-box">
-            <p><i class="fas fa-seedling"></i> <strong>Key Impact:</strong> Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records. Designed "Inquiry Hour" sessions — 35% increase in independent research projects. Mobile library cart increased circulation by 40%.</p>
+            <p><i class="fas fa-seedling"></i> <strong>Key Impact:</strong> Designed "Inquiry Hour" sessions — 35% increase in independent research projects. Mobile library cart increased circulation by 40%.</p>
           </div>
           <div class="exp-tags">
-            <span class="tag">Acquisitions</span>
-            <span class="tag">Invoice Verification</span>
-            <span class="tag">RDA Cataloging</span>
-            <span class="tag">Serials Management</span>
+            <span class="tag">Records Management</span>
             <span class="tag">Koha ILS</span>
+            <span class="tag">EDMS</span>
+            <span class="tag">ICT Education</span>
+            <span class="tag">Staff Supervision</span>
           </div>
         </div>
 
@@ -1302,15 +1333,13 @@
             <h3>System Librarian</h3>
             <span class="org">Kenya National Library Service, Nakuru</span>
             <span class="date">May 2024 – Aug 2024</span>
-            <span class="reporting"><i class="fas fa-user-tie"></i> Reporting to: Head of Library Services</span>
           </div>
           <ul>
-            <li><strong>Acquisitions & Receiving:</strong> Received and verified incoming packages of publications including government documents. Verified contents against cover letters, invoices, receipts, and packing lists.</li>
-            <li><strong>Invoice & Financial Verification:</strong> Searched and verified accompanying financial documentation. Maintained records of incoming shipments and assisted with Purchase Order creation.</li>
-            <li><strong>Cataloging & Metadata Creation:</strong> Supported digital cataloguing and metadata creation using MARC21 and DDC.</li>
-            <li><strong>Serials Management:</strong> Managed records request workflows and checked serials into the system, updating holdings records and location data.</li>
-            <li>Provided end-user support and IT orientation; delivered hands-on training in MS Office suite and digital literacy.</li>
-            <li>Designed and delivered accessible ICT programs for persons with disabilities.</li>
+            <li><strong>Assisted</strong> in records inventory and archival management for historical government publications and supported digital cataloguing using MARC21 and DDC.</li>
+            <li><strong>Managed</strong> records request workflows and provided end-user support with IT orientation and digital literacy training.</li>
+            <li><strong>Designed</strong> and delivered accessible ICT programs for persons with disabilities, empowering diverse learners.</li>
+            <li><strong>Trained</strong> 50+ staff and community members in MS Office suite and digital literacy skills.</li>
+            <li><strong>Redesigned</strong> finding aids reducing research time by 25%.</li>
           </ul>
           <div class="impact-box">
             <p><i class="fas fa-check-circle"></i> <strong>Achievement:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</p>
@@ -1320,6 +1349,7 @@
             <span class="tag">DDC</span>
             <span class="tag">Digital Literacy</span>
             <span class="tag">User Training</span>
+            <span class="tag">Accessibility</span>
           </div>
         </div>
 
@@ -1327,17 +1357,15 @@
         <div class="timeline-item">
           <div class="exp-header">
             <h3>Assistant Librarian Intern</h3>
-            <span class="org">Meru Law Courts</span>
+            <span class="org">Meru Law Courts, Meru</span>
             <span class="date">May 2023 – Aug 2023</span>
-            <span class="reporting"><i class="fas fa-user-tie"></i> Reporting to: Head Librarian</span>
           </div>
           <ul>
-            <li><strong>Legal Records Management:</strong> Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards.</li>
-            <li><strong>Acquisitions & Receiving:</strong> Received and verified incoming legal publications against invoices and shipping documents. Maintained records of all acquisitions.</li>
-            <li><strong>Cataloging & Metadata:</strong> Catalogued new legal publications using Koha ILS; assigned classification numbers and created bibliographic records.</li>
-            <li><strong>Serials Management:</strong> Managed legal journal and serial subscriptions, checked in issues, and updated holdings records.</li>
-            <li><strong>Digital Indexing & Retrieval:</strong> Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
-            <li>Provided reference services to judges, magistrates, prosecutors, and legal researchers.</li>
+            <li><strong>Organized, classified, and secured</strong> court case files, legal documents, and archival materials in compliance with judicial standards.</li>
+            <li><strong>Digitized</strong> and catalogued over 500 historical court case files using Koha ILS, reducing retrieval time and enhancing access.</li>
+            <li><strong>Developed</strong> a searchable electronic index, improving retrieval efficiency by 30%.</li>
+            <li><strong>Provided</strong> reference services to judges, magistrates, prosecutors, and legal researchers.</li>
+            <li><strong>Managed</strong> access to online legal databases and e-resources; trained staff on effective search strategies.</li>
           </ul>
           <div class="impact-box">
             <p><i class="fas fa-check-circle"></i> <strong>Achievement:</strong> Digitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access for legal professionals.</p>
@@ -1347,6 +1375,7 @@
             <span class="tag">Koha ILS</span>
             <span class="tag">Digitization</span>
             <span class="tag">Reference Services</span>
+            <span class="tag">Data Protection</span>
           </div>
         </div>
 
@@ -1357,86 +1386,44 @@
   <!-- ==================== SKILLS ==================== -->
   <section class="skills" id="skills">
     <div class="container">
-      <h2 class="section-title">Skills & Certifications</h2>
+      <h2 class="section-title">Core Skills</h2>
       <div class="section-divider"></div>
-      <p class="section-subtitle">Core competencies and professional certifications</p>
+      <p class="section-subtitle">Technical and professional competencies</p>
 
       <div class="skills-grid">
         <div>
           <div class="skill-category">
-            <h4><i class="fas fa-book-open"></i> Library & Information Science</h4>
+            <h4><i class="fas fa-code"></i> Hard/Technical Skills</h4>
             <div class="skill-tags">
-              <span class="skill-tag highlight">Acquisitions & Receiving</span>
-              <span class="skill-tag highlight">Invoice Verification</span>
-              <span class="skill-tag highlight">Purchase Orders</span>
-              <span class="skill-tag highlight">Financial Documentation</span>
-              <span class="skill-tag highlight">Cataloging & Metadata</span>
-              <span class="skill-tag highlight">RDA Cataloging</span>
+              <span class="skill-tag highlight">Koha ILS</span>
               <span class="skill-tag highlight">MARC21</span>
               <span class="skill-tag highlight">DDC Classification</span>
-              <span class="skill-tag highlight">Serials Management</span>
-              <span class="skill-tag highlight">Holdings Management</span>
-              <span class="skill-tag">Koha ILS</span>
-              <span class="skill-tag">ISO 15489</span>
-              <span class="skill-tag">Collection Development</span>
-              <span class="skill-tag">Digital Resource Management</span>
-              <span class="skill-tag">EDMS & Digitization</span>
-            </div>
-          </div>
-          <div class="skill-category" style="margin-top:24px;">
-            <h4><i class="fas fa-laptop-code"></i> ICT & Technical Skills</h4>
-            <div class="skill-tags">
-              <span class="skill-tag">Cybersecurity</span>
-              <span class="skill-tag">Python/SQL/Bash</span>
-              <span class="skill-tag">Network Admin</span>
+              <span class="skill-tag highlight">RDA Cataloging</span>
+              <span class="skill-tag highlight">ISO 15489</span>
+              <span class="skill-tag highlight">EDMS & Digitization</span>
+              <span class="skill-tag highlight">Database Management</span>
+              <span class="skill-tag highlight">Cybersecurity</span>
+              <span class="skill-tag highlight">Python/SQL/Bash</span>
+              <span class="skill-tag highlight">Network Administration</span>
               <span class="skill-tag">Power BI</span>
-              <span class="skill-tag">User Training</span>
-              <span class="skill-tag">ICT Curriculum Delivery</span>
-              <span class="skill-tag">Robotics & Coding</span>
+              <span class="skill-tag">Digital Resource Management</span>
             </div>
           </div>
         </div>
         <div>
           <div class="skill-category">
-            <h4><i class="fas fa-users"></i> Professional Skills</h4>
+            <h4><i class="fas fa-users"></i> Soft/Core Skills</h4>
             <div class="skill-tags">
-              <span class="skill-tag">Information Literacy</span>
+              <span class="skill-tag highlight">Curriculum Development</span>
+              <span class="skill-tag highlight">Project Management</span>
+              <span class="skill-tag highlight">Stakeholder Training</span>
+              <span class="skill-tag highlight">Staff Supervision</span>
+              <span class="skill-tag highlight">Resource Management</span>
+              <span class="skill-tag highlight">Records Management</span>
+              <span class="skill-tag highlight">Reference Services</span>
               <span class="skill-tag">Public Speaking</span>
+              <span class="skill-tag">Information Literacy</span>
               <span class="skill-tag">Program Coordination</span>
-              <span class="skill-tag">Fire Safety</span>
-              <span class="skill-tag">Staff Supervision</span>
-              <span class="skill-tag">Resource Management</span>
-              <span class="skill-tag">Records Management</span>
-              <span class="skill-tag">Reference Services</span>
-            </div>
-          </div>
-          <div class="skill-category" style="margin-top:24px;">
-            <h4><i class="fas fa-certificate"></i> Certifications</h4>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
-                <strong style="color:var(--primary);">Advanced Cybersecurity - Threats & Governance</strong>
-                <div style="font-size:0.8rem; color:var(--gray);">Great Learning, 2025</div>
-              </div>
-              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
-                <strong style="color:var(--primary);">Data Visualization with Power BI</strong>
-                <div style="font-size:0.8rem; color:var(--gray);">2022</div>
-              </div>
-              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
-                <strong style="color:var(--primary);">Cyber Forensics</strong>
-                <div style="font-size:0.8rem; color:var(--gray);">2025</div>
-              </div>
-              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
-                <strong style="color:var(--primary);">Infection Prevention & Control</strong>
-                <div style="font-size:0.8rem; color:var(--gray);">The National College, 2026</div>
-              </div>
-              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
-                <strong style="color:var(--primary);">Recognising and Supporting Pupils with ADHD</strong>
-                <div style="font-size:0.8rem; color:var(--gray);">The National College, 2026</div>
-              </div>
-              <div style="background:var(--light-gray); padding:12px 16px; border-radius:8px;">
-                <strong style="color:var(--primary);">Certificate in Fire Safety Training</strong>
-                <div style="font-size:0.8rem; color:var(--gray);">2025</div>
-              </div>
             </div>
           </div>
         </div>
@@ -1449,7 +1436,7 @@
     <div class="container">
       <h2 class="section-title">Education</h2>
       <div class="section-divider"></div>
-      <p class="section-subtitle">Academic qualifications and professional development</p>
+      <p class="section-subtitle">Academic qualifications</p>
 
       <div class="edu-grid">
         <div class="edu-card">
@@ -1463,6 +1450,42 @@
           <div class="institution">Nyarach Mixed Day Secondary School</div>
           <div class="year">2015 – 2019</div>
           <div class="detail">Grade: C+ (Aggregate 51 points)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CERTIFICATIONS ==================== -->
+  <section class="certifications" id="certifications">
+    <div class="container">
+      <h2 class="section-title">Certifications & Professional Memberships</h2>
+      <div class="section-divider"></div>
+      <p class="section-subtitle">Professional development and specialized training</p>
+
+      <div class="cert-grid">
+        <div class="cert-card">
+          <h4>Advanced Cybersecurity - Threats & Governance</h4>
+          <div class="issuer">Great Learning – 2025</div>
+        </div>
+        <div class="cert-card">
+          <h4>Data Visualization with Power BI</h4>
+          <div class="issuer">2022</div>
+        </div>
+        <div class="cert-card">
+          <h4>Cyber Forensics</h4>
+          <div class="issuer">2025</div>
+        </div>
+        <div class="cert-card">
+          <h4>Infection Prevention & Control</h4>
+          <div class="issuer">The National College – 2026</div>
+        </div>
+        <div class="cert-card">
+          <h4>Recognising and Supporting Pupils with ADHD</h4>
+          <div class="issuer">The National College – 2026</div>
+        </div>
+        <div class="cert-card">
+          <h4>Certificate in Fire Safety Training</h4>
+          <div class="issuer">2025</div>
         </div>
       </div>
     </div>
@@ -1505,35 +1528,6 @@
       </div>
       <div style="text-align:center; margin-top:24px;">
         <span class="efficiency-badge"><i class="fas fa-tachometer-alt"></i> Efficiency: Streamlined workflows reducing reshelving time by 20%</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== PROJECTS ==================== -->
-  <section class="projects" id="projects">
-    <div class="container">
-      <h2 class="section-title">Projects</h2>
-      <div class="section-divider"></div>
-      <p class="section-subtitle">Key projects and technical implementations</p>
-
-      <div class="project-grid">
-        <div class="project-card">
-          <h4><i class="fas fa-vote-yea"></i> Lukenya Voting System</h4>
-          <div style="font-size:0.8rem; color:var(--gray);">Feb 2025 & Feb 2026</div>
-          <div class="tech-stack">
-            <span class="tech">HTML5</span>
-            <span class="tech">CSS3</span>
-            <span class="tech">JavaScript</span>
-            <span class="tech">PHP</span>
-            <span class="tech">MySQL</span>
-          </div>
-          <ul>
-            <li>Achieved <strong>100% uptime</strong> and accurate tallying during student elections</li>
-            <li>Built voter authentication and real-time result dashboard</li>
-            <li>Implemented session management and secure audit logs</li>
-          </ul>
-          <div class="metric"><i class="fas fa-chart-simple"></i> 100% uptime | 300+ voters | 28% participation increase YoY</div>
-        </div>
       </div>
     </div>
   </section>
@@ -1624,160 +1618,201 @@
     // ==================== CV GENERATION ====================
     function getCVHTML() {
       return `
-        <div style="max-width:1100px; margin:0 auto; background:white; font-family:'Times New Roman', Times, serif; font-size:12pt; color:#1a2c3b; padding:20px;">
-          <div style="background:linear-gradient(135deg, #0a3b44 0%, #125f54 100%); color:white; padding:15px 30px; border-radius:8px 8px 0 0;">
-            <h1 style="font-size:24px; font-weight:700; margin:0;">OTIENO CELESTINO ONYANGO</h1>
-            <div style="font-size:11px; font-weight:500; background:rgba(255,255,255,0.15); display:inline-block; padding:2px 14px; border-radius:40px; margin-top:4px;">School Librarian | System Librarian | ICT Educator | Record Manager</div>
-            <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:6px; background:rgba(0,0,0,0.2); padding:4px 14px; border-radius:50px; font-size:10px;">
+        <div style="max-width:1100px; margin:0 auto; background:white; font-family:'Times New Roman', Times, serif; font-size:12pt; color:#1a2c3b; padding:30px 40px; line-height:1.5;">
+          
+          <!-- ===== CONTACT INFORMATION ===== -->
+          <div style="text-align:center; margin-bottom:20px; border-bottom:2px solid #1f8a6b; padding-bottom:16px;">
+            <h1 style="font-size:28px; font-weight:700; color:#0a3b44; margin:0; letter-spacing:0.5px;">OTIENO CELESTINO ONYANGO</h1>
+            <p style="font-size:14px; font-weight:600; color:#125f54; margin:4px 0 8px 0;">School Librarian | System Librarian | ICT Educator | Record Manager</p>
+            <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; font-size:11px; color:#5a7e8f;">
               <span><i class="fas fa-phone-alt"></i> +254714019736</span>
               <span><i class="fas fa-envelope"></i> onyangocelestino@gmail.com</span>
               <span><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</span>
+              <span><i class="fab fa-linkedin"></i> linkedin.com/in/celestino-otieno</span>
             </div>
           </div>
-          <div style="padding:15px 30px;">
-            <div style="margin-bottom:10px;">
-              <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase; letter-spacing:0.5px;"><i class="fas fa-user-circle"></i> Professional Summary</h2>
-              <p style="font-size:11px; line-height:1.5; margin:0; text-align:left;"><strong>Accomplished Information Professional</strong> with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in <strong>ISO 15489</strong> records management, <strong>Koha ILS</strong> automation, and digital transformation. Skilled in <strong>cybersecurity, database management, ICT curriculum development, and staff training</strong>.</p>
-            </div>
 
-            <div style="margin-bottom:10px;">
-              <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase; letter-spacing:0.5px;"><i class="fas fa-briefcase"></i> Work Experience</h2>
+          <!-- ===== PROFESSIONAL SUMMARY ===== -->
+          <div style="margin-bottom:16px;">
+            <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Professional Summary</h2>
+            <p style="font-size:11.5px; line-height:1.6; margin:0; text-align:justify;">
+              <strong>Accomplished Information Professional</strong> with 3+ years of experience in library management, ICT systems, and records administration across academic, legal, and public service sectors. Proven expertise in <strong>ISO 15489</strong> records management, <strong>Koha ILS</strong> automation, and digital transformation. Skilled in <strong>cybersecurity, database management, ICT curriculum development, and staff training</strong>. Recognized for measurable impact: <strong>60% reduction in misfiling</strong>, <strong>45% growth in ICT club membership</strong>, and <strong>25% improvement in research retrieval times</strong>. Passionate about leveraging technology to bridge information gaps and empower diverse communities globally.
+            </p>
+          </div>
 
-              <div style="margin-bottom:8px;">
-                <h3 style="font-size:12px; font-weight:800; color:#135f6b; margin:0; text-align:left;">School Librarian & ICT Educator</h3>
-                <div style="font-size:10px; color:#5a7e8f; margin-bottom:2px; text-align:left;"><i class="fas fa-building"></i> Lukenya British Curriculum School, Machakos | <i class="fas fa-calendar-alt"></i> Aug 2024 – Present</div>
-                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Acquisitions & Receiving:</strong> Receives and verifies incoming packages of publications against invoices, receipts, and shipping lists.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Invoice Verification:</strong> Searches and verifies financial documentation. Maintains records and initiates payment processes.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Cataloging & Metadata:</strong> Creates IBC records using Koha ILS according to RDA standards. Assigns DDC classification and barcodes.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Serials Management:</strong> Checks serials issues into ILS, updates holdings records, location data, enumeration and chronology.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;">Delivered high-quality learning experiences integrating the Kenya Model of Great Teaching.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;">Manage full records lifecycle: creation, classification, retention scheduling, secure disposal.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;">Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>ICT Club Leader:</strong> Grew membership by 45% within one academic year.</li>
-                </ul>
-                <div style="background:#f2f8fa; padding:6px 10px; border-left:3px solid #1f8a6b; margin:4px 0; text-align:left; font-size:10px;">
-                  <strong>Key Impact:</strong> Reduced misfiling by 60%; digitized 5+ years of records. "Inquiry Hour" sessions — 35% increase in research projects. Mobile library cart increased circulation by 40%.
-                </div>
-              </div>
-
-              <div style="margin-bottom:8px;">
-                <h3 style="font-size:12px; font-weight:800; color:#135f6b; margin:0; text-align:left;">System Librarian</h3>
-                <div style="font-size:10px; color:#5a7e8f; margin-bottom:2px; text-align:left;"><i class="fas fa-building"></i> Kenya National Library Service, Nakuru | <i class="fas fa-calendar-alt"></i> May 2024 – Aug 2024</div>
-                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Acquisitions & Receiving:</strong> Received and verified incoming packages including government documents against invoices and receipts.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Invoice Verification:</strong> Searched and verified financial documentation. Assisted with Purchase Order creation.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Cataloging:</strong> Supported digital cataloguing using MARC21 and DDC.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Serials Management:</strong> Managed records request workflows and updated holdings records.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;">Provided end-user support and IT orientation; delivered hands-on training in MS Office suite.</li>
-                </ul>
-                <div style="background:#f2f8fa; padding:6px 10px; border-left:3px solid #1f8a6b; margin:4px 0; text-align:left; font-size:10px;">
-                  <strong>Achievement:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.
-                </div>
-              </div>
-
-              <div style="margin-bottom:8px;">
-                <h3 style="font-size:12px; font-weight:800; color:#135f6b; margin:0; text-align:left;">Assistant Librarian Intern</h3>
-                <div style="font-size:10px; color:#5a7e8f; margin-bottom:2px; text-align:left;"><i class="fas fa-gavel"></i> Meru Law Courts, Meru | <i class="fas fa-calendar-alt"></i> May 2023 – Aug 2023</div>
-                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Legal Records Management:</strong> Organized and secured court case files and legal documents in compliance with judicial standards.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Acquisitions & Receiving:</strong> Received and verified incoming legal publications against invoices.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Cataloging:</strong> Catalogued new legal publications using Koha ILS; assigned classification numbers.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Serials Management:</strong> Managed legal journal subscriptions and updated holdings records.</li>
-                  <li style="font-size:10px; margin:2px 0; text-align:left;"><strong>Digital Indexing:</strong> Developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
-                </ul>
-                <div style="background:#f2f8fa; padding:6px 10px; border-left:3px solid #1f8a6b; margin:4px 0; text-align:left; font-size:10px;">
-                  <strong>Achievement:</strong> Digitized and catalogued over 500 historical court case files, reducing retrieval time.
-                </div>
-              </div>
-            </div>
-
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+          <!-- ===== CORE SKILLS ===== -->
+          <div style="margin-bottom:16px;">
+            <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Core Skills</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px 30px;">
               <div>
-                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Education</h2>
-                <h3 style="font-size:11px; font-weight:700; color:#135f6b; margin:0; text-align:left;">BSc Information Science (ICT Option)</h3>
-                <div style="font-size:9px; color:#5a7e8f; text-align:left;">Meru University of Science & Technology – 2020 to 2024</div>
-                <div style="font-size:9px; color:#4a6a7a; text-align:left;">Second Class Lower Division</div>
-                <h3 style="font-size:11px; font-weight:700; color:#135f6b; margin:8px 0 0 0; text-align:left;">Kenya Certificate of Secondary Education</h3>
-                <div style="font-size:9px; color:#5a7e8f; text-align:left;">Nyarach Mixed Day Secondary School – 2015 to 2019</div>
-                <div style="font-size:9px; color:#4a6a7a; text-align:left;">Grade: C+ (Aggregate 51 points)</div>
-              </div>
-              <div>
-                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Skills</h2>
-                <div style="display:flex; flex-wrap:wrap; gap:3px;">
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Acquisitions</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Invoice Verification</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">RDA Cataloging</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">MARC21</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">DDC</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Koha ILS</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Serials Management</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">ISO 15489</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Cybersecurity</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Power BI</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">ICT Curriculum</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Staff Supervision</span>
-                  <span style="background:#e8f0f5; padding:1px 6px; border-radius:20px; font-size:8px; font-weight:600; color:#1c5d6e;">Resource Management</span>
-                </div>
-                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin:10px 0 5px 0; text-align:left; text-transform:uppercase;">Certifications</h2>
-                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
-                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Advanced Cybersecurity</strong> - Great Learning, 2025</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Data Visualization with Power BI</strong> - 2022</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Cyber Forensics</strong> - 2025</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Infection Prevention & Control</strong> - The National College, 2026</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;"><strong>Fire Safety Training</strong> - 2025</li>
-                </ul>
-              </div>
-            </div>
-
-            <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-              <div>
-                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Supervision</h2>
-                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
-                  <li style="font-size:9px; margin:2px 0; text-align:left;">Supervising Library Staff</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;">Guiding Library Users</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;">Training Staff and Users</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;">Evaluating Performance</li>
+                <p style="font-weight:700; font-size:11px; margin:0 0 3px 0; color:#0a4a5a;">Hard/Technical Skills</p>
+                <ul style="padding-left:18px; margin:0; list-style-type:disc;">
+                  <li style="font-size:10.5px; margin:2px 0;">Koha ILS</li>
+                  <li style="font-size:10.5px; margin:2px 0;">MARC21 &amp; RDA Cataloging</li>
+                  <li style="font-size:10.5px; margin:2px 0;">DDC Classification</li>
+                  <li style="font-size:10.5px; margin:2px 0;">ISO 15489 Records Management</li>
+                  <li style="font-size:10.5px; margin:2px 0;">EDMS &amp; Digitization</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Database Management</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Cybersecurity</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Network Administration</li>
                 </ul>
               </div>
               <div>
-                <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Resource Management</h2>
-                <ul style="padding-left:14px; margin:2px 0; text-align:left;">
-                  <li style="font-size:9px; margin:2px 0; text-align:left;">Selecting Resources</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;">Acquiring Materials</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;">Maintaining Collections</li>
-                  <li style="font-size:9px; margin:2px 0; text-align:left;">Budgeting for Resources</li>
+                <p style="font-weight:700; font-size:11px; margin:0 0 3px 0; color:#0a4a5a;">Soft/Core Skills</p>
+                <ul style="padding-left:18px; margin:0; list-style-type:disc;">
+                  <li style="font-size:10.5px; margin:2px 0;">Curriculum Development</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Project Management</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Stakeholder Training</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Staff Supervision</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Resource Management</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Records Management</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Reference Services</li>
+                  <li style="font-size:10.5px; margin:2px 0;">Program Coordination</li>
                 </ul>
-              </div>
-            </div>
-
-            <div style="margin-top:10px;">
-              <h2 style="font-size:13px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:2px; margin-bottom:5px; text-align:left; text-transform:uppercase;">Referees</h2>
-              <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;">
-                <div style="background:#fafefb; padding:6px 10px; border-left:3px solid #1f8a6b; text-align:left; font-size:10px;">
-                  <strong>Silas Otieno</strong><br>Head of Department, Humanities<br><span style="font-size:8px; color:#1a4f5c;">+254707445341</span>
-                </div>
-                <div style="background:#fafefb; padding:6px 10px; border-left:3px solid #1f8a6b; text-align:left; font-size:10px;">
-                  <strong>Collins Kirui</strong><br>Dean of Students & Head of Exams<br><span style="font-size:8px; color:#1a4f5c;">+254702194494</span>
-                </div>
-                <div style="background:#fafefb; padding:6px 10px; border-left:3px solid #1f8a6b; text-align:left; font-size:10px;">
-                  <strong>George Okoth</strong><br>Priest & US Army Officer<br><span style="font-size:8px; color:#1a4f5c;">+1 210 7535656</span>
-                </div>
               </div>
             </div>
           </div>
-          <div style="text-align:center; font-size:8px; padding:4px; background:#fafefe; border-top:1px solid #e2edf2; color:#537d93; border-radius:0 0 8px 8px;">
-            Celestino Otieno – Professional CV | Digital Transformation, ICT Education & Library Innovation
+
+          <!-- ===== PROFESSIONAL EXPERIENCE ===== -->
+          <div style="margin-bottom:16px;">
+            <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Professional Experience</h2>
+
+            <!-- Experience 1 -->
+            <div style="margin-bottom:12px;">
+              <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline;">
+                <h3 style="font-size:12.5px; font-weight:700; color:#135f6b; margin:0;">School Librarian &amp; ICT Educator</h3>
+                <span style="font-size:10.5px; color:#5a7e8f; font-weight:600;">Aug 2024 – Present</span>
+              </div>
+              <p style="font-size:10.5px; color:#5a7e8f; margin:0 0 4px 0; font-style:italic;">Lukenya British Curriculum School, Machakos</p>
+              <ul style="padding-left:20px; margin:4px 0; list-style-type:disc;">
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Managed</strong> full records lifecycle including creation, classification, retention scheduling, and secure disposal of institutional records using Koha ILS.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Spearheaded</strong> the implementation of an electronic document management system (EDMS) for student records, staff files, and administrative archives.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Delivered</strong> high-quality learning experiences integrating the Kenya Model of Great Teaching, improving student engagement in research-based tasks.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Provided</strong> tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Led</strong> ICT Club activities, mentoring students in technology projects and organizing coding workshops — grew membership by 45% within one academic year.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Reduced</strong> misfiling by 60% through structured classification and digitized 5+ years of student academic records.</li>
+              </ul>
+            </div>
+
+            <!-- Experience 2 -->
+            <div style="margin-bottom:12px;">
+              <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline;">
+                <h3 style="font-size:12.5px; font-weight:700; color:#135f6b; margin:0;">System Librarian</h3>
+                <span style="font-size:10.5px; color:#5a7e8f; font-weight:600;">May 2024 – Aug 2024</span>
+              </div>
+              <p style="font-size:10.5px; color:#5a7e8f; margin:0 0 4px 0; font-style:italic;">Kenya National Library Service, Nakuru</p>
+              <ul style="padding-left:20px; margin:4px 0; list-style-type:disc;">
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Assisted</strong> in records inventory and archival management for historical government publications and supported digital cataloguing using MARC21 and DDC.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Managed</strong> records request workflows and provided end-user support with IT orientation and digital literacy training.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Designed</strong> and delivered accessible ICT programs for persons with disabilities, empowering diverse learners.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Trained</strong> 50+ staff and community members in MS Office suite and digital literacy skills.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Redesigned</strong> finding aids reducing research time by 25%.</li>
+              </ul>
+            </div>
+
+            <!-- Experience 3 -->
+            <div style="margin-bottom:0;">
+              <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline;">
+                <h3 style="font-size:12.5px; font-weight:700; color:#135f6b; margin:0;">Assistant Librarian Intern</h3>
+                <span style="font-size:10.5px; color:#5a7e8f; font-weight:600;">May 2023 – Aug 2023</span>
+              </div>
+              <p style="font-size:10.5px; color:#5a7e8f; margin:0 0 4px 0; font-style:italic;">Meru Law Courts, Meru</p>
+              <ul style="padding-left:20px; margin:4px 0; list-style-type:disc;">
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Organized, classified, and secured</strong> court case files, legal documents, and archival materials in compliance with judicial standards.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Digitized</strong> and catalogued over 500 historical court case files using Koha ILS, reducing retrieval time and enhancing access.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Developed</strong> a searchable electronic index, improving retrieval efficiency by 30%.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Provided</strong> reference services to judges, magistrates, prosecutors, and legal researchers.</li>
+                <li style="font-size:10.5px; margin:3px 0; line-height:1.4;"><strong>Managed</strong> access to online legal databases and e-resources; trained staff on effective search strategies.</li>
+              </ul>
+            </div>
           </div>
+
+          <!-- ===== EDUCATION ===== -->
+          <div style="margin-bottom:16px;">
+            <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Education</h2>
+            <div style="margin-bottom:6px;">
+              <p style="font-size:12px; font-weight:700; color:#135f6b; margin:0;">BSc Information Science (ICT Option)</p>
+              <p style="font-size:10.5px; color:#5a7e8f; margin:0;">Meru University of Science &amp; Technology – 2020 to 2024</p>
+              <p style="font-size:10px; color:#4a6a7a; margin:0;">Second Class Lower Division</p>
+            </div>
+            <div>
+              <p style="font-size:12px; font-weight:700; color:#135f6b; margin:0;">Kenya Certificate of Secondary Education</p>
+              <p style="font-size:10.5px; color:#5a7e8f; margin:0;">Nyarach Mixed Day Secondary School – 2015 to 2019</p>
+              <p style="font-size:10px; color:#4a6a7a; margin:0;">Grade: C+ (Aggregate 51 points)</p>
+            </div>
+          </div>
+
+          <!-- ===== CERTIFICATIONS ===== -->
+          <div style="margin-bottom:16px;">
+            <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Certifications &amp; Professional Memberships</h2>
+            <ul style="padding-left:20px; margin:0; list-style-type:disc;">
+              <li style="font-size:10.5px; margin:3px 0;"><strong>Advanced Cybersecurity - Threats &amp; Governance</strong> – Great Learning, 2025</li>
+              <li style="font-size:10.5px; margin:3px 0;"><strong>Data Visualization with Power BI</strong> – 2022</li>
+              <li style="font-size:10.5px; margin:3px 0;"><strong>Cyber Forensics</strong> – 2025</li>
+              <li style="font-size:10.5px; margin:3px 0;"><strong>Infection Prevention &amp; Control</strong> – The National College, 2026</li>
+              <li style="font-size:10.5px; margin:3px 0;"><strong>Recognising and Supporting Pupils with ADHD</strong> – The National College, 2026</li>
+              <li style="font-size:10.5px; margin:3px 0;"><strong>Certificate in Fire Safety Training</strong> – 2025</li>
+            </ul>
+          </div>
+
+          <!-- ===== SUPERVISION & RESOURCE MANAGEMENT ===== -->
+          <div style="margin-bottom:12px;">
+            <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Supervision &amp; Resource Management</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px 30px;">
+              <div>
+                <p style="font-weight:700; font-size:11px; margin:0 0 3px 0; color:#0a4a5a;">Supervision</p>
+                <ul style="padding-left:18px; margin:0; list-style-type:disc;">
+                  <li style="font-size:10px; margin:2px 0;">Supervising Library Staff</li>
+                  <li style="font-size:10px; margin:2px 0;">Guiding Library Users</li>
+                  <li style="font-size:10px; margin:2px 0;">Training Staff and Users</li>
+                  <li style="font-size:10px; margin:2px 0;">Evaluating Performance</li>
+                </ul>
+              </div>
+              <div>
+                <p style="font-weight:700; font-size:11px; margin:0 0 3px 0; color:#0a4a5a;">Resource Management</p>
+                <ul style="padding-left:18px; margin:0; list-style-type:disc;">
+                  <li style="font-size:10px; margin:2px 0;">Selecting Resources</li>
+                  <li style="font-size:10px; margin:2px 0;">Acquiring Materials</li>
+                  <li style="font-size:10px; margin:2px 0;">Maintaining Collections</li>
+                  <li style="font-size:10px; margin:2px 0;">Budgeting for Resources</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== REFEREES ===== -->
+          <div style="margin-top:12px; padding-top:12px; border-top:2px solid #e2edf2;">
+            <h2 style="font-size:14px; font-weight:700; color:#0a4a5a; border-bottom:2px solid #1f8a6b; padding-bottom:3px; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">Referees</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+              <div>
+                <p style="font-size:11px; font-weight:700; color:#0a4a5a; margin:0;">Silas Otieno</p>
+                <p style="font-size:9.5px; color:#5a7e8f; margin:0;">Head of Department, Humanities</p>
+                <p style="font-size:9.5px; color:#5a7e8f; margin:0;">Consolata School Nairobi</p>
+                <p style="font-size:9.5px; color:#1a4f5c; margin:0;">+254707445341</p>
+              </div>
+              <div>
+                <p style="font-size:11px; font-weight:700; color:#0a4a5a; margin:0;">Collins Kirui</p>
+                <p style="font-size:9.5px; color:#5a7e8f; margin:0;">Dean of Students &amp; Head of Exams</p>
+                <p style="font-size:9.5px; color:#5a7e8f; margin:0;">Lukenya British School</p>
+                <p style="font-size:9.5px; color:#1a4f5c; margin:0;">+254702194494</p>
+              </div>
+              <div>
+                <p style="font-size:11px; font-weight:700; color:#0a4a5a; margin:0;">George Okoth</p>
+                <p style="font-size:9.5px; color:#5a7e8f; margin:0;">Priest &amp; US Army Officer</p>
+                <p style="font-size:9.5px; color:#1a4f5c; margin:0;">+1 210 7535656</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       `;
     }
 
     function getCoverLetterHTML() {
       return `
-        <div style="padding:40px; font-family:'Times New Roman', Times, serif; color:#1a2c3b; max-width:800px; margin:0 auto; background:white;">
+        <div style="padding:40px; font-family:'Times New Roman', Times, serif; color:#1a2c3b; max-width:800px; margin:0 auto; background:white; line-height:1.7;">
           <h2 style="color:#0a4a5a; font-size:18px; border-bottom:2px solid #1f8a6b; padding-bottom:6px; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.5px; text-align:left;">Cover Letter</h2>
-          <div style="font-size:12pt; line-height:1.7; color:#1a2c3b; text-align:left;">
+          <div style="font-size:12pt; color:#1a2c3b; text-align:left;">
             <p><strong>Otieno Celestino Onyango</strong><br>
             +254714019736 | onyangocelestino@gmail.com<br>
             Nairobi, Kenya</p>
@@ -1823,6 +1858,9 @@
         };
         const wrapper = document.createElement('div');
         wrapper.innerHTML = content;
+        wrapper.style.position = 'absolute';
+        wrapper.style.left = '-9999px';
+        wrapper.style.top = '0';
         document.body.appendChild(wrapper);
         html2pdf().set(opt).from(wrapper).save().then(() => {
           document.body.removeChild(wrapper);
@@ -1868,6 +1906,9 @@
         };
         const wrapper = document.createElement('div');
         wrapper.innerHTML = content;
+        wrapper.style.position = 'absolute';
+        wrapper.style.left = '-9999px';
+        wrapper.style.top = '0';
         document.body.appendChild(wrapper);
         html2pdf().set(opt).from(wrapper).save().then(() => {
           document.body.removeChild(wrapper);
