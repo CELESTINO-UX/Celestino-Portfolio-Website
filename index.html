@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Otieno Celestino </title>
+  <title>Celestino Otieno · Portfolio</title>
   <!-- Font Awesome 5 free -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
   <!-- html2pdf library for PDF generation -->
@@ -64,7 +64,7 @@
     .btn-pdf i { font-size: 1.1rem; }
 
     /* ----- 3D ROLLING WRAPPER (card) ----- */
-    .cv-wrapper {
+    .portfolio-wrapper {
       max-width: 1200px;
       width: 100%;
       background: #fefcf9;
@@ -449,7 +449,7 @@
     @media print {
       .download-bar { display: none; }
       body { background: white; padding: 0.1in; }
-      .cv-wrapper { box-shadow: none; border: 1px solid #ccc; animation: none; transform: none; }
+      .portfolio-wrapper { box-shadow: none; border: 1px solid #ccc; animation: none; transform: none; }
       .sidebar { background: #1e2f3f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .avatar, .highlight-badge, .skill-tag { animation: none !important; transform: none !important; }
       .tab-content { display: block !important; }
@@ -459,7 +459,7 @@
     }
 
     @media (max-width: 780px) {
-      .cv-wrapper { grid-template-columns: 1fr; border-radius: 24px; }
+      .portfolio-wrapper { grid-template-columns: 1fr; border-radius: 24px; }
       .sidebar { padding: 1.8rem; border-right: none; }
       .main-content { padding: 1.8rem; }
       .avatar { width: 110px; height: 110px; font-size: 3.2rem; }
@@ -477,8 +477,8 @@
     </button>
   </div>
 
-  <!-- ===== CV WRAPPER ===== -->
-  <div class="cv-wrapper" id="cv-content">
+  <!-- ===== PORTFOLIO WRAPPER ===== -->
+  <div class="portfolio-wrapper" id="cv-content">
 
     <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar" aria-label="Personal & skills">
@@ -761,7 +761,7 @@
         html2pdf()
           .set({
             margin:        [0.5, 0.5, 0.5, 0.5],
-            filename:      'Otieno_Celestino_Onyango_CV.pdf',
+            filename:      'Otieno_Celestino_Onyango_Portfolio.pdf',
             image:         { type: 'jpeg', quality: 0.98 },
             html2canvas:   { scale: 2, letterRendering: true, useCORS: true },
             jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' }
