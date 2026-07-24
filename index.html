@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Otieno Celestino Onyango · ATS CV (Comprehensive Roles)</title>
+  <title>Otieno Celestino · 3D Rolling CV</title>
   <!-- Font Awesome 5 free -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
   <!-- html2pdf library for PDF generation -->
@@ -16,101 +16,141 @@
     }
 
     body {
-      background: #eef2f7;
+      background: #f5f0eb;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
       padding: 2rem 1rem;
-      line-height: 1.5;
-      color: #1e2a3a;
+      line-height: 1.6;
+      color: #2c3e4e;
+      perspective: 1200px;
     }
 
-    /* Download button container */
+    /* Download button — now with lock icon */
     .download-bar {
       max-width: 1200px;
       width: 100%;
       margin-bottom: 1.2rem;
       display: flex;
       justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 0.8rem;
     }
 
     .btn-pdf {
-      background: #0f1a2b;
-      color: white;
+      background: #2c3e4e;
+      color: #fefcf9;
       border: none;
-      padding: 0.7rem 1.8rem;
-      border-radius: 40px;
+      padding: 0.7rem 2rem;
+      border-radius: 60px;
       font-size: 0.95rem;
       font-weight: 500;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      border: 1px solid #3a5777;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 18px rgba(44, 62, 78, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      letter-spacing: 0.3px;
     }
     .btn-pdf:hover {
       background: #1f3349;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(44, 62, 78, 0.25);
     }
-    .btn-pdf i {
-      font-size: 1.1rem;
-    }
+    .btn-pdf i { font-size: 1.1rem; }
 
+    /* ----- 3D ROLLING WRAPPER (card) ----- */
     .cv-wrapper {
       max-width: 1200px;
       width: 100%;
-      background: white;
-      border-radius: 24px;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2);
+      background: #fefcf9;
+      border-radius: 32px;
+      box-shadow: 0 30px 60px -20px rgba(44, 62, 78, 0.25), 0 10px 30px -10px rgba(0,0,0,0.05);
       display: grid;
       grid-template-columns: 34% 66%;
       overflow: hidden;
-      transition: 0.2s;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s;
+      transform-style: preserve-3d;
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      animation: floatGlow 8s ease-in-out infinite;
+      border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
-    /* ----- SIDEBAR (left) ----- */
+    @keyframes floatGlow {
+      0% { box-shadow: 0 30px 60px -20px rgba(44, 62, 78, 0.20); transform: translateY(0px) rotateX(0.4deg) rotateY(-0.4deg); }
+      50% { box-shadow: 0 45px 80px -15px rgba(44, 62, 78, 0.30); transform: translateY(-8px) rotateX(0.8deg) rotateY(0.4deg); }
+      100% { box-shadow: 0 30px 60px -20px rgba(44, 62, 78, 0.20); transform: translateY(0px) rotateX(0.4deg) rotateY(-0.4deg); }
+    }
+
+    /* SIDEBAR (left) */
     .sidebar {
-      background: #0f1a2b;
-      color: #eef4fa;
-      padding: 2.2rem 1.8rem;
+      background: #1e2f3f;
+      color: #f0ede8;
+      padding: 2.4rem 2rem;
       display: flex;
       flex-direction: column;
-      gap: 1.6rem;
+      gap: 1.8rem;
+      transform: translateZ(20px);
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .profile-pic { text-align: center; margin-bottom: 0.2rem; }
+
+    .avatar-wrapper {
+      perspective: 800px;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+    }
     .avatar {
       width: 130px;
       height: 130px;
-      background: #26384e;
+      background: #2a4058;
       border-radius: 50%;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
       font-size: 3.8rem;
       font-weight: 500;
-      color: #d6e3f0;
-      border: 3px solid #5b7b9a;
-      box-shadow: 0 8px 14px rgba(0,0,0,0.3);
-      margin-bottom: 0.6rem;
+      color: #f0ede8;
+      border: 3px solid #5f7f9a;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,215,180,0.1);
+      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s;
+      transform-style: preserve-3d;
+      transform: rotateY(0deg) rotateX(0deg);
+      animation: rollAvatar 10s infinite ease-in-out;
+      margin: 0 auto;
     }
+    @keyframes rollAvatar {
+      0% { transform: rotateY(0deg) rotateX(0deg) scale(1); }
+      25% { transform: rotateY(12deg) rotateX(6deg) scale(1.02); }
+      50% { transform: rotateY(-8deg) rotateX(-4deg) scale(0.98); }
+      75% { transform: rotateY(6deg) rotateX(3deg) scale(1.01); }
+      100% { transform: rotateY(0deg) rotateX(0deg) scale(1); }
+    }
+    .avatar:hover {
+      animation-play-state: paused;
+      transform: rotateY(180deg) scale(1.08);
+      box-shadow: 0 0 40px #8ab3d0, 0 0 80px rgba(138, 179, 208, 0.15);
+      border-color: #8ab3d0;
+    }
+
     .sidebar h1 {
       font-size: 2rem;
       font-weight: 700;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.3px;
       line-height: 1.2;
-      color: white;
+      color: #fefcf9;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .sidebar .subhead {
       font-size: 1rem;
       font-weight: 400;
-      color: #b8cee5;
-      border-bottom: 2px solid #2f445c;
+      color: #cbd8e5;
+      border-bottom: 2px solid #3a5268;
       padding-bottom: 0.75rem;
       margin-bottom: 0.3rem;
     }
@@ -121,12 +161,12 @@
       gap: 0.5rem;
     }
     .sidebar-section h3 {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.5px;
       font-weight: 600;
-      color: #aec5dc;
-      border-bottom: 1px solid #2f445c;
+      color: #b6ccdf;
+      border-bottom: 1px solid #3a5268;
       padding-bottom: 0.4rem;
       margin-bottom: 0.2rem;
     }
@@ -137,27 +177,38 @@
       gap: 0.75rem;
       font-size: 0.9rem;
       padding: 0.25rem 0;
-      color: #dce8f5;
+      color: #e2e9f0;
       word-break: break-word;
+      transition: transform 0.2s;
     }
+    .contact-item:hover { transform: translateX(4px); }
     .contact-item i {
       width: 1.3rem;
       font-size: 1.1rem;
-      color: #9bb9da;
+      color: #aac3db;
       text-align: center;
     }
 
     .skill-tag {
       display: inline-block;
-      background: #1f3349;
-      color: #eaf3fc;
-      padding: 0.2rem 0.9rem;
-      border-radius: 30px;
+      background: #2a4058;
+      color: #f0ede8;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
       font-size: 0.78rem;
       font-weight: 500;
       margin: 0.2rem 0.2rem 0 0;
-      border: 1px solid #3d5773;
+      border: 1px solid #4a6a84;
       letter-spacing: 0.2px;
+      transition: transform 0.3s ease, box-shadow 0.3s, background 0.2s;
+      transform: rotate(0deg);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .skill-tag:hover {
+      transform: rotateY(12deg) scale(1.05);
+      box-shadow: 0 6px 16px rgba(90, 150, 210, 0.25);
+      background: #345a78;
+      border-color: #7aa5c7;
     }
     .skill-group {
       display: flex;
@@ -171,26 +222,88 @@
       justify-content: space-between;
       font-size: 0.9rem;
       padding: 0.2rem 0;
-      border-bottom: 1px dashed #2f445c;
+      border-bottom: 1px dashed #3a5268;
     }
-    .lang-item span:last-child { color: #b6ceea; font-weight: 300; }
+    .lang-item span:last-child { color: #cbd8e5; font-weight: 300; }
 
     .highlight-badge {
-      background: #2a405a;
-      border-radius: 20px;
-      padding: 0.2rem 0.8rem;
+      background: #2a4058;
+      border-radius: 40px;
+      padding: 0.25rem 1rem;
       font-size: 0.75rem;
       font-weight: 500;
-      color: #d6e7ff;
+      color: #f0ede8;
       display: inline-block;
-      margin: 0.1rem 0;
-      border: 1px solid #4a698b;
+      margin: 0.15rem 0;
+      border: 1px solid #4a6a84;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s, background 0.2s;
+      transform-style: preserve-3d;
+      animation: rollBadge 7s infinite alternate;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .highlight-badge:hover {
+      transform: rotateY(180deg) scale(1.08);
+      box-shadow: 0 0 30px #6a8fb0;
+      background: #345a78;
+      border-color: #8ab3d0;
+    }
+    @keyframes rollBadge {
+      0% { transform: rotateY(0deg) rotateX(0deg); }
+      100% { transform: rotateY(16deg) rotateX(5deg); }
+    }
+    .highlight-badge:nth-child(2) { animation-delay: 0.4s; }
+    .highlight-badge:nth-child(3) { animation-delay: 0.8s; }
+
+    /* MAIN (right) */
+    .main-content {
+      background: #fefcf9;
+      padding: 2.2rem 2.8rem 2.8rem 2.8rem;
+      transform: translateZ(10px);
     }
 
-    /* ----- MAIN (right) ----- */
-    .main-content {
-      background: white;
-      padding: 2rem 2.5rem 2.5rem 2.5rem;
+    .tabs-container {
+      display: flex;
+      gap: 0.3rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #e9e2da;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #5f7388;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.25s ease;
+      letter-spacing: 0.3px;
+      border-radius: 12px 12px 0 0;
+    }
+    .tab-btn i { margin-right: 8px; }
+    .tab-btn:hover {
+      background: #f5f0eb;
+      color: #1e2f3f;
+      border-bottom-color: #b6ccdf;
+    }
+    .tab-btn.active {
+      color: #1e2f3f;
+      border-bottom-color: #2c5f7a;
+      background: #f5f0eb;
+      font-weight: 700;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeSlide 0.5s ease;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(10px) rotateX(2deg); }
+      100% { opacity: 1; transform: translateY(0) rotateX(0); }
     }
 
     .main-content h2 {
@@ -198,22 +311,32 @@
       text-transform: uppercase;
       letter-spacing: 1.2px;
       font-weight: 600;
-      color: #122236;
-      border-bottom: 3px solid #e2eaf3;
-      padding-bottom: 0.4rem;
-      margin-top: 1.5rem;
-      margin-bottom: 1rem;
+      color: #1e2f3f;
+      border-bottom: 3px solid #e9e2da;
+      padding-bottom: 0.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1.2rem;
     }
-    .main-content h2:first-of-type { margin-top: 0; }
 
     .profile-text {
-      font-size: 0.95rem;
-      color: #1a2a3c;
+      font-size: 0.98rem;
+      color: #2c3e4e;
       margin-bottom: 1.2rem;
-      line-height: 1.7;
+      line-height: 1.8;
     }
 
-    .exp-item { margin-bottom: 1.8rem; }
+    .exp-item {
+      margin-bottom: 2rem;
+      background: #fcf9f6;
+      padding: 1.2rem 1.4rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(44, 62, 78, 0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .exp-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(44, 62, 78, 0.08);
+    }
     .exp-header {
       display: flex;
       justify-content: space-between;
@@ -224,18 +347,18 @@
     .exp-header h3 {
       font-size: 1.05rem;
       font-weight: 600;
-      color: #0f1e30;
+      color: #1e2f3f;
     }
     .exp-header .company {
       font-weight: 500;
-      color: #1f4b6e;
+      color: #2c5f7a;
     }
     .exp-header .date {
       font-size: 0.78rem;
-      background: #ecf3fa;
-      padding: 0.15rem 0.9rem;
-      border-radius: 30px;
-      color: #1d3b58;
+      background: #e9e2da;
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      color: #1e2f3f;
       font-weight: 500;
       white-space: nowrap;
     }
@@ -244,73 +367,113 @@
       padding: 0.4rem 0 0 0.2rem;
     }
     .exp-desc li {
-      font-size: 0.9rem;
-      margin-bottom: 0.35rem;
+      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
       display: flex;
       gap: 0.5rem;
       align-items: flex-start;
     }
     .exp-desc li::before {
       content: "▹";
-      color: #1f5a7a;
+      color: #2c5f7a;
       font-weight: 600;
       display: inline-block;
       width: 1rem;
     }
-    .exp-desc li strong { color: #003366; }
+    .exp-desc li strong { color: #1e2f3f; }
 
     .edu-item {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 0.2rem 1rem;
-      padding: 0.4rem 0;
-      border-bottom: 1px solid #edf2f8;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #ede8e1;
     }
-    .edu-item .edu-detail { font-weight: 500; }
-    .edu-item .edu-meta { color: #1f4a6e; font-size: 0.9rem; }
+    .edu-item .edu-detail { font-weight: 500; color: #1e2f3f; }
+    .edu-item .edu-meta { color: #2c5f7a; font-size: 0.9rem; }
 
     .ref-item {
       font-size: 0.9rem;
-      padding: 0.2rem 0;
-      border-bottom: 1px solid #edf2f8;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #ede8e1;
     }
-    .ref-item strong { color: #0b253b; }
+    .ref-item strong { color: #1e2f3f; }
 
     .marc-highlight {
-      background: #e5edf6;
-      padding: 0.2rem 0.6rem;
-      border-radius: 12px;
+      background: #ede8e1;
+      padding: 0.25rem 0.8rem;
+      border-radius: 30px;
       font-weight: 500;
-      color: #003366;
+      color: #1e2f3f;
       font-size: 0.8rem;
       display: inline-block;
-      margin: 0.1rem 0;
+      margin: 0.15rem 0;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(44, 62, 78, 0.05);
+    }
+    .marc-highlight:hover {
+      transform: rotateX(6deg) scale(1.04);
+      box-shadow: 0 4px 12px rgba(44, 62, 78, 0.08);
+      background: #e0d7ce;
     }
 
-    /* PDF generation: hide button when printing */
+    .img-icon {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06));
+      transition: transform 0.3s ease;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    .img-icon:hover { transform: scale(1.12) rotateY(6deg); }
+    .icon-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin: 0.8rem 0;
+    }
+    .icon-row img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      transition: transform 0.3s;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.04));
+    }
+    .icon-row img:hover { transform: scale(1.15) rotateY(8deg); }
+
+    /* Print & responsive */
     @media print {
       .download-bar { display: none; }
       body { background: white; padding: 0.1in; }
-      .cv-wrapper { box-shadow: none; border: 1px solid #ccc; }
-      .sidebar { background: #0f1a2b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .cv-wrapper { box-shadow: none; border: 1px solid #ccc; animation: none; transform: none; }
+      .sidebar { background: #1e2f3f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .avatar, .highlight-badge, .skill-tag { animation: none !important; transform: none !important; }
+      .tab-content { display: block !important; }
+      .tab-btn { display: none; }
+      .tabs-container { display: none; }
+      .exp-item { box-shadow: none; background: transparent; padding: 0.5rem 0; }
     }
 
     @media (max-width: 780px) {
-      .cv-wrapper { grid-template-columns: 1fr; border-radius: 16px; }
-      .sidebar { padding: 1.8rem; }
+      .cv-wrapper { grid-template-columns: 1fr; border-radius: 24px; }
+      .sidebar { padding: 1.8rem; border-right: none; }
       .main-content { padding: 1.8rem; }
       .avatar { width: 110px; height: 110px; font-size: 3.2rem; }
       .download-bar { justify-content: center; }
+      .tab-btn { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Download PDF button -->
+  <!-- Download PDF button — protected with passcode -->
   <div class="download-bar">
     <button class="btn-pdf" id="downloadPDF">
-      <i class="fas fa-file-pdf"></i> Download CV as PDF
+      <i class="fas fa-lock"></i> Download CV (Passcode Protected)
     </button>
   </div>
 
@@ -320,7 +483,9 @@
     <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar" aria-label="Personal & skills">
       <div class="profile-pic">
-        <div class="avatar" aria-label="Initials">CO</div>
+        <div class="avatar-wrapper">
+          <div class="avatar" aria-label="Initials">CO</div>
+        </div>
         <h1>OTIENO CELESTINO ONYANGO</h1>
         <div class="subhead">School Librarian · System Librarian · ICT Educator · Record Manager</div>
       </div>
@@ -337,7 +502,10 @@
 
       <!-- MARC / AACR2 / RDA / DBMS -->
       <div class="sidebar-section">
-        <h3><i class="fas fa-book"></i> Cataloguing &amp; DBMS</h3>
+        <h3>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b6ccdf' width='18' height='18'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="book" style="width:18px;height:18px;display:inline;margin-right:4px;"/>
+          Cataloguing &amp; DBMS
+        </h3>
         <div class="skill-group">
           <span class="skill-tag">MARC21</span>
           <span class="skill-tag">AACR2</span>
@@ -351,17 +519,20 @@
           <span class="skill-tag">MARC XML</span>
           <span class="skill-tag">Z39.50</span>
         </div>
-        <div style="margin-top: 0.3rem; font-size:0.85rem; color:#b8cee5;">
+        <div style="margin-top: 0.3rem; font-size:0.85rem; color:#cbd8e5;">
           <i class="fas fa-check-circle" style="color:#7aa5c7;"></i> MARC21, AACR2, RDA, DDC, LCC
         </div>
-        <div style="font-size:0.85rem; color:#b8cee5;">
+        <div style="font-size:0.85rem; color:#cbd8e5;">
           <i class="fas fa-database" style="color:#7aa5c7;"></i> DBMS: MySQL, SQLite, Koha, EDMS
         </div>
       </div>
 
       <!-- Core Skills -->
       <div class="sidebar-section">
-        <h3><i class="fas fa-code"></i> Core competencies</h3>
+        <h3>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23b6ccdf' width='18' height='18'%3E%3Cpath d='M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z'/%3E%3C/svg%3E" alt="computer" style="width:18px;height:18px;display:inline;margin-right:4px;"/>
+          Core competencies
+        </h3>
         <div class="skill-group">
           <span class="skill-tag">ISO 15489</span>
           <span class="skill-tag">Collection Dev.</span>
@@ -381,12 +552,12 @@
       <!-- Certifications -->
       <div class="sidebar-section">
         <h3><i class="fas fa-certificate"></i> Certifications</h3>
-        <div style="font-size:0.85rem; padding:0.15rem 0;">Advanced Cybersecurity – Great Learning (2025)</div>
-        <div style="font-size:0.85rem; padding:0.15rem 0;">Data Visualization with Power BI (2022)</div>
-        <div style="font-size:0.85rem; padding:0.15rem 0;">Cyber Forensics (2025)</div>
-        <div style="font-size:0.85rem; padding:0.15rem 0;">Infection Prevention &amp; Control (2026)</div>
-        <div style="font-size:0.85rem; padding:0.15rem 0;">ADHD Awareness (2026)</div>
-        <div style="font-size:0.85rem; padding:0.15rem 0;">Fire Safety Training (2025)</div>
+        <div style="font-size:0.85rem; padding:0.15rem 0;"><i class="fas fa-check-circle" style="color:#7aa5c7;width:1.2rem;"></i> Advanced Cybersecurity (2025)</div>
+        <div style="font-size:0.85rem; padding:0.15rem 0;"><i class="fas fa-check-circle" style="color:#7aa5c7;width:1.2rem;"></i> Power BI (2022)</div>
+        <div style="font-size:0.85rem; padding:0.15rem 0;"><i class="fas fa-check-circle" style="color:#7aa5c7;width:1.2rem;"></i> Cyber Forensics (2025)</div>
+        <div style="font-size:0.85rem; padding:0.15rem 0;"><i class="fas fa-check-circle" style="color:#7aa5c7;width:1.2rem;"></i> Infection Prevention (2026)</div>
+        <div style="font-size:0.85rem; padding:0.15rem 0;"><i class="fas fa-check-circle" style="color:#7aa5c7;width:1.2rem;"></i> ADHD Awareness (2026)</div>
+        <div style="font-size:0.85rem; padding:0.15rem 0;"><i class="fas fa-check-circle" style="color:#7aa5c7;width:1.2rem;"></i> Fire Safety (2025)</div>
       </div>
 
       <!-- Languages -->
@@ -406,11 +577,20 @@
       </div>
     </aside>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    <!-- ===== MAIN CONTENT with TABS ===== -->
     <main class="main-content" aria-label="Professional experience and education">
 
-      <!-- Profile summary -->
-      <section>
+      <!-- TABS -->
+      <div class="tabs-container" role="tablist">
+        <button class="tab-btn active" data-tab="tab-profile" role="tab"><i class="fas fa-user"></i> Profile</button>
+        <button class="tab-btn" data-tab="tab-experience" role="tab"><i class="fas fa-briefcase"></i> Experience</button>
+        <button class="tab-btn" data-tab="tab-skills" role="tab"><i class="fas fa-cogs"></i> Skills</button>
+        <button class="tab-btn" data-tab="tab-education" role="tab"><i class="fas fa-graduation-cap"></i> Education</button>
+        <button class="tab-btn" data-tab="tab-projects" role="tab"><i class="fas fa-project-diagram"></i> Projects</button>
+      </div>
+
+      <!-- TAB 1: Profile -->
+      <div id="tab-profile" class="tab-content active" role="tabpanel">
         <h2><i class="fas fa-user" style="margin-right: 8px;"></i> Professional summary</h2>
         <p class="profile-text">
           Accomplished Information Professional with <strong>3+ years</strong> of experience across academic, legal, and public library settings. 
@@ -421,118 +601,176 @@
           Recognized for measurable impact: 60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement 
           in research retrieval times.
         </p>
-      </section>
+        <div class="icon-row">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="books" style="width:32px;height:32px;"/>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a'%3E%3Cpath d='M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z'/%3E%3C/svg%3E" alt="computer" style="width:32px;height:32px;"/>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z'/%3E%3C/svg%3E" alt="globe" style="width:32px;height:32px;"/>
+          <span style="font-weight:500;color:#2c5f7a;">MARC21 · AACR2 · RDA · DDC · LCC</span>
+          <span style="font-weight:500;color:#2c5f7a;">MySQL · SQLite · Koha · EDMS</span>
+        </div>
+      </div>
 
-      <!-- ====== EXPERIENCE with comprehensive roles applied ====== -->
-      <section>
+      <!-- TAB 2: Experience -->
+      <div id="tab-experience" class="tab-content" role="tabpanel">
         <h2><i class="fas fa-briefcase" style="margin-right: 8px;"></i> Work experience</h2>
 
-        <!-- 1. School Librarian & ICT Educator (Lukenya) -->
         <div class="exp-item">
           <div class="exp-header">
-            <h3>School Librarian &amp; ICT Educator</h3>
+            <h3><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a' width='20' height='20'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="book" style="width:20px;height:20px;display:inline;vertical-align:middle;margin-right:4px;"/> School Librarian &amp; ICT Educator</h3>
             <span class="company">Lukenya British Curriculum School, Machakos</span>
             <span class="date">Aug 2024 – Present</span>
           </div>
           <ul class="exp-desc">
-            <li><strong>Collection Management &amp; Development:</strong> Conducted needs assessment via surveys and circulation stats; selected and acquired physical/digital resources; managed vendor relations; performed cataloging using MARC21, AACR2, RDA, DDC; applied physical processing (barcodes, labels, security tags); performed systematic weeding (MUSTIE) and inventory control.</li>
-            <li><strong>Reference &amp; Information Services:</strong> Provided direct reference assistance (in-person, email); guided advanced research; taught information literacy (source evaluation, database navigation, Boolean operators, citation formats); managed remote access (EZproxy/SSO).</li>
-            <li><strong>Circulation &amp; Patron Services:</strong> Managed patron accounts, check-in/out, holds, fines, and interlibrary loan; resolved disputes and enforced library code of conduct.</li>
-            <li><strong>Community Programming &amp; Outreach:</strong> Organized literacy programs, book clubs, career workshops, and reading challenges; partnered with local organizations; designed marketing flyers and managed social media.</li>
-            <li><strong>Administration, Facilities &amp; IT Support:</strong> Assisted in budget tracking; supervised library aides and volunteers; drafted policies; provided technology support (public computers, Wi-Fi, printing, makerspace); managed textbook/device distribution.</li>
-            <li><strong>Pedagogical &amp; Teaching (School Librarian):</strong> Delivered structured lessons on research skills, media literacy, and digital citizenship; co-planned with classroom teachers; conducted reader’s advisory; organized reading incentives and book fairs; supported diverse learning needs (ELL, hi-lo readers).</li>
-            <li><span class="highlight-badge">Achievement:</span> Reduced misfiling by 60%; digitized 5+ years of records; grew ICT club by 45%.</li>
+            <li><strong>Collection Management:</strong> Needs assessment, acquisition, cataloging MARC21/AACR2/RDA/DDC, weeding.</li>
+            <li><strong>Reference &amp; Information:</strong> In-person/email reference, information literacy, remote access.</li>
+            <li><strong>Circulation &amp; Patron:</strong> Patron accounts, check-in/out, holds, fines, ILL.</li>
+            <li><strong>Programming &amp; Outreach:</strong> Literacy programs, book clubs, career workshops, marketing.</li>
+            <li><strong>Administration &amp; IT:</strong> Budget tracking, staff supervision, policy drafting, tech support.</li>
+            <li><span class="highlight-badge" style="animation: rollBadge 5s infinite alternate;">60% misfiling reduction</span></li>
           </ul>
         </div>
 
-        <!-- 2. System Librarian (KNLS Nakuru) -->
         <div class="exp-item">
           <div class="exp-header">
-            <h3>System Librarian</h3>
+            <h3><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a' width='20' height='20'%3E%3Cpath d='M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z'/%3E%3C/svg%3E" alt="computer" style="width:20px;height:20px;display:inline;vertical-align:middle;margin-right:4px;"/> System Librarian</h3>
             <span class="company">Kenya National Library Service, Nakuru</span>
             <span class="date">May 2024 – Aug 2024</span>
           </div>
           <ul class="exp-desc">
-            <li><strong>Collection Management:</strong> Assisted in records inventory and archival management; supported digital cataloguing using MARC21, AACR2, and DDC; performed physical processing and maintenance of government publications.</li>
-            <li><strong>Reference &amp; Information Services:</strong> Provided direct reference and research guidance; delivered training on database navigation and information literacy to staff and community members.</li>
-            <li><strong>Circulation &amp; Patron Services:</strong> Managed user accounts, check-in/out, and interlibrary loan requests; handled fines and resolved patron issues.</li>
-            <li><strong>Community Outreach:</strong> Designed and delivered accessible ICT programs for persons with disabilities; conducted information literacy sessions.</li>
-            <li><strong>Administration &amp; IT Support:</strong> Provided end-user IT support; assisted with budget and policy adherence; supervised volunteer staff.</li>
-            <li><span class="highlight-badge">Achievement:</span> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</li>
+            <li><strong>Collection:</strong> Records inventory, archival management, digital cataloguing MARC21/AACR2.</li>
+            <li><strong>Reference &amp; Training:</strong> Direct reference, database navigation, information literacy.</li>
+            <li><strong>Circulation &amp; Patron:</strong> User accounts, ILL, fines, dispute resolution.</li>
+            <li><strong>Outreach:</strong> ICT programs for persons with disabilities, literacy sessions.</li>
+            <li><span class="highlight-badge" style="animation: rollBadge 7s infinite alternate;">25% retrieval improvement</span></li>
           </ul>
         </div>
 
-        <!-- 3. Assistant Librarian Intern (Meru Law Courts) -->
         <div class="exp-item">
           <div class="exp-header">
-            <h3>Assistant Librarian Intern</h3>
+            <h3><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a' width='20' height='20'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="book" style="width:20px;height:20px;display:inline;vertical-align:middle;margin-right:4px;"/> Assistant Librarian Intern</h3>
             <span class="company">Meru Law Courts, Meru</span>
             <span class="date">May 2023 – Aug 2023</span>
           </div>
           <ul class="exp-desc">
-            <li><strong>Collection Management:</strong> Organized, classified, and secured court case files and legal documents; digitized and catalogued over 500 historical files using Koha ILS (MARC21, AACR2/RDA); performed physical processing and preservation.</li>
-            <li><strong>Reference &amp; Information Services:</strong> Provided reference services to judges, magistrates, and legal researchers; managed online legal databases and e-resources; trained staff on effective search strategies.</li>
-            <li><strong>Circulation &amp; Patron Services:</strong> Managed circulation of legal materials, interlibrary loan, and maintained accurate records.</li>
-            <li><strong>Administration &amp; IT Support:</strong> Assisted in circulation reports, inventory checks, and general library administration; ensured strict data protection and confidentiality.</li>
-            <li><span class="highlight-badge">Key achievement:</span> Digitized and indexed 500+ court files, improving retrieval efficiency by 30%.</li>
+            <li><strong>Collection:</strong> Organized court files, digitized 500+ files using Koha ILS (MARC21/RDA).</li>
+            <li><strong>Reference:</strong> Reference for judges &amp; legal researchers, online legal databases.</li>
+            <li><strong>Circulation:</strong> Legal materials circulation, ILL, accurate records.</li>
+            <li><span class="highlight-badge" style="animation: rollBadge 5.5s infinite alternate;">30% retrieval efficiency</span></li>
           </ul>
         </div>
-      </section>
+      </div>
 
-      <!-- Education -->
-      <section>
+      <!-- TAB 3: Skills -->
+      <div id="tab-skills" class="tab-content" role="tabpanel">
+        <h2><i class="fas fa-cogs"></i> Core competencies</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem 0.8rem; margin-bottom: 1.5rem;">
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">ISO 15489</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Collection Development</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">EDMS &amp; Digitization</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Cybersecurity</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Python/SQL/Bash</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Power BI</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">ICT Curriculum</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Robotics &amp; Coding</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Information Literacy</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Public Speaking</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Staff Supervision</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">AI Literacy</span>
+        </div>
+        <h2 style="margin-top:1.2rem;">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e2f3f' width='22' height='22'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="book" style="width:22px;height:22px;display:inline;vertical-align:middle;margin-right:6px;"/>
+          Cataloguing &amp; DBMS
+        </h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem 0.8rem;">
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">MARC21</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">AACR2</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">RDA</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">DDC</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">LCC</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Koha ILS</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">MySQL</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">SQLite</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">EDMS</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">MARC XML</span>
+          <span class="skill-tag" style="font-size:0.9rem; padding:0.4rem 1.2rem;">Z39.50</span>
+        </div>
+        <div class="icon-row" style="margin-top:1rem;">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="books" style="width:28px;height:28px;"/>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a'%3E%3Cpath d='M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z'/%3E%3C/svg%3E" alt="computer" style="width:28px;height:28px;"/>
+          <span style="font-size:0.9rem; color:#2c5f7a;"><i class="fas fa-tag"></i> MARC21 · AACR2 · RDA · DDC · LCC</span>
+          <span style="font-size:0.9rem; color:#2c5f7a;"><i class="fas fa-database"></i> MySQL · SQLite · Koha · EDMS</span>
+        </div>
+      </div>
+
+      <!-- TAB 4: Education -->
+      <div id="tab-education" class="tab-content" role="tabpanel">
         <h2><i class="fas fa-graduation-cap" style="margin-right: 8px;"></i> Education</h2>
         <div class="edu-item">
-          <span class="edu-detail">BSc Information Science · Meru University of Science &amp; Technology</span>
+          <span class="edu-detail"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a' width='18' height='18'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="book" style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;"/> BSc Information Science · Meru University of Science &amp; Technology</span>
           <span class="edu-meta">2020 – 2024</span>
         </div>
         <div class="edu-item" style="border-bottom: none;">
-          <span class="edu-detail">Kenya Certificate of Secondary Education · Nyarach Mixed Day Secondary</span>
+          <span class="edu-detail"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a' width='18' height='18'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="book" style="width:18px;height:18px;display:inline;vertical-align:middle;margin-right:6px;"/> Kenya Certificate of Secondary Education · Nyarach Mixed Day Secondary</span>
           <span class="edu-meta">2015 – 2019 · Grade C+</span>
         </div>
-      </section>
+        <h2 style="margin-top:1.5rem;"><i class="fas fa-certificate"></i> Certifications</h2>
+        <div style="font-size:0.95rem; padding:0.3rem 0;"><i class="fas fa-check-circle" style="color:#2c5f7a;width:1.4rem;"></i> Advanced Cybersecurity – Great Learning (2025)</div>
+        <div style="font-size:0.95rem; padding:0.3rem 0;"><i class="fas fa-check-circle" style="color:#2c5f7a;width:1.4rem;"></i> Data Visualization with Power BI (2022)</div>
+        <div style="font-size:0.95rem; padding:0.3rem 0;"><i class="fas fa-check-circle" style="color:#2c5f7a;width:1.4rem;"></i> Cyber Forensics (2025)</div>
+        <div style="font-size:0.95rem; padding:0.3rem 0;"><i class="fas fa-check-circle" style="color:#2c5f7a;width:1.4rem;"></i> Infection Prevention &amp; Control (2026)</div>
+        <div style="font-size:0.95rem; padding:0.3rem 0;"><i class="fas fa-check-circle" style="color:#2c5f7a;width:1.4rem;"></i> ADHD Awareness (2026)</div>
+        <div style="font-size:0.95rem; padding:0.3rem 0;"><i class="fas fa-check-circle" style="color:#2c5f7a;width:1.4rem;"></i> Fire Safety Training (2025)</div>
+      </div>
 
-      <!-- Projects & training -->
-      <section>
+      <!-- TAB 5: Projects -->
+      <div id="tab-projects" class="tab-content" role="tabpanel">
         <h2><i class="fas fa-project-diagram"></i> Projects &amp; training</h2>
-        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-          <div><strong>Lukenya Voting System</strong> (Feb 2025 &amp; 2026) · HTML5, CSS3, JavaScript, PHP, <strong>MySQL</strong> – 100% uptime, 300+ voters, 28% YoY increase.</div>
-          <div><strong>AI Literacy for Students</strong> (Lukenya) – 6‑week workshop for 60+ students; integrated MARC/RDA concepts for resource discovery.</div>
-          <div><strong>Digital &amp; Information Literacy</strong> (KNLS Nakuru) – monthly sessions for 40+ community members; included bibliographic format and database searching.</div>
-          <div><strong>Staff Training: AI in Library Services</strong> – 2‑day training on AI tools for cataloguing (MARC21, RDA), reference, and analytics.</div>
-          <div><span class="marc-highlight"><i class="fas fa-tag"></i> MARC21 · AACR2 · RDA · DDC · LCC</span> 
-            <span class="marc-highlight"><i class="fas fa-database"></i> MySQL · SQLite · Koha · EDMS</span>
-          </div>
+        <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+          <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a' width='20' height='20'%3E%3Cpath d='M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z'/%3E%3C/svg%3E" alt="computer" style="width:20px;height:20px;display:inline;vertical-align:middle;margin-right:6px;"/> <strong>Lukenya Voting System</strong> (2025/2026) · HTML, CSS, JS, PHP, <strong>MySQL</strong> – 300+ voters, 28% YoY increase.</div>
+          <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a' width='20' height='20'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="book" style="width:20px;height:20px;display:inline;vertical-align:middle;margin-right:6px;"/> <strong>AI Literacy for Students</strong> – 6‑week workshop, 60+ students, MARC/RDA integration.</div>
+          <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a' width='20' height='20'%3E%3Cpath d='M4 6h16v2H4V6zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm13 0h3v2h-3v-2zm-3 4h6v2h-6v-2z'/%3E%3C/svg%3E" alt="book" style="width:20px;height:20px;display:inline;vertical-align:middle;margin-right:6px;"/> <strong>Digital &amp; Information Literacy</strong> (KNLS) – monthly sessions for 40+ community members.</div>
+          <div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c5f7a' width='20' height='20'%3E%3Cpath d='M20 18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z'/%3E%3C/svg%3E" alt="computer" style="width:20px;height:20px;display:inline;vertical-align:middle;margin-right:6px;"/> <strong>Staff Training: AI in Library Services</strong> – 2‑day MARC21/RDA &amp; analytics training.</div>
         </div>
-      </section>
-
-      <!-- Referees -->
-      <section style="margin-top: 0.8rem;">
-        <h2><i class="fas fa-address-book"></i> Referees</h2>
-        <div class="ref-item"><strong>Silas Otieno</strong> – Head of Department, Humanities, Consolata School Nairobi · +254 707 445 341</div>
-        <div class="ref-item"><strong>Collins Kirui</strong> – Dean of Students &amp; Head of Exams, Lukenya British School · +254 702 194 494</div>
+        <h2 style="margin-top:1.5rem;"><i class="fas fa-address-book"></i> Referees</h2>
+        <div class="ref-item"><strong>Silas Otieno</strong> – Head of Humanities, Consolata School Nairobi · +254 707 445 341</div>
+        <div class="ref-item"><strong>Collins Kirui</strong> – Dean of Students, Lukenya British School · +254 702 194 494</div>
         <div class="ref-item" style="border-bottom: none;"><strong>George Okoth</strong> – Priest &amp; US Army Officer · +1 210 753 5656</div>
-      </section>
+      </div>
 
-      <div style="height: 0.2rem;"></div>
     </main>
   </div>
 
-  <!-- PDF Download Script -->
+  <!-- Tab switching script + Passcode-protected PDF -->
   <script>
+    // Tab switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        this.classList.add('active');
+        const target = document.getElementById(this.dataset.tab);
+        if (target) target.classList.add('active');
+      });
+    });
+
+    // PDF Download with passcode "2020"
     document.getElementById('downloadPDF').addEventListener('click', function () {
-      const element = document.getElementById('cv-content');
-      // Use html2pdf to generate PDF with A4-like dimensions
-      html2pdf()
-        .set({
-          margin:        [0.5, 0.5, 0.5, 0.5], // top, right, bottom, left (in units)
-          filename:      'Otieno_Celestino_Onyango_CV.pdf',
-          image:         { type: 'jpeg', quality: 0.98 },
-          html2canvas:   { scale: 2, letterRendering: true, useCORS: true },
-          jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' }
-        })
-        .from(element)
-        .save();
+      const passcode = prompt('🔒 Enter passcode to download CV:');
+      if (passcode === '2020') {
+        const element = document.getElementById('cv-content');
+        html2pdf()
+          .set({
+            margin:        [0.5, 0.5, 0.5, 0.5],
+            filename:      'Otieno_Celestino_Onyango_CV.pdf',
+            image:         { type: 'jpeg', quality: 0.98 },
+            html2canvas:   { scale: 2, letterRendering: true, useCORS: true },
+            jsPDF:         { unit: 'in', format: 'a4', orientation: 'portrait' }
+          })
+          .from(element)
+          .save();
+      } else if (passcode !== null) {
+        alert('❌ Incorrect passcode. Access denied.');
+      }
     });
   </script>
 
