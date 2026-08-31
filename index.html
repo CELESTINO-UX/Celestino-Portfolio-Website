@@ -720,7 +720,7 @@
         }
 
         /* ===========================================================
-           PDF GENERATOR
+           PDF GENERATOR - FIXED VERSION
         =========================================================== */
         async function downloadPDF(type) {
             const buttons = document.querySelectorAll('.btn');
@@ -739,59 +739,69 @@
             buttons.forEach(b => { b.classList.add('loading');
                 b.disabled = true; });
 
-            let tempDiv = null;
             try {
-                const original = document.getElementById('resume-content');
-                if (!original) throw new Error('Content not found.');
+                // Get the main container
+                const mainContainer = document.getElementById('resume-content');
+                if (!mainContainer) throw new Error('Content not found.');
 
-                const clone = original.cloneNode(true);
+                // Create a wrapper for the PDF content
+                const wrapper = document.createElement('div');
+                wrapper.style.cssText = 'background: #ffffff; padding: 40px 48px; max-width: 1000px; margin: 0 auto; font-family: "Segoe UI", Roboto, system-ui, sans-serif; color: #1e2b37; line-height: 1.6;';
 
-                // remove toolbar
-                const toolbar = clone.querySelector('.toolbar');
-                if (toolbar) toolbar.remove();
+                // Clone the content we need
+                let contentToRender;
 
-                // resume only → remove cover section
                 if (type === 'resume') {
-                    const coverSec = clone.querySelector('#cover-section');
-                    if (coverSec) coverSec.remove();
+                    // Only resume content
+                    contentToRender = mainContainer.cloneNode(true);
+                    // Remove toolbar
+                    const tb = contentToRender.querySelector('.toolbar');
+                    if (tb) tb.remove();
+                    // Remove cover section
+                    const cs = contentToRender.querySelector('#cover-section');
+                    if (cs) cs.remove();
+                    // Remove any buttons
+                    contentToRender.querySelectorAll('button').forEach(b => b.remove());
+                    wrapper.appendChild(contentToRender);
+                } else if (type === 'cover') {
+                    // Only cover letter content
+                    const coverSection = document.getElementById('cover-section');
+                    if (!coverSection) throw new Error('Cover section not found.');
+                    const coverClone = coverSection.cloneNode(true);
+                    // Remove the h3 heading from the clone
+                    const heading = coverClone.querySelector('h3');
+                    if (heading) heading.remove();
+                    // Also remove any buttons
+                    coverClone.querySelectorAll('button').forEach(b => b.remove());
+                    wrapper.appendChild(coverClone);
+                } else {
+                    // Both: full content minus toolbar
+                    contentToRender = mainContainer.cloneNode(true);
+                    const tb = contentToRender.querySelector('.toolbar');
+                    if (tb) tb.remove();
+                    contentToRender.querySelectorAll('button').forEach(b => b.remove());
+                    wrapper.appendChild(contentToRender);
                 }
 
-                // cover only → remove resume body + header + footer, and cover heading
-                if (type === 'cover') {
-                    const resumeBody = clone.querySelector('#resume-body');
-                    if (resumeBody) resumeBody.remove();
+                // Create a temporary container in the document
+                const tempDiv = document.createElement('div');
+                tempDiv.style.cssText = 'position: fixed; left: -9999px; top: 0; width: 1000px; background: #ffffff; z-index: -1;';
+                tempDiv.appendChild(wrapper);
+                document.body.appendChild(tempDiv);
 
-                    const header = clone.querySelector('.profile-header');
-                    if (header) header.remove();
+                // Wait for rendering
+                await waitForFonts();
+                await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
 
-                    const footer = clone.querySelector('.footer-note');
-                    if (footer) footer.remove();
-
-                    const coverHeading = clone.querySelector('#cover-section > h3');
-                    if (coverHeading) coverHeading.remove();
-                }
-
-                // remove any leftover buttons
-                clone.querySelectorAll('button').forEach(b => b.remove());
-
-                // filename
+                // Generate filename
                 let filename;
                 if (type === 'resume') filename = 'Celestino_Otieno_Resume.pdf';
                 else if (type === 'cover') filename = 'Celestino_Otieno_Cover_Letter.pdf';
                 else filename = 'Celestino_Otieno_Resume_CoverLetter.pdf';
 
-                // temp container
-                tempDiv = document.createElement('div');
-                tempDiv.style.cssText =
-                    'position:fixed; left:0; top:0; width:800px; max-width:800px; background:#fff; padding:40px; z-index:-9999; opacity:1; pointer-events:none; overflow:visible;';
-                tempDiv.appendChild(clone);
-                document.body.appendChild(tempDiv);
-
-                await waitForFonts();
-                await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
-
+                // PDF options
                 const options = {
-                    margin: [0.5, 0.5, 0.5, 0.5],
+                    margin: [0.4, 0.4, 0.4, 0.4],
                     filename: filename,
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: {
@@ -800,10 +810,8 @@
                         allowTaint: false,
                         logging: false,
                         backgroundColor: '#ffffff',
-                        width: 800,
-                        windowWidth: 800,
-                        scrollX: 0,
-                        scrollY: 0
+                        width: 1000,
+                        windowWidth: 1000
                     },
                     jsPDF: {
                         unit: 'in',
@@ -817,14 +825,17 @@
                     }
                 };
 
+                // Generate PDF
                 await html2pdf().set(options).from(tempDiv).save();
+
+                // Clean up
+                document.body.removeChild(tempDiv);
                 showToast('✅ ' + filename + ' downloaded successfully!');
 
             } catch (err) {
-                console.error(err);
+                console.error('PDF Error:', err);
                 showToast('❌ Error generating PDF. Please try again.', true);
             } finally {
-                if (tempDiv && tempDiv.parentNode) tempDiv.parentNode.removeChild(tempDiv);
                 buttons.forEach(b => { b.classList.remove('loading');
                     b.disabled = false; });
             }
