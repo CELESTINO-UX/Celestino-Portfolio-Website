@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Celestino Otieno · Librarian &amp; ICT Educator</title>
 
-    <!-- html2pdf library -->
+    <!-- html2pdf library - Using CDN without Cloudflare -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
     </script>
 
@@ -707,7 +707,7 @@
         }
 
         /* ===========================================================
-           PDF GENERATOR - FIXED VERSION
+           PDF GENERATOR
         =========================================================== */
         function generatePDF(type) {
             const buttons = document.querySelectorAll('.btn');
@@ -814,7 +814,7 @@
                 })
                 .catch((err) => {
                     console.error(err);
-                    document.body.removeChild(tempDiv);
+                    if (tempDiv.parentNode) document.body.removeChild(tempDiv);
                     showToast('❌ Error generating PDF.', true);
                     buttons.forEach(b => { b.classList.remove('loading');
                         b.disabled = false; });
