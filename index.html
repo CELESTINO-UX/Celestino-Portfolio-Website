@@ -1,46 +1,29 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Celestino Otieno · Librarian &amp; ICT Educator</title>
 
-    <title>Celestino Otieno · Librarian & ICT Educator</title>
-
-    <!-- html2pdf.js -->
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
-        crossorigin="anonymous">
+    <!-- html2pdf library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
     </script>
 
     <style>
-
-        /* =========================================================
-           RESET
-        ========================================================= */
-
+        /* ---------- reset & base ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             background: #f2f6fa;
-            font-family: "Times New Roman", Times, serif;
+            font-family: 'Times New Roman', Times, serif;
             color: #1e2b37;
             line-height: 1.6;
             padding: 30px 20px;
         }
-
-
-        /* =========================================================
-           MAIN CONTAINER
-        ========================================================= */
 
         .container {
             max-width: 1000px;
@@ -49,13 +32,10 @@
             border-radius: 14px;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
             padding: 40px 48px;
+            font-family: 'Times New Roman', Times, serif;
         }
 
-
-        /* =========================================================
-           TOOLBAR
-        ========================================================= */
-
+        /* ---------- download buttons ---------- */
         .toolbar {
             display: flex;
             flex-wrap: wrap;
@@ -63,7 +43,7 @@
             margin-bottom: 28px;
             padding-bottom: 22px;
             border-bottom: 2px solid #e2edf5;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .btn {
@@ -71,32 +51,16 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-
             padding: 12px 28px;
-
             border: none;
             border-radius: 8px;
-
             font-weight: 600;
             font-size: 0.95rem;
-
             cursor: pointer;
-
-            color: #ffffff;
-
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s,
-                opacity 0.2s;
-
+            color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
             min-height: 46px;
-
-            font-family:
-                "Segoe UI",
-                Tahoma,
-                Geneva,
-                Verdana,
-                sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .btn:hover:not(:disabled) {
@@ -104,20 +68,15 @@
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
         }
 
-        .btn:active:not(:disabled) {
-            transform: translateY(0);
-        }
-
         .btn:disabled {
             opacity: 0.6;
-            pointer-events: none;
             cursor: not-allowed;
+            pointer-events: none;
         }
 
         .btn-resume {
             background: #1f6e8c;
         }
-
         .btn-resume:hover:not(:disabled) {
             background: #15536b;
         }
@@ -125,7 +84,6 @@
         .btn-cover {
             background: #0b3b4b;
         }
-
         .btn-cover:hover:not(:disabled) {
             background: #072630;
         }
@@ -133,34 +91,25 @@
         .btn-both {
             background: #1f7a4c;
         }
-
         .btn-both:hover:not(:disabled) {
             background: #145d38;
         }
 
         .btn.loading {
-            opacity: 0.65;
+            opacity: 0.6;
             pointer-events: none;
         }
-
         .btn.loading::after {
             content: " ⏳";
         }
 
-
-        /* =========================================================
-           HEADER
-        ========================================================= */
-
+        /* ---------- header ---------- */
         .profile-header {
             display: flex;
             flex-wrap: wrap;
-
             justify-content: space-between;
             align-items: center;
-
             border-bottom: 3px solid #1f6e8c;
-
             padding-bottom: 18px;
             margin-bottom: 26px;
         }
@@ -168,39 +117,22 @@
         .profile-header .name h1 {
             font-size: 2.3rem;
             font-weight: 700;
-
             color: #0b3b4b;
-
-            letter-spacing: -0.5px;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .profile-header .name .subhead {
             font-size: 1.15rem;
             font-weight: 400;
-
             color: #1f6e8c;
-
             margin-top: 2px;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .contact-strip {
             text-align: right;
             font-size: 0.92rem;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .contact-strip a {
@@ -208,19 +140,11 @@
             text-decoration: none;
         }
 
-        .contact-strip a:hover {
-            text-decoration: underline;
-        }
-
         .contact-strip .item {
             margin-bottom: 2px;
         }
 
-
-        /* =========================================================
-           SECTIONS
-        ========================================================= */
-
+        /* ---------- sections ---------- */
         section {
             margin-bottom: 30px;
         }
@@ -228,222 +152,117 @@
         h3 {
             font-size: 1.3rem;
             font-weight: 600;
-
             color: #0b3b4b;
-
             border-bottom: 2px solid #e2edf5;
-
             padding-bottom: 6px;
             margin-bottom: 14px;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
-
-
-        /* =========================================================
-           SUMMARY
-        ========================================================= */
 
         .summary-box {
             background: #f0f6fc;
-
             padding: 18px 22px;
-
             border-radius: 10px;
-
             border-left: 6px solid #1f6e8c;
-
             font-size: 1rem;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
-
-        /* =========================================================
-           EXPERIENCE
-        ========================================================= */
-
+        /* ---------- experience ---------- */
         .job {
             margin-bottom: 24px;
-
-            page-break-inside: avoid;
-            break-inside: avoid;
         }
 
         .job-head {
             display: flex;
             flex-wrap: wrap;
-
             justify-content: space-between;
             align-items: baseline;
-
             gap: 4px 16px;
-
             margin-bottom: 5px;
         }
 
         .job-head .title {
             font-weight: 700;
             font-size: 1.08rem;
-
             color: #1e2b37;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .job-head .org {
             font-weight: 600;
             color: #1f6e8c;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .job-head .date {
             font-size: 0.9rem;
             color: #5e6f7a;
-
             font-weight: 500;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .job ul {
             list-style: none;
-
             padding-left: 6px;
             margin-top: 4px;
         }
 
         .job ul li {
             position: relative;
-
             padding-left: 24px;
             margin-bottom: 4px;
-
             font-size: 0.97rem;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .job ul li::before {
             content: "▹";
-
             position: absolute;
             left: 0;
-
             color: #1f6e8c;
-
             font-weight: 700;
         }
 
-
-        /* =========================================================
-           SKILLS
-        ========================================================= */
-
+        /* ---------- skills grid ---------- */
         .skills-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 18px 28px;
-        }
-
-        .skill-cat {
-            page-break-inside: avoid;
-            break-inside: avoid;
         }
 
         .skill-cat h4 {
             font-weight: 600;
-
             color: #0b3b4b;
-
             font-size: 1rem;
-
             margin-bottom: 2px;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .skill-cat p {
             font-size: 0.94rem;
-
             color: #2d3f4b;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
-
-        /* =========================================================
-           ACHIEVEMENTS
-        ========================================================= */
-
+        /* ---------- achievements ---------- */
         .badge {
             display: inline-block;
-
             background: #e3eef6;
-
             color: #0b3b4b;
-
             padding: 4px 16px;
-
             border-radius: 30px;
-
             font-size: 0.9rem;
-
             font-weight: 500;
-
             margin: 3px 8px 3px 0;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
-
-        /* =========================================================
-           CERTIFICATIONS
-        ========================================================= */
-
+        /* ---------- certifications ---------- */
         .cert {
             margin-bottom: 7px;
-
             padding-left: 4px;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
-
-            page-break-inside: avoid;
-            break-inside: avoid;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .cert strong {
@@ -455,35 +274,19 @@
             font-size: 0.92rem;
         }
 
-
-        /* =========================================================
-           REFERENCES
-        ========================================================= */
-
+        /* ---------- references ---------- */
         .ref-grid {
             display: grid;
-
             grid-template-columns: 1fr 1fr;
-
             gap: 18px 32px;
         }
 
         .ref-card {
             background: #f8fafc;
-
             padding: 14px 18px;
-
             border-radius: 8px;
-
             border-left: 4px solid #1f6e8c;
-
-            page-break-inside: avoid;
-            break-inside: avoid;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .ref-card strong {
@@ -494,59 +297,35 @@
             font-size: 0.94rem;
         }
 
-
-        /* =========================================================
-           COVER LETTER
-        ========================================================= */
-
+        /* ---------- cover letter ---------- */
         .cover-box {
             background: #f8fafc;
-
             padding: 26px 32px;
-
             border-radius: 10px;
-
             border-left: 6px solid #1f6e8c;
-
             font-size: 0.98rem;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
-
-            page-break-inside: avoid;
-            break-inside: avoid;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .cover-box .cl-head {
             text-align: center;
-
             margin-bottom: 18px;
         }
 
         .cover-box .cl-head h2 {
             color: #0b3b4b;
-
             font-size: 1.4rem;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .cover-box .cl-date {
             text-align: right;
-
             margin-bottom: 12px;
-
             color: #5e6f7a;
         }
 
         .cover-box .cl-greeting {
             font-weight: 600;
-
             margin-bottom: 8px;
         }
 
@@ -560,83 +339,43 @@
 
         .cover-box .cl-signature {
             margin-top: 6px;
-
             font-weight: 600;
-
             color: #0b3b4b;
         }
 
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
+        /* ---------- footer ---------- */
         .footer-note {
             margin-top: 30px;
-
             padding-top: 16px;
-
             border-top: 1px solid #e2edf5;
-
             text-align: center;
-
             font-size: 0.9rem;
-
             color: #5e6f7a;
-
-            font-family:
-                "Times New Roman",
-                Times,
-                serif;
+            font-family: 'Times New Roman', Times, serif;
         }
 
         .footer-note a {
             color: #1f6e8c;
-
             text-decoration: none;
         }
 
-
-        /* =========================================================
-           TOAST
-        ========================================================= */
-
+        /* ---------- toast ---------- */
         .toast {
             position: fixed;
-
             bottom: 30px;
             right: 30px;
-
             background: #1f7a4c;
-
-            color: #ffffff;
-
+            color: #fff;
             padding: 16px 26px;
-
             border-radius: 10px;
-
-            box-shadow:
-                0 6px 24px rgba(0, 0, 0, 0.18);
-
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
             font-weight: 500;
-
             transform: translateY(90px);
-
             opacity: 0;
-
-            transition:
-                all 0.35s ease;
-
+            transition: all 0.35s ease;
             z-index: 99999;
-
             max-width: 420px;
-
-            font-family:
-                "Segoe UI",
-                Tahoma,
-                Geneva,
-                Verdana,
-                sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .toast.show {
@@ -648,94 +387,48 @@
             background: #b03a2e;
         }
 
-
-        /* =========================================================
-           MANUAL PDF PAGE BREAK
-        ========================================================= */
-
-        .pdf-page-break {
-            display: block;
-
-            width: 100%;
-
-            height: 0;
-
-            margin: 0;
-            padding: 0;
-
-            border: 0;
-
-            page-break-after: always;
-            break-after: page;
-        }
-
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
+        /* ---------- responsive ---------- */
         @media (max-width: 700px) {
-
             body {
                 padding: 12px 8px;
             }
-
             .container {
                 padding: 22px 16px;
             }
-
             .profile-header {
                 flex-direction: column;
-
                 align-items: flex-start;
-
                 gap: 8px;
             }
-
             .contact-strip {
                 text-align: left;
-
                 width: 100%;
             }
-
             .ref-grid {
                 grid-template-columns: 1fr;
-
                 gap: 12px;
             }
-
             .profile-header .name h1 {
                 font-size: 1.8rem;
             }
-
             .toolbar {
                 flex-direction: column;
             }
-
             .btn {
                 width: 100%;
             }
-
             .toast {
                 left: 16px;
                 right: 16px;
-
                 bottom: 16px;
-
                 max-width: none;
             }
         }
 
-
-        /* =========================================================
-           PRINT
-        ========================================================= */
-
+        /* ---------- print styles ---------- */
         @media print {
-
             body {
-                background: #ffffff !important;
-
+                background: #fff !important;
                 padding: 0 !important;
                 margin: 0 !important;
             }
@@ -750,13 +443,9 @@
 
             .container {
                 box-shadow: none !important;
-
                 border-radius: 0 !important;
-
                 padding: 25px 35px !important;
-
                 max-width: 100% !important;
-
                 margin: 0 !important;
             }
 
@@ -764,1963 +453,465 @@
                 content: "•" !important;
             }
 
-            .job,
-            .ref-card,
-            .cert,
-            .skill-cat,
-            .cover-box {
-                page-break-inside: avoid !important;
-
-                break-inside: avoid !important;
-            }
-
-            .pdf-page-break {
-                page-break-after: always !important;
-                break-after: page !important;
+            * {
+                font-family: 'Times New Roman', Times, serif !important;
             }
         }
 
+        /* ---------- PDF page break ---------- */
+        .page-break {
+            page-break-after: always;
+            border: none;
+            margin: 0;
+            padding: 0;
+            height: 0;
+            display: block;
+        }
     </style>
 </head>
 
-
 <body>
-
-    <!-- =========================================================
-         MAIN PAGE
-    ========================================================= -->
-
     <div class="container" id="resume-content">
 
-
-        <!-- =====================================================
-             TOOLBAR
-        ====================================================== -->
-
+        <!-- ===== TOOLBAR ===== -->
         <div class="toolbar">
-
-            <button
-                type="button"
-                class="btn btn-resume"
-                onclick="downloadPDF('resume')">
-
-                📄 Resume (2 Pages)
-
-            </button>
-
-
-            <button
-                type="button"
-                class="btn btn-cover"
-                onclick="downloadPDF('cover')">
-
-                📝 Cover Letter (1 Page)
-
-            </button>
-
-
-            <button
-                type="button"
-                class="btn btn-both"
-                onclick="downloadPDF('both')">
-
-                📦 Both (PDF)
-
-            </button>
-
+            <button class="btn btn-resume" onclick="downloadPDF('resume')">📄 Resume (2 Pages)</button>
+            <button class="btn btn-cover" onclick="downloadPDF('cover')">📝 Cover Letter (1 Page)</button>
+            <button class="btn btn-both" onclick="downloadPDF('both')">📦 Both (PDF)</button>
         </div>
 
-
-        <!-- =====================================================
-             HEADER
-        ====================================================== -->
-
+        <!-- ===== HEADER ===== -->
         <header class="profile-header">
-
             <div class="name">
-
-                <h1>
-                    Celestino Otieno
-                </h1>
-
-                <div class="subhead">
-                    School Librarian & ICT Educator
-                </div>
-
+                <h1>Celestino Otieno</h1>
+                <div class="subhead">School Librarian &amp; ICT Educator</div>
             </div>
-
-
             <div class="contact-strip">
-
+                <div class="item">📍 Nairobi, Kenya</div>
+                <div class="item">📧 onyangocelestino@gmail.com</div>
+                <div class="item">📱 +254 714 019 736</div>
                 <div class="item">
-                    📍 Nairobi, Kenya
+                    🔗 <a href="https://linkedin.com/in/celestino-otieno-1146b1203" target="_blank" rel="noopener">linkedin.com/in/celestino-otieno</a>
                 </div>
-
                 <div class="item">
-                    📧 onyangocelestino@gmail.com
+                    🌐 <a href="https://celestino-ux.github.io/Celestino-Portfolio-Website/" target="_blank" rel="noopener">celestino-ux.github.io</a>
                 </div>
-
-                <div class="item">
-                    📱 +254 714 019 736
-                </div>
-
-                <div class="item">
-
-                    🔗
-
-                    <a
-                        href="https://linkedin.com/in/celestino-otieno-1146b1203"
-                        target="_blank"
-                        rel="noopener">
-
-                        linkedin.com/in/celestino-otieno
-
-                    </a>
-
-                </div>
-
-                <div class="item">
-
-                    🌐
-
-                    <a
-                        href="https://celestino-ux.github.io/Celestino-Portfolio-Website/"
-                        target="_blank"
-                        rel="noopener">
-
-                        celestino-ux.github.io
-
-                    </a>
-
-                </div>
-
             </div>
-
         </header>
 
-
-        <!-- =====================================================
-             RESUME BODY
-        ====================================================== -->
-
+        <!-- ===== RESUME BODY ===== -->
         <div id="resume-body">
 
-
-            <!-- =================================================
-                 PROFESSIONAL SUMMARY
-            ================================================== -->
-
+            <!-- Summary -->
             <section>
-
-                <h3>
-                    Professional Summary
-                </h3>
-
+                <h3>Professional Summary</h3>
                 <div class="summary-box">
-
                     Dedicated and passionate School Librarian and ICT Educator with a strong background in information management and technology integration. Proven ability to foster a love for reading and learning among students while enhancing their digital literacy skills. Experienced System Librarian with a keen eye for detail and a commitment to optimizing library systems. Skilled in adapting teaching and library support strategies to accommodate learners across diverse age groups — from early childhood to young adults. Eager to contribute expertise in creating an engaging and resource-rich environment for all learners.
-
                 </div>
-
             </section>
 
-
-            <!-- =================================================
-                 WORK EXPERIENCE
-            ================================================== -->
-
+            <!-- Experience -->
             <section>
-
-                <h3>
-                    Work Experience
-                </h3>
-
+                <h3>Work Experience</h3>
 
                 <div class="job">
-
                     <div class="job-head">
-
-                        <span class="title">
-                            School Librarian & ICT Educator
-                        </span>
-
-                        <span class="org">
-                            Lukenya Academy British School
-                        </span>
-
-                        <span class="date">
-                            Aug 2024 – Present
-                        </span>
-
+                        <span class="title">School Librarian &amp; ICT Educator</span>
+                        <span class="org">Lukenya Academy British School</span>
+                        <span class="date">Aug 2024 – Present</span>
                     </div>
-
-
                     <ul>
-
-                        <li>
-                            Increased student library usage by 30% through innovative programs and engaging activities.
-                        </li>
-
-                        <li>
-                            Facilitated workshops enhancing digital literacy among students.
-                        </li>
-
-                        <li>
-                            Collaborated with teachers to support cross-curricular learning initiatives.
-                        </li>
-
-                        <li>
-                            Managed library resources, ensuring optimal accessibility for all students and staff.
-                        </li>
-
-                        <li>
-                            Trained staff on ICT resources, enhancing overall teaching effectiveness.
-                        </li>
-
-                        <li>
-                            Promoted a culture of reading, resulting in higher student engagement.
-                        </li>
-
-                        <li>
-                            Evaluated and selected diverse materials to enrich the library collection.
-                        </li>
-
-                        <li>
-                            Developed engaging curriculum integrating ICT tools.
-                        </li>
-
-                        <li>
-                            Designed interactive storytelling sessions for younger learners to build foundational reading skills.
-                        </li>
-
-                        <li>
-                            Implemented research-oriented projects and advanced digital literacy modules for older students.
-                        </li>
-
+                        <li>Increased student library usage by 30% through innovative programs and engaging activities.</li>
+                        <li>Facilitated workshops enhancing digital literacy among students.</li>
+                        <li>Collaborated with teachers to support cross-curricular learning initiatives.</li>
+                        <li>Managed library resources, ensuring optimal accessibility for all students and staff.</li>
+                        <li>Trained staff on ICT resources, enhancing overall teaching effectiveness.</li>
+                        <li>Promoted a culture of reading, resulting in higher student engagement.</li>
+                        <li>Evaluated and selected diverse materials to enrich the library collection.</li>
+                        <li>Developed engaging curriculum integrating ICT tools.</li>
+                        <li>Designed interactive storytelling sessions for younger learners to build foundational reading skills.</li>
+                        <li>Implemented research-oriented projects and advanced digital literacy modules for older students.</li>
                     </ul>
-
                 </div>
-
 
                 <div class="job">
-
                     <div class="job-head">
-
-                        <span class="title">
-                            System Librarian
-                        </span>
-
-                        <span class="org">
-                            Kenya National Library Service
-                        </span>
-
-                        <span class="date">
-                            May 2024 – Aug 2024
-                        </span>
-
+                        <span class="title">System Librarian</span>
+                        <span class="org">Kenya National Library Service</span>
+                        <span class="date">May 2024 – Aug 2024</span>
                     </div>
-
-
                     <ul>
-
-                        <li>
-                            Managed library systems, enhancing user access by 30%.
-                        </li>
-
-                        <li>
-                            Trained staff on digital resources, increasing usage by 40%.
-                        </li>
-
-                        <li>
-                            Developed user-friendly interfaces, improving patron satisfaction scores.
-                        </li>
-
-                        <li>
-                            Conducted system audits, identifying and resolving 95% of issues promptly.
-                        </li>
-
-                        <li>
-                            Collaborated with IT to upgrade infrastructure, boosting system reliability.
-                        </li>
-
-                        <li>
-                            Streamlined interlibrary loan processes, cutting turnaround time by 50%.
-                        </li>
-
-                        <li>
-                            Analyzed user data to tailor services, resulting in 20% membership growth.
-                        </li>
-
-                        <li>
-                            Facilitated workshops on information literacy, attracting over 200 participants.
-                        </li>
-
-                        <li>
-                            Led a team to digitize archives, preserving 10,000+ historical documents.
-                        </li>
-
-                        <li>
-                            Delivered digital skills training for older adult patrons and youth-oriented workshops for teenagers.
-                        </li>
-
+                        <li>Managed library systems, enhancing user access by 30%.</li>
+                        <li>Trained staff on digital resources, increasing usage by 40%.</li>
+                        <li>Developed user-friendly interfaces, improving patron satisfaction scores.</li>
+                        <li>Conducted system audits, identifying and resolving 95% of issues promptly.</li>
+                        <li>Collaborated with IT to upgrade infrastructure, boosting system reliability.</li>
+                        <li>Streamlined interlibrary loan processes, cutting turnaround time by 50%.</li>
+                        <li>Analyzed user data to tailor services, resulting in 20% membership growth.</li>
+                        <li>Facilitated workshops on information literacy, attracting over 200 participants.</li>
+                        <li>Led a team to digitize archives, preserving 10,000+ historical documents.</li>
+                        <li>Delivered digital skills training for older adult patrons and youth-oriented workshops for teenagers.</li>
                     </ul>
-
                 </div>
-
 
                 <div class="job">
-
                     <div class="job-head">
-
-                        <span class="title">
-                            Assistant Librarian Intern
-                        </span>
-
-                        <span class="org">
-                            Meru Law Courts
-                        </span>
-
-                        <span class="date">
-                            May 2023 – Aug 2023
-                        </span>
-
+                        <span class="title">Assistant Librarian Intern</span>
+                        <span class="org">Meru Law Courts</span>
+                        <span class="date">May 2023 – Aug 2023</span>
                     </div>
-
-
                     <ul>
-
-                        <li>
-                            Assisted in cataloging over 1,000 new library materials.
-                        </li>
-
-                        <li>
-                            Enhanced user experience by organizing engaging community events.
-                        </li>
-
-                        <li>
-                            Conducted research to support library programs and initiatives.
-                        </li>
-
-                        <li>
-                            Provided exceptional customer service to over 200 library patrons weekly.
-                        </li>
-
-                        <li>
-                            Collaborated with staff to streamline inventory management processes.
-                        </li>
-
-                        <li>
-                            Developed promotional materials that increased event attendance by 30%.
-                        </li>
-
-                        <li>
-                            Trained volunteers on library systems and best practices for efficiency.
-                        </li>
-
-                        <li>
-                            Maintained digital archives, improving access to historical documents.
-                        </li>
-
+                        <li>Assisted in cataloging over 1,000 new library materials.</li>
+                        <li>Enhanced user experience by organizing engaging community events.</li>
+                        <li>Conducted research to support library programs and initiatives.</li>
+                        <li>Provided exceptional customer service to over 200 library patrons weekly.</li>
+                        <li>Collaborated with staff to streamline inventory management processes.</li>
+                        <li>Developed promotional materials that increased event attendance by 30%.</li>
+                        <li>Trained volunteers on library systems and best practices for efficiency.</li>
+                        <li>Maintained digital archives, improving access to historical documents.</li>
                     </ul>
-
                 </div>
-
             </section>
 
+            <!-- PAGE BREAK - Resume Page 1 ends here -->
+            <div class="page-break"></div>
 
-            <!-- =================================================
-                 EXPLICIT RESUME PAGE BREAK
-            ================================================== -->
-
-            <div class="pdf-page-break"></div>
-
-
-            <!-- =================================================
-                 EDUCATION
-            ================================================== -->
-
+            <!-- Education -->
             <section>
-
-                <h3>
-                    Education
-                </h3>
-
+                <h3>Education</h3>
 
                 <div class="job">
-
                     <div class="job-head">
-
-                        <span class="title">
-                            BSc Information Science
-                        </span>
-
-                        <span class="org">
-                            Meru University of Science & Technology
-                        </span>
-
-                        <span class="date">
-                            Nov 2020 – Oct 2024
-                        </span>
-
+                        <span class="title">BSc Information Science</span>
+                        <span class="org">Meru University of Science &amp; Technology</span>
+                        <span class="date">Nov 2020 – Oct 2024</span>
                     </div>
-
                     <ul>
-
-                        <li>
-                            Presented research on
-                            <em>
-                                "Impact of Google Search Algorithm in Students' Decision-Making and Information Retrieval"
-                            </em>
-                        </li>
-
+                        <li>Presented research on <em>"Impact of Google Search Algorithm in Students' Decision-Making and Information Retrieval"</em></li>
                     </ul>
-
                 </div>
-
 
                 <div class="job">
-
                     <div class="job-head">
-
-                        <span class="title">
-                            Kenya Certificate of Secondary Education
-                        </span>
-
-                        <span class="org">
-                            Nyarach Mixed Day Secondary
-                        </span>
-
-                        <span class="date">
-                            Jan 2015 – Nov 2019
-                        </span>
-
+                        <span class="title">Kenya Certificate of Secondary Education</span>
+                        <span class="org">Nyarach Mixed Day Secondary</span>
+                        <span class="date">Jan 2015 – Nov 2019</span>
                     </div>
-
                     <ul>
-
-                        <li>
-                            Led a study group that improved overall class performance by 15%.
-                        </li>
-
-                        <li>
-                            Achieved a mean grade of C+.
-                        </li>
-
+                        <li>Led a study group that improved overall class performance by 15%.</li>
+                        <li>Achieved a mean grade of C+.</li>
                     </ul>
-
                 </div>
-
 
                 <div class="job">
-
                     <div class="job-head">
-
-                        <span class="title">
-                            Primary Education
-                        </span>
-
-                        <span class="org">
-                            Sori Sunrise Academy
-                        </span>
-
-                        <span class="date">
-                            Jan 2006 – Nov 2013
-                        </span>
-
+                        <span class="title">Primary Education</span>
+                        <span class="org">Sori Sunrise Academy</span>
+                        <span class="date">Jan 2006 – Nov 2013</span>
                     </div>
-
                     <ul>
-
-                        <li>
-                            Received Outstanding Future Educator Award for exemplary leadership skills.
-                        </li>
-
-                        <li>
-                            Served as School Headboy, ranking top in leadership.
-                        </li>
-
+                        <li>Received Outstanding Future Educator Award for exemplary leadership skills.</li>
+                        <li>Served as School Headboy, ranking top in leadership.</li>
                     </ul>
-
                 </div>
-
             </section>
 
-
-            <!-- =================================================
-                 SKILLS
-            ================================================== -->
-
+            <!-- Skills -->
             <section>
-
-                <h3>
-                    Skills
-                </h3>
-
-
+                <h3>Skills</h3>
                 <div class="skills-grid">
-
-
                     <div class="skill-cat">
-
-                        <h4>
-                            Library Systems
-                        </h4>
-
-                        <p>
-                            MARC21 · AACR2 · RDA · DDC · LCC · Koha ILS
-                        </p>
-
+                        <h4>Library Systems</h4>
+                        <p>MARC21 · AACR2 · RDA · DDC · LCC · Koha ILS</p>
                     </div>
-
-
                     <div class="skill-cat">
-
-                        <h4>
-                            Technology
-                        </h4>
-
-                        <p>
-                            MySQL · SQLite · EDMS · MARC XML · Z39.50 · ISO 15489 · Cybersecurity
-                        </p>
-
+                        <h4>Technology</h4>
+                        <p>MySQL · SQLite · EDMS · MARC XML · Z39.50 · ISO 15489 · Cybersecurity</p>
                     </div>
-
-
                     <div class="skill-cat">
-
-                        <h4>
-                            Core Competencies
-                        </h4>
-
-                        <p>
-                            Collection Development · Digital Resource Management · Information Literacy · Curriculum Support · Cataloging Systems · Student Engagement · Research Instruction
-                        </p>
-
+                        <h4>Core Competencies</h4>
+                        <p>Collection Development · Digital Resource Management · Information Literacy · Curriculum Support · Cataloging Systems · Student Engagement · Research Instruction</p>
                     </div>
-
-
                     <div class="skill-cat">
-
-                        <h4>
-                            Records Management
-                        </h4>
-
-                        <p>
-                            Classification & Taxonomy · Retention & Disposal Scheduling · Physical & Electronic Storage · Inventory & Appraisal · Archives & Preservation · Digitization · Metadata Creation · Document Control · Audit & Compliance · ISO 15489 · File Plan Development · Vital Records · Information Governance · Access Control · Retrieval Systems · Disaster Recovery · EDMS · Transfer & Disposition · Data Privacy
-                        </p>
-
+                        <h4>Records Management</h4>
+                        <p>Classification &amp; Taxonomy · Retention &amp; Disposal Scheduling · Physical &amp; Electronic Storage · Inventory &amp; Appraisal · Archives &amp; Preservation · Digitization · Metadata Creation · Document Control · Audit &amp; Compliance · ISO 15489 · File Plan Development · Vital Records · Information Governance · Access Control · Retrieval Systems · Disaster Recovery · EDMS · Transfer &amp; Disposition · Data Privacy</p>
                     </div>
-
                 </div>
-
             </section>
 
-
-            <!-- =================================================
-                 ACHIEVEMENTS
-            ================================================== -->
-
+            <!-- Achievements -->
             <section>
-
-                <h3>
-                    Key Achievements
-                </h3>
-
+                <h3>Key Achievements</h3>
                 <div>
-
-                    <span class="badge">
-                        📉 60% misfiling reduction
-                    </span>
-
-                    <span class="badge">
-                        📈 45% ICT club growth
-                    </span>
-
-                    <span class="badge">
-                        ⚡ 25% retrieval improvement
-                    </span>
-
-                    <span class="badge">
-                        🏅 Year Representative at Meru University
-                    </span>
-
+                    <span class="badge">📉 60% misfiling reduction</span>
+                    <span class="badge">📈 45% ICT club growth</span>
+                    <span class="badge">⚡ 25% retrieval improvement</span>
+                    <span class="badge">🏅 Year Representative at Meru University</span>
                 </div>
-
             </section>
 
-
-            <!-- =================================================
-                 CERTIFICATIONS
-            ================================================== -->
-
+            <!-- Certifications -->
             <section>
-
-                <h3>
-                    Certifications & Licenses
-                </h3>
-
-
-                <div class="cert">
-
-                    <strong>
-                        Advanced Cybersecurity
-                    </strong>
-
-                    – Great Learning (2025)
-
-                    <span class="meta">
-                        — Safeguards library digital resources and patron data.
-                    </span>
-
-                </div>
-
-
-                <div class="cert">
-
-                    <strong>
-                        Cyber Forensics
-                    </strong>
-
-                    (2025)
-
-                    <span class="meta">
-                        — Investigates security incidents and ensures database integrity.
-                    </span>
-
-                </div>
-
-
-                <div class="cert">
-
-                    <strong>
-                        Data Visualization with Power BI
-                    </strong>
-
-                    (2022)
-
-                    <span class="meta">
-                        — Analyzes library usage statistics for informed decision-making.
-                    </span>
-
-                </div>
-
-
-                <div class="cert">
-
-                    <strong>
-                        Fire Safety Training
-                    </strong>
-
-                    (2025)
-
-                    <span class="meta">
-                        — Implements fire prevention and emergency response for collections.
-                    </span>
-
-                </div>
-
-
-                <div class="cert">
-
-                    <strong>
-                        Infection Prevention & Control
-                    </strong>
-
-                    (2026)
-
-                    <span class="meta">
-                        — Maintains hygiene standards in shared library spaces.
-                    </span>
-
-                </div>
-
-
-                <div class="cert">
-
-                    <strong>
-                        ADHD Awareness
-                    </strong>
-
-                    (2026)
-
-                    <span class="meta">
-                        — Supports neurodiverse patrons with inclusive library resources.
-                    </span>
-
-                </div>
-
+                <h3>Certifications &amp; Licenses</h3>
+                <div class="cert"><strong>Advanced Cybersecurity</strong> – Great Learning (2025) <span class="meta">— Safeguards library digital resources and patron data.</span></div>
+                <div class="cert"><strong>Cyber Forensics</strong> (2025) <span class="meta">— Investigates security incidents and ensures database integrity.</span></div>
+                <div class="cert"><strong>Data Visualization with Power BI</strong> (2022) <span class="meta">— Analyzes library usage statistics for informed decision-making.</span></div>
+                <div class="cert"><strong>Fire Safety Training</strong> (2025) <span class="meta">— Implements fire prevention and emergency response for collections.</span></div>
+                <div class="cert"><strong>Infection Prevention &amp; Control</strong> (2026) <span class="meta">— Maintains hygiene standards in shared library spaces.</span></div>
+                <div class="cert"><strong>ADHD Awareness</strong> (2026) <span class="meta">— Supports neurodiverse patrons with inclusive library resources.</span></div>
             </section>
 
-
-            <!-- =================================================
-                 HOBBIES
-            ================================================== -->
-
+            <!-- Hobbies -->
             <section>
-
-                <h3>
-                    Hobbies & Interests
-                </h3>
-
-                <p style="
-                    font-size:1.05rem;
-                    font-family:'Times New Roman', Times, serif;
-                ">
-
-                    ⚽ Football
-                    &nbsp;·&nbsp;
-                    💻 Coding
-
-                </p>
-
+                <h3>Hobbies &amp; Interests</h3>
+                <p style="font-size:1.05rem; font-family: 'Times New Roman', Times, serif;">⚽ Football &nbsp;·&nbsp; 💻 Coding</p>
             </section>
 
-
-            <!-- =================================================
-                 REFERENCES
-            ================================================== -->
-
+            <!-- References -->
             <section>
-
-                <h3>
-                    References
-                </h3>
-
-
+                <h3>References</h3>
                 <div class="ref-grid">
-
-
                     <div class="ref-card">
-
-                        <strong>
-                            Silas Otieno
-                        </strong>
-
-                        <br>
-
-                        <span class="detail">
-                            7 Hills International School — Uganda
-                        </span>
-
-                        <br>
-
-                        <span class="detail">
-                            📞 +254707445341
-                        </span>
-
-                        <br>
-
-                        <span class="detail">
-                            ✉️ silasotienozacjimmy@gmail.com
-                        </span>
-
+                        <strong>Silas Otieno</strong><br />
+                        <span class="detail">7 Hills International School — Uganda</span><br />
+                        <span class="detail">📞 +254707445341</span><br />
+                        <span class="detail">✉️ silasotienozacjimmy@gmail.com</span>
                     </div>
-
-
                     <div class="ref-card">
-
-                        <strong>
-                            George Okoth
-                        </strong>
-
-                        <br>
-
-                        <span class="detail">
-                            US Army & Priest
-                        </span>
-
-                        <br>
-
-                        <span class="detail">
-                            📞 +12017535656
-                        </span>
-
-                        <br>
-
-                        <span class="detail">
-                            ✉️ Geokth@yahoo.com
-                        </span>
-
+                        <strong>George Okoth</strong><br />
+                        <span class="detail">US Army &amp; Priest</span><br />
+                        <span class="detail">📞 +12017535656</span><br />
+                        <span class="detail">✉️ Geokth@yahoo.com</span>
                     </div>
-
-
                     <div class="ref-card">
-
-                        <strong>
-                            Colins Kirui
-                        </strong>
-
-                        <br>
-
-                        <span class="detail">
-                            Lukenya British School
-                        </span>
-
-                        <br>
-
-                        <span class="detail">
-                            📞 +254702194494
-                        </span>
-
-                        <br>
-
-                        <span class="detail">
-                            ✉️ kirui.collins@lukenyaschools.ac.ke
-                        </span>
-
+                        <strong>Colins Kirui</strong><br />
+                        <span class="detail">Lukenya British School</span><br />
+                        <span class="detail">📞 +254702194494</span><br />
+                        <span class="detail">✉️ kirui.collins@lukenyaschools.ac.ke</span>
                     </div>
-
                 </div>
-
             </section>
-
         </div>
 
-
-        <!-- =====================================================
-             COVER LETTER
-        ====================================================== -->
-
+        <!-- ===== COVER LETTER ===== -->
         <section id="cover-section">
-
-            <h3>
-                Cover Letter
-            </h3>
-
-
-            <div
-                class="cover-box"
-                id="cover-letter-content">
-
-
+            <h3>Cover Letter</h3>
+            <div class="cover-box" id="cover-letter-content">
                 <div class="cl-head">
-
-                    <h2>
-                        Celestino Otieno
-                    </h2>
-
-                    <p>
-                        School Librarian & ICT Educator
-                    </p>
-
-                    <p>
-                        📍 Nairobi, Kenya |
-                        📧 onyangocelestino@gmail.com |
-                        📱 +254714019736
-                    </p>
-
+                    <h2>Celestino Otieno</h2>
+                    <p>School Librarian &amp; ICT Educator</p>
+                    <p>📍 Nairobi, Kenya | 📧 onyangocelestino@gmail.com | 📱 +254714019736</p>
                 </div>
-
-
-                <div class="cl-date">
-
-                    <p>
-                        August 31, 2026
-                    </p>
-
-                </div>
-
-
-                <div class="cl-greeting">
-
-                    <p>
-                        Dear Hiring Manager,
-                    </p>
-
-                </div>
-
-
+                <div class="cl-date"><p>August 31, 2026</p></div>
+                <div class="cl-greeting"><p>Dear Hiring Manager,</p></div>
                 <div class="cl-body">
-
-                    <p>
-                        I am writing to express my enthusiastic interest in the Assistant Librarian position at your esteemed institution. With a Bachelor of Science in Information Science from Meru University of Science & Technology and hands-on experience as a School Librarian, System Librarian, and Assistant Librarian Intern, I am confident in my ability to contribute meaningfully to your library team.
-                    </p>
-
+                    <p>I am writing to express my enthusiastic interest in the Assistant Librarian position at your esteemed institution. With a Bachelor of Science in Information Science from Meru University of Science &amp; Technology and hands-on experience as a School Librarian, System Librarian, and Assistant Librarian Intern, I am confident in my ability to contribute meaningfully to your library team.</p>
                 </div>
-
-
                 <div class="cl-body">
-
-                    <p>
-                        In my current role as School Librarian & ICT Educator at Lukenya Academy British School, I have successfully increased student library usage by 30% through innovative programs and engaging activities. I have facilitated workshops that enhanced digital literacy among students, collaborated with teachers to support cross-curricular learning, and managed library resources to ensure optimal accessibility for all. My experience at Kenya National Library Service as a System Librarian further honed my skills in managing library systems, training staff on digital resources, and streamlining interlibrary loan processes — cutting turnaround time by 50%.
-                    </p>
-
+                    <p>In my current role as School Librarian &amp; ICT Educator at Lukenya Academy British School, I have successfully increased student library usage by 30% through innovative programs and engaging activities. I have facilitated workshops that enhanced digital literacy among students, collaborated with teachers to support cross-curricular learning, and managed library resources to ensure optimal accessibility for all. My experience at Kenya National Library Service as a System Librarian further honed my skills in managing library systems, training staff on digital resources, and streamlining interlibrary loan processes — cutting turnaround time by 50%.</p>
                 </div>
-
-
                 <div class="cl-body">
-
-                    <p>
-                        I am particularly drawn to this opportunity because of your institution's commitment to fostering a love for reading and learning. My background in records management, cataloging systems (MARC21, AACR2, RDA, DDC, LCC), and digital resource management aligns perfectly with the requirements of this role. I am skilled in adapting my approach to accommodate learners across diverse age groups — from early childhood to young adults — ensuring each student receives age-appropriate guidance and resources.
-                    </p>
-
+                    <p>I am particularly drawn to this opportunity because of your institution's commitment to fostering a love for reading and learning. My background in records management, cataloging systems (MARC21, AACR2, RDA, DDC, LCC), and digital resource management aligns perfectly with the requirements of this role. I am skilled in adapting my approach to accommodate learners across diverse age groups — from early childhood to young adults — ensuring each student receives age-appropriate guidance and resources.</p>
                 </div>
-
-
                 <div class="cl-body">
-
-                    <p>
-                        My certifications in Advanced Cybersecurity, Cyber Forensics, and Data Visualization with Power BI demonstrate my commitment to staying current with emerging technologies and best practices in information management. I am eager to bring my expertise in collection development, information literacy, and student engagement to support your library's mission of creating an engaging and resource-rich environment for all learners.
-                    </p>
-
+                    <p>My certifications in Advanced Cybersecurity, Cyber Forensics, and Data Visualization with Power BI demonstrate my commitment to staying current with emerging technologies and best practices in information management. I am eager to bring my expertise in collection development, information literacy, and student engagement to support your library's mission of creating an engaging and resource-rich environment for all learners.</p>
                 </div>
-
-
                 <div class="cl-body">
-
-                    <p>
-                        I would welcome the opportunity to discuss how my skills and experience can contribute to your team. Thank you for considering my application. I look forward to the possibility of speaking with you soon.
-                    </p>
-
+                    <p>I would welcome the opportunity to discuss how my skills and experience can contribute to your team. Thank you for considering my application. I look forward to the possibility of speaking with you soon.</p>
                 </div>
-
-
-                <div class="cl-closing">
-
-                    <p>
-                        Yours sincerely,
-                    </p>
-
-                </div>
-
-
-                <div class="cl-signature">
-
-                    <p>
-                        Celestino Otieno
-                    </p>
-
-                </div>
-
+                <div class="cl-closing"><p>Yours sincerely,</p></div>
+                <div class="cl-signature"><p>Celestino Otieno</p></div>
             </div>
-
         </section>
 
-
-        <!-- =====================================================
-             FOOTER
-        ====================================================== -->
-
+        <!-- footer -->
         <div class="footer-note">
-
-            onyangocelestino@gmail.com
-
-            &nbsp;·&nbsp;
-
-            <a
-                href="https://celestino-ux.github.io/Celestino-Portfolio-Website/"
-                target="_blank"
-                rel="noopener">
-
-                celestino-ux.github.io
-
-            </a>
-
+            onyangocelestino@gmail.com &nbsp;·&nbsp;
+            <a href="https://celestino-ux.github.io/Celestino-Portfolio-Website/" target="_blank" rel="noopener">celestino-ux.github.io</a>
         </div>
-
     </div>
 
-
-    <!-- =========================================================
-         TOAST
-    ========================================================= -->
-
-    <div
-        class="toast"
-        id="toast"
-        role="status"
-        aria-live="polite">
-
-        ✅ Download Complete!
-
-    </div>
-
-
-    <!-- =========================================================
-         PDF JAVASCRIPT
-    ========================================================= -->
+    <!-- toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite">✅ Download Complete!</div>
 
     <script>
-
-        /* =========================================================
+        /* ===========================================================
            TOAST
-        ========================================================= */
-
+        =========================================================== */
         function showToast(message, isError = false) {
-
-            const toast =
-                document.getElementById("toast");
-
-            if (!toast) {
-                alert(message);
-                return;
-            }
-
-            toast.textContent =
-                message || "✅ Download Complete!";
-
-            toast.className = "toast";
-
-            if (isError) {
-                toast.classList.add("error");
-            }
-
-            toast.classList.add("show");
-
+            const toast = document.getElementById('toast');
+            if (!toast) { alert(message); return; }
+            toast.textContent = message || '✅ Download Complete!';
+            toast.className = 'toast';
+            if (isError) toast.classList.add('error');
+            toast.classList.add('show');
             clearTimeout(toast._timer);
-
-            toast._timer = setTimeout(() => {
-
-                toast.classList.remove("show");
-
-            }, 4500);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 4500);
         }
 
+        /* ===========================================================
+           PDF GENERATOR - SIMPLE & RELIABLE
+        =========================================================== */
+        function downloadPDF(type) {
+            const buttons = document.querySelectorAll('.btn');
 
-        /* =========================================================
-           WAIT FOR RENDERING
-        ========================================================= */
-
-        async function waitForRender() {
-
-            /*
-             * Wait for fonts.
-             */
-            if (
-                document.fonts &&
-                document.fonts.ready
-            ) {
-
-                try {
-
-                    await document.fonts.ready;
-
-                } catch (error) {
-
-                    console.warn(
-                        "Font loading warning:",
-                        error
-                    );
-                }
+            // Check if html2pdf is loaded
+            if (typeof html2pdf === 'undefined') {
+                showToast('❌ PDF library failed to load. Please refresh and try again.', true);
+                return;
             }
 
-
-            /*
-             * Wait for browser layout.
-             */
-            await new Promise(resolve => {
-
-                requestAnimationFrame(() => {
-
-                    requestAnimationFrame(resolve);
-
-                });
-
-            });
-
-
-            /*
-             * Give html2canvas time to calculate
-             * final dimensions.
-             */
-            await new Promise(resolve =>
-                setTimeout(resolve, 350)
-            );
-        }
-
-
-        /* =========================================================
-           CREATE CLEAN PDF SOURCE
-        ========================================================= */
-
-        function createPDFSource(type) {
-
-            const original =
-                document.getElementById(
-                    "resume-content"
-                );
-
-            if (!original) {
-                throw new Error(
-                    "Resume content not found."
-                );
+            if (!['resume', 'cover', 'both'].includes(type)) {
+                showToast('❌ Invalid option.', true);
+                return;
             }
 
+            // Disable buttons
+            buttons.forEach(b => { b.classList.add('loading');
+                b.disabled = true; });
 
-            /*
-             * Clone only once.
-             */
-            const clone =
-                original.cloneNode(true);
+            // Get the container
+            const container = document.getElementById('resume-content');
+            if (!container) {
+                showToast('❌ Content not found.', true);
+                buttons.forEach(b => { b.classList.remove('loading');
+                    b.disabled = false; });
+                return;
+            }
 
+            // Clone the container
+            const clone = container.cloneNode(true);
 
-            /*
-             * Remove toolbar.
-             */
-            clone
-                .querySelectorAll(".toolbar")
-                .forEach(element => {
-                    element.remove();
-                });
+            // Remove toolbar from clone
+            const toolbar = clone.querySelector('.toolbar');
+            if (toolbar) toolbar.remove();
 
+            // Remove all buttons
+            clone.querySelectorAll('button').forEach(b => b.remove());
 
-            /*
-             * Remove buttons.
-             */
-            clone
-                .querySelectorAll("button")
-                .forEach(element => {
-                    element.remove();
-                });
+            // Handle different types
+            if (type === 'resume') {
+                // Remove cover section
+                const coverSec = clone.querySelector('#cover-section');
+                if (coverSec) coverSec.remove();
 
-
-            /* =====================================================
-               RESUME
-            ====================================================== */
-
-            if (type === "resume") {
-
-                /*
-                 * Remove cover letter.
-                 */
-                const cover =
-                    clone.querySelector(
-                        "#cover-section"
-                    );
-
-                if (cover) {
-                    cover.remove();
-                }
-
-
-                /*
-                 * Remove footer.
-                 */
-                const footer =
-                    clone.querySelector(
-                        ".footer-note"
-                    );
-
-                if (footer) {
-                    footer.remove();
-                }
-
-
-                /*
-                 * Keep explicit page break.
-                 */
-                const pageBreak =
-                    clone.querySelector(
-                        ".pdf-page-break"
-                    );
-
+                // Keep page break for 2-page resume
+                const pageBreak = clone.querySelector('.page-break');
                 if (pageBreak) {
-
-                    pageBreak.style.display =
-                        "block";
-
-                    pageBreak.style.height =
-                        "0px";
-
-                    pageBreak.style.margin =
-                        "0";
-
-                    pageBreak.style.padding =
-                        "0";
-
-                    pageBreak.style.border =
-                        "0";
-
-                    pageBreak.style.pageBreakAfter =
-                        "always";
-
-                    pageBreak.style.breakAfter =
-                        "page";
-                }
-            }
-
-
-            /* =====================================================
-               COVER LETTER
-            ====================================================== */
-
-            if (type === "cover") {
-
-                /*
-                 * Remove resume.
-                 */
-                const resume =
-                    clone.querySelector(
-                        "#resume-body"
-                    );
-
-                if (resume) {
-                    resume.remove();
+                    pageBreak.style.display = 'block';
+                    pageBreak.style.pageBreakAfter = 'always';
                 }
 
-
-                /*
-                 * Remove header.
-                 */
-                const header =
-                    clone.querySelector(
-                        ".profile-header"
-                    );
-
-                if (header) {
-                    header.remove();
-                }
-
-
-                /*
-                 * Remove footer.
-                 */
-                const footer =
-                    clone.querySelector(
-                        ".footer-note"
-                    );
-
-                if (footer) {
-                    footer.remove();
-                }
-
-
-                /*
-                 * Remove page breaks.
-                 */
-                clone
-                    .querySelectorAll(
-                        ".pdf-page-break"
-                    )
-                    .forEach(element => {
-                        element.remove();
-                    });
-
-
-                /*
-                 * Remove section heading.
-                 */
-                const coverSection =
-                    clone.querySelector(
-                        "#cover-section"
-                    );
-
-                if (coverSection) {
-
-                    const heading =
-                        coverSection.querySelector(
-                            "h3"
-                        );
-
-                    if (heading) {
-                        heading.remove();
-                    }
-                }
-            }
-
-
-            /* =====================================================
-               BOTH
-            ====================================================== */
-
-            if (type === "both") {
-
-                /*
-                 * Remove the resume's manual page break.
-                 *
-                 * This allows the entire combined document to
-                 * paginate naturally.
-                 */
-                clone
-                    .querySelectorAll(
-                        ".pdf-page-break"
-                    )
-                    .forEach(element => {
-                        element.remove();
-                    });
-            }
-
-
-            /*
-             * Reset the cloned outer container.
-             */
-            clone.style.width =
-                "100%";
-
-            clone.style.maxWidth =
-                "none";
-
-            clone.style.minWidth =
-                "0";
-
-            clone.style.margin =
-                "0";
-
-            clone.style.padding =
-                "0";
-
-            clone.style.background =
-                "#ffffff";
-
-            clone.style.borderRadius =
-                "0";
-
-            clone.style.boxShadow =
-                "none";
-
-            clone.style.boxSizing =
-                "border-box";
-
-
-            /*
-             * Make everything visible.
-             */
-            clone
-                .querySelectorAll("*")
-                .forEach(element => {
-
-                    element.style.visibility =
-                        "visible";
-
-                    element.style.opacity =
-                        "1";
-
-                    element.style.fontFamily =
-                        '"Times New Roman", Times, serif';
-
-                });
-
-
-            return clone;
-        }
-
-
-        /* =========================================================
-           PDF GENERATOR
-        ========================================================= */
-
-        async function downloadPDF(type) {
-
-            const buttons =
-                document.querySelectorAll(
-                    ".btn"
-                );
-
-
-            /*
-             * Check library.
-             */
-            if (
-                typeof html2pdf ===
-                "undefined"
-            ) {
-
-                showToast(
-                    "❌ PDF library failed to load. Please refresh the page.",
-                    true
-                );
-
-                return;
-            }
-
-
-            /*
-             * Validate type.
-             */
-            if (
-                ![
-                    "resume",
-                    "cover",
-                    "both"
-                ].includes(type)
-            ) {
-
-                showToast(
-                    "❌ Invalid PDF option.",
-                    true
-                );
-
-                return;
-            }
-
-
-            /*
-             * Prevent multiple simultaneous downloads.
-             */
-            buttons.forEach(button => {
-
-                button.disabled = true;
-
-                button.classList.add(
-                    "loading"
-                );
-
-            });
-
-
-            let exportContainer = null;
-            let exportStyle = null;
-
-
-            try {
-
-                /*
-                 * Create clean source.
-                 */
-                const clone =
-                    createPDFSource(type);
-
-
-                /*
-                 * Create temporary export wrapper.
-                 *
-                 * IMPORTANT:
-                 * This uses normal document flow.
-                 * It does NOT use position: fixed.
-                 */
-                exportContainer =
-                    document.createElement(
-                        "div"
-                    );
-
-                exportContainer.id =
-                    "pdf-export-container";
-
-
-                exportContainer.style.cssText = `
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    width: 794px;
-                    margin: 0;
-                    padding: 40px 48px;
-                    background: #ffffff;
-                    box-sizing: border-box;
-                    z-index: -1000;
-                    overflow: visible;
-                    font-family: "Times New Roman", Times, serif;
-                `;
-
-
-                exportContainer.appendChild(
-                    clone
-                );
-
-
-                /*
-                 * Add temporary PDF CSS.
-                 */
-                exportStyle =
-                    document.createElement(
-                        "style"
-                    );
-
-                exportStyle.id =
-                    "pdf-export-style";
-
-
-                exportStyle.textContent = `
-
-                    #pdf-export-container,
-                    #pdf-export-container * {
-                        font-family:
-                            "Times New Roman",
-                            Times,
-                            serif !important;
-
-                        box-sizing:
-                            border-box !important;
-                    }
-
-
-                    #pdf-export-container {
-                        width: 794px !important;
-
-                        max-width: 794px !important;
-
-                        margin: 0 !important;
-
-                        background:
-                            #ffffff !important;
-
-                        box-shadow:
-                            none !important;
-
-                        border-radius:
-                            0 !important;
-                    }
-
-
-                    #pdf-export-container > .container {
-                        width: 100% !important;
-
-                        max-width: none !important;
-
-                        min-width: 0 !important;
-
-                        margin: 0 !important;
-
-                        padding: 0 !important;
-
-                        background:
-                            #ffffff !important;
-
-                        box-shadow:
-                            none !important;
-
-                        border-radius:
-                            0 !important;
-                    }
-
-
-                    #pdf-export-container
-                    .pdf-page-break {
-                        display: block !important;
-
-                        width: 100% !important;
-
-                        height: 0 !important;
-
-                        margin: 0 !important;
-
-                        padding: 0 !important;
-
-                        border: 0 !important;
-
-                        page-break-after:
-                            always !important;
-
-                        break-after:
-                            page !important;
-                    }
-
-
-                    #pdf-export-container
-                    .job,
-                    #pdf-export-container
-                    .ref-card,
-                    #pdf-export-container
-                    .cert,
-                    #pdf-export-container
-                    .skill-cat,
-                    #pdf-export-container
-                    .cover-box {
-                        page-break-inside:
-                            avoid !important;
-
-                        break-inside:
-                            avoid !important;
-                    }
-
-
-                    #pdf-export-container
-                    h3 {
-                        page-break-after:
-                            avoid !important;
-
-                        break-after:
-                            avoid !important;
-                    }
-
-
-                    #pdf-export-container
-                    .toolbar,
-                    #pdf-export-container
-                    button {
-                        display:
-                            none !important;
-                    }
-                `;
-
-
-                document.head.appendChild(
-                    exportStyle
-                );
-
-
-                /*
-                 * Put export container into DOM.
-                 */
-                document.body.appendChild(
-                    exportContainer
-                );
-
-
-                /*
-                 * Wait for layout and fonts.
-                 */
-                await waitForRender();
-
-
-                /*
-                 * Verify dimensions.
-                 */
-                const rect =
-                    exportContainer.getBoundingClientRect();
-
-
-                if (
-                    rect.width < 100 ||
-                    rect.height < 100
-                ) {
-
-                    throw new Error(
-                        "PDF source has invalid dimensions."
-                    );
-                }
-
-
-                /*
-                 * Filename.
-                 */
-                let filename;
-
-
-                if (type === "resume") {
-
-                    filename =
-                        "Celestino_Otieno_Resume.pdf";
-
-                } else if (type === "cover") {
-
-                    filename =
-                        "Celestino_Otieno_Cover_Letter.pdf";
-
-                } else {
-
-                    filename =
-                        "Celestino_Otieno_Resume_CoverLetter.pdf";
-                }
-
-
-                /* =================================================
-                   HTML2PDF CONFIGURATION
-                ================================================== */
-
-                const options = {
-
-                    filename: filename,
-
-
-                    /*
-                     * A4 margins.
-                     */
-                    margin: [
-                        0.45,
-                        0.45,
-                        0.45,
-                        0.45
-                    ],
-
-
-                    image: {
-
-                        type: "jpeg",
-
-                        quality: 0.98
-                    },
-
-
-                    html2canvas: {
-
-                        /*
-                         * High-quality rendering.
-                         */
-                        scale: 2,
-
-                        useCORS: true,
-
-                        allowTaint: false,
-
-                        logging: false,
-
-                        backgroundColor:
-                            "#ffffff",
-
-
-                        /*
-                         * A4 CSS pixel width.
-                         */
-                        width: 794,
-
-                        windowWidth: 794,
-
-
-                        /*
-                         * Do not inherit the user's
-                         * current scroll position.
-                         */
-                        scrollX: 0,
-
-                        scrollY: 0,
-
-
-                        /*
-                         * Handle cloned document.
-                         */
-                        onclone: function(doc) {
-
-                            const source =
-                                doc.getElementById(
-                                    "pdf-export-container"
-                                );
-
-                            if (!source) {
-                                return;
-                            }
-
-
-                            /*
-                             * html2canvas's cloned
-                             * document gets a normal-flow
-                             * source.
-                             */
-                            source.style.position =
-                                "static";
-
-                            source.style.left =
-                                "auto";
-
-                            source.style.top =
-                                "auto";
-
-                            source.style.zIndex =
-                                "auto";
-
-                            source.style.width =
-                                "794px";
-
-                            source.style.minHeight =
-                                "0";
-
-                            source.style.height =
-                                "auto";
-
-
-                            /*
-                             * Ensure content is visible.
-                             */
-                            source
-                                .querySelectorAll("*")
-                                .forEach(
-                                    element => {
-
-                                        element.style.visibility =
-                                            "visible";
-
-                                        element.style.opacity =
-                                            "1";
-
-                                        element.style.fontFamily =
-                                            '"Times New Roman", Times, serif';
-
-                                    }
-                                );
+                // Remove any extra page breaks
+                const extraBreaks = clone.querySelectorAll('.page-break:not(:first-of-type)');
+                extraBreaks.forEach(b => b.remove());
+
+            } else if (type === 'cover') {
+                // Remove everything except cover section
+                const coverSec = clone.querySelector('#cover-section');
+                if (coverSec) {
+                    // Remove the h3 heading
+                    const heading = coverSec.querySelector('h3');
+                    if (heading) heading.remove();
+
+                    // Remove all other sections
+                    const allSections = clone.querySelectorAll('section');
+                    allSections.forEach(section => {
+                        if (section.id !== 'cover-section') {
+                            section.remove();
                         }
+                    });
+
+                    // Remove header
+                    const header = clone.querySelector('.profile-header');
+                    if (header) header.remove();
+
+                    // Remove footer
+                    const footer = clone.querySelector('.footer-note');
+                    if (footer) footer.remove();
+
+                    // Remove all page breaks
+                    const breaks = clone.querySelectorAll('.page-break');
+                    breaks.forEach(b => b.remove());
+                }
+
+            } else {
+                // Both - remove page breaks for cleaner flow
+                const breaks = clone.querySelectorAll('.page-break');
+                breaks.forEach(b => b.remove());
+            }
+
+            // Create temporary container for PDF
+            const tempDiv = document.createElement('div');
+            tempDiv.style.cssText = 'position: fixed; left: 0; top: 0; width: 1000px; background: #ffffff; padding: 40px 48px; z-index: -1; opacity: 0; pointer-events: none; font-family: "Times New Roman", Times, serif;';
+            tempDiv.appendChild(clone);
+            document.body.appendChild(tempDiv);
+
+            // Wait for rendering
+            setTimeout(() => {
+                // Generate filename
+                let filename;
+                if (type === 'resume') filename = 'Celestino_Otieno_Resume.pdf';
+                else if (type === 'cover') filename = 'Celestino_Otieno_Cover_Letter.pdf';
+                else filename = 'Celestino_Otieno_Resume_CoverLetter.pdf';
+
+                // PDF options
+                const options = {
+                    margin: [0.5, 0.5, 0.5, 0.5],
+                    filename: filename,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: false,
+                        logging: false,
+                        backgroundColor: '#ffffff',
+                        width: 1000,
+                        windowWidth: 1000
                     },
-
-
                     jsPDF: {
-
-                        unit: "in",
-
-                        format: "a4",
-
-                        orientation: "portrait",
-
+                        unit: 'in',
+                        format: 'a4',
+                        orientation: 'portrait',
                         compress: true
-                    },
-
-
-                    /*
-                     * IMPORTANT:
-                     * CSS mode only.
-                     *
-                     * We intentionally DO NOT use
-                     * "legacy" because legacy mode can
-                     * duplicate manual page breaks and
-                     * produce blank pages.
-                     */
-                    pagebreak: {
-
-                        mode: ["css"],
-
-                        before: [
-                            ".pdf-page-break"
-                        ],
-
-                        avoid: [
-                            ".job",
-                            ".ref-card",
-                            ".cert",
-                            ".skill-cat",
-                            ".cover-box"
-                        ]
                     }
                 };
 
-
-                /*
-                 * Generate PDF.
-                 */
-                await html2pdf()
+                // Generate PDF
+                html2pdf()
                     .set(options)
-                    .from(exportContainer)
-                    .save();
-
-
-                /*
-                 * Success message.
-                 */
-                showToast(
-                    "✅ " +
-                    filename +
-                    " downloaded successfully!"
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "PDF generation error:",
-                    error
-                );
-
-
-                showToast(
-                    "❌ Unable to generate the PDF. Please try again.",
-                    true
-                );
-
-
-            } finally {
-
-                /*
-                 * Remove temporary container.
-                 */
-                if (
-                    exportContainer &&
-                    exportContainer.parentNode
-                ) {
-
-                    exportContainer
-                        .parentNode
-                        .removeChild(
-                            exportContainer
-                        );
-                }
-
-
-                /*
-                 * Remove temporary CSS.
-                 */
-                if (
-                    exportStyle &&
-                    exportStyle.parentNode
-                ) {
-
-                    exportStyle
-                        .parentNode
-                        .removeChild(
-                            exportStyle
-                        );
-                }
-
-
-                /*
-                 * Emergency cleanup.
-                 */
-                const existing =
-                    document.getElementById(
-                        "pdf-export-container"
-                    );
-
-                if (
-                    existing &&
-                    existing.parentNode
-                ) {
-
-                    existing.parentNode
-                        .removeChild(
-                            existing
-                        );
-                }
-
-
-                /*
-                 * Re-enable buttons.
-                 */
-                buttons.forEach(button => {
-
-                    button.disabled =
-                        false;
-
-                    button.classList.remove(
-                        "loading"
-                    );
-
-                });
-
-            }
+                    .from(tempDiv)
+                    .save()
+                    .then(() => {
+                        // Clean up
+                        if (tempDiv && tempDiv.parentNode) {
+                            tempDiv.parentNode.removeChild(tempDiv);
+                        }
+                        showToast('✅ ' + filename + ' downloaded successfully!');
+                        buttons.forEach(b => { b.classList.remove('loading');
+                            b.disabled = false; });
+                    })
+                    .catch((err) => {
+                        console.error('PDF Error:', err);
+                        if (tempDiv && tempDiv.parentNode) {
+                            tempDiv.parentNode.removeChild(tempDiv);
+                        }
+                        showToast('❌ Error generating PDF. Please try again.', true);
+                        buttons.forEach(b => { b.classList.remove('loading');
+                            b.disabled = false; });
+                    });
+            }, 1000);
         }
 
-
-        /* =========================================================
-           LIBRARY CHECK
-        ========================================================= */
-
-        window.addEventListener(
-            "load",
-            async function() {
-
-                if (
-                    typeof html2pdf ===
-                    "undefined"
-                ) {
-
-                    console.error(
-                        "html2pdf.js was not loaded."
-                    );
-
-                    showToast(
-                        "⚠️ PDF library could not be loaded. Check your internet connection and refresh.",
-                        true
-                    );
-
-                    return;
-                }
-
-
-                /*
-                 * Preload fonts.
-                 */
-                if (
-                    document.fonts &&
-                    document.fonts.ready
-                ) {
-
-                    try {
-
-                        await document.fonts.ready;
-
-                    } catch (error) {
-
-                        console.warn(
-                            "Font loading warning:",
-                            error
-                        );
-                    }
-                }
-
-
-                console.log(
-                    "✅ html2pdf.js is ready."
-                );
+        // Check library on load
+        window.addEventListener('load', function() {
+            if (typeof html2pdf === 'undefined') {
+                console.error('html2pdf.js not loaded.');
+                showToast('⚠️ PDF library loading... Please wait.', false);
+            } else {
+                console.log('html2pdf.js ready.');
             }
-        );
-
+        });
     </script>
-
 </body>
 </html>
-```
