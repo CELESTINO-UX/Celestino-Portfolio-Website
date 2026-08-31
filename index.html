@@ -424,49 +424,6 @@
                 max-width: none;
             }
         }
-
-        /* ---------- print styles ---------- */
-        @media print {
-            body {
-                background: #fff !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
-
-            .toolbar {
-                display: none !important;
-            }
-
-            .toast {
-                display: none !important;
-            }
-
-            .container {
-                box-shadow: none !important;
-                border-radius: 0 !important;
-                padding: 25px 35px !important;
-                max-width: 100% !important;
-                margin: 0 !important;
-            }
-
-            .job ul li::before {
-                content: "•" !important;
-            }
-
-            * {
-                font-family: 'Times New Roman', Times, serif !important;
-            }
-        }
-
-        /* ---------- PDF page break ---------- */
-        .page-break {
-            page-break-after: always;
-            border: none;
-            margin: 0;
-            padding: 0;
-            height: 0;
-            display: block;
-        }
     </style>
 </head>
 
@@ -475,9 +432,9 @@
 
         <!-- ===== TOOLBAR ===== -->
         <div class="toolbar">
-            <button class="btn btn-resume" onclick="downloadPDF('resume')">📄 Resume (2 Pages)</button>
-            <button class="btn btn-cover" onclick="downloadPDF('cover')">📝 Cover Letter (1 Page)</button>
-            <button class="btn btn-both" onclick="downloadPDF('both')">📦 Both (PDF)</button>
+            <button class="btn btn-resume" onclick="generatePDF('resume')">📄 Resume (2 Pages)</button>
+            <button class="btn btn-cover" onclick="generatePDF('cover')">📝 Cover Letter (1 Page)</button>
+            <button class="btn btn-both" onclick="generatePDF('both')">📦 Both (PDF)</button>
         </div>
 
         <!-- ===== HEADER ===== -->
@@ -574,7 +531,7 @@
             </section>
 
             <!-- PAGE BREAK - Resume Page 1 ends here -->
-            <div class="page-break"></div>
+            <div style="page-break-after: always; border: none; margin: 0; padding: 0; height: 0; display: block;"></div>
 
             <!-- Education -->
             <section>
@@ -750,39 +707,28 @@
         }
 
         /* ===========================================================
-           PDF GENERATOR - SIMPLE & RELIABLE
+           PDF GENERATOR - FIXED VERSION
         =========================================================== */
-        function downloadPDF(type) {
+        function generatePDF(type) {
             const buttons = document.querySelectorAll('.btn');
 
-            // Check if html2pdf is loaded
             if (typeof html2pdf === 'undefined') {
-                showToast('❌ PDF library failed to load. Please refresh and try again.', true);
+                showToast('❌ PDF library failed to load. Please refresh.', true);
                 return;
             }
 
-            if (!['resume', 'cover', 'both'].includes(type)) {
-                showToast('❌ Invalid option.', true);
-                return;
-            }
-
-            // Disable buttons
             buttons.forEach(b => { b.classList.add('loading');
                 b.disabled = true; });
 
-            // Get the container
-            const container = document.getElementById('resume-content');
-            if (!container) {
-                showToast('❌ Content not found.', true);
-                buttons.forEach(b => { b.classList.remove('loading');
-                    b.disabled = false; });
-                return;
-            }
+            // Create a clean container for PDF
+            const wrapper = document.createElement('div');
+            wrapper.style.cssText = 'width: 1000px; margin: 0 auto; background: #ffffff; padding: 40px 48px; font-family: "Times New Roman", Times, serif; color: #1e2b37; line-height: 1.6;';
 
-            // Clone the container
+            // Clone the content
+            const container = document.getElementById('resume-content');
             const clone = container.cloneNode(true);
 
-            // Remove toolbar from clone
+            // Remove toolbar
             const toolbar = clone.querySelector('.toolbar');
             if (toolbar) toolbar.remove();
 
@@ -794,124 +740,86 @@
                 // Remove cover section
                 const coverSec = clone.querySelector('#cover-section');
                 if (coverSec) coverSec.remove();
-
                 // Keep page break for 2-page resume
-                const pageBreak = clone.querySelector('.page-break');
-                if (pageBreak) {
-                    pageBreak.style.display = 'block';
-                    pageBreak.style.pageBreakAfter = 'always';
-                }
-
-                // Remove any extra page breaks
-                const extraBreaks = clone.querySelectorAll('.page-break:not(:first-of-type)');
-                extraBreaks.forEach(b => b.remove());
-
             } else if (type === 'cover') {
-                // Remove everything except cover section
+                // Keep only cover section
                 const coverSec = clone.querySelector('#cover-section');
                 if (coverSec) {
-                    // Remove the h3 heading
                     const heading = coverSec.querySelector('h3');
                     if (heading) heading.remove();
 
-                    // Remove all other sections
                     const allSections = clone.querySelectorAll('section');
                     allSections.forEach(section => {
-                        if (section.id !== 'cover-section') {
-                            section.remove();
-                        }
+                        if (section.id !== 'cover-section') section.remove();
                     });
 
-                    // Remove header
                     const header = clone.querySelector('.profile-header');
                     if (header) header.remove();
 
-                    // Remove footer
                     const footer = clone.querySelector('.footer-note');
                     if (footer) footer.remove();
 
-                    // Remove all page breaks
-                    const breaks = clone.querySelectorAll('.page-break');
+                    const breaks = clone.querySelectorAll('[style*="page-break-after"]');
                     breaks.forEach(b => b.remove());
                 }
-
             } else {
                 // Both - remove page breaks for cleaner flow
-                const breaks = clone.querySelectorAll('.page-break');
+                const breaks = clone.querySelectorAll('[style*="page-break-after"]');
                 breaks.forEach(b => b.remove());
             }
 
-            // Create temporary container for PDF
+            wrapper.appendChild(clone);
+
+            // Create temp container
             const tempDiv = document.createElement('div');
-            tempDiv.style.cssText = 'position: fixed; left: 0; top: 0; width: 1000px; background: #ffffff; padding: 40px 48px; z-index: -1; opacity: 0; pointer-events: none; font-family: "Times New Roman", Times, serif;';
-            tempDiv.appendChild(clone);
+            tempDiv.style.cssText = 'position: fixed; left: -9999px; top: 0; z-index: -1;';
+            tempDiv.appendChild(wrapper);
             document.body.appendChild(tempDiv);
 
-            // Wait for rendering
-            setTimeout(() => {
-                // Generate filename
-                let filename;
-                if (type === 'resume') filename = 'Celestino_Otieno_Resume.pdf';
-                else if (type === 'cover') filename = 'Celestino_Otieno_Cover_Letter.pdf';
-                else filename = 'Celestino_Otieno_Resume_CoverLetter.pdf';
+            // Set filename
+            let filename;
+            if (type === 'resume') filename = 'Celestino_Otieno_Resume.pdf';
+            else if (type === 'cover') filename = 'Celestino_Otieno_Cover_Letter.pdf';
+            else filename = 'Celestino_Otieno_Resume_CoverLetter.pdf';
 
-                // PDF options
-                const options = {
+            // Generate PDF
+            html2pdf()
+                .set({
                     margin: [0.5, 0.5, 0.5, 0.5],
                     filename: filename,
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: {
                         scale: 2,
                         useCORS: true,
-                        allowTaint: false,
                         logging: false,
                         backgroundColor: '#ffffff',
-                        width: 1000,
-                        windowWidth: 1000
+                        width: 1000
                     },
                     jsPDF: {
                         unit: 'in',
                         format: 'a4',
-                        orientation: 'portrait',
-                        compress: true
+                        orientation: 'portrait'
+                    },
+                    pagebreak: {
+                        mode: ['css', 'legacy']
                     }
-                };
-
-                // Generate PDF
-                html2pdf()
-                    .set(options)
-                    .from(tempDiv)
-                    .save()
-                    .then(() => {
-                        // Clean up
-                        if (tempDiv && tempDiv.parentNode) {
-                            tempDiv.parentNode.removeChild(tempDiv);
-                        }
-                        showToast('✅ ' + filename + ' downloaded successfully!');
-                        buttons.forEach(b => { b.classList.remove('loading');
-                            b.disabled = false; });
-                    })
-                    .catch((err) => {
-                        console.error('PDF Error:', err);
-                        if (tempDiv && tempDiv.parentNode) {
-                            tempDiv.parentNode.removeChild(tempDiv);
-                        }
-                        showToast('❌ Error generating PDF. Please try again.', true);
-                        buttons.forEach(b => { b.classList.remove('loading');
-                            b.disabled = false; });
-                    });
-            }, 1000);
+                })
+                .from(tempDiv)
+                .save()
+                .then(() => {
+                    document.body.removeChild(tempDiv);
+                    showToast('✅ ' + filename + ' downloaded!');
+                    buttons.forEach(b => { b.classList.remove('loading');
+                        b.disabled = false; });
+                })
+                .catch((err) => {
+                    console.error(err);
+                    document.body.removeChild(tempDiv);
+                    showToast('❌ Error generating PDF.', true);
+                    buttons.forEach(b => { b.classList.remove('loading');
+                        b.disabled = false; });
+                });
         }
-
-        // Check library on load
-        window.addEventListener('load', function() {
-            if (typeof html2pdf === 'undefined') {
-                console.error('html2pdf.js not loaded.');
-                showToast('⚠️ PDF library loading... Please wait.', false);
-            } else {
-                console.log('html2pdf.js ready.');
-            }
-        });
     </script>
 </body>
 </html>
