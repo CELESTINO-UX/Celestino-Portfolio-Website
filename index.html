@@ -347,7 +347,7 @@
       color: #3d5a6b;
     }
 
-    /* ---------- PRINT / TWO-PAGE ---------- */
+    /* ---------- TWO-PAGE PRINT ---------- */
     @media print {
       body {
         background: white;
@@ -371,13 +371,13 @@
       .skills-grid {
         break-inside: avoid;
       }
-      /* force two pages: we use page-break-after on a dummy */
-      .page-break {
+      .page-break-here {
         page-break-after: always;
         border: none;
         margin: 0;
         height: 0;
         visibility: hidden;
+        display: block;
       }
       .ref-grid, .footer-note {
         break-inside: avoid;
@@ -407,13 +407,6 @@
       }
     }
 
-    /* force a clean page break for two pages: after achievements / before references */
-    .page-break-spacer {
-      display: block;
-      height: 0.1px;
-      page-break-after: avoid;
-    }
-    /* we will place an explicit page-break element */
     .page-break-here {
       page-break-after: always;
       border: none;
@@ -575,8 +568,7 @@
 
   <!-- ========== FOOTER (no "references available" line) ========== -->
   <div class="footer-note">
-    <i class="fas fa-print"></i> Designed for two‑page print · 
-    <i class="fas fa-file-pdf"></i> Use download buttons above
+    <i class="fas fa-file-pdf"></i> Use the buttons above to download
   </div>
 
 </div> <!-- end resume-page -->
