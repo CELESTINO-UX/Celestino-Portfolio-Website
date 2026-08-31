@@ -379,7 +379,6 @@
         height: 0;
         visibility: hidden;
       }
-      /* ensure references appear on page 2 */
       .ref-grid, .footer-note {
         break-inside: avoid;
       }
@@ -574,9 +573,9 @@
     <div class="ref-card"><strong>Colins Kirui</strong><br />Lukenya British School<br /><i class="fas fa-phone-alt" style="color:#1f4a5e;"></i> +254702194494<br /><i class="fas fa-envelope" style="color:#1f4a5e;"></i> kirui.collins@lukenyaschools.ac.ke</div>
   </div>
 
+  <!-- ========== FOOTER (no "references available" line) ========== -->
   <div class="footer-note">
-    <i class="fas fa-print"></i> References available upon request · 
-    <i class="fas fa-code"></i> Designed for two‑page print · 
+    <i class="fas fa-print"></i> Designed for two‑page print · 
     <i class="fas fa-file-pdf"></i> Use download buttons above
   </div>
 
@@ -584,14 +583,15 @@
 
 <script>
   (function() {
-    // Resume PDF: trigger print with "Save as PDF"
+    // ---------- RESUME PDF: trigger print with "Save as PDF" ----------
     document.getElementById('downloadResumeBtn').addEventListener('click', function(e) {
       e.preventDefault();
+      // Show a friendly alert before print dialog
       alert('📄 In the print dialog, choose "Save as PDF" as the destination. The resume is formatted for exactly two pages.');
       window.print();
     });
 
-    // Cover letter: open in new window and trigger print
+    // ---------- COVER LETTER: open in new window and trigger print ----------
     document.getElementById('downloadCoverBtn').addEventListener('click', function(e) {
       e.preventDefault();
       const coverHTML = `
@@ -611,7 +611,7 @@
         <p><strong>Celestino Otieno</strong><br />📍 Nairobi, Kenya<br />📧 onyangocelestino@gmail.com</p>
       </div>
       <hr />
-      <p style="font-size:0.85rem; color:#3d5a6b;">This cover letter was generated from my portfolio. References available upon request.</p>
+      <p style="font-size:0.85rem; color:#3d5a6b;">This cover letter was generated from my portfolio.</p>
       <script>
         window.onload = function() { window.print(); } 
       <\/script>
