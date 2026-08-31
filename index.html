@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Celestino Otieno · Librarian &amp; ICT Educator</title>
 
+    <!-- html2pdf library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js">
+    </script>
+
     <style>
         /* ---------- reset & base ---------- */
         * {
@@ -72,6 +76,7 @@
         .btn:disabled {
             opacity: 0.6;
             pointer-events: none;
+            cursor: not-allowed;
         }
 
         .btn-resume {
@@ -176,6 +181,7 @@
         /* ---------- experience ---------- */
         .job {
             margin-bottom: 24px;
+            page-break-inside: avoid;
         }
 
         .job-head {
@@ -236,6 +242,10 @@
             gap: 18px 28px;
         }
 
+        .skill-cat {
+            page-break-inside: avoid;
+        }
+
         .skill-cat h4 {
             font-weight: 600;
             color: #0b3b4b;
@@ -268,6 +278,7 @@
             margin-bottom: 7px;
             padding-left: 4px;
             font-family: 'Times New Roman', Times, serif;
+            page-break-inside: avoid;
         }
 
         .cert strong {
@@ -291,7 +302,7 @@
             padding: 14px 18px;
             border-radius: 8px;
             border-left: 4px solid #1f6e8c;
-            break-inside: avoid;
+            page-break-inside: avoid;
             font-family: 'Times New Roman', Times, serif;
         }
 
@@ -311,6 +322,7 @@
             border-left: 6px solid #1f6e8c;
             font-size: 0.98rem;
             font-family: 'Times New Roman', Times, serif;
+            page-break-inside: avoid;
         }
 
         .cover-box .cl-head {
@@ -431,11 +443,8 @@
             }
         }
 
-        /* ============================================================
-           PRINT STYLES - Used for PDF generation via window.print()
-        ============================================================ */
+        /* ---------- print styles ---------- */
         @media print {
-            /* Hide everything except what we want to print */
             body {
                 background: #fff !important;
                 padding: 0 !important;
@@ -453,7 +462,7 @@
             .container {
                 box-shadow: none !important;
                 border-radius: 0 !important;
-                padding: 30px 40px !important;
+                padding: 25px 35px !important;
                 max-width: 100% !important;
                 margin: 0 !important;
             }
@@ -462,38 +471,33 @@
                 content: "•" !important;
             }
 
-            /* Ensure Times New Roman */
             * {
                 font-family: 'Times New Roman', Times, serif !important;
             }
 
-            /* Hide the cover section when printing resume only */
-            .hide-cover #cover-section {
-                display: none !important;
-            }
-
-            /* Hide everything except cover when printing cover only */
-            .hide-everything-except-cover .profile-header,
-            .hide-everything-except-cover #resume-body,
-            .hide-everything-except-cover .footer-note,
-            .hide-everything-except-cover #cover-section h3 {
-                display: none !important;
-            }
-
-            .hide-everything-except-cover #cover-section {
-                display: block !important;
-            }
-
-            .hide-everything-except-cover .cover-box {
-                border-left: none !important;
-                background: transparent !important;
-                padding: 0 !important;
-            }
-
-            /* Page break control */
             .job, .ref-card, .cert, .skill-cat, .cover-box {
                 page-break-inside: avoid !important;
             }
+
+            /* Resume should be 2 pages */
+            .resume-print {
+                page-break-after: avoid;
+            }
+
+            /* Cover letter should be 1 page */
+            .cover-print {
+                page-break-after: avoid;
+            }
+        }
+
+        /* ---------- PDF specific ---------- */
+        .pdf-page-break {
+            page-break-after: always;
+            border: none;
+            margin: 0;
+            padding: 0;
+            height: 0;
+            display: block;
         }
     </style>
 </head>
@@ -503,8 +507,8 @@
 
         <!-- ===== TOOLBAR ===== -->
         <div class="toolbar">
-            <button class="btn btn-resume" onclick="downloadPDF('resume')">📄 Resume (PDF)</button>
-            <button class="btn btn-cover" onclick="downloadPDF('cover')">📝 Cover Letter (PDF)</button>
+            <button class="btn btn-resume" onclick="downloadPDF('resume')">📄 Resume (2 Pages)</button>
+            <button class="btn btn-cover" onclick="downloadPDF('cover')">📝 Cover Letter (1 Page)</button>
             <button class="btn btn-both" onclick="downloadPDF('both')">📦 Both (PDF)</button>
         </div>
 
@@ -600,6 +604,9 @@
                     </ul>
                 </div>
             </section>
+
+            <!-- Page break after Experience -->
+            <div class="pdf-page-break"></div>
 
             <!-- Education -->
             <section>
@@ -775,11 +782,15 @@
         }
 
         /* ===========================================================
-           PDF GENERATOR - Using window.print() with CSS @media print
-           This is MUCH more reliable than html2pdf.js
+           PDF GENERATOR - FIXED WITH PROPER PAGE BREAKS
         =========================================================== */
-        function downloadPDF(type) {
+        async function downloadPDF(type) {
             const buttons = document.querySelectorAll('.btn');
+
+            if (typeof html2pdf === 'undefined') {
+                showToast('❌ PDF library failed to load. Please refresh and try again.', true);
+                return;
+            }
 
             if (!['resume', 'cover', 'both'].includes(type)) {
                 showToast('❌ Invalid option.', true);
@@ -790,71 +801,162 @@
             buttons.forEach(b => { b.classList.add('loading');
                 b.disabled = true; });
 
+            let pdfContainer = null;
+
             try {
-                // Get the container
-                const container = document.getElementById('resume-content');
-                if (!container) throw new Error('Content not found.');
+                // Get the main container
+                const mainContainer = document.getElementById('resume-content');
+                if (!mainContainer) throw new Error('Content not found.');
 
-                // Remove any existing print classes
-                container.classList.remove('hide-cover', 'hide-everything-except-cover');
+                // Clone the entire container
+                const clone = mainContainer.cloneNode(true);
 
-                // Apply the appropriate class based on type
+                // Remove toolbar from clone
+                const toolbar = clone.querySelector('.toolbar');
+                if (toolbar) toolbar.remove();
+
+                // Remove any buttons
+                clone.querySelectorAll('button').forEach(b => b.remove());
+
+                // Based on type, remove sections we don't need
                 if (type === 'resume') {
-                    container.classList.add('hide-cover');
-                } else if (type === 'cover') {
-                    container.classList.add('hide-everything-except-cover');
-                }
-                // For 'both', no special class needed
+                    // Remove cover section
+                    const coverSec = clone.querySelector('#cover-section');
+                    if (coverSec) coverSec.remove();
 
-                // Generate filename for the print dialog
+                    // Keep the page break for resume
+                    const pageBreak = clone.querySelector('.pdf-page-break');
+                    if (pageBreak) {
+                        // Keep it for 2-page resume
+                        pageBreak.style.display = 'block';
+                    }
+                } else if (type === 'cover') {
+                    // Remove everything except cover section
+                    const coverSec = clone.querySelector('#cover-section');
+                    if (coverSec) {
+                        // Remove the h3 heading from cover section
+                        const heading = coverSec.querySelector('h3');
+                        if (heading) heading.remove();
+
+                        // Remove all other sections
+                        const allSections = clone.querySelectorAll('section');
+                        allSections.forEach(section => {
+                            if (section.id !== 'cover-section') {
+                                section.remove();
+                            }
+                        });
+
+                        // Remove header
+                        const header = clone.querySelector('.profile-header');
+                        if (header) header.remove();
+
+                        // Remove footer
+                        const footer = clone.querySelector('.footer-note');
+                        if (footer) footer.remove();
+
+                        // Remove page breaks
+                        const breaks = clone.querySelectorAll('.pdf-page-break');
+                        breaks.forEach(b => b.remove());
+                    }
+                } else {
+                    // Both - keep everything, remove page break for cleaner flow
+                    const breaks = clone.querySelectorAll('.pdf-page-break');
+                    breaks.forEach(b => b.remove());
+                }
+
+                // Create a container for the PDF
+                pdfContainer = document.createElement('div');
+                pdfContainer.id = 'pdf-export-container';
+                pdfContainer.style.cssText = 'position: fixed; left: 0; top: 0; width: 1000px; background: #ffffff; padding: 40px 48px; z-index: 99999; overflow: visible; font-family: "Times New Roman", Times, serif;';
+                pdfContainer.appendChild(clone);
+                document.body.appendChild(pdfContainer);
+
+                // Force Times New Roman on all text elements
+                const allElements = pdfContainer.querySelectorAll('*');
+                allElements.forEach(el => {
+                    if (el.style) {
+                        el.style.fontFamily = '"Times New Roman", Times, serif';
+                    }
+                });
+
+                // Wait for rendering
+                await new Promise(r => setTimeout(r, 500));
+                await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+                // Generate filename
                 let filename;
                 if (type === 'resume') filename = 'Celestino_Otieno_Resume.pdf';
                 else if (type === 'cover') filename = 'Celestino_Otieno_Cover_Letter.pdf';
                 else filename = 'Celestino_Otieno_Resume_CoverLetter.pdf';
 
-                // Set the document title for the print dialog
-                document.title = filename;
+                // PDF options
+                const options = {
+                    margin: [0.5, 0.5, 0.5, 0.5],
+                    filename: filename,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: {
+                        scale: 2,
+                        useCORS: true,
+                        allowTaint: false,
+                        logging: false,
+                        backgroundColor: '#ffffff',
+                        width: 1000,
+                        windowWidth: 1000,
+                        onclone: function(doc) {
+                            const elements = doc.querySelectorAll('*');
+                            elements.forEach(el => {
+                                if (el.style) {
+                                    el.style.fontFamily = '"Times New Roman", Times, serif';
+                                }
+                            });
+                        }
+                    },
+                    jsPDF: {
+                        unit: 'in',
+                        format: 'a4',
+                        orientation: 'portrait',
+                        compress: true
+                    },
+                    pagebreak: {
+                        mode: ['css', 'legacy'],
+                        before: ['.pdf-page-break'],
+                        avoid: ['.job', '.ref-card', '.cert', '.skill-cat', '.cover-box']
+                    }
+                };
 
-                // Trigger print dialog
-                window.print();
+                // Generate PDF
+                await html2pdf().set(options).from(pdfContainer).save();
 
-                // Remove the classes after printing (or if user cancels)
-                setTimeout(() => {
-                    container.classList.remove('hide-cover', 'hide-everything-except-cover');
-                    showToast('✅ ' + filename + ' prepared for download!');
-                }, 1000);
+                // Clean up
+                if (pdfContainer && pdfContainer.parentNode) {
+                    document.body.removeChild(pdfContainer);
+                }
+                showToast('✅ ' + filename + ' downloaded successfully!');
 
             } catch (err) {
-                console.error('Print Error:', err);
-                showToast('❌ Error preparing PDF. Please try again.', true);
-                // Clean up classes
-                const container = document.getElementById('resume-content');
-                if (container) {
-                    container.classList.remove('hide-cover', 'hide-everything-except-cover');
+                console.error('PDF Error:', err);
+                showToast('❌ Error generating PDF. Please try again.', true);
+                if (pdfContainer && pdfContainer.parentNode) {
+                    document.body.removeChild(pdfContainer);
                 }
             } finally {
-                // Re-enable buttons after a delay
-                setTimeout(() => {
-                    buttons.forEach(b => { b.classList.remove('loading');
-                        b.disabled = false; });
-                }, 2000);
+                buttons.forEach(b => { b.classList.remove('loading');
+                    b.disabled = false; });
+                const existing = document.getElementById('pdf-export-container');
+                if (existing && existing.parentNode) {
+                    existing.parentNode.removeChild(existing);
+                }
             }
         }
 
-        // Handle print cancel/complete
-        window.addEventListener('afterprint', function() {
-            const container = document.getElementById('resume-content');
-            if (container) {
-                container.classList.remove('hide-cover', 'hide-everything-except-cover');
-            }
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(b => { b.classList.remove('loading');
-                b.disabled = false; });
-        });
-
-        // Check if everything is ready
+        // Check library on load
         window.addEventListener('load', () => {
-            console.log('Ready to generate PDFs using print method.');
+            if (typeof html2pdf === 'undefined') {
+                console.error('html2pdf.js not loaded.');
+                showToast('⚠️ PDF library loading... Please wait.', false);
+            } else {
+                console.log('html2pdf.js ready.');
+            }
         });
     </script>
 </body>
