@@ -372,6 +372,17 @@
             background: #b03a2e;
         }
 
+        /* PDF-specific print styles */
+        .pdf-content {
+            background: #ffffff;
+            padding: 40px 48px;
+            max-width: 1000px;
+            margin: 0 auto;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            color: #1e2b37;
+            line-height: 1.6;
+        }
+
         /* ---------- responsive ---------- */
         @media (max-width: 700px) {
             body {
@@ -407,6 +418,9 @@
                 right: 16px;
                 bottom: 16px;
                 max-width: none;
+            }
+            .pdf-content {
+                padding: 20px 16px;
             }
         }
 
@@ -711,16 +725,7 @@
         }
 
         /* ===========================================================
-           FONT HELPER
-        =========================================================== */
-        async function waitForFonts() {
-            if (document.fonts && document.fonts.ready) {
-                try { await document.fonts.ready; } catch (_) { /* ignore */ }
-            }
-        }
-
-        /* ===========================================================
-           PDF GENERATOR - FIXED VERSION
+           PDF GENERATOR - USING VISIBLE CONTENT
         =========================================================== */
         async function downloadPDF(type) {
             const buttons = document.querySelectorAll('.btn');
@@ -744,53 +749,57 @@
                 const mainContainer = document.getElementById('resume-content');
                 if (!mainContainer) throw new Error('Content not found.');
 
-                // Create a wrapper for the PDF content
-                const wrapper = document.createElement('div');
-                wrapper.style.cssText = 'background: #ffffff; padding: 40px 48px; max-width: 1000px; margin: 0 auto; font-family: "Segoe UI", Roboto, system-ui, sans-serif; color: #1e2b37; line-height: 1.6;';
+                // Clone the entire container
+                const clone = mainContainer.cloneNode(true);
+                
+                // Remove toolbar from clone
+                const toolbar = clone.querySelector('.toolbar');
+                if (toolbar) toolbar.remove();
 
-                // Clone the content we need
-                let contentToRender;
+                // Remove any buttons
+                clone.querySelectorAll('button').forEach(b => b.remove());
 
+                // Based on type, remove sections we don't need
                 if (type === 'resume') {
-                    // Only resume content
-                    contentToRender = mainContainer.cloneNode(true);
-                    // Remove toolbar
-                    const tb = contentToRender.querySelector('.toolbar');
-                    if (tb) tb.remove();
                     // Remove cover section
-                    const cs = contentToRender.querySelector('#cover-section');
-                    if (cs) cs.remove();
-                    // Remove any buttons
-                    contentToRender.querySelectorAll('button').forEach(b => b.remove());
-                    wrapper.appendChild(contentToRender);
+                    const coverSec = clone.querySelector('#cover-section');
+                    if (coverSec) coverSec.remove();
                 } else if (type === 'cover') {
-                    // Only cover letter content
-                    const coverSection = document.getElementById('cover-section');
-                    if (!coverSection) throw new Error('Cover section not found.');
-                    const coverClone = coverSection.cloneNode(true);
-                    // Remove the h3 heading from the clone
-                    const heading = coverClone.querySelector('h3');
-                    if (heading) heading.remove();
-                    // Also remove any buttons
-                    coverClone.querySelectorAll('button').forEach(b => b.remove());
-                    wrapper.appendChild(coverClone);
-                } else {
-                    // Both: full content minus toolbar
-                    contentToRender = mainContainer.cloneNode(true);
-                    const tb = contentToRender.querySelector('.toolbar');
-                    if (tb) tb.remove();
-                    contentToRender.querySelectorAll('button').forEach(b => b.remove());
-                    wrapper.appendChild(contentToRender);
+                    // Remove everything except cover section
+                    const coverSec = clone.querySelector('#cover-section');
+                    if (coverSec) {
+                        // Remove the h3 heading from cover section
+                        const heading = coverSec.querySelector('h3');
+                        if (heading) heading.remove();
+                        
+                        // Remove all other sections
+                        const allSections = clone.querySelectorAll('section');
+                        allSections.forEach(section => {
+                            if (section.id !== 'cover-section') {
+                                section.remove();
+                            }
+                        });
+                        
+                        // Remove header
+                        const header = clone.querySelector('.profile-header');
+                        if (header) header.remove();
+                        
+                        // Remove footer
+                        const footer = clone.querySelector('.footer-note');
+                        if (footer) footer.remove();
+                    }
                 }
+                // For 'both', we keep everything (toolbar already removed)
 
-                // Create a temporary container in the document
-                const tempDiv = document.createElement('div');
-                tempDiv.style.cssText = 'position: fixed; left: -9999px; top: 0; width: 1000px; background: #ffffff; z-index: -1;';
-                tempDiv.appendChild(wrapper);
-                document.body.appendChild(tempDiv);
+                // Create a container for the PDF
+                const pdfContainer = document.createElement('div');
+                pdfContainer.id = 'pdf-export-container';
+                pdfContainer.style.cssText = 'position: fixed; left: 0; top: 0; width: 1000px; background: #ffffff; padding: 40px 48px; z-index: 99999; overflow: visible;';
+                pdfContainer.appendChild(clone);
+                document.body.appendChild(pdfContainer);
 
                 // Wait for rendering
-                await waitForFonts();
+                await new Promise(r => setTimeout(r, 300));
                 await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
 
                 // Generate filename
@@ -825,11 +834,11 @@
                     }
                 };
 
-                // Generate PDF
-                await html2pdf().set(options).from(tempDiv).save();
+                // Generate PDF from the visible container
+                await html2pdf().set(options).from(pdfContainer).save();
 
                 // Clean up
-                document.body.removeChild(tempDiv);
+                document.body.removeChild(pdfContainer);
                 showToast('✅ ' + filename + ' downloaded successfully!');
 
             } catch (err) {
@@ -838,6 +847,11 @@
             } finally {
                 buttons.forEach(b => { b.classList.remove('loading');
                     b.disabled = false; });
+                // Clean up any leftover containers
+                const existing = document.getElementById('pdf-export-container');
+                if (existing && existing.parentNode) {
+                    existing.parentNode.removeChild(existing);
+                }
             }
         }
 
