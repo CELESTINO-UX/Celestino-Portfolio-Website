@@ -607,7 +607,7 @@
     <div class="ref-card"><strong>Colins Kirui</strong><br />Lukenya British School<br /><i class="fas fa-phone-alt" style="color:#1f4a5e;"></i> +254702194494<br /><i class="fas fa-envelope" style="color:#1f4a5e;"></i> kirui.collins@lukenyaschools.ac.ke</div>
   </div>
 
-  <!-- ========== FOOTER (no "references available" line) ========== -->
+  <!-- ========== FOOTER ========== -->
   <div class="footer-note">
     <i class="fas fa-file-pdf"></i> Use the buttons above to download
   </div>
@@ -618,7 +618,6 @@
   (function() {
     const overlay = document.getElementById('loadingOverlay');
 
-    // Helper to show/hide loading overlay
     function showLoading() {
       overlay.style.display = 'flex';
     }
@@ -626,19 +625,18 @@
       overlay.style.display = 'none';
     }
 
-    // ---------- RESUME PDF: direct download using html2pdf ----------
+    // ---------- RESUME PDF (exactly two pages) ----------
     document.getElementById('downloadResumeBtn').addEventListener('click', function(e) {
       e.preventDefault();
       showLoading();
 
-      // Clone the resume container so we can modify it without affecting the page
       const resumeClone = document.getElementById('resumeContainer').cloneNode(true);
       
-      // Remove buttons and download group from clone
+      // Remove buttons and download group
       const btns = resumeClone.querySelectorAll('.btn, .download-group');
       btns.forEach(el => el.remove());
 
-      // Ensure page break is visible for PDF
+      // Ensure page break is applied
       const pageBreaks = resumeClone.querySelectorAll('.page-break-here');
       pageBreaks.forEach(el => {
         el.style.pageBreakAfter = 'always';
@@ -647,9 +645,11 @@
         el.style.visibility = 'hidden';
       });
 
-      // Options for html2pdf
+      // Remove any extra footer text we don't want
+      // The footer already says "Use the buttons above to download" – we keep it.
+
       const opt = {
-        margin:        [0.5, 0.5, 0.5, 0.5], // top, right, bottom, left (in inches)
+        margin:        [0.5, 0.5, 0.5, 0.5],
         filename:      'Celestino_Otieno_Resume.pdf',
         image:         { type: 'jpeg', quality: 0.98 },
         html2canvas:   { scale: 2, letterRendering: true, useCORS: true, logging: false },
@@ -657,22 +657,21 @@
         pagebreak:     { mode: ['avoid-all', 'css', 'legacy'] }
       };
 
-      // Generate PDF
       html2pdf().set(opt).from(resumeClone).save().then(() => {
         hideLoading();
       }).catch((err) => {
-        console.error('PDF generation error:', err);
+        console.error('PDF error:', err);
         hideLoading();
-        alert('There was an error generating the PDF. Please try again.');
+        alert('Error generating PDF. Please try again.');
       });
     });
 
-    // ---------- COVER LETTER: direct download using html2pdf ----------
+    // ---------- COVER LETTER (one page, no extra footer) ----------
     document.getElementById('downloadCoverBtn').addEventListener('click', function(e) {
       e.preventDefault();
       showLoading();
 
-      // Build cover letter HTML
+      // Build cover letter – clean, no extra footer text
       const coverHTML = `
       <div id="coverLetter" style="font-family: 'Times New Roman', Times, serif; max-width: 700px; margin: 0 auto; padding: 40px 30px; line-height: 1.7; color: #0a1e2b; background: white;">
         <h1 style="color: #0a1e2b; font-size: 2.2rem; margin-bottom: 0.1rem;">Celestino Otieno</h1>
@@ -687,12 +686,9 @@
           <p>Yours sincerely,</p>
           <p><strong>Celestino Otieno</strong><br />📍 Nairobi, Kenya<br />📧 onyangocelestino@gmail.com</p>
         </div>
-        <hr style="border: 1px solid #d0dee8; margin: 1.2rem 0 0.5rem 0;" />
-        <p style="font-size: 0.85rem; color: #3d5a6b;">This cover letter was generated from my portfolio.</p>
       </div>
       `;
 
-      // Create a temporary container
       const tempDiv = document.createElement('div');
       tempDiv.innerHTML = coverHTML;
       const coverElement = tempDiv.firstElementChild;
@@ -710,7 +706,7 @@
       }).catch((err) => {
         console.error('Cover letter PDF error:', err);
         hideLoading();
-        alert('There was an error generating the cover letter PDF. Please try again.');
+        alert('Error generating cover letter. Please try again.');
       });
     });
   })();
