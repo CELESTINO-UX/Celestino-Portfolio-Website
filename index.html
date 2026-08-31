@@ -575,47 +575,126 @@
 
 <script>
   (function() {
-    // ---------- RESUME PDF: trigger print with "Save as PDF" ----------
+    // ---------- RESUME PDF: direct download without print ----------
     document.getElementById('downloadResumeBtn').addEventListener('click', function(e) {
       e.preventDefault();
-      // Show a friendly alert before print dialog
-      alert('📄 In the print dialog, choose "Save as PDF" as the destination. The resume is formatted for exactly two pages.');
-      window.print();
+      // Create a clone of the resume content for PDF generation
+      const resumeHTML = document.getElementById('resumeContainer').outerHTML;
+      
+      // Build a clean HTML document for PDF
+      const pdfHTML = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>Celestino_Otieno_Resume</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <style>
+          /* Copy all styles from the main page */
+          ${Array.from(document.styleSheets).reduce((acc, sheet) => {
+            try {
+              const rules = sheet.cssRules || sheet.rules;
+              if (rules) {
+                for(let rule of rules) {
+                  acc += rule.cssText;
+                }
+              }
+            } catch(e) {}
+            return acc;
+          }, '')}
+          /* Override for PDF */
+          body { background: white; padding: 20px; }
+          .resume-page { box-shadow: none; max-width: 1100px; margin: 0 auto; }
+          .btn, .download-group { display: none !important; }
+          .page-break-here { page-break-after: always; display: block; height: 0; visibility: hidden; }
+          .footer-note { margin-top: 1.8rem; padding-top: 0.8rem; border-top: 1px solid #d0dee8; text-align: center; font-size: 0.85rem; color: #3d5a6b; }
+        </style>
+      </head>
+      <body>
+        ${resumeHTML}
+        <script>
+          // Auto-trigger print for PDF save
+          window.onload = function() {
+            // Remove any buttons that might have been cloned
+            document.querySelectorAll('.btn, .download-group').forEach(el => el.remove());
+            window.print();
+          };
+        <\/script>
+      </body>
+      </html>
+      `;
+
+      // Open in new window for PDF generation
+      const win = window.open('', '_blank', 'width=900,height=700');
+      if (win) {
+        win.document.write(pdfHTML);
+        win.document.close();
+        // Focus after a moment
+        setTimeout(() => win.focus(), 300);
+      } else {
+        alert('Please allow pop-ups to download the resume as PDF.');
+      }
     });
 
-    // ---------- COVER LETTER: open in new window and trigger print ----------
+    // ---------- COVER LETTER: direct download without print ----------
     document.getElementById('downloadCoverBtn').addEventListener('click', function(e) {
       e.preventDefault();
       const coverHTML = `
-      <html><head><title>Cover Letter - Celestino Otieno</title>
-      <style>body{font-family:'Times New Roman',Times,serif;max-width:700px;margin:2.5rem auto;padding:1.5rem;line-height:1.7;color:#0a1e2b;} h1{color:#0a1e2b;font-size:2.2rem;} hr{border:1px solid #1f4a5e;margin:1rem 0;} .signature{margin-top:2rem;} .sub{color:#1f4a5e;font-size:1.1rem;}</style>
-      </head><body>
-      <h1>Celestino Otieno</h1>
-      <p class="sub">School Librarian &amp; ICT Educator</p>
-      <hr />
-      <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
-      <p><strong>To the Hiring Committee,</strong></p>
-      <p>I am writing to express my sincere interest in the School Librarian position. With a Bachelor of Science in Information Science and hands-on experience at Lukenya Academy and Kenya National Library Service, I have developed a strong foundation in library management, digital literacy instruction, and curriculum support.</p>
-      <p>My approach combines innovative programming with a deep commitment to student engagement. I have successfully increased library usage by 30% through interactive storytelling and research-oriented projects, and I am passionate about creating inclusive, resource-rich environments for learners of all ages.</p>
-      <p>I look forward to the opportunity to contribute to your institution and would welcome the chance to discuss how my skills align with your needs.</p>
-      <div class="signature">
-        <p>Yours sincerely,</p>
-        <p><strong>Celestino Otieno</strong><br />📍 Nairobi, Kenya<br />📧 onyangocelestino@gmail.com</p>
-      </div>
-      <hr />
-      <p style="font-size:0.85rem; color:#3d5a6b;">This cover letter was generated from my portfolio.</p>
-      <script>
-        window.onload = function() { window.print(); } 
-      <\/script>
-      </body></html>
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>Cover_Letter_Celestino_Otieno</title>
+        <style>
+          body {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 700px;
+            margin: 2.5rem auto;
+            padding: 1.5rem;
+            line-height: 1.7;
+            color: #0a1e2b;
+            background: white;
+          }
+          h1 { color: #0a1e2b; font-size: 2.2rem; }
+          hr { border: 1px solid #1f4a5e; margin: 1rem 0; }
+          .signature { margin-top: 2rem; }
+          .sub { color: #1f4a5e; font-size: 1.1rem; }
+          @media print {
+            body { margin: 0.5in; }
+          }
+        </style>
+      </head>
+      <body>
+        <h1>Celestino Otieno</h1>
+        <p class="sub">School Librarian &amp; ICT Educator</p>
+        <hr />
+        <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+        <p><strong>To the Hiring Committee,</strong></p>
+        <p>I am writing to express my sincere interest in the School Librarian position. With a Bachelor of Science in Information Science and hands-on experience at Lukenya Academy and Kenya National Library Service, I have developed a strong foundation in library management, digital literacy instruction, and curriculum support.</p>
+        <p>My approach combines innovative programming with a deep commitment to student engagement. I have successfully increased library usage by 30% through interactive storytelling and research-oriented projects, and I am passionate about creating inclusive, resource-rich environments for learners of all ages.</p>
+        <p>I look forward to the opportunity to contribute to your institution and would welcome the chance to discuss how my skills align with your needs.</p>
+        <div class="signature">
+          <p>Yours sincerely,</p>
+          <p><strong>Celestino Otieno</strong><br />📍 Nairobi, Kenya<br />📧 onyangocelestino@gmail.com</p>
+        </div>
+        <hr />
+        <p style="font-size:0.85rem; color:#3d5a6b;">This cover letter was generated from my portfolio.</p>
+        <script>
+          window.onload = function() {
+            window.print();
+          };
+        <\/script>
+      </body>
+      </html>
       `;
+
       const win = window.open('', '_blank', 'width=800,height=600');
       if (win) {
         win.document.write(coverHTML);
         win.document.close();
         setTimeout(() => win.focus(), 300);
       } else {
-        alert('Please allow pop-ups for this site to generate the cover letter.');
+        alert('Please allow pop-ups to download the cover letter as PDF.');
       }
     });
   })();
