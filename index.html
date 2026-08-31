@@ -340,6 +340,7 @@
       color: #0a1e2b;
     }
 
+    /* ---------- FOOTER (hidden in PDF) ---------- */
     .footer-note {
       margin-top: 1.8rem;
       padding-top: 0.8rem;
@@ -383,6 +384,10 @@
       }
       .ref-grid, .footer-note {
         break-inside: avoid;
+      }
+      /* Hide footer in print/PDF */
+      .footer-note {
+        display: none !important;
       }
     }
 
@@ -607,7 +612,7 @@
     <div class="ref-card"><strong>Colins Kirui</strong><br />Lukenya British School<br /><i class="fas fa-phone-alt" style="color:#1f4a5e;"></i> +254702194494<br /><i class="fas fa-envelope" style="color:#1f4a5e;"></i> kirui.collins@lukenyaschools.ac.ke</div>
   </div>
 
-  <!-- ========== FOOTER ========== -->
+  <!-- ========== FOOTER (hidden in PDF via @media print) ========== -->
   <div class="footer-note">
     <i class="fas fa-file-pdf"></i> Use the buttons above to download
   </div>
@@ -645,8 +650,9 @@
         el.style.visibility = 'hidden';
       });
 
-      // Remove any extra footer text we don't want
-      // The footer already says "Use the buttons above to download" – we keep it.
+      // Remove footer from clone (it will be hidden by print CSS, but we remove it entirely)
+      const footer = resumeClone.querySelector('.footer-note');
+      if (footer) footer.remove();
 
       const opt = {
         margin:        [0.5, 0.5, 0.5, 0.5],
@@ -666,12 +672,11 @@
       });
     });
 
-    // ---------- COVER LETTER (one page, no extra footer) ----------
+    // ---------- COVER LETTER (one page, clean) ----------
     document.getElementById('downloadCoverBtn').addEventListener('click', function(e) {
       e.preventDefault();
       showLoading();
 
-      // Build cover letter – clean, no extra footer text
       const coverHTML = `
       <div id="coverLetter" style="font-family: 'Times New Roman', Times, serif; max-width: 700px; margin: 0 auto; padding: 40px 30px; line-height: 1.7; color: #0a1e2b; background: white;">
         <h1 style="color: #0a1e2b; font-size: 2.2rem; margin-bottom: 0.1rem;">Celestino Otieno</h1>
