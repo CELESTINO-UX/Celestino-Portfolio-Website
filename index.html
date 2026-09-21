@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Celestino Otieno · Two‑Page Resume</title>
-  <!-- Font Awesome 6 (free) -->
+  <title>Celestino Otieno · Professional Resume</title>
+  <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- html2pdf library for direct PDF generation -->
+  <!-- html2pdf for PDF download -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     /* ---------- RESET & GLOBAL ---------- */
@@ -17,31 +17,33 @@
     }
 
     body {
-      background: #e6e9ef;
-      font-family: 'Times New Roman', Times, serif;
+      background: #dfe6ee;
+      font-family: 'Inter', 'Times New Roman', Times, serif;
       padding: 2rem 1rem;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
     }
 
     .resume-page {
       max-width: 1100px;
       width: 100%;
-      background: white;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-      border-radius: 8px;
-      padding: 2.2rem 2.5rem 1.8rem 2.5rem;
+      background: #ffffff;
+      box-shadow: 0 20px 40px rgba(0, 20, 30, 0.15);
+      border-radius: 12px;
+      padding: 2.5rem 2.8rem 2rem 2.8rem;
       transition: 0.2s;
+      border: 1px solid #cbd7e3;
     }
 
-    /* ----- TYPOGRAPHY (Times New Roman) ----- */
+    /* ----- TYPOGRAPHY ----- */
     body, .resume-page, button, input, textarea {
-      font-family: 'Times New Roman', Times, serif;
+      font-family: 'Inter', 'Times New Roman', Times, serif;
     }
 
     h1, h2, h3, h4, .job-title, .name-title h1 {
-      font-family: 'Times New Roman', Times, serif;
-      letter-spacing: 0.3px;
+      font-family: 'Inter', 'Times New Roman', Times, serif;
+      letter-spacing: -0.01em;
     }
 
     /* ---------- HEADER ---------- */
@@ -50,30 +52,39 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid #1f3a4b;
-      padding-bottom: 1.2rem;
-      margin-bottom: 1.2rem;
+      border-bottom: 3px solid #0a2a3b;
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .name-title h1 {
       font-size: 2.8rem;
       font-weight: 700;
       color: #0a1e2b;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.1rem;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
     }
 
     .name-title h2 {
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: #1f4a5e;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #2c5775;
+      margin-top: 0.2rem;
       letter-spacing: 0.2px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .name-title h2 i {
+      color: #1b4d6e;
     }
 
     .contact-links {
       text-align: right;
       font-size: 0.95rem;
-      line-height: 1.6;
+      line-height: 1.7;
+      color: #1b3b4f;
     }
 
     .contact-links a {
@@ -81,17 +92,19 @@
       text-decoration: none;
       border-bottom: 1px dotted transparent;
       transition: 0.15s;
+      font-weight: 500;
     }
 
     .contact-links a:hover {
-      border-bottom: 1px dotted #1f4a5e;
-      color: #1f4a5e;
+      border-bottom: 1px dotted #1b4d6e;
+      color: #1b4d6e;
     }
 
     .contact-links .icon {
-      color: #1f4a5e;
-      width: 1.2rem;
+      color: #1b4d6e;
+      width: 1.3rem;
       display: inline-block;
+      text-align: center;
     }
 
     .contact-links .block {
@@ -103,18 +116,18 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      margin: 0.8rem 0 1.5rem 0;
-      justify-content: center;
+      margin: 0.8rem 0 1.8rem 0;
+      justify-content: flex-start;
     }
 
     .btn {
-      font-family: 'Times New Roman', Times, serif;
-      background: white;
-      border: 1.5px solid #1f4a5e;
-      padding: 0.6rem 1.8rem;
+      font-family: 'Inter', 'Times New Roman', Times, serif;
+      background: #ffffff;
+      border: 2px solid #1b4d6e;
+      padding: 0.7rem 2rem;
       border-radius: 40px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       color: #0a1e2b;
       cursor: pointer;
       transition: 0.2s;
@@ -122,18 +135,20 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      background: #f5f8fc;
+      background: #f3f8fd;
+      box-shadow: 0 2px 6px rgba(0, 40, 60, 0.08);
     }
 
     .btn i {
-      color: #1f4a5e;
+      color: #1b4d6e;
       font-size: 1.1rem;
     }
 
     .btn-primary {
-      background: #1f4a5e;
+      background: #1b4d6e;
       color: white;
-      border-color: #1f4a5e;
+      border-color: #1b4d6e;
+      box-shadow: 0 6px 14px rgba(27, 77, 110, 0.25);
     }
 
     .btn-primary i {
@@ -141,10 +156,10 @@
     }
 
     .btn:hover {
-      background: #1f4a5e;
+      background: #1b4d6e;
       color: white;
-      border-color: #1f4a5e;
-      box-shadow: 0 4px 12px rgba(31, 74, 94, 0.2);
+      border-color: #1b4d6e;
+      box-shadow: 0 6px 14px rgba(27, 77, 110, 0.2);
     }
 
     .btn:hover i {
@@ -152,87 +167,97 @@
     }
 
     .btn-primary:hover {
-      background: #12323f;
-      border-color: #12323f;
+      background: #0e334a;
+      border-color: #0e334a;
     }
 
-    /* ---------- LAYOUT: TWO COLUMN SUMMARY ---------- */
+    /* ---------- PROFILE GRID (SUMMARY + BADGES) ---------- */
     .profile-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.8rem 2rem;
-      margin: 0.5rem 0 1.2rem 0;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem 2.2rem;
+      margin: 0.5rem 0 1.8rem 0;
     }
 
     .summary-box {
-      background: #f4f8fc;
-      padding: 1.2rem 1.8rem;
-      border-radius: 8px;
-      border-left: 4px solid #1f4a5e;
+      background: #f6fafe;
+      padding: 1.5rem 1.8rem;
+      border-radius: 12px;
+      border-left: 6px solid #1b4d6e;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
 
     .summary-box h3 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: #0a1e2b;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
+      font-weight: 700;
     }
 
     .summary-box p {
       font-size: 0.98rem;
-      line-height: 1.6;
+      line-height: 1.65;
+      color: #1e3345;
     }
 
     .badge-wrap {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
+      gap: 0.5rem;
       margin-top: 0.5rem;
     }
 
     .highlight-badge {
-      background: #e2edf5;
+      background: #e4eff9;
       border-radius: 30px;
-      padding: 0.2rem 1.2rem;
-      font-weight: 500;
+      padding: 0.35rem 1.2rem;
+      font-weight: 600;
       color: #0a1e2b;
-      font-size: 0.85rem;
-      border: 1px solid #c3d7e5;
+      font-size: 0.82rem;
+      border: 1px solid #b8d0e3;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.2px;
     }
 
     .cert-mini {
       background: white;
-      padding: 0.1rem 1rem;
+      padding: 0.2rem 1rem;
       border-radius: 30px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       border: 1px solid #c3d7e5;
       display: inline-block;
       margin: 0.15rem 0.2rem;
+      font-weight: 500;
+      color: #0a1e2b;
     }
 
     /* ---------- SECTION TITLES ---------- */
     .section-title {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: #0a1e2b;
-      border-bottom: 2px solid #d0dee8;
-      padding-bottom: 0.2rem;
-      margin: 1.8rem 0 1rem 0;
+      border-bottom: 3px solid #c7d9e8;
+      padding-bottom: 0.25rem;
+      margin: 2rem 0 1.2rem 0;
       display: flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: 0.8rem;
+      letter-spacing: -0.01em;
     }
 
     .section-title i {
-      color: #1f4a5e;
+      color: #1b4d6e;
       font-size: 1.3rem;
     }
 
     /* ---------- EXPERIENCE ---------- */
     .job {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.8rem;
       page-break-inside: avoid;
     }
 
@@ -241,83 +266,117 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: baseline;
+      margin-bottom: 0.3rem;
     }
 
     .job-title {
       font-weight: 700;
-      font-size: 1.08rem;
+      font-size: 1.1rem;
       color: #0a1e2b;
     }
 
     .job-org {
       font-weight: 600;
-      color: #1f4a5e;
+      color: #1b4d6e;
+      font-size: 1rem;
     }
 
     .job-date {
       font-size: 0.9rem;
       color: #3d5a6b;
       font-weight: 500;
+      background: #ecf3f9;
+      padding: 0.15rem 0.9rem;
+      border-radius: 30px;
     }
 
     .job ul {
       list-style: none;
       padding-left: 0.2rem;
-      margin-top: 0.1rem;
+      margin-top: 0.5rem;
     }
 
     .job ul li {
       position: relative;
       padding-left: 1.6rem;
-      margin-bottom: 0.1rem;
+      margin-bottom: 0.4rem;
       font-size: 0.95rem;
-      line-height: 1.5;
+      line-height: 1.55;
+      color: #1e3345;
     }
 
     .job ul li::before {
-      content: "•";
+      content: "▹";
       position: absolute;
       left: 0.2rem;
-      color: #1f4a5e;
+      color: #1b4d6e;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
-    /* ---------- SKILLS ---------- */
+    .job ul li strong {
+      color: #0a1e2b;
+    }
+
+    /* ---------- SKILLS (emphasized) ---------- */
+    .skills-highlight {
+      background: #eef6fe;
+      border-radius: 14px;
+      padding: 1.6rem 2rem;
+      margin: 0.5rem 0 0.5rem 0;
+      border: 1px solid #c7ddef;
+      box-shadow: 0 2px 8px rgba(27, 77, 110, 0.06);
+    }
+
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.8rem 1.5rem;
-      background: #f7fafd;
-      padding: 1.2rem 1.5rem;
-      border-radius: 10px;
-      margin: 0.5rem 0;
+      gap: 1rem 1.8rem;
     }
 
     .skill-cat h4 {
       font-weight: 700;
       color: #0a1e2b;
-      font-size: 1rem;
-      margin-bottom: 0.1rem;
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .skill-cat h4 i {
+      color: #1b4d6e;
+      font-size: 0.9rem;
     }
 
     .skill-cat p {
       font-size: 0.9rem;
-      line-height: 1.4;
+      line-height: 1.5;
+      color: #1e3345;
+    }
+
+    .koha-badge {
+      background: #1b4d6e;
+      color: white;
+      padding: 0.1rem 0.8rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-left: 6px;
+      letter-spacing: 0.2px;
     }
 
     /* ---------- CERTIFICATIONS ---------- */
     .cert-item {
       display: inline-block;
-      background: #f7fafd;
-      padding: 0.2rem 1rem;
+      background: #f3f8fd;
+      padding: 0.3rem 1.1rem;
       border-radius: 30px;
       margin: 0.15rem 0.4rem 0.15rem 0;
-      font-size: 0.9rem;
-      border: 1px solid #d0dee8;
-    }
-
-    .cert-item strong {
+      font-size: 0.88rem;
+      border: 1px solid #c7ddef;
+      font-weight: 500;
       color: #0a1e2b;
     }
 
@@ -325,24 +384,43 @@
     .ref-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
+      gap: 1.2rem;
       margin-top: 0.5rem;
     }
 
     .ref-card {
       background: #f7fafd;
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      border-left: 3px solid #1f4a5e;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      border-left: 4px solid #1b4d6e;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
     .ref-card strong {
       color: #0a1e2b;
+      font-size: 0.98rem;
     }
 
-    /* ---------- FOOTER (hidden in PDF) ---------- */
+    .ref-card i {
+      color: #1b4d6e;
+      width: 1.2rem;
+    }
+
+    /* ---------- PAGE BREAK ---------- */
+    .page-break-here {
+      page-break-after: always;
+      border: none;
+      margin: 0;
+      height: 0;
+      visibility: hidden;
+      display: block;
+    }
+
+    /* ---------- FOOTER ---------- */
     .footer-note {
-      margin-top: 1.8rem;
+      margin-top: 2rem;
       padding-top: 0.8rem;
       border-top: 1px solid #d0dee8;
       text-align: center;
@@ -350,7 +428,7 @@
       color: #3d5a6b;
     }
 
-    /* ---------- TWO-PAGE PRINT ---------- */
+    /* ---------- PRINT (PDF) ---------- */
     @media print {
       body {
         background: white;
@@ -361,6 +439,7 @@
         padding: 0.1in 0.2in;
         max-width: 100%;
         border-radius: 0;
+        border: none;
       }
       .btn, .download-group {
         display: none !important;
@@ -371,34 +450,29 @@
       .job {
         break-inside: avoid;
       }
-      .skills-grid {
+      .skills-highlight {
         break-inside: avoid;
       }
       .page-break-here {
         page-break-after: always;
-        border: none;
-        margin: 0;
-        height: 0;
-        visibility: hidden;
         display: block;
       }
       .ref-grid, .footer-note {
         break-inside: avoid;
       }
-      /* Hide footer in print/PDF */
       .footer-note {
         display: none !important;
       }
     }
 
     /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 750px) {
+    @media (max-width: 800px) {
       .resume-page {
         padding: 1.5rem 1.2rem;
       }
       .profile-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 1.2rem;
       }
       .top-bar {
         flex-direction: column;
@@ -407,20 +481,21 @@
       .contact-links {
         text-align: left;
         width: 100%;
-        margin-top: 0.3rem;
+        margin-top: 0.8rem;
       }
       .name-title h1 {
         font-size: 2.2rem;
       }
-    }
-
-    .page-break-here {
-      page-break-after: always;
-      border: none;
-      margin: 0;
-      height: 0;
-      visibility: hidden;
-      display: block;
+      .download-group {
+        justify-content: center;
+      }
+      .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .job-date {
+        margin-top: 0.2rem;
+      }
     }
 
     /* Loading overlay */
@@ -431,27 +506,30 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0, 10, 20, 0.5);
       z-index: 9999;
       justify-content: center;
       align-items: center;
-      font-family: 'Times New Roman', Times, serif;
+      font-family: 'Inter', 'Times New Roman', Times, serif;
+      backdrop-filter: blur(3px);
     }
     .loading-box {
       background: white;
-      padding: 2rem 3rem;
-      border-radius: 12px;
+      padding: 2.5rem 3.5rem;
+      border-radius: 16px;
       text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      border: 1px solid #c7ddef;
     }
     .loading-box i {
-      font-size: 2.5rem;
-      color: #1f4a5e;
-      margin-bottom: 0.5rem;
+      font-size: 2.8rem;
+      color: #1b4d6e;
+      margin-bottom: 0.8rem;
     }
     .loading-box p {
       font-size: 1.2rem;
       color: #0a1e2b;
+      font-weight: 500;
     }
   </style>
 </head>
@@ -471,7 +549,7 @@
   <div class="top-bar">
     <div class="name-title">
       <h1>Celestino Otieno</h1>
-      <h2><i class="fas fa-book-open" style="color:#1f4a5e; margin-right:6px;"></i> School Librarian &amp; ICT Educator</h2>
+      <h2><i class="fas fa-book-open"></i> School Librarian &amp; ICT Educator · System Librarian</h2>
     </div>
     <div class="contact-links">
       <span><i class="fas fa-map-pin icon"></i> Nairobi, Kenya</span>
@@ -479,7 +557,7 @@
       <span class="block"><i class="fas fa-phone-alt icon"></i> <a href="tel:+254714019736">+254 714 019 736</a></span>
       <span class="block">
         <a href="#"><i class="fab fa-linkedin icon"></i> LinkedIn</a>
-        <a href="#" style="margin-left:1rem;"><i class="fas fa-globe icon"></i> Portfolio</a>
+        <a href="#" style="margin-left:1.2rem;"><i class="fab fa-github icon"></i> GitHub</a>
       </span>
     </div>
   </div>
@@ -493,18 +571,18 @@
   <!-- ========== SUMMARY + HIGHLIGHTS ========== -->
   <div class="profile-grid">
     <div class="summary-box">
-      <h3><i class="fas fa-user-graduate" style="color:#1f4a5e;"></i> Professional Summary</h3>
-      <p>Dedicated and passionate School Librarian and ICT Educator with a strong background in information management and technology integration. Proven ability to foster a love for reading and learning among students while enhancing digital literacy. Experienced System Librarian with a commitment to optimizing library systems and adapting strategies for diverse age groups — from early childhood to young adults.</p>
+      <h3><i class="fas fa-user-graduate"></i> Professional Summary</h3>
+      <p>Accomplished Information Professional with 3+ years of experience in library management, ICT systems, and records administration. <strong>Expert in Koha ILS</strong> — implemented, configured, and managed circulation, cataloguing, and reporting at Kenya National Library Service and Lukenya British Curriculum School. Proven track record of digital transformation, ISO 15489 records management, and staff training. Recognized for measurable impact: <strong>60% reduction in misfiling, 45% growth in ICT club membership, and 25% improvement in research retrieval times.</strong></p>
     </div>
     <div>
-      <div style="display:flex; flex-wrap:wrap; gap:0.3rem;">
-        <span class="highlight-badge"><i class="fas fa-chart-line" style="margin-right:4px;"></i>60% misfiling reduction</span>
-        <span class="highlight-badge"><i class="fas fa-users" style="margin-right:4px;"></i>45% ICT club growth</span>
-        <span class="highlight-badge"><i class="fas fa-rocket" style="margin-right:4px;"></i>25% retrieval improvement</span>
-        <span class="highlight-badge"><i class="fas fa-trophy" style="margin-right:4px;"></i>Year Representative, Meru Univ.</span>
+      <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+        <span class="highlight-badge"><i class="fas fa-chart-line"></i> 60% misfiling reduction</span>
+        <span class="highlight-badge"><i class="fas fa-users"></i> 45% ICT club growth</span>
+        <span class="highlight-badge"><i class="fas fa-rocket"></i> 25% retrieval improvement</span>
+        <span class="highlight-badge"><i class="fas fa-database"></i> Koha ILS Expert</span>
       </div>
-      <div style="background:#eef5fa; border-radius:10px; padding:0.8rem 1.2rem; margin-top:0.6rem;">
-        <p style="font-weight:600; color:#0a1e2b; margin-bottom:0.2rem;"><i class="fas fa-certificate" style="color:#1f4a5e; margin-right:8px;"></i>Certifications:</p>
+      <div style="background:#eef6fe; border-radius:12px; padding:0.9rem 1.2rem; margin-top:0.8rem; border:1px solid #c7ddef;">
+        <p style="font-weight:700; color:#0a1e2b; margin-bottom:0.4rem; font-size:0.95rem;"><i class="fas fa-certificate" style="color:#1b4d6e; margin-right:8px;"></i>Certifications:</p>
         <div>
           <span class="cert-mini">Advanced Cybersecurity '25</span>
           <span class="cert-mini">Cyber Forensics '25</span>
@@ -523,53 +601,47 @@
   <div class="job">
     <div class="job-header">
       <span class="job-title">School Librarian &amp; ICT Educator</span>
-      <span class="job-org">Lukenya Academy British School</span>
+      <span class="job-org">Lukenya British Curriculum School, Machakos</span>
       <span class="job-date">Aug 2024 – Present</span>
     </div>
     <ul>
-      <li>Increased student library usage by 30% through innovative programs and activities.</li>
-      <li>Facilitated workshops enhancing digital literacy among students.</li>
-      <li>Collaborated with teachers to support cross-curricular learning initiatives.</li>
-      <li>Managed library resources, ensuring optimal accessibility for all.</li>
-      <li>Trained staff on ICT resources, enhancing teaching effectiveness.</li>
-      <li>Promoted a culture of reading, resulting in higher student engagement.</li>
-      <li>Evaluated and selected diverse materials to enrich the collection.</li>
-      <li>Developed engaging curriculum integrating ICT tools.</li>
+      <li>Manage full records lifecycle: creation, classification, retention scheduling, and secure disposal of institutional records.</li>
+      <li>Implement electronic document management system (EDMS) for student records, staff files, and administrative archives.</li>
+      <li><strong>Oversee library operations using Koha ILS</strong> for circulation, cataloguing, and reporting; maintain hybrid collections.</li>
+      <li>Provide tier-2/3 technical support for 200+ users across hardware, network, and library systems.</li>
+      <li>ICT Club Leader: grew membership by 45% within one academic year through coding workshops and annual tech fair.</li>
+      <li>Deliver Cambridge ICT and Computing curricula to A-Level and O-Level students with practical lab sessions.</li>
+      <li><strong>Achievements:</strong> Reduced misfiling by 60% via structured classification; digitized 5+ years of student academic records.</li>
     </ul>
   </div>
 
   <div class="job">
     <div class="job-header">
       <span class="job-title">System Librarian</span>
-      <span class="job-org">Kenya National Library Service</span>
+      <span class="job-org">Kenya National Library Service, Nakuru</span>
       <span class="job-date">May 2024 – Aug 2024</span>
     </div>
     <ul>
-      <li>Managed library systems, enhancing user access by 30%.</li>
-      <li>Trained staff on digital resources, increasing usage by 40%.</li>
-      <li>Developed user-friendly interfaces, improving patron satisfaction.</li>
-      <li>Conducted system audits, resolving 95% of issues promptly.</li>
-      <li>Collaborated with IT to upgrade infrastructure, boosting reliability.</li>
-      <li>Streamlined interlibrary loan processes, cutting turnaround by 50%.</li>
-      <li>Analyzed user data to tailor services, resulting in 20% membership growth.</li>
-      <li>Led a team to digitize archives, preserving 10,000+ documents.</li>
+      <li><strong>Managed and optimized Koha ILS</strong> — configured circulation rules, catalogued with MARC21 and DDC, and generated analytical reports for library management.</li>
+      <li>Assisted in records inventory and archival management for historical government publications.</li>
+      <li>Provided end-user support and IT orientation; delivered hands-on training in MS Office suite and digital literacy.</li>
+      <li>Designed and delivered accessible ICT programs for persons with disabilities, empowering diverse learners.</li>
+      <li><strong>Achievements:</strong> Trained 50+ staff and community members; redesigned finding aids reducing research time by 25%.</li>
     </ul>
   </div>
 
   <div class="job">
     <div class="job-header">
       <span class="job-title">Assistant Librarian Intern</span>
-      <span class="job-org">Meru Law Courts</span>
+      <span class="job-org">Meru Law Courts, Meru</span>
       <span class="job-date">May 2023 – Aug 2023</span>
     </div>
     <ul>
-      <li>Assisted in cataloging over 1,000 new library materials.</li>
-      <li>Enhanced user experience by organizing community events.</li>
-      <li>Conducted research to support library programs and initiatives.</li>
-      <li>Provided exceptional customer service to 200+ patrons weekly.</li>
-      <li>Developed promotional materials that increased event attendance by 30%.</li>
-      <li>Trained volunteers on library systems and best practices.</li>
-      <li>Maintained digital archives, improving access to historical documents.</li>
+      <li><strong>Catalogued new legal publications using Koha ILS</strong>; ensured accurate shelving and accessibility.</li>
+      <li>Organized, classified, and secured court case files, legal documents, and archival materials in compliance with judicial standards.</li>
+      <li>Supported digitization of legal documents and developed a searchable electronic index, improving retrieval efficiency by 30%.</li>
+      <li>Provided reference services to judges, magistrates, prosecutors, and legal researchers.</li>
+      <li><strong>Key Achievement:</strong> Digitized and catalogued over 500 historical court case files, reducing retrieval time and enhancing access for legal professionals.</li>
     </ul>
   </div>
 
@@ -589,32 +661,46 @@
       <span class="job-org">Nyarach Mixed Day Secondary</span>
       <span class="job-date">Jan 2015 – Nov 2019</span>
     </div>
-    <ul><li>Led a study group that improved class performance by 15%.</li><li>Achieved mean grade of C+.</li></ul>
+    <ul><li>Achieved mean grade of C+; led a study group that improved class performance by 15%.</li></ul>
   </div>
 
-  <!-- ========== SKILLS ========== -->
-  <h3 class="section-title"><i class="fas fa-cogs"></i> Skills</h3>
-  <div class="skills-grid">
-    <div class="skill-cat"><h4>Library Systems</h4><p>MARC21 · AACR2 · RDA · DDC · LCC · Koha ILS</p></div>
-    <div class="skill-cat"><h4>Technology</h4><p>MySQL · SQLite · EDMS · MARC XML · Z39.50 · ISO 15489 · Cybersecurity</p></div>
-    <div class="skill-cat"><h4>Core Competencies</h4><p>Collection Dev. · Digital Resource Mgmt · Information Literacy · Curriculum Support · Cataloging · Student Engagement · Research Instruction</p></div>
-    <div class="skill-cat"><h4>Records Management</h4><p>Classification · Retention &amp; Disposal · Archiving · Digitization · Metadata · Audit · File Plan · Vital Records · Data Privacy · Disaster Recovery</p></div>
+  <!-- ========== SKILLS (EMPHASIZED) ========== -->
+  <h3 class="section-title"><i class="fas fa-cogs"></i> Core Skills &amp; Expertise</h3>
+  <div class="skills-highlight">
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h4><i class="fas fa-book"></i> Library Systems <span class="koha-badge">Koha ILS</span></h4>
+        <p>MARC21 · AACR2 · RDA · DDC · LCC · Koha ILS (advanced configuration, circulation, cataloguing, reporting)</p>
+      </div>
+      <div class="skill-cat">
+        <h4><i class="fas fa-laptop-code"></i> Technology</h4>
+        <p>MySQL · SQLite · EDMS · MARC XML · Z39.50 · ISO 15489 · Cybersecurity · Power BI</p>
+      </div>
+      <div class="skill-cat">
+        <h4><i class="fas fa-users-cog"></i> Core Competencies</h4>
+        <p>Collection Development · Digital Resource Management · Information Literacy · Curriculum Support · Cataloguing · Student Engagement · Research Instruction</p>
+      </div>
+      <div class="skill-cat">
+        <h4><i class="fas fa-archive"></i> Records Management</h4>
+        <p>Classification · Retention &amp; Disposal · Archiving · Digitization · Metadata · Audit · File Plan · Vital Records · Data Privacy · Disaster Recovery</p>
+      </div>
+    </div>
   </div>
 
-  <!-- ========== PAGE BREAK (ensures two pages) ========== -->
+  <!-- ========== PAGE BREAK ========== -->
   <div class="page-break-here"></div>
 
-  <!-- ========== REFERENCES (will appear on page 2) ========== -->
+  <!-- ========== REFERENCES (page 2) ========== -->
   <h3 class="section-title" style="margin-top: 0.5rem;"><i class="fas fa-address-card"></i> References</h3>
   <div class="ref-grid">
-    <div class="ref-card"><strong>Silas Otieno</strong><br />7 Hills International School · Uganda<br /><i class="fas fa-phone-alt" style="color:#1f4a5e;"></i> +254707445341<br /><i class="fas fa-envelope" style="color:#1f4a5e;"></i> silasotienozacjimmy@gmail.com</div>
-    <div class="ref-card"><strong>George Okoth</strong><br />US Army &amp; Priest<br /><i class="fas fa-phone-alt" style="color:#1f4a5e;"></i> +12017535656<br /><i class="fas fa-envelope" style="color:#1f4a5e;"></i> Geokth@yahoo.com</div>
-    <div class="ref-card"><strong>Colins Kirui</strong><br />Lukenya British School<br /><i class="fas fa-phone-alt" style="color:#1f4a5e;"></i> +254702194494<br /><i class="fas fa-envelope" style="color:#1f4a5e;"></i> kirui.collins@lukenyaschools.ac.ke</div>
+    <div class="ref-card"><strong>Silas Otieno</strong><br />7 Hills International School · Uganda<br /><i class="fas fa-phone-alt"></i> +254707445341<br /><i class="fas fa-envelope"></i> silasotienozacjimmy@gmail.com</div>
+    <div class="ref-card"><strong>George Okoth</strong><br />US Army &amp; Priest<br /><i class="fas fa-phone-alt"></i> +12017535656<br /><i class="fas fa-envelope"></i> Geokth@yahoo.com</div>
+    <div class="ref-card"><strong>Colins Kirui</strong><br />Lukenya British School<br /><i class="fas fa-phone-alt"></i> +254702194494<br /><i class="fas fa-envelope"></i> kirui.collins@lukenyaschools.ac.ke</div>
   </div>
 
-  <!-- ========== FOOTER (hidden in PDF via @media print) ========== -->
+  <!-- ========== FOOTER (hidden in PDF) ========== -->
   <div class="footer-note">
-    <i class="fas fa-file-pdf"></i> Use the buttons above to download
+    <i class="fas fa-file-pdf"></i> Use the buttons above to download the resume or cover letter
   </div>
 
 </div> <!-- end resume-page -->
@@ -650,7 +736,7 @@
         el.style.visibility = 'hidden';
       });
 
-      // Remove footer from clone (it will be hidden by print CSS, but we remove it entirely)
+      // Remove footer from clone
       const footer = resumeClone.querySelector('.footer-note');
       if (footer) footer.remove();
 
@@ -672,21 +758,21 @@
       });
     });
 
-    // ---------- COVER LETTER (one page, clean) ----------
+    // ---------- COVER LETTER (one page) ----------
     document.getElementById('downloadCoverBtn').addEventListener('click', function(e) {
       e.preventDefault();
       showLoading();
 
       const coverHTML = `
-      <div id="coverLetter" style="font-family: 'Times New Roman', Times, serif; max-width: 700px; margin: 0 auto; padding: 40px 30px; line-height: 1.7; color: #0a1e2b; background: white;">
-        <h1 style="color: #0a1e2b; font-size: 2.2rem; margin-bottom: 0.1rem;">Celestino Otieno</h1>
-        <p style="color: #1f4a5e; font-size: 1.1rem; margin-bottom: 0.5rem;">School Librarian &amp; ICT Educator</p>
-        <hr style="border: 1px solid #1f4a5e; margin: 0.8rem 0 1.2rem 0;" />
+      <div id="coverLetter" style="font-family: 'Inter', 'Times New Roman', Times, serif; max-width: 700px; margin: 0 auto; padding: 40px 30px; line-height: 1.7; color: #0a1e2b; background: white;">
+        <h1 style="color: #0a1e2b; font-size: 2.4rem; margin-bottom: 0.1rem; letter-spacing: -0.02em;">Celestino Otieno</h1>
+        <p style="color: #1b4d6e; font-size: 1.15rem; margin-bottom: 0.5rem; font-weight: 500;">School Librarian &amp; ICT Educator · System Librarian</p>
+        <hr style="border: 2px solid #1b4d6e; margin: 0.8rem 0 1.5rem 0;" />
         <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
         <p><strong>To the Hiring Committee,</strong></p>
-        <p>I am writing to express my sincere interest in the School Librarian position. With a Bachelor of Science in Information Science and hands-on experience at Lukenya Academy and Kenya National Library Service, I have developed a strong foundation in library management, digital literacy instruction, and curriculum support.</p>
-        <p>My approach combines innovative programming with a deep commitment to student engagement. I have successfully increased library usage by 30% through interactive storytelling and research-oriented projects, and I am passionate about creating inclusive, resource-rich environments for learners of all ages.</p>
-        <p>I look forward to the opportunity to contribute to your institution and would welcome the chance to discuss how my skills align with your needs.</p>
+        <p>I am writing to express my strong interest in the School Librarian / System Librarian position. With a Bachelor of Science in Information Science and hands-on experience at Lukenya British Curriculum School and Kenya National Library Service, I have developed a robust foundation in library management, <strong>Koha ILS administration</strong>, digital literacy instruction, and records management.</p>
+        <p>My expertise in <strong>Koha ILS</strong> spans circulation configuration, MARC21 cataloguing, reporting, and system optimization. At Kenya National Library Service, I managed Koha to enhance user access and streamline workflows. I have also implemented EDMS solutions, trained 50+ staff, and consistently improved information retrieval times.</p>
+        <p>I am passionate about leveraging technology to bridge information gaps and create inclusive, resource-rich environments. I look forward to the opportunity to contribute to your institution and would welcome the chance to discuss how my skills align with your needs.</p>
         <div style="margin-top: 2rem;">
           <p>Yours sincerely,</p>
           <p><strong>Celestino Otieno</strong><br />📍 Nairobi, Kenya<br />📧 onyangocelestino@gmail.com</p>
