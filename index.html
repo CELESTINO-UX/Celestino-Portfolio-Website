@@ -16,10 +16,15 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
       background: #e9eef3;
       font-family: 'Inter', 'Times New Roman', Times, serif;
-      padding: 2rem 1rem;
+    }
+
+    body {
+      padding: 1.5rem 1rem 2rem 1rem;
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -35,6 +40,7 @@
       display: flex;
       flex-wrap: wrap;
       border: 1px solid #cbd7e3;
+      align-self: flex-start;
     }
 
     /* ---------- LEFT SIDEBAR (dark) ---------- */
@@ -42,13 +48,13 @@
       width: 34%;
       background: #1a1e24;
       color: #f0f4f8;
-      padding: 2.2rem 1.8rem 2rem 1.8rem;
+      padding: 1.8rem 1.8rem 1.5rem 1.8rem;
       display: flex;
       flex-direction: column;
     }
 
     .sidebar-logo {
-      margin-bottom: 2.2rem;
+      margin-bottom: 1.8rem;
       text-align: center;
     }
 
@@ -57,7 +63,7 @@
       background: #000;
       color: white;
       font-weight: 800;
-      font-size: 2.6rem;
+      font-size: 2.4rem;
       line-height: 1.1;
       padding: 0.3rem 0.8rem 0.1rem 0.8rem;
       letter-spacing: 0.05em;
@@ -66,7 +72,7 @@
 
     .sidebar-logo .logo-box span {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 400;
       letter-spacing: 0.25em;
       margin-top: -0.1rem;
@@ -74,26 +80,26 @@
     }
 
     .sidebar-section {
-      margin-bottom: 2.2rem;
+      margin-bottom: 1.8rem;
     }
 
     .sidebar-section h3 {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       border-bottom: 1px solid #3a414b;
-      padding-bottom: 0.4rem;
+      padding-bottom: 0.35rem;
     }
 
     .sidebar-contact-item {
       display: flex;
       align-items: center;
       gap: 0.7rem;
-      font-size: 0.85rem;
-      margin-bottom: 0.8rem;
+      font-size: 0.82rem;
+      margin-bottom: 0.7rem;
       color: #d0dae5;
       line-height: 1.4;
     }
@@ -101,7 +107,7 @@
     .sidebar-contact-item i {
       width: 1.2rem;
       color: #8ba3b8;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .sidebar-contact-item a {
@@ -117,8 +123,8 @@
     }
 
     .sidebar-summary p {
-      font-size: 0.85rem;
-      line-height: 1.6;
+      font-size: 0.82rem;
+      line-height: 1.55;
       color: #ccd7e2;
     }
 
@@ -127,18 +133,18 @@
     }
 
     .sidebar-skills li {
-      font-size: 0.85rem;
-      line-height: 1.7;
+      font-size: 0.82rem;
+      line-height: 1.6;
       color: #ccd7e2;
       display: flex;
       align-items: baseline;
       gap: 0.5rem;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
     }
 
     .sidebar-skills li i {
       color: #8ba3b8;
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       width: 0.9rem;
       text-align: center;
     }
@@ -146,18 +152,18 @@
     /* ---------- MAIN CONTENT ---------- */
     .main-content {
       width: 66%;
-      padding: 2.2rem 2.2rem 2rem 2.2rem;
+      padding: 1.8rem 2rem 1.5rem 2rem;
       background: #ffffff;
     }
 
     .main-content .name-header {
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.4rem;
       border-bottom: 3px solid #1a1e24;
-      padding-bottom: 0.8rem;
+      padding-bottom: 0.7rem;
     }
 
     .main-content .name-header h1 {
-      font-size: 2.6rem;
+      font-size: 2.4rem;
       font-weight: 800;
       color: #1a1e24;
       letter-spacing: -0.02em;
@@ -166,31 +172,31 @@
     }
 
     .main-content .name-header h2 {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 500;
       color: #3e4d5c;
       letter-spacing: 0.3px;
-      margin-top: 0.2rem;
+      margin-top: 0.15rem;
       text-transform: uppercase;
     }
 
     .main-section-title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: #1a1e24;
-      margin: 1.8rem 0 1rem 0;
+      margin: 1.4rem 0 0.8rem 0;
       border-bottom: 2px solid #d0dae5;
       padding-bottom: 0.2rem;
     }
 
     .main-section-title:first-of-type {
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
     }
 
     .job {
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.2rem;
       page-break-inside: avoid;
     }
 
@@ -204,7 +210,7 @@
 
     .job-title {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: #1a1e24;
       text-transform: uppercase;
     }
@@ -213,13 +219,13 @@
       font-weight: 500;
       font-style: italic;
       color: #3e4d5c;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       display: block;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.15rem;
     }
 
     .job-date {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #5b6f82;
       font-weight: 500;
       white-space: nowrap;
@@ -228,15 +234,15 @@
     .job ul {
       list-style: none;
       padding-left: 0.2rem;
-      margin-top: 0.3rem;
+      margin-top: 0.25rem;
     }
 
     .job ul li {
       position: relative;
-      padding-left: 1.4rem;
-      margin-bottom: 0.35rem;
-      font-size: 0.9rem;
-      line-height: 1.55;
+      padding-left: 1.3rem;
+      margin-bottom: 0.3rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
       color: #1e2e3c;
     }
 
@@ -255,22 +261,22 @@
 
     /* ---------- EDUCATION ---------- */
     .edu-entry {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       page-break-inside: avoid;
     }
 
     .edu-title {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: #1a1e24;
       text-transform: uppercase;
     }
 
     .edu-meta {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #3e4d5c;
       font-style: italic;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.1rem;
     }
 
     /* ---------- REFERENCES SECTION (page 2) ---------- */
@@ -278,29 +284,29 @@
       page-break-before: always;
       break-before: page;
       margin-top: 0;
-      padding-top: 0.5rem;
+      padding-top: 0;
     }
 
     .ref-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.2rem;
+      gap: 1.1rem;
       margin-top: 0.5rem;
     }
 
     .ref-card {
       background: #f7fafd;
-      padding: 1rem 1.2rem;
+      padding: 0.95rem 1.1rem;
       border-radius: 8px;
       border-left: 4px solid #1a1e24;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       line-height: 1.5;
       page-break-inside: avoid;
     }
 
     .ref-card strong {
       color: #1a1e24;
-      font-size: 0.95rem;
+      font-size: 0.93rem;
     }
 
     .ref-card i {
@@ -320,11 +326,11 @@
 
     /* ---------- FOOTER ---------- */
     .footer-note {
-      margin-top: 1.8rem;
-      padding-top: 0.6rem;
+      margin-top: 1.5rem;
+      padding-top: 0.5rem;
       border-top: 1px solid #d0dae5;
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #5b6f82;
     }
 
@@ -333,7 +339,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.8rem;
-      margin: 1.2rem 0 0.5rem 0;
+      margin: 1rem 0 0.3rem 0;
       padding: 0 0.2rem;
     }
 
@@ -341,10 +347,10 @@
       font-family: 'Inter', 'Times New Roman', Times, serif;
       background: #ffffff;
       border: 2px solid #1a1e24;
-      padding: 0.6rem 1.6rem;
+      padding: 0.55rem 1.5rem;
       border-radius: 40px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #1a1e24;
       cursor: pointer;
       transition: 0.2s;
@@ -357,7 +363,7 @@
 
     .btn i {
       color: #1a1e24;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     .btn-primary {
@@ -385,7 +391,7 @@
       border-color: #2d3540;
     }
 
-    /* ---------- PRINT (PDF) — enforces exactly 2 pages ---------- */
+    /* ---------- PRINT (PDF) — starts at top margin, exactly 2 pages ---------- */
     @media print {
       @page {
         size: A4;
@@ -393,9 +399,13 @@
       }
       html, body {
         background: white;
-        padding: 0;
-        margin: 0;
+        padding: 0 !important;
+        margin: 0 !important;
         width: 100%;
+        height: auto;
+      }
+      body {
+        display: block !important;
       }
       .resume-page {
         box-shadow: none;
@@ -404,11 +414,18 @@
         max-width: 100%;
         width: 100%;
         display: block;
+        margin: 0 !important;
+        padding: 0 !important;
+        align-self: flex-start;
       }
       .sidebar {
         background: #1a1e24 !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        page-break-inside: avoid;
+      }
+      .main-content {
+        page-break-inside: auto;
       }
       .btn, .download-group {
         display: none !important;
@@ -429,26 +446,33 @@
       .footer-note {
         display: none !important;
       }
+      /* Prevent content from overflowing into a third page */
+      .main-content > *:last-child {
+        margin-bottom: 0;
+      }
     }
 
     /* ---------- RESPONSIVE ---------- */
     @media (max-width: 850px) {
+      body {
+        padding: 0.8rem 0.5rem;
+      }
       .resume-page {
         flex-direction: column;
       }
       .sidebar {
         width: 100%;
-        padding: 1.8rem 1.5rem;
+        padding: 1.5rem 1.2rem;
       }
       .main-content {
         width: 100%;
-        padding: 1.8rem 1.5rem;
+        padding: 1.5rem 1.2rem;
       }
       .main-content .name-header h1 {
-        font-size: 2rem;
+        font-size: 1.9rem;
       }
       .sidebar-logo .logo-box {
-        font-size: 2rem;
+        font-size: 1.9rem;
       }
       .download-group {
         justify-content: center;
@@ -642,8 +666,8 @@
     <div class="edu-entry">
       <div class="edu-title">BSc Information Science</div>
       <div class="edu-meta">Meru University of Science &amp; Technology · Nov 2020 – Oct 2024</div>
-      <ul style="list-style: none; padding-left: 1.4rem; margin-top: 0.2rem; font-size: 0.9rem; line-height: 1.55; color: #1e2e3c; position: relative;">
-        <li style="position: relative; padding-left: 1.4rem; margin-bottom: 0.35rem;">
+      <ul style="list-style: none; padding-left: 1.3rem; margin-top: 0.15rem; font-size: 0.88rem; line-height: 1.5; color: #1e2e3c; position: relative;">
+        <li style="position: relative; padding-left: 1.3rem; margin-bottom: 0.3rem;">
           <span style="position: absolute; left: 0.2rem; color: #1a1e24; font-weight: 700;">•</span>
           Presented research on <em>"Impact of Google Search Algorithm in Students' Decision-Making and Information Retrieval"</em>
         </li>
@@ -653,8 +677,8 @@
     <div class="edu-entry">
       <div class="edu-title">Kenya Certificate of Secondary Education</div>
       <div class="edu-meta">Nyarach Mixed Day Secondary · Jan 2015 – Nov 2019</div>
-      <ul style="list-style: none; padding-left: 1.4rem; margin-top: 0.2rem; font-size: 0.9rem; line-height: 1.55; color: #1e2e3c; position: relative;">
-        <li style="position: relative; padding-left: 1.4rem; margin-bottom: 0.35rem;">
+      <ul style="list-style: none; padding-left: 1.3rem; margin-top: 0.15rem; font-size: 0.88rem; line-height: 1.5; color: #1e2e3c; position: relative;">
+        <li style="position: relative; padding-left: 1.3rem; margin-bottom: 0.3rem;">
           <span style="position: absolute; left: 0.2rem; color: #1a1e24; font-weight: 700;">•</span>
           Achieved mean grade of C+; led a study group that improved class performance by 15%.
         </li>
@@ -709,7 +733,7 @@
       overlay.style.display = 'none';
     }
 
-    // ---------- RESUME PDF (exactly two pages) ----------
+    // ---------- RESUME PDF (exactly two pages, starts at top margin) ----------
     document.getElementById('downloadResumeBtn').addEventListener('click', function(e) {
       e.preventDefault();
       showLoading();
@@ -740,8 +764,9 @@
       const footer = resumeClone.querySelector('.footer-note');
       if (footer) footer.remove();
 
+      // Zero out top margin so it starts at the very top of the page
       const opt = {
-        margin:        [0.4, 0.4, 0.4, 0.4],
+        margin:        [0, 0, 0, 0],
         filename:      'Celestino_Otieno_Resume.pdf',
         image:         { type: 'jpeg', quality: 0.98 },
         html2canvas:   { scale: 2, letterRendering: true, useCORS: true, logging: false },
@@ -758,7 +783,7 @@
       });
     });
 
-    // ---------- COVER LETTER (one page, emphasises library operations + Koha) ----------
+    // ---------- COVER LETTER (one page) ----------
     document.getElementById('downloadCoverBtn').addEventListener('click', function(e) {
       e.preventDefault();
       showLoading();
