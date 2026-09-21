@@ -349,17 +349,24 @@
       border-color: #2d3540;
     }
 
-    /* ---------- PRINT (PDF) ---------- */
+    /* ---------- PRINT (PDF) — ensures exactly 2 pages ---------- */
     @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
       body {
         background: white;
-        padding: 0.2in;
+        padding: 0;
+        margin: 0;
       }
       .resume-page {
         box-shadow: none;
         border-radius: 0;
         border: none;
         max-width: 100%;
+        width: 100%;
+        min-height: 100vh;
       }
       .sidebar {
         background: #1a1e24 !important;
@@ -375,9 +382,15 @@
       .page-break-here {
         page-break-after: always;
         display: block;
+        height: 0;
+        visibility: hidden;
       }
       .footer-note {
         display: none !important;
+      }
+      /* Ensure second page starts fresh */
+      .main-content {
+        page-break-after: auto;
       }
     }
 
@@ -461,7 +474,7 @@
 
   <!-- ========== LEFT SIDEBAR ========== -->
   <div class="sidebar">
-    <!-- Logo area (mimics the MW logo from template) -->
+    <!-- Logo area -->
     <div class="sidebar-logo">
       <div class="logo-box">
         CO<span>OTIENO</span>
@@ -521,13 +534,13 @@
 
   <!-- ========== MAIN CONTENT ========== -->
   <div class="main-content">
-    <!-- Name header (appears in main content, as in template) -->
+    <!-- Name header -->
     <div class="name-header">
       <h1>Celestino Otieno</h1>
       <h2>School Librarian &amp; ICT Educator · System Librarian</h2>
     </div>
 
-    <!-- Download buttons (not part of resume content, hidden in PDF) -->
+    <!-- Download buttons (hidden in PDF) -->
     <div class="download-group">
       <button class="btn btn-primary" id="downloadResumeBtn"><i class="fas fa-file-pdf"></i> Download Resume (PDF)</button>
       <button class="btn" id="downloadCoverBtn"><i class="fas fa-file-pdf"></i> Download Cover Letter (PDF)</button>
@@ -611,7 +624,7 @@
       </ul>
     </div>
 
-    <!-- PAGE BREAK (ensures two pages) -->
+    <!-- PAGE BREAK (forces second page) -->
     <div class="page-break-here"></div>
 
     <!-- REFERENCES (page 2) -->
@@ -698,7 +711,7 @@
       });
     });
 
-    // ---------- COVER LETTER (one page) ----------
+    // ---------- COVER LETTER (one page, emphasises library operations + Koha) ----------
     document.getElementById('downloadCoverBtn').addEventListener('click', function(e) {
       e.preventDefault();
       showLoading();
@@ -710,9 +723,9 @@
         <hr style="border: 2px solid #1a1e24; margin: 0.8rem 0 1.5rem 0;" />
         <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
         <p><strong>To the Hiring Committee,</strong></p>
-        <p>I am writing to express my strong interest in the School Librarian / System Librarian position. With a Bachelor of Science in Information Science and hands-on experience at Lukenya British Curriculum School and Kenya National Library Service, I have developed a robust foundation in library management, <strong>Koha ILS administration</strong>, digital literacy instruction, and records management.</p>
-        <p>My expertise in <strong>Koha ILS</strong> spans circulation configuration, MARC21 cataloguing, reporting, and system optimization. At Kenya National Library Service, I managed Koha to enhance user access and streamline workflows. I have also implemented EDMS solutions, trained 50+ staff, and consistently improved information retrieval times.</p>
-        <p>I am passionate about leveraging technology to bridge information gaps and create inclusive, resource-rich environments. I look forward to the opportunity to contribute to your institution and would welcome the chance to discuss how my skills align with your needs.</p>
+        <p>I am writing to express my strong interest in the School Librarian / System Librarian position. With a Bachelor of Science in Information Science and hands-on experience at Lukenya British Curriculum School and Kenya National Library Service, I have developed a comprehensive foundation in <strong>library operations</strong>, including collection development, cataloguing, circulation management, reference services, and records administration. My expertise also extends to <strong>Koha ILS administration</strong>, where I have configured circulation rules, catalogued with MARC21 and DDC, and generated analytical reports to support data-driven decision-making.</p>
+        <p>At Kenya National Library Service, I managed and optimized Koha ILS to enhance user access, streamline workflows, and improve reporting accuracy. I also assisted in records inventory, archival management, and digital cataloguing for historical government publications. Beyond technical systems, I have successfully designed and delivered accessible library programs, trained 50+ staff and community members, and redesigned finding aids that reduced research time by 25%.</p>
+        <p>My approach combines a deep commitment to <strong>library operations excellence</strong> with the technical skills to leverage modern ILS platforms like Koha. I am passionate about creating inclusive, resource-rich environments and using technology to bridge information gaps. I look forward to the opportunity to contribute to your institution and would welcome the chance to discuss how my skills align with your needs.</p>
         <div style="margin-top: 2rem;">
           <p>Yours sincerely,</p>
           <p><strong>Celestino Otieno</strong><br />📍 Nairobi, Kenya<br />📧 onyangocelestino@gmail.com</p>
