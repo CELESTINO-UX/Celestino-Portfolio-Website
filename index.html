@@ -281,10 +281,20 @@
       margin-bottom: 0.1rem;
     }
 
-    /* ---------- REFERENCES SECTION (starts page 2) ---------- */
+    /* ---------- PAGE BREAK (forces page 2 right after Education) ---------- */
+    .page-break-after-education {
+      page-break-after: always;
+      break-after: page;
+      display: block;
+      height: 0;
+      visibility: hidden;
+      margin: 0;
+      padding: 0;
+      border: none;
+    }
+
+    /* ---------- REFERENCES SECTION (flows naturally onto page 2) ---------- */
     .references-section {
-      page-break-before: always;
-      break-before: page;
       margin-top: 0;
       padding-top: 0;
     }
@@ -384,7 +394,7 @@
       border-color: #2d3540;
     }
 
-    /* ---------- PRINT (PDF) — exactly 2 pages, no skipped pages ---------- */
+    /* ---------- PRINT (PDF) ---------- */
     @media print {
       @page {
         size: A4;
@@ -422,9 +432,9 @@
         break-inside: avoid;
         page-break-inside: avoid;
       }
-      .references-section {
-        page-break-before: always;
-        break-before: page;
+      .page-break-after-education {
+        page-break-after: always;
+        break-after: page;
       }
       .footer-note {
         display: none !important;
@@ -514,7 +524,6 @@
 
   <!-- ========== LEFT SIDEBAR ========== -->
   <div class="sidebar">
-    <!-- Logo area -->
     <div class="sidebar-logo">
       <div class="logo-box">
         CO<span>OTIENO</span>
@@ -664,7 +673,10 @@
       </ul>
     </div>
 
-    <!-- ========== REFERENCES (starts page 2 via CSS) ========== -->
+    <!-- ========== SINGLE PAGE BREAK — page 2 starts here ========== -->
+    <div class="page-break-after-education"></div>
+
+    <!-- ========== REFERENCES (page 2 — starts right after Education) ========== -->
     <div class="references-section">
       <h3 class="main-section-title" style="margin-top: 0;">References</h3>
       <div class="ref-grid">
@@ -709,29 +721,27 @@
       overlay.style.display = 'none';
     }
 
-    // ---------- RESUME PDF (exactly two pages, no skipped pages) ----------
+    // ---------- RESUME PDF (exactly two pages, references on page 2) ----------
     document.getElementById('downloadResumeBtn').addEventListener('click', function(e) {
       e.preventDefault();
       showLoading();
 
       const resumeClone = document.getElementById('resumeContainer').cloneNode(true);
       
-      // Remove buttons and download group
-      const btns = resumeClone.querySelectorAll('.btn, .download-group');
-      btns.forEach(el => el.remove());
+      // Remove buttons, download group, and footer
+      resumeClone.querySelectorAll('.btn, .download-group, .footer-note').forEach(el => el.remove());
 
-      // Remove footer from clone
-      const footer = resumeClone.querySelector('.footer-note');
-      if (footer) footer.remove();
-
-      // Force references to start a new page (redundant with CSS but ensures reliability)
-      const refSection = resumeClone.querySelector('.references-section');
-      if (refSection) {
-        refSection.style.pageBreakBefore = 'always';
-        refSection.style.breakBefore = 'page';
+      // Ensure the single page break is honoured
+      const brk = resumeClone.querySelector('.page-break-after-education');
+      if (brk) {
+        brk.style.pageBreakAfter = 'always';
+        brk.style.breakAfter = 'page';
+        brk.style.display = 'block';
+        brk.style.height = '0';
+        brk.style.visibility = 'hidden';
       }
 
-      // pdf options — pagebreak set to css only, avoids extra blank pages
+      // pdf options — use css/legacy only, NO avoid-all (which caused extra pages)
       const opt = {
         margin:        [0, 0, 0, 0],
         filename:      'Celestino_Otieno_Resume.pdf',
